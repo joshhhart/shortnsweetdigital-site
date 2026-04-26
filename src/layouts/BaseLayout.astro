@@ -11,10 +11,16 @@ interface Props {
     tags?: string[];
   };
   breadcrumbs?: { name: string; item: string }[];
+  noindex?: boolean;
 }
 
-const { title, description, image, article, breadcrumbs } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const { title, description, image, article, breadcrumbs, noindex } = Astro.props;
+const isErrorPage = noindex || Astro.url.pathname === '/404' || Astro.url.pathname === '/404.html';
+// 404 / error pages canonical-ize to homepage so they don't pollute index with a
+// "/404/" URL that itself returns 404.
+const canonicalURL = isErrorPage
+  ? Astro.site!.toString()
+  : new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image
   ? new URL(image, Astro.site).toString()
   : new URL('/og-default.jpg', Astro.site).toString();
@@ -72,6 +78,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG9EKTBZE0"></script>
     <script is:inline>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SG9EKTBZE0',{anonymize_ip:true});</script>
+    {isErrorPage && <meta name="robots" content="noindex, follow" />}
     <SEO
       title={title}
       description={description}
