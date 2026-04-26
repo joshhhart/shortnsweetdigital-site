@@ -303,34 +303,41 @@
       #overlay,
       .popup-body{ display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
 
-      /* Rotating-gradient pill effect for CTA buttons (Watch Demo,
-         Free Visibility Report, Start Free Trial). */
-      .snd-rotating-glow{
+      /* Star Border (vanilla port of React Bits <StarBorder/>). Two
+         glowing orbs sweep horizontally across the perimeter — one along
+         the bottom edge, one along the top — creating an animated border
+         shimmer. Applied to service cards and CTAs (NOT menu items). */
+      .snd-star-border{
         position: relative;
-        z-index: 0;
+        overflow: hidden;
         isolation: isolate;
       }
-      .snd-rotating-glow::before{
-        content: "";
+      .snd-star-border > .snd-sb-bottom,
+      .snd-star-border > .snd-sb-top{
         position: absolute;
-        inset: -2px;
-        border-radius: inherit;
-        background: conic-gradient(from 0deg, #0564D1, #188bf6, #3b9bff, #5271FF, #0564D1);
-        z-index: -1;
-        animation: snd-rotate 4s linear infinite;
-        opacity: 0.95;
+        width: 300%;
+        height: 50%;
+        background: radial-gradient(circle, rgba(24,139,246,0.95) 0%, rgba(82,113,255,0.35) 8%, rgba(24,139,246,0) 14%);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.9;
       }
-      .snd-rotating-glow::after{
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: inherit;
-        z-index: -1;
+      .snd-star-border > .snd-sb-bottom{
+        bottom: -12px; right: -250%;
+        border-radius: 50%;
+        animation: snd-sb-bottom 6s linear infinite alternate;
       }
-      @keyframes snd-rotate { to { transform: rotate(360deg); } }
+      .snd-star-border > .snd-sb-top{
+        top: -12px; left: -250%;
+        border-radius: 50%;
+        animation: snd-sb-top 6s linear infinite alternate;
+      }
+      .snd-star-border > *:not(.snd-sb-top):not(.snd-sb-bottom){ position: relative; z-index: 1; }
+      @keyframes snd-sb-bottom { to { transform: translateX(-66.66%); } }
+      @keyframes snd-sb-top { to { transform: translateX(66.66%); } }
       @media (prefers-reduced-motion: reduce){
-        .snd-rotating-glow::before { animation: none; }
+        .snd-star-border > .snd-sb-bottom,
+        .snd-star-border > .snd-sb-top{ animation: none; opacity: 0; }
       }
 
       /* JS-injected enterprise SaaS footer (lives outside #__nuxt so Nuxt can\'t wipe it) */
@@ -422,14 +429,40 @@
     });
   }
 
+  function attachStarBorder(el) {
+    if (!el || el.__sndSb) return;
+    // Exclude all menu items / hamburger / nav-related elements.
+    if (el.closest('.snd-staggered-menu')) return;
+    if (el.closest('.site-header nav')) return;
+    if (el.classList.contains('snd-sm-panel-item')) return;
+    if (el.classList.contains('snd-sm-toggle')) return;
+    if (el.tagName === 'A' && el.closest('nav')) return;
+    el.__sndSb = true;
+    el.classList.add('snd-star-border');
+    if (!el.querySelector(':scope > .snd-sb-top')) {
+      var t = document.createElement('span'); t.className = 'snd-sb-top';
+      var b = document.createElement('span'); b.className = 'snd-sb-bottom';
+      el.insertBefore(b, el.firstChild);
+      el.insertBefore(t, el.firstChild);
+    }
+  }
+
   function applyBorderGlow() {
-    // CTAs only — user wants the rotating gradient on call-to-action buttons,
-    // NOT on service cards (was creating an unwanted blue/purple fill on hover).
     var ctaSelector = 'a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta, .cbutton-_GnMb7NzQR, [aria-label*="VISIBILITY REPORT"], [aria-label*="WATCH DEMO"], [aria-label*="Watch Demo"], [aria-label*="Free Visibility"], a[href*="gohighlevel.com"], a[href*="book-a-call"]';
     document.querySelectorAll(ctaSelector).forEach(attachBorderGlow);
-    // Also apply the constantly-rotating gradient effect to those CTAs
-    document.querySelectorAll(ctaSelector).forEach(function (el) {
-      el.classList.add('snd-rotating-glow');
+    // Star Border ONLY on service cards (not CTAs / buttons / menu items)
+    document.querySelectorAll('.snd-darkened').forEach(attachStarBorder);
+    // Drop any leftover legacy class
+    document.querySelectorAll('.snd-rotating-glow').forEach(function (el) {
+      el.classList.remove('snd-rotating-glow');
+    });
+    // Strip Star Border from anything that isn't a service card
+    document.querySelectorAll('.snd-star-border').forEach(function (el) {
+      if (!el.classList.contains('snd-darkened')) {
+        el.classList.remove('snd-star-border');
+        el.__sndSb = false;
+        el.querySelectorAll(':scope > .snd-sb-top, :scope > .snd-sb-bottom').forEach(function (s) { s.remove(); });
+      }
     });
   }
 
@@ -786,6 +819,85 @@
     document.body.appendChild(a);
   }
 
+  // ============================================================
+  // AUTOMATION ROI CALCULATOR (homepage only, anchored under
+  // section-_WT3PHacUo — the "Today's Consumer Prefers" stats grid)
+  // ============================================================
+  function ensureRoiCalculator() {
+    if (document.querySelector('[data-snd-roi]')) return;
+    if (location.pathname !== '/' && location.pathname !== '/index.html') return;
+    var anchor = document.getElementById('section-_WT3PHacUo');
+    if (!anchor) return;
+    var section = document.createElement('section');
+    section.setAttribute('data-snd-roi', '');
+    section.style.cssText = 'background:linear-gradient(180deg,#0f172a 0%,#0a090e 100%);padding:72px 20px;border-top:1px solid rgba(5,100,209,0.2);border-bottom:1px solid rgba(5,100,209,0.2)';
+    section.innerHTML = `
+      <div style="max-width:1100px;margin:0 auto;color:#f8fafc;font-family:Open Sans,sans-serif">
+        <div style="text-align:center;margin-bottom:36px">
+          <p style="color:#188bf6;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">Automation ROI Calculator</p>
+          <h2 style="color:#fff;font-size:2rem;line-height:1.2;margin:0;font-weight:800">See What Automating Your Follow-Up Is Worth</h2>
+          <p style="color:#cbd5e1;margin:12px auto 0;max-width:640px">Drag the sliders to your real numbers. We'll show how much revenue you're leaving on the table without automated SMS + email follow-up.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;background:rgba(15,23,42,0.7);border:1px solid rgba(5,100,209,0.3);border-radius:18px;padding:32px;backdrop-filter:blur(8px)">
+          <div data-roi-inputs style="display:flex;flex-direction:column;gap:20px">
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="display:flex;justify-content:space-between;font-weight:600"><span>Leads per month</span><span data-roi-leads-out style="color:#188bf6">200</span></span>
+              <input type="range" min="20" max="2000" step="10" value="200" data-roi-leads style="width:100%;accent-color:#188bf6">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="display:flex;justify-content:space-between;font-weight:600"><span>Current close rate</span><span data-roi-rate-out style="color:#188bf6">5%</span></span>
+              <input type="range" min="1" max="40" step="1" value="5" data-roi-rate style="width:100%;accent-color:#188bf6">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px">
+              <span style="display:flex;justify-content:space-between;font-weight:600"><span>Average customer value</span><span data-roi-aov-out style="color:#188bf6">$1,200</span></span>
+              <input type="range" min="100" max="20000" step="100" value="1200" data-roi-aov style="width:100%;accent-color:#188bf6">
+            </label>
+            <p style="color:#94a3b8;font-size:0.85rem;margin:0;line-height:1.5">Industry benchmarks: automated SMS + email follow-up lifts close rates 2–3× by reaching leads in the first 5 minutes (the window where 78% of buyers pick the first responder).</p>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:18px">
+            <div style="background:rgba(5,100,209,0.12);border:1px solid rgba(5,100,209,0.35);border-radius:14px;padding:20px">
+              <p style="margin:0 0 4px;color:#cbd5e1;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700">Today's Revenue</p>
+              <p data-roi-current style="margin:0;font-size:2rem;font-weight:800;color:#fff">$12,000<span style="font-size:0.95rem;color:#94a3b8;font-weight:600">/mo</span></p>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(5,100,209,0.25),rgba(82,113,255,0.18));border:1px solid rgba(24,139,246,0.55);border-radius:14px;padding:20px">
+              <p style="margin:0 0 4px;color:#188bf6;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700">With Automation (2.4× lift)</p>
+              <p data-roi-future style="margin:0;font-size:2rem;font-weight:800;color:#fff">$28,800<span style="font-size:0.95rem;color:#cbd5e1;font-weight:600">/mo</span></p>
+            </div>
+            <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.4);border-radius:14px;padding:20px">
+              <p style="margin:0 0 4px;color:#86efac;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700">You're Leaving On The Table</p>
+              <p data-roi-gap style="margin:0;font-size:2rem;font-weight:800;color:#fff">$16,800<span style="font-size:0.95rem;color:#cbd5e1;font-weight:600">/mo</span></p>
+            </div>
+            <a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=roi_calc" rel="noopener" class="cta" style="display:inline-block;text-align:center;padding:14px 18px;background:linear-gradient(120deg,#0564D1,#188bf6);color:#fff;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 12px 32px rgba(5,100,209,0.4)">Capture this revenue → Start free trial</a>
+          </div>
+        </div>
+      </div>
+    `;
+    anchor.parentNode.insertBefore(section, anchor.nextSibling);
+    var leads = section.querySelector('[data-roi-leads]');
+    var rate = section.querySelector('[data-roi-rate]');
+    var aov = section.querySelector('[data-roi-aov]');
+    var leadsOut = section.querySelector('[data-roi-leads-out]');
+    var rateOut = section.querySelector('[data-roi-rate-out]');
+    var aovOut = section.querySelector('[data-roi-aov-out]');
+    var current = section.querySelector('[data-roi-current]');
+    var future = section.querySelector('[data-roi-future]');
+    var gap = section.querySelector('[data-roi-gap]');
+    function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+    function recalc() {
+      var L = +leads.value, R = +rate.value / 100, A = +aov.value;
+      var cur = L * R * A;
+      var fut = cur * 2.4;
+      leadsOut.textContent = L.toLocaleString();
+      rateOut.textContent = (+rate.value) + '%';
+      aovOut.textContent = fmt(A);
+      current.innerHTML = fmt(cur) + '<span style="font-size:0.95rem;color:#94a3b8;font-weight:600">/mo</span>';
+      future.innerHTML = fmt(fut) + '<span style="font-size:0.95rem;color:#cbd5e1;font-weight:600">/mo</span>';
+      gap.innerHTML = fmt(fut - cur) + '<span style="font-size:0.95rem;color:#cbd5e1;font-weight:600">/mo</span>';
+    }
+    [leads, rate, aov].forEach(function (i) { i.addEventListener('input', recalc); });
+    recalc();
+  }
+
   function ensureReviewsWidget() {
     if (document.querySelector('[data-snd-reviews]')) return;
     if (location.pathname !== '/' && location.pathname !== '/index.html') return;
@@ -965,6 +1077,7 @@
     try { buildStaggeredMenu(); } catch (e) {}
     try { ensureTrustStrip(); } catch (e) {}
     try { ensureMobileCta(); } catch (e) {}
+    try { ensureRoiCalculator(); } catch (e) {}
     try { ensureReviewsWidget(); } catch (e) {}
     try { applyBorderGlow(); } catch (e) {}
     try { tagLoadedImages(); } catch (e) {}
