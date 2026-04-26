@@ -9,6 +9,13 @@
     if (document.getElementById('snd-global-css')) return;
     var css = [
       'html{scroll-behavior:smooth}',
+      // Lock darkened-card hover state so GHL\'s default white-on-hover
+      // doesn\'t make the recolored text unreadable.
+      '.snd-darkened,.snd-darkened *:hover,.snd-darkened:hover{background:linear-gradient(180deg,rgba(15,23,42,0.92),rgba(10,9,14,0.92))!important;background-color:rgba(15,23,42,0.92)!important}',
+      '.snd-darkened:hover{border-color:rgba(82,113,255,0.55)!important;box-shadow:0 16px 44px rgba(5,100,209,0.35)!important;transform:translateY(-3px)!important;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}',
+      '.snd-darkened-text,.snd-darkened-text:hover,.snd-darkened *:hover{color:#f1f5f9!important}',
+      '.snd-darkened a,.snd-darkened a:hover{color:#7c95ff!important}',
+      '.snd-darkened svg,.snd-darkened i,.snd-darkened [class*="icon"]{color:#7c95ff!important;fill:#7c95ff!important}',
       // scroll-reveal base
       '[data-snd-reveal]{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}',
       '[data-snd-reveal].is-visible{opacity:1;transform:none}',
@@ -87,8 +94,10 @@
 
   function darkenWhiteCards() {
     document.querySelectorAll('div.bg.bgCover, div.bg.bgCover.inner').forEach(function (el) {
+      if (el.classList.contains('snd-darkened')) return; // already done
       var cs = getComputedStyle(el);
       if (cs.backgroundColor !== 'rgb(255, 255, 255)') return;
+      el.classList.add('snd-darkened');
       el.style.setProperty('background', 'linear-gradient(180deg, rgba(15,23,42,0.92), rgba(10,9,14,0.92))', 'important');
       el.style.setProperty('border', '1px solid rgba(5,100,209,0.28)', 'important');
       el.style.setProperty('box-shadow', '0 8px 32px rgba(0,0,0,0.5)', 'important');
@@ -99,6 +108,7 @@
         if (c === 'rgb(0, 0, 0)' || c === 'rgb(15, 23, 42)' || c === 'rgb(17, 24, 39)' || c === 'rgb(31, 41, 55)') {
           t.style.setProperty('color', '#f1f5f9', 'important');
         }
+        t.classList.add('snd-darkened-text');
       });
     });
   }
