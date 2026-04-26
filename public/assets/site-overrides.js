@@ -463,6 +463,124 @@
   }
 
   // ============================================================
+  // FREE VISIBILITY REPORT — popup with the GHL form
+  // ============================================================
+  function ensureVisibilityForm() {
+    if (window.__SND_VIS_FORM__) return;
+    window.__SND_VIS_FORM__ = true;
+
+    var FORM_URL = 'https://seo.shortnsweetdigital.com/widget/form/TZ4OcFkYoLidVNPKL33A';
+    var FORM_HELPER = 'https://seo.shortnsweetdigital.com/js/form_embed.js';
+
+    // Inject modal CSS
+    if (!document.getElementById('snd-vis-form-css')) {
+      var style = document.createElement('style');
+      style.id = 'snd-vis-form-css';
+      style.textContent = `
+        [data-snd-vis-modal]{position:fixed;inset:0;z-index:2147483646;display:none;align-items:center;justify-content:center;animation:snd-vis-fade .25s ease}
+        [data-snd-vis-modal][data-open="true"]{display:flex}
+        [data-snd-vis-modal] .snd-vis-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+        [data-snd-vis-modal] .snd-vis-card{position:relative;width:min(640px,calc(100% - 32px));max-height:calc(100vh - 64px);background:linear-gradient(180deg,#0a090e 0%,#0f172a 100%);border:1px solid rgba(82,113,255,0.35);border-radius:18px;box-shadow:0 32px 80px rgba(0,0,0,0.6);overflow:hidden;display:flex;flex-direction:column;animation:snd-vis-pop .3s cubic-bezier(.2,.8,.2,1);font-family:'Open Sans',-apple-system,sans-serif}
+        [data-snd-vis-modal] .snd-vis-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(82,113,255,0.18);background:linear-gradient(180deg,rgba(5,100,209,0.12),rgba(82,113,255,0.06))}
+        [data-snd-vis-modal] .snd-vis-title{margin:0;color:#fff;font-size:1.1rem;font-weight:800;letter-spacing:-0.01em}
+        [data-snd-vis-modal] .snd-vis-eyebrow{display:block;color:#7c95ff;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+        [data-snd-vis-modal] .snd-vis-close{appearance:none;background:rgba(82,113,255,0.12);border:1px solid rgba(82,113,255,0.3);color:#cbd5e1;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;line-height:1;transition:background .15s ease,color .15s ease,transform .15s ease;display:inline-flex;align-items:center;justify-content:center}
+        [data-snd-vis-modal] .snd-vis-close:hover{background:rgba(82,113,255,0.25);color:#fff;transform:translateY(-1px)}
+        [data-snd-vis-modal] .snd-vis-body{flex:1;min-height:600px;overflow:hidden}
+        [data-snd-vis-modal] iframe{display:block;width:100%;height:100%;min-height:600px;border:0;background:transparent}
+        @keyframes snd-vis-fade{from{opacity:0}to{opacity:1}}
+        @keyframes snd-vis-pop{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:none}}
+        @media (max-width:640px){[data-snd-vis-modal] .snd-vis-card{width:calc(100% - 16px);max-height:calc(100vh - 32px)}}
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Build modal once
+    var modal = document.createElement('div');
+    modal.setAttribute('data-snd-vis-modal', '');
+    modal.setAttribute('data-open', 'false');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-labelledby', 'snd-vis-title');
+    modal.innerHTML = `
+      <div class="snd-vis-backdrop" data-snd-vis-close></div>
+      <div class="snd-vis-card">
+        <div class="snd-vis-header">
+          <div>
+            <span class="snd-vis-eyebrow">Free · No commitment</span>
+            <h2 class="snd-vis-title" id="snd-vis-title">Get Your Free Visibility Report</h2>
+          </div>
+          <button class="snd-vis-close" type="button" data-snd-vis-close aria-label="Close">×</button>
+        </div>
+        <div class="snd-vis-body">
+          <iframe src="" data-snd-vis-iframe data-form-id="TZ4OcFkYoLidVNPKL33A" title="Free Visibility Report — Short n Sweet Digital" loading="lazy"></iframe>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    var iframe = modal.querySelector('[data-snd-vis-iframe]');
+    var loaded = false;
+
+    function open() {
+      if (!loaded) {
+        iframe.src = FORM_URL;
+        loaded = true;
+        // Load GHL's form helper script once
+        if (!document.querySelector('script[data-snd-vis-helper]')) {
+          var s = document.createElement('script');
+          s.src = FORM_HELPER;
+          s.async = true;
+          s.setAttribute('data-snd-vis-helper', '');
+          document.body.appendChild(s);
+        }
+      }
+      modal.setAttribute('data-open', 'true');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      try { if (window.gtag) window.gtag('event', 'visibility_form_open'); } catch (e) {}
+    }
+    function close() {
+      modal.setAttribute('data-open', 'false');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    modal.addEventListener('click', function (e) {
+      if (e.target.closest('[data-snd-vis-close]')) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.getAttribute('data-open') === 'true') close();
+    });
+
+    // Detect "Free Visibility Report" buttons by text or known id, anywhere in the DOM.
+    function isVisibilityTrigger(el) {
+      if (!el) return false;
+      if (el.id === 'button-_GnMb7NzQR_btn') return true;
+      // Anchors/buttons whose visible text contains the phrase
+      var txt = (el.textContent || '').trim().toLowerCase();
+      if (!txt) return false;
+      return txt.indexOf('free visibility report') !== -1 || txt.indexOf('visibility report') === 0;
+    }
+
+    document.addEventListener('click', function (e) {
+      // Walk up the tree to find a clickable button/anchor
+      var node = e.target;
+      while (node && node !== document.body) {
+        if (node.matches && (node.matches('a, button, [role="button"]'))) {
+          if (isVisibilityTrigger(node)) {
+            e.preventDefault();
+            e.stopPropagation();
+            open();
+            return;
+          }
+        }
+        node = node.parentElement;
+      }
+    }, true); // capture phase so we win over GHL's own handlers
+  }
+
+  // ============================================================
   // CHAT WIDGET (ensure it loads on Astro pages too)
   // ============================================================
   function ensureChatWidget() {
@@ -555,6 +673,7 @@
     try { applyBorderGlow(); } catch (e) {}
     try { tagLoadedImages(); } catch (e) {}
     try { ensureChatWidget(); } catch (e) {}
+    try { ensureVisibilityForm(); } catch (e) {}
   }
 
   if (document.readyState === 'complete') fix();
