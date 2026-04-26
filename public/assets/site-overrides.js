@@ -14,7 +14,7 @@
     { label: 'Book a Call',  href: 'https://shortnsweetdigital.com/book-a-call/',                  external: false },
     { label: 'About',        href: 'https://shortnsweetdigital.com/about/',                        external: false },
     { label: 'Login',        href: 'https://app.shortnsweetdigital.com',                           external: true  },
-    { label: 'LEARN',        href: 'https://learn.shortnsweetdigital.com',                         external: true  },
+    { label: 'LEARN',        href: 'https://www.skool.com/llmacademy/about?ref=7ec545cf11f44d1e9ebe40b09419916e', external: true  },
     { label: 'Start free trial', href: 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav', external: true, cta: true }
   ];
 
@@ -236,15 +236,6 @@
       }
       .snd-sm-panel-item.cta:hover{ filter: brightness(1.08); transform: translateY(-2px); }
       .snd-sm-panel-item.cta .snd-sm-panel-item-label{ transform: none; }
-      .snd-sm-panel-list[data-numbering] .snd-sm-panel-item:not(.cta)::after{
-        counter-increment: smItem;
-        content: counter(smItem, decimal-leading-zero);
-        position: absolute; top: 0.05em; right: 0;
-        font-size: 14px; font-weight: 600; color: #5271FF;
-        letter-spacing: 0; opacity: 0;
-        transition: opacity .4s ease;
-      }
-      .snd-staggered-menu[data-open="true"] .snd-sm-panel-list[data-numbering] .snd-sm-panel-item:not(.cta)::after{ opacity: 1; }
 
       .snd-sm-socials{ margin-top: auto; padding-top: 2rem; }
       .snd-sm-socials-title{
@@ -398,7 +389,6 @@
     var ul = document.createElement('ul');
     ul.className = 'snd-sm-panel-list';
     ul.setAttribute('role', 'list');
-    ul.setAttribute('data-numbering', '');
 
     NAV_ITEMS.forEach(function (item) {
       var li = document.createElement('li');

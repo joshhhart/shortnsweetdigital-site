@@ -2,8 +2,10 @@
 // Skips text inside links, code, headings, and blockquotes. Map below grows
 // as we publish more comparison posts.
 const LINKS = [
+  { term: 'GoHighLevel vs HubSpot', href: '/blog/2026-04-26-gohighlevel-vs-hubspot/' },
   { term: 'GoHighLevel vs ActiveCampaign', href: '/blog/2026-04-25-gohighlevel-vs-activecampaign/' },
   { term: 'GoHighLevel vs Lovable', href: '/blog/2026-04-24-gohighlevel-vs-lovable/' },
+  { term: 'HubSpot', href: '/blog/2026-04-26-gohighlevel-vs-hubspot/' },
   { term: 'ActiveCampaign', href: '/blog/2026-04-25-gohighlevel-vs-activecampaign/' },
 ];
 
