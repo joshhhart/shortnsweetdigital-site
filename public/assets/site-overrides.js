@@ -284,6 +284,55 @@
       #section-OV7erCqiVF,
       .section-OV7erCqiVF{ display: none !important; }
 
+      /* Kill GHL\'s native glow-gradient-child rotating effect on service
+         cards (the blue rotating fill that was overriding our dark theme).
+         The gradient stays available for opt-in CTAs via .snd-rotating-glow. */
+      .glow-gradient-child::before,
+      .glow-gradient-child::after,
+      .snd-darkened.glow-gradient-child::before,
+      .snd-darkened.glow-gradient-child::after,
+      .snd-darkened .glow-gradient-child::before,
+      .snd-darkened .glow-gradient-child::after{ display: none !important; content: none !important; }
+
+      /* Force-hide every GHL popup (logo click, exit popup, etc.) so the
+         "old popup" the user reported never appears. */
+      .hl_main_popup,
+      [class*="hl_main_popup"],
+      #hl_main_popup,
+      [id*="hl_main_popup"],
+      #overlay,
+      .popup-body{ display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+
+      /* Rotating-gradient pill effect for CTA buttons (Watch Demo,
+         Free Visibility Report, Start Free Trial). */
+      .snd-rotating-glow{
+        position: relative;
+        z-index: 0;
+        isolation: isolate;
+      }
+      .snd-rotating-glow::before{
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: conic-gradient(from 0deg, #0564D1, #188bf6, #3b9bff, #5271FF, #0564D1);
+        z-index: -1;
+        animation: snd-rotate 4s linear infinite;
+        opacity: 0.95;
+      }
+      .snd-rotating-glow::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: inherit;
+        z-index: -1;
+      }
+      @keyframes snd-rotate { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce){
+        .snd-rotating-glow::before { animation: none; }
+      }
+
       /* JS-injected enterprise SaaS footer (lives outside #__nuxt so Nuxt can\'t wipe it) */
       footer[data-snd-footer]{ position: relative; z-index: 50; }
 
@@ -376,7 +425,12 @@
   function applyBorderGlow() {
     // CTAs only — user wants the rotating gradient on call-to-action buttons,
     // NOT on service cards (was creating an unwanted blue/purple fill on hover).
-    document.querySelectorAll('a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta, .cbutton-_GnMb7NzQR, [aria-label*="VISIBILITY REPORT"], [aria-label*="WATCH DEMO"], a[href*="gohighlevel.com"], a[href*="book-a-call"]').forEach(attachBorderGlow);
+    var ctaSelector = 'a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta, .cbutton-_GnMb7NzQR, [aria-label*="VISIBILITY REPORT"], [aria-label*="WATCH DEMO"], [aria-label*="Watch Demo"], [aria-label*="Free Visibility"], a[href*="gohighlevel.com"], a[href*="book-a-call"]';
+    document.querySelectorAll(ctaSelector).forEach(attachBorderGlow);
+    // Also apply the constantly-rotating gradient effect to those CTAs
+    document.querySelectorAll(ctaSelector).forEach(function (el) {
+      el.classList.add('snd-rotating-glow');
+    });
   }
 
   // Strip BorderGlow from any element that had it but shouldn\'t (e.g. .snd-darkened cards)
@@ -517,6 +571,37 @@
       if (panel.contains(e.target) || btn.contains(e.target)) return;
       setOpen(false);
     });
+  }
+
+  // ============================================================
+  // LOGO CLICK OVERRIDE — kill the old popup that fires on brand click
+  // ============================================================
+  function ensureLogoOverride() {
+    if (window.__SND_LOGO_OVERRIDE__) return;
+    window.__SND_LOGO_OVERRIDE__ = true;
+    document.addEventListener('click', function (e) {
+      // Walk up to find a brand/logo anchor or image
+      var node = e.target;
+      while (node && node !== document.body) {
+        var isLogo =
+          (node.matches && node.matches('a.brand, .nav-menu-wrapper .branding a, .nav-menu-wrapper .branding img, .sm-logo, .sm-logo img, header img.logo, header .logo a, header [class*="logo"] a, header [class*="logo"] img')) ||
+          (node.getAttribute && (
+            (node.getAttribute('aria-label') || '').toLowerCase().indexOf('short n sweet') !== -1 ||
+            (node.getAttribute('alt') || '').toLowerCase().indexOf('shortnsweet') !== -1
+          ));
+        if (isLogo) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          if (location.pathname !== '/' && location.pathname !== '/index.html') {
+            window.location.href = '/';
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+          return;
+        }
+        node = node.parentElement;
+      }
+    }, true); // capture so we win over GHL handlers
   }
 
   // ============================================================
@@ -887,6 +972,7 @@
     try { ensureVisibilityForm(); } catch (e) {}
     try { ensureSaasFooter(); } catch (e) {}
     try { observeReveal(); } catch (e) {}
+    try { ensureLogoOverride(); } catch (e) {}
   }
 
   if (document.readyState === 'complete') fix();
