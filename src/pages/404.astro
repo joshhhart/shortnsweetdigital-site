@@ -10,6 +10,7 @@ const recent = (await getCollection('blog', ({ data }) => !data.draft))
 <BaseLayout
   title="Page not found — Short n Sweet Digital"
   description="The page you're looking for doesn't exist. Check out our latest posts or head back to the homepage."
+  noindex={true}
 >
   <section class="notfound">
     <p class="eyebrow">404</p>
