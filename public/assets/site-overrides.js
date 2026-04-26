@@ -473,6 +473,19 @@
   }
 
   // ============================================================
+  // CHAT WIDGET (ensure it loads on Astro pages too)
+  // ============================================================
+  function ensureChatWidget() {
+    if (document.querySelector('script[data-widget-id="67f85eaae996faa38e8f9d4a"]')) return;
+    var s = document.createElement('script');
+    s.src = 'https://beta.leadconnectorhq.com/loader.js';
+    s.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+    s.setAttribute('data-widget-id', '67f85eaae996faa38e8f9d4a');
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  // ============================================================
   // EXISTING: trust strip, mobile CTA, reviews widget, image fade-in
   // ============================================================
   function ensureTrustStrip() {
@@ -551,6 +564,7 @@
     try { ensureReviewsWidget(); } catch (e) {}
     try { applyBorderGlow(); } catch (e) {}
     try { tagLoadedImages(); } catch (e) {}
+    try { ensureChatWidget(); } catch (e) {}
   }
 
   if (document.readyState === 'complete') fix();
@@ -559,20 +573,20 @@
   setTimeout(fix, 1200);
   setTimeout(fix, 3000);
 
-  // MutationObserver — re-apply when Nuxt rehydrates
+  // MutationObserver — narrowly scoped to header/nav so we don't fight Nuxt's
+  // body-wide rehydration churn (which was causing GHL animations to misfire).
   function observe() {
+    var target = document.querySelector('header, .hl_header, nav') || null;
+    if (!target) return;
     var mo = new MutationObserver(function () {
       if (window.__SND_TICK__) return;
       window.__SND_TICK__ = true;
       requestAnimationFrame(function () {
         window.__SND_TICK__ = false;
-        try { darkenWhiteCards(); } catch (e) {}
-        try { applyBorderGlow(); } catch (e) {}
         try { ensureTrustStrip(); } catch (e) {}
-        // Don't re-build the staggered menu — already mounted once.
       });
     });
-    try { mo.observe(document.body, { childList: true, subtree: true }); } catch (e) {}
+    try { mo.observe(target, { childList: true, subtree: true }); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observe);
   else observe();
