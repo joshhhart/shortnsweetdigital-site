@@ -1,4 +1,4 @@
-# Agentic Jimmy — site
+# Short n Sweet Digital — site
 
 Astro static site, deployed to GitHub Pages. New blog post every weekday,
 published automatically by a LaunchAgent on Josh's Mac that runs

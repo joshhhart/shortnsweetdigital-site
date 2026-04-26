@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
-const SITE_URL = 'https://joshhhart.github.io/agentic-jimmy-site';
+const SITE_URL = 'https://shortnsweetdigital.com';
 
 export default defineConfig({
   site: SITE_URL,

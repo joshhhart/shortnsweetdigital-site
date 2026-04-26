@@ -28,10 +28,10 @@ const ldJson = {
   dateModified: (updatedDate ?? pubDate).toISOString(),
   mainEntityOfPage: canonicalUrl,
   image: heroImage ? new URL(heroImage, Astro.site).toString() : undefined,
-  author: { '@type': 'Organization', name: 'Agentic Jimmy' },
+  author: { '@type': 'Organization', name: 'Short n Sweet Digital' },
   publisher: {
     '@type': 'Organization',
-    name: 'Agentic Jimmy',
+    name: 'Short n Sweet Digital',
     logo: {
       '@type': 'ImageObject',
       url: new URL('/logo.png', Astro.site).toString(),

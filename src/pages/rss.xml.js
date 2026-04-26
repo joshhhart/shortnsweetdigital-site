@@ -6,7 +6,7 @@ export async function GET(context) {
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
   return rss({
-    title: 'Agentic Jimmy',
+    title: 'Short n Sweet Digital',
     description: 'Agency reviews, playbooks, and comparisons — updated daily.',
     site: context.site,
     items: posts.map((post) => ({
