@@ -9,13 +9,19 @@
     if (document.getElementById('snd-global-css')) return;
     var css = [
       'html{scroll-behavior:smooth}',
-      // Lock darkened-card hover state so GHL\'s default white-on-hover
-      // doesn\'t make the recolored text unreadable.
-      '.snd-darkened,.snd-darkened *:hover,.snd-darkened:hover{background:linear-gradient(180deg,rgba(15,23,42,0.92),rgba(10,9,14,0.92))!important;background-color:rgba(15,23,42,0.92)!important}',
+      // Hard lock: darkened cards keep dark bg + readable text in EVERY state
+      // (rest, hover, focus-within), and so do all their descendants — GHL
+      // flips card bg to a light-blue gradient on hover otherwise.
+      '.snd-darkened,.snd-darkened:hover,.snd-darkened:focus-within{background:linear-gradient(180deg,rgba(15,23,42,0.96),rgba(10,9,14,0.96))!important;background-color:rgba(15,23,42,0.96)!important;background-image:linear-gradient(180deg,rgba(15,23,42,0.96),rgba(10,9,14,0.96))!important}',
+      '.snd-darkened *,.snd-darkened *:hover,.snd-darkened:hover *{background:transparent!important;background-color:transparent!important;background-image:none!important}',
       '.snd-darkened:hover{border-color:rgba(82,113,255,0.55)!important;box-shadow:0 16px 44px rgba(5,100,209,0.35)!important;transform:translateY(-3px)!important;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}',
-      '.snd-darkened-text,.snd-darkened-text:hover,.snd-darkened *:hover{color:#f1f5f9!important}',
-      '.snd-darkened a,.snd-darkened a:hover{color:#7c95ff!important}',
-      '.snd-darkened svg,.snd-darkened i,.snd-darkened [class*="icon"]{color:#7c95ff!important;fill:#7c95ff!important}',
+      // Force light text on every descendant, regardless of GHL\'s computed color
+      '.snd-darkened p,.snd-darkened span,.snd-darkened li,.snd-darkened td,.snd-darkened strong,.snd-darkened em,.snd-darkened div,.snd-darkened label{color:#e2e8f0!important}',
+      '.snd-darkened h1,.snd-darkened h2,.snd-darkened h3,.snd-darkened h4,.snd-darkened h5,.snd-darkened h6{color:#ffffff!important}',
+      '.snd-darkened:hover p,.snd-darkened:hover span,.snd-darkened:hover li,.snd-darkened:hover td,.snd-darkened:hover strong,.snd-darkened:hover em,.snd-darkened:hover div,.snd-darkened:hover label{color:#e2e8f0!important}',
+      '.snd-darkened:hover h1,.snd-darkened:hover h2,.snd-darkened:hover h3,.snd-darkened:hover h4,.snd-darkened:hover h5,.snd-darkened:hover h6{color:#ffffff!important}',
+      '.snd-darkened a,.snd-darkened a:hover,.snd-darkened a:visited{color:#7c95ff!important}',
+      '.snd-darkened svg,.snd-darkened svg *,.snd-darkened i,.snd-darkened [class*="icon"]{color:#7c95ff!important;fill:#7c95ff!important;stroke:#7c95ff!important}',
       // scroll-reveal base
       '[data-snd-reveal]{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}',
       '[data-snd-reveal].is-visible{opacity:1;transform:none}',
@@ -63,13 +69,10 @@
     document.querySelectorAll('[data-snd-reveal]').forEach(function (el) { io.observe(el); });
   }
 
-  // Auto-tag major sections for reveal
-  function autoTagReveal() {
-    document.querySelectorAll('section, .c-section').forEach(function (el, i) {
-      if (i === 0) return; // skip hero
-      if (!el.hasAttribute('data-snd-reveal')) el.setAttribute('data-snd-reveal', '');
-    });
-  }
+  // (autoTagReveal removed — was hiding sections whose IntersectionObserver
+  // never fired, causing the lower half of the page to look broken. Reveal
+  // is now opt-in: only elements explicitly marked [data-snd-reveal]
+  // animate in.)
 
   // Lazy image fade-in
   function tagLoadedImages() {
@@ -221,7 +224,6 @@
     try { ensureTrustStrip(); } catch (e) {}
     try { ensureMobileCta(); } catch (e) {}
     try { ensureReviewsWidget(); } catch (e) {}
-    try { autoTagReveal(); } catch (e) {}
     try { observeReveal(); } catch (e) {}
     try { tagLoadedImages(); } catch (e) {}
   }
