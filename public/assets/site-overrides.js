@@ -968,9 +968,10 @@
           <div>
             <h4 style="margin:0 0 10px;font-size:1.1rem;color:#fff;font-weight:700">Get the weekly playbook</h4>
             <p style="margin:0 0 18px;color:#94a3b8;font-size:0.92rem;line-height:1.55">One actionable AI + automation tactic, every Tuesday. No fluff, no spam.</p>
-            <form action="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer_newsletter" method="get" style="display:flex;gap:8px;flex-wrap:wrap">
+            <form data-snd-newsletter style="display:flex;gap:8px;flex-wrap:wrap">
               <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:200px;padding:13px 16px;background:rgba(15,23,42,0.7);border:1px solid rgba(24,139,246,0.3);border-radius:10px;color:#f1f5f9;font-family:Open Sans,sans-serif;font-size:0.95rem;outline:none">
-              <button type="submit" class="snd-bg-card" style="padding:13px 22px;background:linear-gradient(120deg,#0564D1,#188bf6);color:#fff;border:none;border-radius:10px;font-weight:700;font-family:Open Sans,sans-serif;font-size:0.95rem;cursor:pointer;box-shadow:0 8px 20px rgba(5,100,209,0.35);transition:transform .18s ease">Subscribe</button>
+              <button type="submit" data-snd-newsletter-btn style="padding:13px 22px;background:linear-gradient(120deg,#0564D1,#188bf6);color:#fff;border:none;border-radius:10px;font-weight:700;font-family:Open Sans,sans-serif;font-size:0.95rem;cursor:pointer;box-shadow:0 8px 20px rgba(5,100,209,0.35);transition:transform .18s ease">Subscribe</button>
+              <p data-snd-newsletter-msg style="margin:10px 0 0;color:#86efac;font-size:0.85rem;flex-basis:100%;display:none"></p>
             </form>
             <p style="margin:10px 0 0;color:#64748b;font-size:0.78rem">By subscribing you agree to our <a href="/privacy/" style="color:#3b9bff;text-decoration:none">Privacy Policy</a>.</p>
           </div>
@@ -1053,6 +1054,80 @@
   }
 
   // ============================================================
+  // NEWSLETTER FORM — POST email + session/UTM data to GHL webhook to
+  // start the campaign, then redirect to the GHL affiliate trial link.
+  // ============================================================
+  var SND_NEWSLETTER_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/LHvDkOgXpZdUYdjFzBff/webhook-trigger/453f292d-3c7f-4749-a0ce-8d38cd0cfac8';
+  var SND_NEWSLETTER_REDIRECT = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer_newsletter';
+
+  function sndCollectSession() {
+    var qs = new URLSearchParams(location.search);
+    var utm = {};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function (k) {
+      var v = qs.get(k) || sessionStorage.getItem('snd_' + k);
+      if (v) {
+        utm[k] = v;
+        try { sessionStorage.setItem('snd_' + k, v); } catch (e) {}
+      }
+    });
+    return {
+      page_url: location.href,
+      page_path: location.pathname,
+      page_title: document.title,
+      referrer: document.referrer || null,
+      user_agent: navigator.userAgent,
+      language: navigator.language,
+      screen: { w: window.screen.width, h: window.screen.height, dpr: window.devicePixelRatio || 1 },
+      viewport: { w: window.innerWidth, h: window.innerHeight },
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+      timestamp: new Date().toISOString(),
+      utm: utm,
+    };
+  }
+
+  function attachNewsletterForm() {
+    var forms = document.querySelectorAll('form[data-snd-newsletter]:not([data-snd-newsletter-bound])');
+    forms.forEach(function (form) {
+      form.setAttribute('data-snd-newsletter-bound', '1');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var emailEl = form.querySelector('input[name="email"]');
+        var btn = form.querySelector('[data-snd-newsletter-btn]');
+        var msg = form.querySelector('[data-snd-newsletter-msg]');
+        if (!emailEl || !emailEl.value) return;
+        var email = emailEl.value.trim();
+        if (btn) { btn.disabled = true; btn.textContent = 'Subscribing…'; }
+        var payload = Object.assign({
+          email: email,
+          source: 'weekly_playbook_newsletter',
+          campaign_trigger: 'newsletter_signup',
+        }, sndCollectSession());
+        // Fire-and-forget POST. keepalive lets the request finish during
+        // the redirect that follows.
+        try {
+          fetch(SND_NEWSLETTER_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true,
+            mode: 'no-cors',
+          }).catch(function () {});
+        } catch (err) {}
+        if (msg) {
+          msg.style.display = 'block';
+          msg.textContent = 'Thanks — opening your free trial in a new tab…';
+        }
+        // Brief delay so the user sees the confirmation before redirect.
+        setTimeout(function () {
+          var redirect = SND_NEWSLETTER_REDIRECT + '&email=' + encodeURIComponent(email);
+          window.open(redirect, '_blank', 'noopener');
+          if (btn) { btn.disabled = false; btn.textContent = 'Subscribed'; }
+        }, 600);
+      });
+    });
+  }
+
+  // ============================================================
   // OPT-IN SCROLL REVEAL — only animates elements with [data-snd-reveal]
   // ============================================================
   function observeReveal() {
@@ -1089,6 +1164,7 @@
     try { ensureChatWidget(); } catch (e) {}
     try { ensureVisibilityForm(); } catch (e) {}
     try { ensureSaasFooter(); } catch (e) {}
+    try { attachNewsletterForm(); } catch (e) {}
     try { observeReveal(); } catch (e) {}
     try { ensureLogoOverride(); } catch (e) {}
   }
