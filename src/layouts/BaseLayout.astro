@@ -137,7 +137,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         --fg: #f8fafc;
         --bg: #0a090e;
         --muted: #cbd5e1;
-        --accent: #5271FF;
+        --accent: #188bf6;
         --accent-2: #0564D1;
         --border: #1f2937;
         --max-width: 72ch;
@@ -159,6 +159,18 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         background: var(--bg);
         line-height: 1.6;
       }
+      /* Match homepage: city image as fixed background, dark overlay for legibility */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(180deg, rgba(10,9,14,0.88) 0%, rgba(15,23,42,0.92) 100%),
+          url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/66ef6250acfd667f6577ccee.jpeg') center/cover no-repeat;
+        background-attachment: fixed, fixed;
+      }
+      main { position: relative; z-index: 1; }
       main {
         max-width: var(--max-width);
         margin: 0 auto;

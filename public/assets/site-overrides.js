@@ -49,8 +49,8 @@
       .snd-darkened h1,.snd-darkened h2,.snd-darkened h3,.snd-darkened h4,.snd-darkened h5,.snd-darkened h6{color:#ffffff!important}
       .snd-darkened:hover p,.snd-darkened:hover span,.snd-darkened:hover li,.snd-darkened:hover td,.snd-darkened:hover strong,.snd-darkened:hover em,.snd-darkened:hover div,.snd-darkened:hover label{color:#e2e8f0!important}
       .snd-darkened:hover h1,.snd-darkened:hover h2,.snd-darkened:hover h3,.snd-darkened:hover h4,.snd-darkened:hover h5,.snd-darkened:hover h6{color:#ffffff!important}
-      .snd-darkened a,.snd-darkened a:hover,.snd-darkened a:visited{color:#7c95ff!important}
-      .snd-darkened svg,.snd-darkened svg *,.snd-darkened i,.snd-darkened [class*="icon"]{color:#7c95ff!important;fill:#7c95ff!important;stroke:#7c95ff!important}
+      .snd-darkened a,.snd-darkened a:hover,.snd-darkened a:visited{color:#3b9bff!important}
+      .snd-darkened svg,.snd-darkened svg *,.snd-darkened i,.snd-darkened [class*="icon"]{color:#3b9bff!important;fill:#3b9bff!important;stroke:#3b9bff!important}
 
       /* ---- Image fade-in ---- */
       img[loading="lazy"]{opacity:0;transition:opacity .5s ease}
@@ -136,7 +136,7 @@
         position: relative; display: inline-flex; align-items: center; gap: 0.5rem;
         background: rgba(10,9,14,0.55);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(82,113,255,0.35);
+        border: 1px solid rgba(24,139,246,0.35);
         cursor: pointer; color: #f1f5f9;
         font-weight: 700; font-family: 'Open Sans',sans-serif;
         letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.82rem;
@@ -144,7 +144,7 @@
         transition: background .25s ease, border-color .25s ease, transform .2s ease;
       }
       .snd-sm-toggle:hover{
-        background: rgba(82,113,255,0.18); border-color: rgba(82,113,255,0.6);
+        background: rgba(24,139,246,0.18); border-color: rgba(24,139,246,0.6);
         transform: translateY(-1px);
       }
       .snd-sm-toggle-text{
@@ -187,7 +187,7 @@
         width: clamp(280px, 38vw, 460px); height: 100%;
         background: linear-gradient(180deg,#0a090e 0%,#0f172a 100%);
         backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-        border-left: 1px solid rgba(82,113,255,0.25);
+        border-left: 1px solid rgba(24,139,246,0.25);
         display: flex; flex-direction: column;
         padding: 5.5em 2.2em 2em;
         overflow-y: auto; z-index: 10;
@@ -212,7 +212,7 @@
         text-decoration: none; padding-right: 1.4em;
         transition: color .25s ease;
       }
-      .snd-sm-panel-item:hover{ color: #5271FF; }
+      .snd-sm-panel-item:hover{ color: #188bf6; }
       .snd-sm-panel-item-label{
         display: inline-block; will-change: transform;
         transform: translateY(140%) rotate(10deg); transform-origin: 50% 100%;
@@ -229,7 +229,7 @@
       .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(8) .snd-sm-panel-item-label{ transition-delay: 0.86s; }
       .snd-sm-panel-item.cta{
         color: #fff; font-size: 1.1rem; padding: 12px 22px; border-radius: 999px;
-        background: linear-gradient(120deg,#0564D1,#5271FF);
+        background: linear-gradient(120deg,#0564D1,#188bf6);
         text-transform: uppercase; letter-spacing: 0.06em;
         margin-top: 0.5rem; align-self: flex-start;
         box-shadow: 0 12px 36px rgba(5,100,209,0.4);
@@ -240,7 +240,7 @@
       .snd-sm-socials{ margin-top: auto; padding-top: 2rem; }
       .snd-sm-socials-title{
         margin: 0 0 0.75rem; font-size: 0.78rem; font-weight: 700;
-        color: #5271FF; text-transform: uppercase; letter-spacing: 0.12em;
+        color: #188bf6; text-transform: uppercase; letter-spacing: 0.12em;
         opacity: 0; transition: opacity .4s ease;
       }
       .snd-sm-socials-list{
@@ -252,7 +252,7 @@
         text-decoration: none; transition: color .2s ease, opacity .2s ease;
         opacity: 0; transform: translateY(20px);
       }
-      .snd-sm-socials-link:hover{ color: #5271FF; }
+      .snd-sm-socials-link:hover{ color: #188bf6; }
       .snd-staggered-menu[data-open="true"] .snd-sm-socials-title{ opacity: 1; }
       .snd-staggered-menu[data-open="true"] .snd-sm-socials-link{ opacity: 1; transform: none; transition: color .2s ease, opacity .4s ease, transform .5s cubic-bezier(.2,.8,.2,1); }
 
@@ -278,9 +278,15 @@
       #col-tzRGTq4su,
       #col-HPlTzlIQ,
       #col-oMse1FNzAF,
-      /* GHL custom-code ROI calculator embed row */
+      /* GHL custom-code ROI calculator embed row + its parent section */
       #row-RTega7byAO,
-      .row-RTega7byAO{ display: none !important; }
+      .row-RTega7byAO,
+      #section-8SUbrM6VzS,
+      .section-8SUbrM6VzS,
+      /* Old GHL "WATCH DEMO + FREE VISIBILITY REPORT" buttons section (we already
+         have a replacement CTA section, this one is a leftover duplicate) */
+      #section-OV7erCqiVF,
+      .section-OV7erCqiVF{ display: none !important; }
 
       /* JS-injected enterprise SaaS footer (lives outside #__nuxt so Nuxt can\'t wipe it) */
       footer[data-snd-footer]{ position: relative; z-index: 50; }
@@ -372,12 +378,19 @@
   }
 
   function applyBorderGlow() {
-    // service / GHL darkened cards
-    document.querySelectorAll('.snd-darkened').forEach(attachBorderGlow);
-    // homepage blog cards
-    document.querySelectorAll('.snd-blog-card').forEach(attachBorderGlow);
-    // CTAs across both Astro and GHL surfaces
-    document.querySelectorAll('a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta').forEach(attachBorderGlow);
+    // CTAs only — user wants the rotating gradient on call-to-action buttons,
+    // NOT on service cards (was creating an unwanted blue/purple fill on hover).
+    document.querySelectorAll('a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta, .cbutton-_GnMb7NzQR, [aria-label*="VISIBILITY REPORT"], [aria-label*="WATCH DEMO"], a[href*="gohighlevel.com"], a[href*="book-a-call"]').forEach(attachBorderGlow);
+  }
+
+  // Strip BorderGlow from any element that had it but shouldn\'t (e.g. .snd-darkened cards)
+  function stripBorderGlow() {
+    document.querySelectorAll('.snd-darkened.snd-bg-card, .snd-blog-card.snd-bg-card').forEach(function (el) {
+      el.classList.remove('snd-bg-card');
+      var edge = el.querySelector(':scope > .snd-bg-edge');
+      if (edge) edge.remove();
+      el.__sndBg = false;
+    });
   }
 
   // ============================================================
@@ -395,7 +408,7 @@
     // pre-layers (animated panels behind the main panel)
     var pre = document.createElement('div');
     pre.className = 'snd-sm-prelayers';
-    ['#1551C5', '#5271FF'].forEach(function (c) {
+    ['#1551C5', '#188bf6'].forEach(function (c) {
       var l = document.createElement('div');
       l.className = 'snd-sm-prelayer';
       l.style.background = c;
@@ -528,12 +541,12 @@
         [data-snd-vis-modal]{position:fixed;inset:0;z-index:2147483646;display:none;align-items:center;justify-content:center;animation:snd-vis-fade .25s ease}
         [data-snd-vis-modal][data-open="true"]{display:flex}
         [data-snd-vis-modal] .snd-vis-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-        [data-snd-vis-modal] .snd-vis-card{position:relative;width:min(640px,calc(100% - 32px));max-height:calc(100vh - 64px);background:linear-gradient(180deg,#0a090e 0%,#0f172a 100%);border:1px solid rgba(82,113,255,0.35);border-radius:18px;box-shadow:0 32px 80px rgba(0,0,0,0.6);overflow:hidden;display:flex;flex-direction:column;animation:snd-vis-pop .3s cubic-bezier(.2,.8,.2,1);font-family:'Open Sans',-apple-system,sans-serif}
-        [data-snd-vis-modal] .snd-vis-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(82,113,255,0.18);background:linear-gradient(180deg,rgba(5,100,209,0.12),rgba(82,113,255,0.06))}
+        [data-snd-vis-modal] .snd-vis-card{position:relative;width:min(640px,calc(100% - 32px));max-height:calc(100vh - 64px);background:linear-gradient(180deg,#0a090e 0%,#0f172a 100%);border:1px solid rgba(24,139,246,0.35);border-radius:18px;box-shadow:0 32px 80px rgba(0,0,0,0.6);overflow:hidden;display:flex;flex-direction:column;animation:snd-vis-pop .3s cubic-bezier(.2,.8,.2,1);font-family:'Open Sans',-apple-system,sans-serif}
+        [data-snd-vis-modal] .snd-vis-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(24,139,246,0.18);background:linear-gradient(180deg,rgba(5,100,209,0.12),rgba(24,139,246,0.06))}
         [data-snd-vis-modal] .snd-vis-title{margin:0;color:#fff;font-size:1.1rem;font-weight:800;letter-spacing:-0.01em}
-        [data-snd-vis-modal] .snd-vis-eyebrow{display:block;color:#7c95ff;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
-        [data-snd-vis-modal] .snd-vis-close{appearance:none;background:rgba(82,113,255,0.12);border:1px solid rgba(82,113,255,0.3);color:#cbd5e1;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;line-height:1;transition:background .15s ease,color .15s ease,transform .15s ease;display:inline-flex;align-items:center;justify-content:center}
-        [data-snd-vis-modal] .snd-vis-close:hover{background:rgba(82,113,255,0.25);color:#fff;transform:translateY(-1px)}
+        [data-snd-vis-modal] .snd-vis-eyebrow{display:block;color:#3b9bff;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+        [data-snd-vis-modal] .snd-vis-close{appearance:none;background:rgba(24,139,246,0.12);border:1px solid rgba(24,139,246,0.3);color:#cbd5e1;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;line-height:1;transition:background .15s ease,color .15s ease,transform .15s ease;display:inline-flex;align-items:center;justify-content:center}
+        [data-snd-vis-modal] .snd-vis-close:hover{background:rgba(24,139,246,0.25);color:#fff;transform:translateY(-1px)}
         [data-snd-vis-modal] .snd-vis-body{flex:1;min-height:600px;overflow:hidden}
         [data-snd-vis-modal] iframe{display:block;width:100%;height:100%;min-height:600px;border:0;background:transparent}
         @keyframes snd-vis-fade{from{opacity:0}to{opacity:1}}
@@ -669,7 +682,7 @@
     var strip = document.createElement('div');
     strip.setAttribute('data-snd-trust', '');
     strip.innerHTML = `
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1.5rem;padding:8px 16px;background:linear-gradient(90deg,rgba(5,100,209,0.12),rgba(82,113,255,0.12));border-bottom:1px solid rgba(5,100,209,0.25);font-family:Open Sans,-apple-system,sans-serif;font-size:0.82rem;color:#cbd5e1;text-align:center;position:relative;z-index:9991">
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1.5rem;padding:8px 16px;background:linear-gradient(90deg,rgba(5,100,209,0.12),rgba(24,139,246,0.12));border-bottom:1px solid rgba(5,100,209,0.25);font-family:Open Sans,-apple-system,sans-serif;font-size:0.82rem;color:#cbd5e1;text-align:center;position:relative;z-index:9991">
         <span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#facc15;font-weight:700">★★★★★</span> Trusted by 100,000+ agencies on GoHighLevel</span>
         <span style="opacity:0.4">·</span>
         <span>14-day free trial</span>
@@ -688,7 +701,7 @@
     a.href = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=mobile_sticky';
     a.rel = 'noopener'; a.target = '_blank';
     a.textContent = 'Start free trial →';
-    a.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:9989;text-align:center;background:linear-gradient(120deg,#0564D1,#5271FF);color:#fff;font-weight:700;padding:14px 18px;border-radius:999px;text-decoration:none;box-shadow:0 12px 32px rgba(5,100,209,0.4);font-family:Open Sans,sans-serif;font-size:0.98rem';
+    a.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:9989;text-align:center;background:linear-gradient(120deg,#0564D1,#188bf6);color:#fff;font-weight:700;padding:14px 18px;border-radius:999px;text-decoration:none;box-shadow:0 12px 32px rgba(5,100,209,0.4);font-family:Open Sans,sans-serif;font-size:0.98rem';
     document.body.appendChild(a);
   }
 
@@ -703,7 +716,7 @@
     section.innerHTML = `
       <div style="max-width:1100px;margin:0 auto">
         <div style="text-align:center;margin-bottom:36px">
-          <p style="color:#5271FF;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">What clients say</p>
+          <p style="color:#188bf6;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">What clients say</p>
           <h2 style="color:#fff;font-size:2rem;line-height:1.2;margin:0;font-family:Open Sans,sans-serif;font-weight:800">Real reviews from real businesses</h2>
         </div>
         <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(5,100,209,0.25);border-radius:18px;padding:24px;backdrop-filter:blur(6px)">
@@ -736,10 +749,10 @@
     if (document.querySelector('footer[data-snd-footer]')) return;
     var f = document.createElement('footer');
     f.setAttribute('data-snd-footer', '');
-    f.style.cssText = 'background:#06050a;padding:80px 24px 32px;color:#cbd5e1;border-top:1px solid rgba(82,113,255,0.2);font-family:Open Sans,sans-serif';
+    f.style.cssText = 'background:#06050a;padding:80px 24px 32px;color:#cbd5e1;border-top:1px solid rgba(24,139,246,0.2);font-family:Open Sans,sans-serif';
     f.innerHTML = `
       <div style="max-width:1240px;margin:0 auto">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid rgba(82,113,255,0.15)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid rgba(24,139,246,0.15)">
           <div>
             <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/67188f8028f9aa4e4a87fa1e.webp" alt="ShortNSweet Digital" style="height:52px;width:auto;margin-bottom:18px">
             <p style="margin:0 0 18px;color:#e2e8f0;font-size:0.98rem;line-height:1.6;max-width:320px">The all-in-one CRM, marketing, and AI automation platform built for small businesses that need to move fast.</p>
@@ -752,15 +765,15 @@
             <h4 style="margin:0 0 10px;font-size:1.1rem;color:#fff;font-weight:700">Get the weekly playbook</h4>
             <p style="margin:0 0 18px;color:#94a3b8;font-size:0.92rem;line-height:1.55">One actionable AI + automation tactic, every Tuesday. No fluff, no spam.</p>
             <form action="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer_newsletter" method="get" style="display:flex;gap:8px;flex-wrap:wrap">
-              <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:200px;padding:13px 16px;background:rgba(15,23,42,0.7);border:1px solid rgba(82,113,255,0.3);border-radius:10px;color:#f1f5f9;font-family:Open Sans,sans-serif;font-size:0.95rem;outline:none">
-              <button type="submit" class="snd-bg-card" style="padding:13px 22px;background:linear-gradient(120deg,#0564D1,#5271FF);color:#fff;border:none;border-radius:10px;font-weight:700;font-family:Open Sans,sans-serif;font-size:0.95rem;cursor:pointer;box-shadow:0 8px 20px rgba(5,100,209,0.35);transition:transform .18s ease">Subscribe</button>
+              <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:200px;padding:13px 16px;background:rgba(15,23,42,0.7);border:1px solid rgba(24,139,246,0.3);border-radius:10px;color:#f1f5f9;font-family:Open Sans,sans-serif;font-size:0.95rem;outline:none">
+              <button type="submit" class="snd-bg-card" style="padding:13px 22px;background:linear-gradient(120deg,#0564D1,#188bf6);color:#fff;border:none;border-radius:10px;font-weight:700;font-family:Open Sans,sans-serif;font-size:0.95rem;cursor:pointer;box-shadow:0 8px 20px rgba(5,100,209,0.35);transition:transform .18s ease">Subscribe</button>
             </form>
-            <p style="margin:10px 0 0;color:#64748b;font-size:0.78rem">By subscribing you agree to our <a href="/privacy/" style="color:#7c95ff;text-decoration:none">Privacy Policy</a>.</p>
+            <p style="margin:10px 0 0;color:#64748b;font-size:0.78rem">By subscribing you agree to our <a href="/privacy/" style="color:#3b9bff;text-decoration:none">Privacy Policy</a>.</p>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:36px;margin-bottom:56px">
           <div>
-            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Product</h4>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Product</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
               <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">CRM &amp; Pipelines</a></li>
               <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Email &amp; SMS</a></li>
@@ -770,7 +783,7 @@
             </ul>
           </div>
           <div>
-            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Solutions</h4>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Solutions</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
               <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Home Services</a></li>
               <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Real Estate</a></li>
@@ -780,7 +793,7 @@
             </ul>
           </div>
           <div>
-            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Resources</h4>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Resources</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
               <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Blog</a></li>
               <li><a href="https://www.skool.com/llmacademy/about?ref=7ec545cf11f44d1e9ebe40b09419916e" target="_blank" rel="noopener" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">LLM Academy ↗</a></li>
@@ -789,7 +802,7 @@
             </ul>
           </div>
           <div>
-            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Company</h4>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Company</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
               <li><a href="/about/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">About</a></li>
               <li><a href="/book-a-call/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Book a call</a></li>
@@ -798,7 +811,7 @@
             </ul>
           </div>
           <div>
-            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Legal</h4>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Legal</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
               <li><a href="/privacy/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Privacy Policy</a></li>
               <li><a href="/termsconditions/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Terms of Service</a></li>
@@ -807,7 +820,7 @@
             </ul>
           </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-bottom:36px;padding:20px;background:rgba(15,23,42,0.5);border:1px solid rgba(82,113,255,0.18);border-radius:14px">
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-bottom:36px;padding:20px;background:rgba(15,23,42,0.5);border:1px solid rgba(24,139,246,0.18);border-radius:14px">
           <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#22c55e">✓</span> SOC 2 Type II</div>
           <span style="color:#334155">·</span>
           <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#22c55e">✓</span> GDPR compliant</div>
@@ -816,16 +829,16 @@
           <span style="color:#334155">·</span>
           <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#facc15">★★★★★</span> 4.9/5 · 127 reviews</div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(82,113,255,0.15)">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(24,139,246,0.15)">
           <p style="margin:0;color:#64748b;font-size:0.86rem">© 2026 Short n Sweet Digital — Joshua A. Hart. All rights reserved. · Built with care in the USA.</p>
           <div style="display:inline-flex;align-items:center;gap:14px">
-            <a href="https://www.facebook.com/shortnsweetmarketing" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(82,113,255,0.1);border:1px solid rgba(82,113,255,0.25);color:#cbd5e1;text-decoration:none">
+            <a href="https://www.facebook.com/shortnsweetmarketing" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(24,139,246,0.1);border:1px solid rgba(24,139,246,0.25);color:#cbd5e1;text-decoration:none">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
             </a>
-            <a href="https://www.instagram.com/shortnsweetdigital" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(82,113,255,0.1);border:1px solid rgba(82,113,255,0.25);color:#cbd5e1;text-decoration:none">
+            <a href="https://www.instagram.com/shortnsweetdigital" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(24,139,246,0.1);border:1px solid rgba(24,139,246,0.25);color:#cbd5e1;text-decoration:none">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.97 5.97 0 0 0-2.16 1.4A5.97 5.97 0 0 0 .58 4.2c-.3.76-.5 1.64-.56 2.91C.01 8.39 0 8.8 0 12.06c0 3.26.01 3.67.07 4.95.06 1.27.26 2.15.56 2.91.31.79.73 1.46 1.4 2.13.67.67 1.34 1.09 2.13 1.4.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.97 5.97 0 0 0 2.13-1.4 5.97 5.97 0 0 0 1.4-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.06-1.27-.26-2.15-.56-2.91a5.97 5.97 0 0 0-1.4-2.13A5.97 5.97 0 0 0 19.86.58c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.17 6.17 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
             </a>
-            <a href="https://www.linkedin.com/company/shortnsweet-marketing/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(82,113,255,0.1);border:1px solid rgba(82,113,255,0.25);color:#cbd5e1;text-decoration:none">
+            <a href="https://www.linkedin.com/company/shortnsweet-marketing/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(24,139,246,0.1);border:1px solid rgba(24,139,246,0.25);color:#cbd5e1;text-decoration:none">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
           </div>
@@ -861,6 +874,7 @@
   // ============================================================
   function fix() {
     try { darkenWhiteCards(); } catch (e) {}
+    try { stripBorderGlow(); } catch (e) {}
     try { buildStaggeredMenu(); } catch (e) {}
     try { ensureTrustStrip(); } catch (e) {}
     try { ensureMobileCta(); } catch (e) {}
