@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Free Strategy Call — Short n Sweet Digital',
+  provider: {
+    '@type': 'Organization',
+    name: 'Short n Sweet Digital',
+    url: 'https://shortnsweetdigital.com/',
+  },
+  areaServed: 'US',
+  description:
+    'Book a free 30-minute strategy call to scope your CRM, automation, and AI setup. We map your current stack and show you exactly which tools we can replace with one platform.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+
+<BaseLayout
+  title="Book a Free Strategy Call — Short n Sweet Digital"
+  description="Book a free 30-minute strategy call. We'll map your current marketing stack and show you exactly what we can consolidate, automate, and improve."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+
+  <section class="book">
+    <p class="eyebrow">Book a call</p>
+    <h1>Free 30-min strategy call</h1>
+    <p class="lede">
+      Pick a time below. On the call we'll audit your current marketing stack
+      (CRM, email, SMS, web chat, scheduling) and show you exactly what we can
+      consolidate into one AI-powered platform — no pitch, no pressure.
+    </p>
+
+    <div class="calendar-wrap">
+      <iframe
+        src="https://seo.shortnsweetdigital.com/widget/booking/ViRdkidnenr14Qx74gcZ"
+        style="width:100%;border:none;overflow:hidden;min-height:780px"
+        scrolling="no"
+        id="msgsndr-calendar"
+        title="Book a strategy call with Short n Sweet Digital"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <script src="https://seo.shortnsweetdigital.com/js/embed.js" type="text/javascript" is:inline></script>
+
+    <div class="reassurance">
+      <div class="r-item">
+        <strong>30 minutes</strong>
+        <span>Quick, focused, zero fluff</span>
+      </div>
+      <div class="r-item">
+        <strong>Free</strong>
+        <span>No credit card, no commitment</span>
+      </div>
+      <div class="r-item">
+        <strong>Tailored to you</strong>
+        <span>Built around your industry &amp; stack</span>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .book { padding: 1rem 0 4rem; }
+    .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; text-transform: uppercase; font-size: 0.85rem; }
+    h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 1rem; }
+    .lede { color: var(--muted); font-size: 1.1rem; margin: 0 0 2rem; }
+    .calendar-wrap {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(5, 100, 209, 0.3);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+    .reassurance {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 2.5rem;
+    }
+    .r-item {
+      background: rgba(5, 100, 209, 0.08);
+      border: 1px solid rgba(5, 100, 209, 0.25);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+    .r-item strong { display: block; color: #fff; margin-bottom: 4px; font-size: 1.05rem; }
+    .r-item span { color: var(--muted); font-size: 0.9rem; }
+  </style>
+</BaseLayout>

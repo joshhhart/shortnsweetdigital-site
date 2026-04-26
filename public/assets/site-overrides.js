@@ -4,16 +4,17 @@
   if (window.__SND_OVERRIDES__) return;
   window.__SND_OVERRIDES__ = true;
 
-  // Canonical nav — single source of truth, also rendered into static HTML
-  // by scripts/snd-nav-inject.py. The runtime guardian re-applies these if
-  // Nuxt rehydration wipes them.
+  // Canonical nav — single source of truth. The runtime guardian wipes any
+  // GHL/Nuxt-rendered items and re-renders this list every time Nuxt
+  // rehydrates the header.
   var NAV_ITEMS = [
-    { label: 'Home', href: 'https://shortnsweetdigital.com/', external: false },
-    { label: 'Services', href: 'https://shortnsweetdigital.com/#section-ZTF8dMXlhU', external: false },
-    { label: 'Pricing', href: 'https://shortnsweetdigital.com/pricing', external: false },
-    { label: 'Blog', href: 'https://shortnsweetdigital.com/blog', external: false },
-    { label: 'Login', href: 'https://app.shortnsweetdigital.com', external: true },
-    { label: 'LEARN', href: 'https://learn.shortnsweetdigital.com', external: true }
+    { label: 'Home',         href: 'https://shortnsweetdigital.com/',                              external: false },
+    { label: 'Services',     href: 'https://shortnsweetdigital.com/#section-ZTF8dMXlhU',           external: false },
+    { label: 'Blog',         href: 'https://shortnsweetdigital.com/blog/',                         external: false },
+    { label: 'Book a Call',  href: 'https://shortnsweetdigital.com/book-a-call/',                  external: false },
+    { label: 'Login',        href: 'https://app.shortnsweetdigital.com',                           external: true  },
+    { label: 'LEARN',        href: 'https://learn.shortnsweetdigital.com',                         external: true  },
+    { label: 'Start free trial', href: 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav', external: true, cta: true }
   ];
 
   function darkenWhiteCards() {
@@ -35,7 +36,6 @@
   }
 
   function findNavList() {
-    // GHL renders nav menu items as <li class="nav-menu-item"> inside a <ul>.
     var any = document.querySelector('li.nav-menu-item');
     return any ? any.parentElement : null;
   }
@@ -49,39 +49,28 @@
     a.setAttribute('aria-label', item.label);
     if (item.external) { a.target = '_blank'; a.rel = 'noreferrer noopener'; }
     a.textContent = item.label;
+    if (item.cta) {
+      a.style.cssText = 'background:linear-gradient(120deg,#0564D1,#5271FF);color:#fff!important;padding:8px 18px;border-radius:999px;font-weight:700;text-decoration:none;display:inline-block';
+    }
     li.appendChild(a);
     return li;
   }
 
-  function ensureNavItems() {
+  // Replace the entire nav UL contents with our canonical list. Nuxt-rendered
+  // items get wiped on every pass.
+  function rebuildNav() {
     var ul = findNavList();
     if (!ul) return;
-    // Build a map of existing labels → li, so we can preserve dropdowns
-    var existing = {};
-    ul.querySelectorAll('li.nav-menu-item > a').forEach(function (a) {
-      var label = (a.getAttribute('aria-label') || a.textContent || '').trim();
-      if (label) existing[label.toLowerCase()] = a.parentElement;
-    });
+    // Already correct? cheap guard to avoid layout thrash
+    var existing = ul.querySelectorAll('li.nav-menu-item');
+    var sndCount = ul.querySelectorAll('li[data-snd-nav]').length;
+    if (existing.length === NAV_ITEMS.length && sndCount === NAV_ITEMS.length) return;
 
-    // Find a reference node — the trial CTA (button) usually sits at end. We
-    // insert our items before it so the CTA stays last.
-    var ctaLi = ul.querySelector('li.nav-menu-item:has(a[href*="gohighlevel.com"])') ||
-                ul.querySelector('li.nav-menu-item:last-child');
+    // Clear all nav items (drop GHL's, drop our prior renders)
+    Array.prototype.slice.call(existing).forEach(function (li) { li.remove(); });
 
     NAV_ITEMS.forEach(function (item) {
-      var key = item.label.toLowerCase();
-      if (existing[key]) {
-        // Patch href if Nuxt rewrote it
-        var a = existing[key].querySelector('a');
-        if (a && a.getAttribute('href') !== item.href && (key === 'login' || key === 'learn' || key === 'blog')) {
-          a.setAttribute('href', item.href);
-          if (item.external) { a.target = '_blank'; a.rel = 'noreferrer noopener'; }
-        }
-        return;
-      }
-      var li = buildNavLi(item);
-      if (ctaLi && ctaLi.parentElement === ul) ul.insertBefore(li, ctaLi);
-      else ul.appendChild(li);
+      ul.appendChild(buildNavLi(item));
     });
   }
 
@@ -93,7 +82,7 @@
     strip.setAttribute('data-snd-trust', '');
     strip.innerHTML = [
       '<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1.5rem;padding:8px 16px;background:linear-gradient(90deg,rgba(5,100,209,0.12),rgba(82,113,255,0.12));border-bottom:1px solid rgba(5,100,209,0.25);font-family:Open Sans,-apple-system,sans-serif;font-size:0.82rem;color:#cbd5e1;text-align:center">',
-      '  <span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#5271FF;font-weight:700">★★★★★</span> Trusted by 100,000+ agencies on GoHighLevel</span>',
+      '  <span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#facc15;font-weight:700">★★★★★</span> Trusted by 100,000+ agencies on GoHighLevel</span>',
       '  <span style="opacity:0.4">·</span>',
       '  <span>14-day free trial</span>',
       '  <span style="opacity:0.4">·</span>',
@@ -110,16 +99,50 @@
     a.setAttribute('data-snd-mobile-cta', '');
     a.href = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=mobile_sticky';
     a.rel = 'noopener';
+    a.target = '_blank';
     a.textContent = 'Start free trial →';
     a.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;text-align:center;background:linear-gradient(120deg,#0564D1,#5271FF);color:#fff;font-weight:700;padding:14px 18px;border-radius:999px;text-decoration:none;box-shadow:0 12px 32px rgba(5,100,209,0.4);font-family:Open Sans,sans-serif;font-size:0.98rem';
     document.body.appendChild(a);
   }
 
+  // Inject the leadconnector reviews widget on the homepage, just before the
+  // blog carousel section.
+  function ensureReviewsWidget() {
+    if (document.querySelector('[data-snd-reviews]')) return;
+    if (location.pathname !== '/' && location.pathname !== '/index.html') return;
+    var carousel = document.querySelector('[data-snd-blog-section]');
+    if (!carousel) return;
+    var section = document.createElement('section');
+    section.setAttribute('data-snd-reviews', '');
+    section.style.cssText = 'background:linear-gradient(180deg,#0a090e 0%,#0f172a 100%);padding:72px 20px;border-top:1px solid rgba(5,100,209,0.2)';
+    section.innerHTML = [
+      '<div style="max-width:1100px;margin:0 auto">',
+      '  <div style="text-align:center;margin-bottom:36px">',
+      '    <p style="color:#5271FF;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">What clients say</p>',
+      '    <h2 style="color:#fff;font-size:2rem;line-height:1.2;margin:0;font-family:Open Sans,sans-serif;font-weight:800">Real reviews from real businesses</h2>',
+      '  </div>',
+      '  <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(5,100,209,0.25);border-radius:18px;padding:24px;backdrop-filter:blur(6px)">',
+      '    <iframe src="https://reputationhub.site/reputation/widgets/review_widget/LHvDkOgXpZdUYdjFzBff" frameborder="0" scrolling="no" style="width:100%;min-height:520px;border:0;background:transparent" loading="lazy"></iframe>',
+      '  </div>',
+      '</div>'
+    ].join('');
+    carousel.parentNode.insertBefore(section, carousel.nextSibling);
+    // load the widget helper script
+    if (!document.querySelector('script[data-snd-reviews-helper]')) {
+      var s = document.createElement('script');
+      s.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+      s.setAttribute('data-snd-reviews-helper', '');
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }
+
   function fix() {
     try { darkenWhiteCards(); } catch (e) {}
-    try { ensureNavItems(); } catch (e) {}
+    try { rebuildNav(); } catch (e) {}
     try { ensureTrustStrip(); } catch (e) {}
     try { ensureMobileCta(); } catch (e) {}
+    try { ensureReviewsWidget(); } catch (e) {}
   }
 
   if (document.readyState === 'complete') fix();
@@ -128,23 +151,21 @@
   setTimeout(fix, 1200);
   setTimeout(fix, 3000);
 
-  // MutationObserver — re-apply whenever Nuxt rehydrates the header
+  // MutationObserver — re-apply whenever Nuxt rehydrates anything we manage
   function observe() {
-    var header = document.querySelector('header, nav, .nav-menu, .hl_header') || document.body;
-    var mo = new MutationObserver(function (muts) {
-      // Cheap throttle
+    var target = document.body;
+    var mo = new MutationObserver(function () {
       if (window.__SND_NAV_TICK__) return;
       window.__SND_NAV_TICK__ = true;
       requestAnimationFrame(function () {
         window.__SND_NAV_TICK__ = false;
-        try { ensureNavItems(); } catch (e) {}
+        try { rebuildNav(); } catch (e) {}
+        try { ensureTrustStrip(); } catch (e) {}
+        try { ensureReviewsWidget(); } catch (e) {}
       });
     });
-    try { mo.observe(header, { childList: true, subtree: true }); } catch (e) {}
+    try { mo.observe(target, { childList: true, subtree: true }); } catch (e) {}
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observe);
-  } else {
-    observe();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observe);
+  else observe();
 })();

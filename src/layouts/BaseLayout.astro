@@ -57,10 +57,10 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Search engine verification — replace REPLACE_ME values once tokens are issued. -->
-    <meta name="google-site-verification" content="REPLACE_ME_GOOGLE_VERIFICATION_TOKEN" />
-    <meta name="msvalidate.01" content="REPLACE_ME_BING_VERIFICATION_TOKEN" />
+    <meta name="theme-color" content="#0564D1" />
+    <meta name="application-name" content="Short n Sweet Digital" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
+    <link rel="alternate" type="application/rss+xml" title="Short n Sweet Digital — Blog" href="/rss.xml" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
@@ -101,6 +101,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     )}
   </head>
   <body>
+    <a class="snd-skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Short n Sweet Digital — home">
         <img
@@ -109,17 +110,17 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
           width="260" height="70"
         />
       </a>
-      <nav>
+      <nav aria-label="Primary">
         <a href="/">Home</a>
         <a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU">Services</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/blog">Blog</a>
+        <a href="/blog/">Blog</a>
+        <a href="/book-a-call/">Book a Call</a>
         <a href="https://app.shortnsweetdigital.com" rel="noopener">Login</a>
         <a href="https://learn.shortnsweetdigital.com" rel="noopener">LEARN</a>
         <a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav" rel="noopener" class="cta">Start free trial</a>
       </nav>
     </header>
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <a class="snd-mobile-cta" href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=mobile_sticky" rel="noopener">
@@ -139,6 +140,13 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         --max-width: 72ch;
       }
       * { box-sizing: border-box; }
+      .snd-skip-link {
+        position: absolute; left: -9999px; top: 0;
+        background: #0564D1; color: #fff; padding: 8px 14px;
+        border-radius: 0 0 8px 0; z-index: 10000;
+        text-decoration: none; font-weight: 700;
+      }
+      .snd-skip-link:focus { left: 0; }
       html, body {
         margin: 0;
         padding: 0;

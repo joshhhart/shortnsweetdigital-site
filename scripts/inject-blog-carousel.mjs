@@ -47,19 +47,17 @@ const posts = readdirSync(BLOG_DIR)
   .slice(0, 6);
 
 const cards = posts.map(p => `
-  <article style="background:rgba(15,23,42,0.7);border:1px solid rgba(5,100,209,0.3);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-    ${p.heroImage ? `<img src="${escape(p.heroImage)}" alt="${escape(p.title)}" loading="lazy" style="width:100%;height:160px;object-fit:cover">` : `<div style="width:100%;height:160px;background:linear-gradient(135deg,#0564D1,#1551C5);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;text-align:center;padding:0 16px">${escape(p.title.slice(0, 60))}</div>`}
-    <div style="padding:18px 20px;display:flex;flex-direction:column;gap:8px;flex:1">
-      <time datetime="${escape(p.pubDate)}" style="color:#94a3b8;font-size:0.85rem">${fmt(p.pubDate)}</time>
-      <h3 style="margin:0;font-size:1.1rem;line-height:1.3;color:#fff">
-        <a href="/blog/${escape(p.slug)}/" style="color:#fff;text-decoration:none">${escape(p.title)}</a>
-      </h3>
-      <p style="margin:0;color:#cbd5e1;font-size:0.92rem;line-height:1.45;flex:1">${escape((p.description || '').slice(0, 140))}</p>
-      <a href="/blog/${escape(p.slug)}/" style="color:#5271FF;font-weight:600;text-decoration:none;font-size:0.9rem;margin-top:6px">Read post →</a>
+  <a href="/blog/${escape(p.slug)}/" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(15,23,42,0.65);border:1px solid rgba(5,100,209,0.22);border-radius:16px;overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(82,113,255,0.55)';this.style.boxShadow='0 16px 40px rgba(5,100,209,0.25)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(5,100,209,0.22)';this.style.boxShadow=''">
+    ${p.heroImage ? `<img src="${escape(p.heroImage)}" alt="${escape(p.title)}" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">` : `<div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0564D1,#5271FF);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.05rem;text-align:center;padding:0 20px;font-family:Open Sans,sans-serif">${escape(p.title.slice(0, 60))}</div>`}
+    <div style="padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1;font-family:Open Sans,sans-serif">
+      <time datetime="${escape(p.pubDate)}" style="color:#5271FF;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">${fmt(p.pubDate)}</time>
+      <h3 style="margin:0;font-size:1.18rem;line-height:1.3;color:#fff;font-weight:700">${escape(p.title)}</h3>
+      <p style="margin:0;color:#cbd5e1;font-size:0.93rem;line-height:1.5;flex:1">${escape((p.description || '').slice(0, 140))}</p>
+      <span style="color:#5271FF;font-weight:700;font-size:0.88rem;margin-top:4px">Read post →</span>
     </div>
-  </article>`).join('');
+  </a>`).join('');
 
-const grid = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">${cards}</div>`;
+const grid = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">${cards}</div>`;
 
 let html = readFileSync(INDEX, 'utf8');
 if (!html.includes('BLOG_CAROUSEL_ITEMS')) {
