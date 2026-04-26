@@ -1,0 +1,629 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Short n Sweet Digital',
+  url: 'https://shortnsweetdigital.com/',
+  logo: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
+  description:
+    'AI-powered all-in-one CRM, marketing, and automation platform for small businesses. White-label GoHighLevel partner.',
+  sameAs: ['https://www.gohighlevel.com/?fp_ref=shortnsweet53'],
+  founder: { '@type': 'Person', name: 'Josh Hart' },
+  areaServed: 'US',
+};
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: 'https://shortnsweetdigital.com/',
+  name: 'Short n Sweet Digital',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://shortnsweetdigital.com/?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const aggregateLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AggregateRating',
+  itemReviewed: { '@type': 'Organization', name: 'Short n Sweet Digital' },
+  ratingValue: '4.9',
+  reviewCount: '127',
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does Short n Sweet Digital do?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We replace the 8–12 marketing SaaS tools you are juggling with one AI-powered all-in-one platform — CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does it cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Start with a 14-day free trial. Plans start at $97/mo for one account, $297/mo for unlimited client sub-accounts, and $497/mo for SaaS reseller mode with Stripe billing.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is there a contract?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No long-term contracts. Month-to-month billing, cancel anytime.',
+      },
+    },
+  ],
+};
+
+const services = [
+  { title: 'Online Reviews', body: 'Automate your online reviews with a few simple clicks & respond to reviews in 1 place.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/d1f936b4-5c3f-4917-9207-247b3530f01f.gif' },
+  { title: 'Messaging', body: 'Manage your messages with a single inbox for text, Facebook messages, Google, and more.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/61abf4e4-a30e-45f1-9906-e653e4bd70a8.gif' },
+  { title: 'Webchat', body: 'Talk with customers even after regular hours of operation with a chat widget on your website.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/523c88b4-b875-4733-b2e2-042969a95871.gif' },
+  { title: 'CRM', body: 'Grow your audience & know where all of your business’ new leads are coming from.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/155cece1-8105-4bbf-a61b-3d1f8c693d9f.gif' },
+  { title: 'Payments', body: 'Easy text-2-pay invoicing. Simplify your client billing & get paid faster.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/8b1c4556-3ff4-4c8f-97b0-b1ddae962b73.gif' },
+  { title: 'Missed Call Text Back', body: 'When you’re away, have your business follow up via text to never lose another customer.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/ecd704c8-6047-4d34-a642-820671ac74d7.gif' },
+  { title: 'AI Assistant', body: 'AI assistant converses with customers to schedule open appointments on your calendar.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/593e774c-023e-41d7-a59e-77c2531c8086.gif' },
+  { title: 'Mobile App', body: 'Manage your entire business on your phone! Check in on your customers when on the go.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/33668e2e-ae0e-4950-92db-ba6afcbdb4ab.gif' },
+];
+
+const testimonials = [
+  { quote: 'Clients used to message me on several platforms and it wasn’t uncommon for me to go weeks before seeing their messages. Now I see them instantly, in the same message thread, so I’m able to serve my clients quicker, and better.', name: 'Julie Hice', role: 'Realtor' },
+  { quote: 'ShortNSweet helps me never miss chat conversations with potential leads. It used to be a hassle finding customer’s messages, now it’s easy and they’re all in one place.', name: 'Zach Stacey', role: 'Auto Detailer' },
+];
+---
+
+<BaseLayout
+  title="Short n Sweet Digital — AI-Powered All-in-One Platform for Small Business"
+  description="Replace 8–12 marketing tools with one AI-powered platform. CRM, SMS, email, web chat, scheduling, pipelines, reviews — all in one login. 14-day free trial."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(aggregateLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <!-- City background layer -->
+  <img class="city-bg" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/66ef6250acfd667f6577ccee.jpeg" alt="" aria-hidden="true" />
+  <div class="city-veil" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <section class="hero bleed">
+    <div class="hero-inner">
+      <p class="eyebrow gradient-eyebrow" data-snd-reveal>AI Automation Platform · Trusted by 500+ businesses</p>
+      <h1 class="hero-h1" data-snd-reveal>
+        Save Time and Money With
+        <span class="gradient-text">AI-Automation</span>
+      </h1>
+      <p class="hero-sub" data-snd-reveal>
+        Streamline workflows, boost productivity, and increase revenue — with the all-in-one
+        platform that replaces 8–12 of the marketing tools you’re juggling today.
+      </p>
+      <div class="hero-ctas" data-snd-reveal>
+        <a class="btn-primary magnet"
+           href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=hero"
+           rel="noopener">
+          Start free trial        </a>
+        <a class="btn-secondary magnet" href="/book-a-call/">Watch demo</a>
+      </div>
+      <ul class="hero-trust" data-snd-reveal>
+        <li>14-day free trial</li>
+        <li>No credit card required</li>
+        <li>Cancel anytime</li>
+        <li>Live US support</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STATS — TODAY'S CONSUMER -->
+  <section class="stats-section bleed" data-snd-reveal>
+    <div class="container">
+      <h2 class="section-h">Understand What <span class="gradient-text">Today’s Consumer</span> Prefers</h2>
+      <div class="stat-grid">
+        <article class="snd-darkened stat-card">
+          <div class="stat-number" data-counter data-target="3" data-suffix="X">3X</div>
+          <h3>Higher Conversion</h3>
+          <p>Reviews requested via text message vs reviews requested via email.</p>
+        </article>
+        <article class="snd-darkened stat-card">
+          <div class="stat-number" data-counter data-target="95" data-suffix="%">95%</div>
+          <h3>Of texts are read</h3>
+          <p>Texts have a 99% open rate. 95% of those texts are read within 5 minutes.</p>
+        </article>
+        <article class="snd-darkened stat-card">
+          <div class="stat-number" data-counter data-target="10" data-suffix="X">10X</div>
+          <h3>Faster than calling</h3>
+          <p>Text messaging is the new standard for quick and easy communication.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI CALCULATOR -->
+  <section class="roi-section bleed" data-snd-reveal>
+    <div class="container">
+      <p class="eyebrow gradient-eyebrow">Automation ROI Calculator</p>
+      <h2 class="section-h">See What Automating Your Follow-Up Is Worth</h2>
+      <p class="section-lede">
+        Drag the sliders to your real numbers. We’ll show how much revenue you’re leaving on the table without automated SMS + email follow-up.
+      </p>
+      <div class="roi-card snd-darkened">
+        <div class="roi-grid">
+          <div class="roi-inputs">
+            <label>
+              <span><span>Leads per month</span><span data-out="leads" class="num-out">200</span></span>
+              <input type="range" min="20" max="2000" step="10" value="200" data-input="leads">
+            </label>
+            <label>
+              <span><span>Current close rate</span><span data-out="rate" class="num-out">5%</span></span>
+              <input type="range" min="1" max="40" step="1" value="5" data-input="rate">
+            </label>
+            <label>
+              <span><span>Average customer value</span><span data-out="aov" class="num-out">$1,200</span></span>
+              <input type="range" min="100" max="20000" step="100" value="1200" data-input="aov">
+            </label>
+            <p class="roi-note">Industry benchmarks: automated SMS + email follow-up lifts close rates 2–3× by reaching leads in the first 5 minutes.</p>
+          </div>
+          <div class="roi-results">
+            <div class="result-card">
+              <p class="result-label">Today’s Revenue</p>
+              <p class="result-value" data-out="current">$12,000<span>/mo</span></p>
+            </div>
+            <div class="result-card highlight">
+              <p class="result-label highlight-label">With Automation (2.4× lift)</p>
+              <p class="result-value" data-out="future">$28,800<span>/mo</span></p>
+            </div>
+            <div class="result-card win">
+              <p class="result-label win-label">You’re Leaving On The Table</p>
+              <p class="result-value" data-out="gap">$16,800<span>/mo</span></p>
+            </div>
+            <a class="btn-primary"
+               href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=roi_calc"
+               rel="noopener">
+              Capture this revenue — Start free trial
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-section bleed" data-snd-reveal>
+    <div class="container">
+      <h2 class="section-h"><span class="gradient-text">All The Tools</span> You Need To Scale, In One Place</h2>
+      <p class="section-lede">One login. One bill. Every channel your customers actually use.</p>
+      <div class="services-grid">
+        {services.map((s) => (
+          <article class="snd-darkened service-card">
+            <img class="service-icon" src={s.icon} alt={s.title} loading="lazy" width="120" height="120" />
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROL — secondary stats -->
+  <section class="control-section bleed" data-snd-reveal>
+    <div class="container">
+      <h2 class="section-h">We Built <span class="gradient-text">ShortNSweet</span> To Put Your Business In Control.</h2>
+      <p class="section-lede">
+        Replace the 8–12 marketing tools you’re juggling with one AI-powered platform — built for solo operators and small teams.
+      </p>
+      <div class="stat-grid">
+        <article class="snd-darkened stat-card">
+          <div class="stat-number" data-counter data-target="400" data-suffix="%">400%</div>
+          <h3>More Website Traffic</h3>
+          <p>Attract more customers with Google My Business, strong SEO and accurate listings.</p>
+        </article>
+        <article class="snd-darkened stat-card">
+          <div class="stat-number" data-counter data-target="200" data-suffix="">200</div>
+          <h3>Hours Saved Per Month</h3>
+          <p>Stand out amongst competitors everywhere your customers search.</p>
+        </article>
+        <article class="snd-darkened stat-card">
+          <div class="stat-number" data-counter data-target="20" data-suffix="%">20%</div>
+          <h3>More Leads Per Month</h3>
+          <p>Connect with leads and customers wherever they are through text.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP — Why Text Wins -->
+  <section class="feature-section bleed" data-snd-reveal>
+    <div class="container feature-row">
+      <div class="feature-copy">
+        <p class="eyebrow gradient-eyebrow">Why Text Wins</p>
+        <h2 class="section-h">Reach customers where they actually <span class="gradient-text">respond</span>.</h2>
+        <ul class="feature-list">
+          <li><strong>Text messaging</strong> is the new standard for quick, easy, two-way communication.</li>
+          <li><strong>90% of texts</strong> are read within 3 minutes — vs. voicemails that rarely get returned.</li>
+          <li><strong>SMS opens</strong> hit nearly 100%. Email opens hover around 20%.</li>
+        </ul>
+      </div>
+      <div class="feature-visual snd-darkened">
+        <div class="phone-mockup">
+          <div class="msg msg-them">Hey! Still looking for that quote?</div>
+          <div class="msg msg-us">Yes! Can you swing by tomorrow at 2?</div>
+          <div class="msg msg-them">Booked. See you then.</div>
+          <div class="msg-typing"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="reviews-section bleed" data-snd-reveal>
+    <div class="container">
+      <p class="eyebrow gradient-eyebrow">What clients say</p>
+      <h2 class="section-h">Real reviews from real businesses</h2>
+      <div class="testimonial-grid">
+        {testimonials.map((t) => (
+          <figure class="snd-darkened testimonial-card">
+            <blockquote>“{t.quote}”</blockquote>
+            <figcaption>
+              <strong>{t.name}</strong>
+              <span>{t.role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <!-- ReputationHub iframe injected here by site-overrides.js -->
+    </div>
+  </section>
+
+  <!-- BLOG CAROUSEL -->
+  <section class="blog-section bleed" data-snd-reveal data-snd-blog-section>
+    <div class="container">
+      <div class="blog-head">
+        <div>
+          <p class="eyebrow gradient-eyebrow">From the blog</p>
+          <h2 class="section-h">Honest comparisons. Agency-tested playbooks.</h2>
+        </div>
+        <a class="btn-secondary" href="/blog/">Read every post</a>
+      </div>
+      <div class="blog-grid">
+        {posts.map((p) => (
+          <a class="snd-darkened blog-card" href={`/blog/${p.slug}/`}>
+            {p.data.heroImage && <img src={p.data.heroImage} alt={p.data.title} loading="lazy" width="600" height="338" />}
+            <div class="blog-card-body">
+              <p class="blog-date">{p.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.description}</p>
+              <span class="blog-cta">Read post</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta bleed" data-snd-reveal>
+    <div class="container">
+      <div class="final-card snd-darkened">
+        <h2>Ready to consolidate your stack?</h2>
+        <p>No credit card required. Free 14-day trial. Live support every step of the way.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary"
+             href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=final"
+             rel="noopener">
+            Start free trial          </a>
+          <a class="btn-secondary" href="/book-a-call/">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    /* Override BaseLayout's narrow main width */
+    main { max-width: none !important; padding: 0 !important; }
+    /* Bleed sections to viewport edges */
+    .bleed { width: 100%; position: relative; padding: 4.5rem 1.25rem; }
+    .container { max-width: 1180px; margin: 0 auto; }
+    /* Lighten the BaseLayout overlay on the homepage so the city skyline
+       behind the page is actually visible (the global default is 0.88-0.92
+       which renders as nearly black). */
+    /* Hide BaseLayout's default body::before so the homepage city layer
+       (an actual <img> element below) can show through cleanly. */
+    body::before { display: none !important; }
+    /* City skyline image — real <img> element, fixed behind everything,
+       brightened so the night skyline is actually visible. */
+    .city-bg {
+      position: fixed; inset: 0; z-index: -2;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(1.4) saturate(1.15) contrast(1.05);
+      pointer-events: none;
+    }
+    .city-veil {
+      position: fixed; inset: 0; z-index: -1;
+      background: linear-gradient(180deg, rgba(10,9,14,0.55) 0%, rgba(15,23,42,0.70) 60%, rgba(10,9,14,0.82) 100%);
+      pointer-events: none;
+    }
+  </style>
+
+  <style>
+    /* Aurora background — React Bits-style animated gradient overlay */
+    .aurora {
+      position: fixed; inset: -10%; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(60% 40% at 20% 15%, rgba(5,100,209,0.35), transparent 60%),
+        radial-gradient(50% 35% at 80% 25%, rgba(24,139,246,0.28), transparent 60%),
+        radial-gradient(70% 50% at 50% 90%, rgba(82,113,255,0.22), transparent 60%);
+      filter: blur(40px);
+      animation: aurora-drift 22s ease-in-out infinite alternate;
+    }
+    @keyframes aurora-drift {
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      50%  { transform: translate3d(2%,-2%,0) scale(1.05); }
+      100% { transform: translate3d(-2%,2%,0) scale(0.98); }
+    }
+    @media (prefers-reduced-motion: reduce) { .aurora { animation: none; } }
+
+    /* Gradient text — for accent words in headings */
+    .gradient-text {
+      background: linear-gradient(120deg, #3b9bff 0%, #188bf6 35%, #5271FF 70%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: gradient-shift 6s ease-in-out infinite;
+    }
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    .gradient-eyebrow {
+      display: inline-block;
+      color: #93c5fd;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      background: linear-gradient(120deg, rgba(5,100,209,0.18), rgba(82,113,255,0.18));
+      border: 1px solid rgba(24,139,246,0.4);
+      margin: 0 0 1rem;
+    }
+
+    /* HERO */
+    .hero { padding: 5.5rem 1.25rem 4rem; text-align: left; }
+    .hero-inner { max-width: 980px; margin: 0 auto; }
+    .hero-h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+      font-weight: 800;
+    }
+    .hero-sub {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 0 1.75rem;
+    }
+    .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .hero-trust {
+      list-style: none; padding: 0; margin: 1rem 0 0;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      color: #94a3b8; font-size: 0.9rem;
+    }
+
+    /* Buttons — magnet/glow style */
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, background .25s ease;
+      will-change: transform;
+    }
+    .btn-primary {
+      background: linear-gradient(120deg, #0564D1, #188bf6);
+      color: #fff;
+      box-shadow: 0 12px 32px rgba(5,100,209,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(5,100,209,0.55); }
+    .btn-secondary {
+      background: rgba(15,23,42,0.55);
+      color: #e2e8f0;
+      border: 1px solid rgba(24,139,246,0.45);
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover { transform: translateY(-2px); background: rgba(24,139,246,0.18); }
+
+    /* Section headings */
+    .section-h {
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+      letter-spacing: -0.01em;
+      font-weight: 800;
+    }
+    .section-lede { color: #cbd5e1; max-width: 720px; margin: 0 0 2rem; font-size: 1.05rem; }
+
+    /* STAT GRID */
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .stat-card { padding: 2rem 1.5rem; border-radius: 18px; text-align: left; }
+    .stat-number {
+      font-size: clamp(2.6rem, 5vw, 3.6rem);
+      font-weight: 800;
+      background: linear-gradient(120deg, #3b9bff, #188bf6 50%, #5271FF);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin: 0 0 0.5rem;
+      line-height: 1;
+    }
+    .stat-card h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+    .stat-card p { margin: 0; color: #cbd5e1; font-size: 0.95rem; }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.1rem;
+    }
+    .service-card { padding: 1.5rem; border-radius: 16px; text-align: center; }
+    .service-icon { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 0.75rem; display: block; }
+    .service-card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+    .service-card p { margin: 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
+
+    /* ROI CALC */
+    .roi-card { padding: 2rem; border-radius: 20px; }
+    .roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+    .roi-inputs { display: flex; flex-direction: column; gap: 1.1rem; }
+    .roi-inputs label { display: flex; flex-direction: column; gap: 0.4rem; }
+    .roi-inputs label > span:first-child { display: flex; justify-content: space-between; font-weight: 600; }
+    .num-out { color: #188bf6; }
+    .roi-inputs input[type="range"] { width: 100%; accent-color: #188bf6; }
+    .roi-note { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.85rem; line-height: 1.5; }
+    .roi-results { display: flex; flex-direction: column; justify-content: center; gap: 0.8rem; }
+    .result-card { padding: 1rem 1.25rem; border-radius: 14px; background: rgba(5,100,209,0.12); border: 1px solid rgba(5,100,209,0.35); }
+    .result-card.highlight { background: linear-gradient(135deg, rgba(5,100,209,0.25), rgba(82,113,255,0.18)); border-color: rgba(24,139,246,0.55); }
+    .result-card.win { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.4); }
+    .result-label { margin: 0 0 0.25rem; color: #cbd5e1; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .highlight-label { color: #93c5fd; }
+    .win-label { color: #86efac; }
+    .result-value { margin: 0; font-size: 1.7rem; font-weight: 800; color: #fff; }
+    .result-value span { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }
+
+    /* FEATURE / WHY TEXT WINS */
+    .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+    .feature-list { padding-left: 1rem; color: #cbd5e1; font-size: 1rem; line-height: 1.6; }
+    .feature-list li { margin-bottom: 0.6rem; }
+    .feature-visual { padding: 1.5rem; border-radius: 22px; }
+    .phone-mockup { display: flex; flex-direction: column; gap: 0.6rem; }
+    .msg { padding: 0.7rem 1rem; border-radius: 14px; max-width: 80%; font-size: 0.95rem; line-height: 1.4; }
+    .msg-them { align-self: flex-start; background: rgba(255,255,255,0.08); color: #e2e8f0; border-bottom-left-radius: 4px; }
+    .msg-us { align-self: flex-end; background: linear-gradient(120deg, #0564D1, #188bf6); color: #fff; border-bottom-right-radius: 4px; }
+    .msg-typing { align-self: flex-start; background: rgba(255,255,255,0.08); border-radius: 14px; padding: 0.65rem 0.9rem; display: inline-flex; gap: 4px; }
+    .msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; animation: typing-bounce 1.2s infinite ease-in-out; }
+    .msg-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .msg-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typing-bounce { 0%,80%,100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-4px); opacity: 1; } }
+
+    /* TESTIMONIALS */
+    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .testimonial-card { padding: 1.75rem; border-radius: 18px; }
+    .testimonial-card blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.6; color: #e2e8f0; font-style: italic; }
+    .testimonial-card figcaption strong { display: block; color: #fff; }
+    .testimonial-card figcaption span { color: #94a3b8; font-size: 0.9rem; }
+
+    /* BLOG GRID */
+    .blog-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .blog-card { display: block; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; }
+    .blog-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .blog-card-body { padding: 1.25rem; }
+    .blog-date { color: #94a3b8; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.5rem; font-weight: 700; }
+    .blog-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; line-height: 1.3; color: #fff; }
+    .blog-card p { margin: 0 0 0.75rem; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
+    .blog-cta { color: #188bf6; font-weight: 700; font-size: 0.9rem; }
+
+    /* FINAL CTA */
+    .final-card { text-align: center; padding: 3rem 1.5rem; border-radius: 24px; }
+    .final-card h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin: 0 0 0.75rem; }
+    .final-card p { color: #cbd5e1; margin: 0 0 1.5rem; }
+    .final-card .hero-ctas { justify-content: center; }
+
+    /* Mobile breakpoints */
+    @media (max-width: 980px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-grid { grid-template-columns: 1fr; }
+      .roi-grid, .feature-row, .blog-grid, .testimonial-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 3rem; }
+    }
+  </style>
+
+  <script is:inline>
+    // Animated counters — count up on scroll
+    (function () {
+      var els = document.querySelectorAll('[data-counter]');
+      if (!els.length) return;
+      function animate(el) {
+        var target = parseFloat(el.getAttribute('data-target'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var dur = 1400, start = performance.now(), startVal = 0;
+        function tick(now) {
+          var p = Math.min((now - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var v = Math.round(startVal + (target - startVal) * eased);
+          el.textContent = v + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      if (!('IntersectionObserver' in window)) { els.forEach(animate); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+
+    // ROI calculator
+    (function () {
+      var sec = document.querySelector('.roi-card');
+      if (!sec) return;
+      var leads = sec.querySelector('[data-input="leads"]');
+      var rate = sec.querySelector('[data-input="rate"]');
+      var aov = sec.querySelector('[data-input="aov"]');
+      var leadsOut = sec.querySelector('[data-out="leads"]');
+      var rateOut = sec.querySelector('[data-out="rate"]');
+      var aovOut = sec.querySelector('[data-out="aov"]');
+      var current = sec.querySelector('[data-out="current"]');
+      var future = sec.querySelector('[data-out="future"]');
+      var gap = sec.querySelector('[data-out="gap"]');
+      function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+      function recalc() {
+        var L = +leads.value, R = +rate.value / 100, A = +aov.value;
+        var cur = L * R * A, fut = cur * 2.4;
+        leadsOut.textContent = L.toLocaleString();
+        rateOut.textContent = rate.value + '%';
+        aovOut.textContent = fmt(A);
+        current.innerHTML = fmt(cur) + '<span>/mo</span>';
+        future.innerHTML = fmt(fut) + '<span>/mo</span>';
+        gap.innerHTML = fmt(fut - cur) + '<span>/mo</span>';
+      }
+      [leads, rate, aov].forEach(function (i) { i.addEventListener('input', recalc); });
+      recalc();
+    })();
+
+    // Magnet effect on .magnet buttons
+    (function () {
+      document.querySelectorAll('.magnet').forEach(function (el) {
+        el.addEventListener('pointermove', function (e) {
+          var r = el.getBoundingClientRect();
+          var x = (e.clientX - r.left - r.width / 2) * 0.18;
+          var y = (e.clientY - r.top - r.height / 2) * 0.22;
+          el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) translateY(-2px)';
+        });
+        el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+      });
+    })();
+  </script>
+</BaseLayout>
