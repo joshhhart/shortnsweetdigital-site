@@ -270,7 +270,17 @@
       footer.snd-replaced-hidden,
       [data-snd-replaced="tirwP9DkOq"],
       #section-tirwP9DkOq,
-      .section-tirwP9DkOq{ display: none !important; }
+      .section-tirwP9DkOq,
+      /* Second leftover GHL footer (copyright col + empty col + GHL social icons col) */
+      #section-glojOv1U,
+      .section-glojOv1U,
+      #row-OeWezQhjC,
+      #col-tzRGTq4su,
+      #col-HPlTzlIQ,
+      #col-oMse1FNzAF,
+      /* GHL custom-code ROI calculator embed row */
+      #row-RTega7byAO,
+      .row-RTega7byAO{ display: none !important; }
 
       /* JS-injected enterprise SaaS footer (lives outside #__nuxt so Nuxt can\'t wipe it) */
       footer[data-snd-footer]{ position: relative; z-index: 50; }
