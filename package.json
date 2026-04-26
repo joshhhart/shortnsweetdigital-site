@@ -1,0 +1,20 @@
+{
+  "name": "agentic-jimmy-seo-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.1.6",
+    "astro": "^4.16.0",
+    "astro-robots-txt": "^1.0.0",
+    "astro-seo": "^0.8.4"
+  }
+}

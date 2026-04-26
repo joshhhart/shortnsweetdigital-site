@@ -1,0 +1,35 @@
+---
+interface Props {
+  src: string;
+  title: string;
+}
+const { src, title } = Astro.props;
+---
+
+<section class="audio">
+  <h4>Listen to this post</h4>
+  <audio controls preload="metadata" aria-label={`Audio version of ${title}`}>
+    <source src={src} type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+</section>
+
+<style>
+  .audio {
+    margin: 2rem 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+  }
+  .audio h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    color: #334155;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .audio audio {
+    width: 100%;
+  }
+</style>

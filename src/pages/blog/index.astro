@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Blog — Agentic Jimmy"
+  description="All posts from Agentic Jimmy. Agency reviews, playbooks, and comparisons — updated daily."
+>
+  <h1>Blog</h1>
+  <p class="subtitle">Every post, newest first.</p>
+
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.slug}`}>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+          <time datetime={post.data.pubDate.toISOString()}>
+            {new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(post.data.pubDate)}
+          </time>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .subtitle { color: var(--muted); margin-top: -0.5rem; }
+  .post-list { list-style: none; padding: 0; }
+  .post-list li { border-top: 1px solid #e2e8f0; padding: 1.5rem 0; }
+  .post-list a { text-decoration: none; color: inherit; display: block; }
+  .post-list h2 { margin: 0 0 0.25rem; color: var(--fg); }
+  .post-list p { margin: 0 0 0.25rem; color: var(--muted); }
+  .post-list time { color: var(--muted); font-size: 0.85rem; }
+</style>

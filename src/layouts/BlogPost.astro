@@ -1,0 +1,122 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import AudioPlayer from '../components/AudioPlayer.astro';
+
+type Props = CollectionEntry<'blog'>['data'] & {
+  slug: string;
+};
+
+const { title, description, pubDate, updatedDate, heroImage, audio, tags, slug } =
+  Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(pubDate);
+
+// JSON-LD structured data helps Google understand the post + author + publisher.
+const canonicalUrl = new URL(`/blog/${slug}`, Astro.site).toString();
+const ldJson = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  mainEntityOfPage: canonicalUrl,
+  image: heroImage ? new URL(heroImage, Astro.site).toString() : undefined,
+  author: { '@type': 'Organization', name: 'Agentic Jimmy' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Agentic Jimmy',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/logo.png', Astro.site).toString(),
+    },
+  },
+  keywords: tags.join(', '),
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={heroImage}
+  article={{
+    publishedTime: pubDate.toISOString(),
+    modifiedTime: (updatedDate ?? pubDate).toISOString(),
+    tags,
+  }}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(ldJson)} />
+
+  <article>
+    <header class="post-header">
+      <p class="meta">
+        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        {updatedDate && (
+          <>
+            {' · Updated '}
+            <time datetime={updatedDate.toISOString()}>
+              {new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(updatedDate)}
+            </time>
+          </>
+        )}
+      </p>
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+      {heroImage && (
+        <img class="hero" src={heroImage} alt={title} loading="eager" />
+      )}
+    </header>
+
+    {audio && <AudioPlayer src={audio} title={title} />}
+
+    <div class="post-body">
+      <slot />
+    </div>
+
+    <CTA campaign={slug} />
+
+    {tags.length > 0 && (
+      <footer class="tags">
+        {tags.map((tag) => <span class="tag">#{tag}</span>)}
+      </footer>
+    )}
+  </article>
+
+  <style>
+    .post-header { margin-bottom: 2rem; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin: 0; }
+    .lede { font-size: 1.15rem; color: var(--muted); }
+    .hero { border-radius: 12px; margin: 1.5rem 0; }
+    .post-body :global(h2) { margin-top: 2.5rem; }
+    .post-body :global(h3) { margin-top: 2rem; }
+    .post-body :global(pre) {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .post-body :global(blockquote) {
+      border-left: 4px solid var(--accent);
+      margin: 1.5rem 0;
+      padding: 0.25rem 1rem;
+      color: var(--muted);
+    }
+    .tags { margin-top: 2rem; }
+    .tag {
+      display: inline-block;
+      margin-right: 0.5rem;
+      padding: 0.15rem 0.6rem;
+      background: #f1f5f9;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #334155;
+    }
+  </style>
+</BaseLayout>

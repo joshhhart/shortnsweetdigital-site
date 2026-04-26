@@ -1,0 +1,65 @@
+---
+// Single source of truth for the GHL trial CTA that every blog post gets.
+// The orchestration pipeline fills in `campaign` with the post slug so every
+// conversion is attributable back to a specific post in GHL reporting.
+
+interface Props {
+  campaign: string;
+  headline?: string;
+  subline?: string;
+  buttonText?: string;
+}
+
+const {
+  campaign,
+  headline = 'Stop duct-taping your marketing stack.',
+  subline = 'Run your entire agency — CRM, email, SMS, sites, calendars, pipelines — on one platform. Start a free 14-day trial.',
+  buttonText = 'Start my free trial',
+} = Astro.props;
+
+const TRIAL_BASE_URL = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53';
+
+const url = new URL(TRIAL_BASE_URL);
+url.searchParams.set('utm_source', 'blog');
+url.searchParams.set('utm_medium', 'organic');
+url.searchParams.set('utm_campaign', campaign);
+const href = url.toString();
+---
+
+<aside class="cta">
+  <h3>{headline}</h3>
+  <p>{subline}</p>
+  <a class="cta-button" href={href} rel="noopener">{buttonText}</a>
+</aside>
+
+<style>
+  .cta {
+    margin: 3rem 0;
+    padding: 2rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #f8fafc;
+    text-align: center;
+  }
+  .cta h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+  .cta p {
+    margin: 0 0 1.25rem;
+    font-size: 1rem;
+    color: #cbd5e1;
+  }
+  .cta-button {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    background: #f97316;
+    color: #0f172a;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  .cta-button:hover {
+    background: #fb923c;
+  }
+</style>
