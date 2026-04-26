@@ -89,8 +89,6 @@
         isolation: isolate;
         transform: translate3d(0,0,0.01px);
       }
-      .snd-bg-card::before,
-      .snd-bg-card::after,
       .snd-bg-card > .snd-bg-edge{
         content: "";
         position: absolute;
@@ -98,45 +96,10 @@
         border-radius: inherit;
         transition: opacity .25s ease-out;
         pointer-events: none;
-        z-index: 0;
+        z-index: 1;
       }
-      .snd-bg-card:not(:hover)::before,
-      .snd-bg-card:not(:hover)::after,
       .snd-bg-card:not(:hover) > .snd-bg-edge{ opacity: 0; transition: opacity .6s ease-in-out; }
-      /* mesh-gradient border (visible only in cone toward cursor) */
-      .snd-bg-card::before{
-        border: 1px solid transparent;
-        background:
-          var(--bg-grad-1) border-box,
-          var(--bg-grad-2) border-box,
-          var(--bg-grad-3) border-box,
-          var(--bg-grad-4) border-box,
-          var(--bg-grad-5) border-box,
-          var(--bg-grad-6) border-box,
-          var(--bg-grad-7) border-box,
-          var(--bg-grad-base) border-box;
-        opacity: calc((var(--bg-edge-proximity) - var(--bg-color-sensitivity)) / (100 - var(--bg-color-sensitivity)));
-        -webkit-mask-image:
-          conic-gradient(
-            from var(--bg-cursor-angle) at center,
-            black calc(var(--bg-cone-spread) * 1%),
-            transparent calc((var(--bg-cone-spread) + 15) * 1%),
-            transparent calc((100 - var(--bg-cone-spread) - 15) * 1%),
-            black calc((100 - var(--bg-cone-spread)) * 1%)
-          );
-                mask-image:
-          conic-gradient(
-            from var(--bg-cursor-angle) at center,
-            black calc(var(--bg-cone-spread) * 1%),
-            transparent calc((var(--bg-cone-spread) + 15) * 1%),
-            transparent calc((100 - var(--bg-cone-spread) - 15) * 1%),
-            black calc((100 - var(--bg-cone-spread)) * 1%)
-          );
-        -webkit-mask-composite: xor; mask-composite: exclude;
-        padding: 1.5px;
-        z-index: 2;
-      }
-      /* outer edge glow */
+      /* outer edge glow only — no inner fill */
       .snd-bg-card > .snd-bg-edge{
         inset: calc(var(--bg-glow-padding) * -1);
         z-index: 1;
