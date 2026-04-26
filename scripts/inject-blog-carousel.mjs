@@ -46,14 +46,14 @@ const posts = readdirSync(BLOG_DIR)
   .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
   .slice(0, 6);
 
-const cards = posts.map(p => `
-  <a href="/blog/${escape(p.slug)}/" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(15,23,42,0.65);border:1px solid rgba(5,100,209,0.22);border-radius:16px;overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(82,113,255,0.55)';this.style.boxShadow='0 16px 40px rgba(5,100,209,0.25)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(5,100,209,0.22)';this.style.boxShadow=''">
+const cards = posts.map((p, i) => `
+  <a class="snd-blog-card" href="/blog/${escape(p.slug)}/" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;background:rgba(10,9,14,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.08);border-radius:18px;overflow:hidden;transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s ease,box-shadow .25s ease;animation-delay:${i * 0.08}s" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(82,113,255,0.55)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.5),0 0 0 1px rgba(82,113,255,0.3)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
     ${p.heroImage ? `<img src="${escape(p.heroImage)}" alt="${escape(p.title)}" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">` : `<div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0564D1,#5271FF);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.05rem;text-align:center;padding:0 20px;font-family:Open Sans,sans-serif">${escape(p.title.slice(0, 60))}</div>`}
-    <div style="padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1;font-family:Open Sans,sans-serif">
-      <time datetime="${escape(p.pubDate)}" style="color:#5271FF;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">${fmt(p.pubDate)}</time>
-      <h3 style="margin:0;font-size:1.18rem;line-height:1.3;color:#fff;font-weight:700">${escape(p.title)}</h3>
-      <p style="margin:0;color:#cbd5e1;font-size:0.93rem;line-height:1.5;flex:1">${escape((p.description || '').slice(0, 140))}</p>
-      <span style="color:#5271FF;font-weight:700;font-size:0.88rem;margin-top:4px">Read post →</span>
+    <div style="padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1;font-family:Open Sans,sans-serif">
+      <time datetime="${escape(p.pubDate)}" style="color:#7c95ff;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">${fmt(p.pubDate)}</time>
+      <h3 style="margin:0;font-size:1.18rem;line-height:1.3;color:#fff;font-weight:700;text-shadow:0 2px 12px rgba(0,0,0,0.5)">${escape(p.title)}</h3>
+      <p style="margin:0;color:#e2e8f0;font-size:0.92rem;line-height:1.55;flex:1;text-shadow:0 1px 6px rgba(0,0,0,0.4)">${escape((p.description || '').slice(0, 140))}</p>
+      <span style="color:#7c95ff;font-weight:700;font-size:0.88rem;margin-top:4px">Read post →</span>
     </div>
   </a>`).join('');
 

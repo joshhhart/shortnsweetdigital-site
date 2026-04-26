@@ -4,6 +4,74 @@
   if (window.__SND_OVERRIDES__) return;
   window.__SND_OVERRIDES__ = true;
 
+  // -- Inject brand-wide animations + polish CSS once --
+  function injectGlobalCss() {
+    if (document.getElementById('snd-global-css')) return;
+    var css = [
+      'html{scroll-behavior:smooth}',
+      // scroll-reveal base
+      '[data-snd-reveal]{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}',
+      '[data-snd-reveal].is-visible{opacity:1;transform:none}',
+      '@media (prefers-reduced-motion:reduce){[data-snd-reveal]{opacity:1;transform:none;transition:none}}',
+      // brand button polish across GHL pages
+      'a.button,button.c-button,.button[role="button"]{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease!important}',
+      'a.button:hover,button.c-button:hover,.button[role="button"]:hover{transform:translateY(-2px)!important;box-shadow:0 12px 32px rgba(5,100,209,0.35)!important;filter:brightness(1.06)!important}',
+      // links in nav: subtle underline reveal
+      'li.nav-menu-item > a{position:relative;transition:color .15s ease}',
+      'li.nav-menu-item > a:not([style*="background"])::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:linear-gradient(90deg,#0564D1,#5271FF);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}',
+      'li.nav-menu-item > a:hover::after{transform:scaleX(1)}',
+      // image cards fade-in on load
+      'img[loading="lazy"]{opacity:0;transition:opacity .5s ease}',
+      'img[loading="lazy"].is-loaded,img[loading="lazy"][src=""]{opacity:1}',
+      // gradient text utility
+      '.snd-gradient-text{background:linear-gradient(120deg,#5271FF,#0564D1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}',
+      // subtle aurora behind hero text
+      '@keyframes snd-aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-10px) scale(1.05)}}',
+      '@keyframes snd-fade-in-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}',
+      '.snd-blog-card{animation:snd-fade-in-up .6s cubic-bezier(.2,.8,.2,1) both}',
+      // counter pop
+      '@keyframes snd-pop{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.05);opacity:1}100%{transform:scale(1)}}'
+    ].join('\n');
+    var style = document.createElement('style');
+    style.id = 'snd-global-css';
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+  injectGlobalCss();
+
+  // Scroll-reveal observer for any [data-snd-reveal] elements
+  function observeReveal() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-snd-reveal]').forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('[data-snd-reveal]').forEach(function (el) { io.observe(el); });
+  }
+
+  // Auto-tag major sections for reveal
+  function autoTagReveal() {
+    document.querySelectorAll('section, .c-section').forEach(function (el, i) {
+      if (i === 0) return; // skip hero
+      if (!el.hasAttribute('data-snd-reveal')) el.setAttribute('data-snd-reveal', '');
+    });
+  }
+
+  // Lazy image fade-in
+  function tagLoadedImages() {
+    document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+      if (img.complete) img.classList.add('is-loaded');
+      else img.addEventListener('load', function () { img.classList.add('is-loaded'); }, { once: true });
+    });
+  }
+
   // Canonical nav — single source of truth. The runtime guardian wipes any
   // GHL/Nuxt-rendered items and re-renders this list every time Nuxt
   // rehydrates the header.
@@ -143,6 +211,9 @@
     try { ensureTrustStrip(); } catch (e) {}
     try { ensureMobileCta(); } catch (e) {}
     try { ensureReviewsWidget(); } catch (e) {}
+    try { autoTagReveal(); } catch (e) {}
+    try { observeReveal(); } catch (e) {}
+    try { tagLoadedImages(); } catch (e) {}
   }
 
   if (document.readyState === 'complete') fix();
