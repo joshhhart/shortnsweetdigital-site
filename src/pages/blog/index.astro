@@ -14,7 +14,7 @@ const fmt = (d: Date) =>
   title="Blog — Short n Sweet Digital"
   description="Honest comparisons, agency-tested playbooks, and AI automation deep-dives. New post every weekday."
 >
-  <section class="blog-hero">
+  <section class="blog-hero" data-snd-reveal>
     <p class="eyebrow">The Blog</p>
     <h1>Insights, comparisons &amp; playbooks</h1>
     <p class="lede">
@@ -25,7 +25,7 @@ const fmt = (d: Date) =>
 
   <ul class="post-grid">
     {posts.map((post) => (
-      <li>
+      <li class="snd-bg-card">
         <a href={`/blog/${post.slug}/`}>
           {post.data.heroImage ? (
             <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />

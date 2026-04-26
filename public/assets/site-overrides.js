@@ -263,6 +263,22 @@
 
       /* compact site-header (Astro) so logo stays visible */
       .snd-staggered-menu-active .site-header{ padding-right: 6.5rem; }
+
+      /* Hide GHL footer / broken sections so our JS-injected replacements take over.
+         Targets the container + section IDs we replaced; Nuxt may re-render them
+         after rehydration so display:none ensures they stay invisible. */
+      footer.snd-replaced-hidden,
+      [data-snd-replaced="tirwP9DkOq"],
+      #section-tirwP9DkOq,
+      .section-tirwP9DkOq{ display: none !important; }
+
+      /* JS-injected enterprise SaaS footer (lives outside #__nuxt so Nuxt can\'t wipe it) */
+      footer[data-snd-footer]{ position: relative; z-index: 50; }
+
+      /* Scroll-reveal — opt-in only via [data-snd-reveal] attribute */
+      [data-snd-reveal]{ opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+      [data-snd-reveal].is-visible{ opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce){ [data-snd-reveal]{ opacity: 1; transform: none; transition: none; } }
     `;
     var style = document.createElement('style');
     style.id = 'snd-global-css';
@@ -274,17 +290,39 @@
   // ============================================================
   // DARKEN WHITE CARDS (existing)
   // ============================================================
+  function isWhiteBg(cs) {
+    var c = cs.backgroundColor;
+    if (c === 'rgb(255, 255, 255)') return true;
+    if (c === 'rgba(255, 255, 255, 1)') return true;
+    // also catch near-whites GHL uses (e.g. #fafafa, #f5f5f5)
+    var m = c.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (!m) return false;
+    return +m[1] >= 245 && +m[2] >= 245 && +m[3] >= 245;
+  }
+  function darken(el) {
+    if (!el || el.classList.contains('snd-darkened')) return;
+    el.classList.add('snd-darkened');
+    el.style.setProperty('background', 'linear-gradient(180deg, rgba(15,23,42,0.96), rgba(10,9,14,0.96))', 'important');
+    el.style.setProperty('border', '1px solid rgba(5,100,209,0.28)', 'important');
+    el.style.setProperty('box-shadow', '0 8px 32px rgba(0,0,0,0.5)', 'important');
+    el.style.setProperty('backdrop-filter', 'blur(6px)', 'important');
+    el.querySelectorAll('p,h1,h2,h3,h4,h5,h6,span,strong,em,li,td,a').forEach(function (t) { t.classList.add('snd-darkened-text'); });
+  }
   function darkenWhiteCards() {
+    // Original GHL card pattern
     document.querySelectorAll('div.bg.bgCover, div.bg.bgCover.inner').forEach(function (el) {
-      if (el.classList.contains('snd-darkened')) return;
       var cs = getComputedStyle(el);
-      if (cs.backgroundColor !== 'rgb(255, 255, 255)') return;
-      el.classList.add('snd-darkened');
-      el.style.setProperty('background', 'linear-gradient(180deg, rgba(15,23,42,0.96), rgba(10,9,14,0.96))', 'important');
-      el.style.setProperty('border', '1px solid rgba(5,100,209,0.28)', 'important');
-      el.style.setProperty('box-shadow', '0 8px 32px rgba(0,0,0,0.5)', 'important');
-      el.style.setProperty('backdrop-filter', 'blur(6px)', 'important');
-      el.querySelectorAll('p,h1,h2,h3,h4,h5,h6,span,strong,em,li,td,a').forEach(function (t) { t.classList.add('snd-darkened-text'); });
+      if (isWhiteBg(cs)) darken(el);
+    });
+    // Broader GHL column pattern: every .col-*  >  .inner with a white bg
+    document.querySelectorAll('[class*="col-"] > .inner').forEach(function (el) {
+      var cs = getComputedStyle(el);
+      if (isWhiteBg(cs)) darken(el);
+    });
+    // Sometimes the white bg is on the column root itself (col-*) not .inner
+    document.querySelectorAll('[class*="col-"]').forEach(function (el) {
+      var cs = getComputedStyle(el);
+      if (isWhiteBg(cs)) darken(el);
     });
   }
 
@@ -513,7 +551,22 @@
           <button class="snd-vis-close" type="button" data-snd-vis-close aria-label="Close">×</button>
         </div>
         <div class="snd-vis-body">
-          <iframe src="" data-snd-vis-iframe data-form-id="TZ4OcFkYoLidVNPKL33A" title="Free Visibility Report — Short n Sweet Digital" loading="lazy"></iframe>
+          <iframe src=""
+            data-snd-vis-iframe
+            id="inline-TZ4OcFkYoLidVNPKL33A"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Main Website Contact Form"
+            data-height="887"
+            data-layout-iframe-id="inline-TZ4OcFkYoLidVNPKL33A"
+            data-form-id="TZ4OcFkYoLidVNPKL33A"
+            title="Main Website Contact Form"
+            loading="lazy"></iframe>
         </div>
       </div>
     `;
@@ -597,6 +650,9 @@
   // EXISTING: trust strip, mobile CTA, reviews widget, image fade-in
   // ============================================================
   function ensureTrustStrip() {
+    // Homepage only — user wants the announcement banner off subpages.
+    var p = location.pathname.replace(/\/$/, '') || '/';
+    if (p !== '/' && p !== '/index.html' && p !== '/home' && p !== '/home/index.html') return;
     if (document.querySelector('[data-snd-trust]')) return;
     var header = document.querySelector('header, .hl_header, nav');
     if (!header || !header.parentElement) return;
@@ -662,6 +718,135 @@
   }
 
   // ============================================================
+  // ENTERPRISE SAAS FOOTER (JS-injected, lives outside #__nuxt so Nuxt
+  // rehydration can\'t wipe it). The static-HTML approach was getting
+  // clobbered when Nuxt restored its own component tree.
+  // ============================================================
+  function ensureSaasFooter() {
+    if (document.querySelector('footer[data-snd-footer]')) return;
+    var f = document.createElement('footer');
+    f.setAttribute('data-snd-footer', '');
+    f.style.cssText = 'background:#06050a;padding:80px 24px 32px;color:#cbd5e1;border-top:1px solid rgba(82,113,255,0.2);font-family:Open Sans,sans-serif';
+    f.innerHTML = `
+      <div style="max-width:1240px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid rgba(82,113,255,0.15)">
+          <div>
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/67188f8028f9aa4e4a87fa1e.webp" alt="ShortNSweet Digital" style="height:52px;width:auto;margin-bottom:18px">
+            <p style="margin:0 0 18px;color:#e2e8f0;font-size:0.98rem;line-height:1.6;max-width:320px">The all-in-one CRM, marketing, and AI automation platform built for small businesses that need to move fast.</p>
+            <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.35);border-radius:999px;font-size:0.78rem;color:#86efac;font-weight:600">
+              <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,0.6)"></span>
+              All systems operational
+            </div>
+          </div>
+          <div>
+            <h4 style="margin:0 0 10px;font-size:1.1rem;color:#fff;font-weight:700">Get the weekly playbook</h4>
+            <p style="margin:0 0 18px;color:#94a3b8;font-size:0.92rem;line-height:1.55">One actionable AI + automation tactic, every Tuesday. No fluff, no spam.</p>
+            <form action="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer_newsletter" method="get" style="display:flex;gap:8px;flex-wrap:wrap">
+              <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:200px;padding:13px 16px;background:rgba(15,23,42,0.7);border:1px solid rgba(82,113,255,0.3);border-radius:10px;color:#f1f5f9;font-family:Open Sans,sans-serif;font-size:0.95rem;outline:none">
+              <button type="submit" class="snd-bg-card" style="padding:13px 22px;background:linear-gradient(120deg,#0564D1,#5271FF);color:#fff;border:none;border-radius:10px;font-weight:700;font-family:Open Sans,sans-serif;font-size:0.95rem;cursor:pointer;box-shadow:0 8px 20px rgba(5,100,209,0.35);transition:transform .18s ease">Subscribe</button>
+            </form>
+            <p style="margin:10px 0 0;color:#64748b;font-size:0.78rem">By subscribing you agree to our <a href="/privacy/" style="color:#7c95ff;text-decoration:none">Privacy Policy</a>.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:36px;margin-bottom:56px">
+          <div>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Product</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">CRM &amp; Pipelines</a></li>
+              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Email &amp; SMS</a></li>
+              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Web Chat &amp; AI</a></li>
+              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Reputation</a></li>
+              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Funnels &amp; Sites</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Solutions</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+              <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Home Services</a></li>
+              <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Real Estate</a></li>
+              <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Fitness &amp; Coaching</a></li>
+              <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Local Agencies</a></li>
+              <li><a href="/book-a-call/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Talk to sales</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Resources</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+              <li><a href="/blog/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Blog</a></li>
+              <li><a href="https://www.skool.com/llmacademy/about?ref=7ec545cf11f44d1e9ebe40b09419916e" target="_blank" rel="noopener" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">LLM Academy ↗</a></li>
+              <li><a href="/rss.xml" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">RSS feed</a></li>
+              <li><a href="/sitemap-index.xml" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Sitemap</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Company</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+              <li><a href="/about/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">About</a></li>
+              <li><a href="/book-a-call/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Book a call</a></li>
+              <li><a href="https://app.shortnsweetdigital.com" rel="noopener" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Login</a></li>
+              <li><a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer" rel="noopener" target="_blank" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Start free trial ↗</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 16px;font-size:0.78rem;color:#7c95ff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Legal</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+              <li><a href="/privacy/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Privacy Policy</a></li>
+              <li><a href="/termsconditions/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Terms of Service</a></li>
+              <li><a href="/privacy/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">Cookie Policy</a></li>
+              <li><a href="/privacy/" style="color:#cbd5e1;text-decoration:none;font-size:0.94rem">DPA / GDPR</a></li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-bottom:36px;padding:20px;background:rgba(15,23,42,0.5);border:1px solid rgba(82,113,255,0.18);border-radius:14px">
+          <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#22c55e">✓</span> SOC 2 Type II</div>
+          <span style="color:#334155">·</span>
+          <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#22c55e">✓</span> GDPR compliant</div>
+          <span style="color:#334155">·</span>
+          <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#22c55e">✓</span> CCPA compliant</div>
+          <span style="color:#334155">·</span>
+          <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#facc15">★★★★★</span> 4.9/5 · 127 reviews</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(82,113,255,0.15)">
+          <p style="margin:0;color:#64748b;font-size:0.86rem">© 2026 Short n Sweet Digital — Joshua A. Hart. All rights reserved. · Built with care in the USA.</p>
+          <div style="display:inline-flex;align-items:center;gap:14px">
+            <a href="https://www.facebook.com/shortnsweetmarketing" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(82,113,255,0.1);border:1px solid rgba(82,113,255,0.25);color:#cbd5e1;text-decoration:none">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/shortnsweetdigital" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(82,113,255,0.1);border:1px solid rgba(82,113,255,0.25);color:#cbd5e1;text-decoration:none">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.97 5.97 0 0 0-2.16 1.4A5.97 5.97 0 0 0 .58 4.2c-.3.76-.5 1.64-.56 2.91C.01 8.39 0 8.8 0 12.06c0 3.26.01 3.67.07 4.95.06 1.27.26 2.15.56 2.91.31.79.73 1.46 1.4 2.13.67.67 1.34 1.09 2.13 1.4.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.97 5.97 0 0 0 2.13-1.4 5.97 5.97 0 0 0 1.4-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.06-1.27-.26-2.15-.56-2.91a5.97 5.97 0 0 0-1.4-2.13A5.97 5.97 0 0 0 19.86.58c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.17 6.17 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/shortnsweet-marketing/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(82,113,255,0.1);border:1px solid rgba(82,113,255,0.25);color:#cbd5e1;text-decoration:none">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(f);
+  }
+
+  // ============================================================
+  // OPT-IN SCROLL REVEAL — only animates elements with [data-snd-reveal]
+  // ============================================================
+  function observeReveal() {
+    var els = document.querySelectorAll('[data-snd-reveal]:not(.is-visible):not(.snd-reveal-observed)');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { el.classList.add('snd-reveal-observed'); io.observe(el); });
+  }
+
+  // ============================================================
   // ORCHESTRATION
   // ============================================================
   function fix() {
@@ -674,6 +859,8 @@
     try { tagLoadedImages(); } catch (e) {}
     try { ensureChatWidget(); } catch (e) {}
     try { ensureVisibilityForm(); } catch (e) {}
+    try { ensureSaasFooter(); } catch (e) {}
+    try { observeReveal(); } catch (e) {}
   }
 
   if (document.readyState === 'complete') fix();
@@ -682,20 +869,25 @@
   setTimeout(fix, 1200);
   setTimeout(fix, 3000);
 
-  // MutationObserver — narrowly scoped to header/nav so we don't fight Nuxt's
-  // body-wide rehydration churn (which was causing GHL animations to misfire).
+  // MutationObserver — watch <body> at low frequency so we can re-mount
+  // critical elements (StaggeredMenu + footer) if Nuxt rehydration wipes them.
   function observe() {
-    var target = document.querySelector('header, .hl_header, nav') || null;
-    if (!target) return;
     var mo = new MutationObserver(function () {
       if (window.__SND_TICK__) return;
       window.__SND_TICK__ = true;
       requestAnimationFrame(function () {
         window.__SND_TICK__ = false;
         try { ensureTrustStrip(); } catch (e) {}
+        // Re-mount if Nuxt clobbered them
+        if (!document.querySelector('.snd-staggered-menu')) {
+          try { buildStaggeredMenu(); } catch (e) {}
+        }
+        if (!document.querySelector('footer[data-snd-footer]')) {
+          try { ensureSaasFooter(); } catch (e) {}
+        }
       });
     });
-    try { mo.observe(target, { childList: true, subtree: true }); } catch (e) {}
+    try { mo.observe(document.body, { childList: true, subtree: false }); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observe);
   else observe();
