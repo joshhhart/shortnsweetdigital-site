@@ -16,7 +16,7 @@ const { title, description, image, article } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image
   ? new URL(image, Astro.site).toString()
-  : new URL('/og-default.png', Astro.site).toString();
+  : new URL('/og-default.jpg', Astro.site).toString();
 ---
 
 <!doctype html>
@@ -26,6 +26,9 @@ const ogImage = image
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG9EKTBZE0"></script>
+    <script is:inline>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SG9EKTBZE0',{anonymize_ip:true});</script>
     <SEO
       title={title}
       description={description}
@@ -56,7 +59,7 @@ const ogImage = image
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">Short n Sweet Digital</a>
+      <a class="brand" href="/" aria-label="Short n Sweet Digital — home"><img src="/assets/brand-mark.svg" alt="Short n Sweet Digital" width="200" height="42" /></a>
       <nav>
         <a href="/">Home</a>
         <a href="/pricing/">Pricing</a>
@@ -110,10 +113,14 @@ const ogImage = image
         border-bottom: 1px solid var(--border);
       }
       .site-header .brand {
-        font-weight: 800;
-        font-size: 1.15rem;
-        color: var(--fg);
+        display: inline-flex;
+        align-items: center;
         text-decoration: none;
+      }
+      .site-header .brand img {
+        display: block;
+        height: 42px;
+        width: auto;
       }
       .site-header nav a {
         margin-left: 1rem;
