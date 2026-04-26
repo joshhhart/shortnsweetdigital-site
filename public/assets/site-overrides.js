@@ -278,13 +278,9 @@
       #col-tzRGTq4su,
       #col-HPlTzlIQ,
       #col-oMse1FNzAF,
-      /* GHL custom-code ROI calculator embed row + its parent section */
-      #row-RTega7byAO,
-      .row-RTega7byAO,
-      #section-8SUbrM6VzS,
-      .section-8SUbrM6VzS,
-      /* Old GHL "WATCH DEMO + FREE VISIBILITY REPORT" buttons section (we already
-         have a replacement CTA section, this one is a leftover duplicate) */
+      /* Old GHL "WATCH DEMO + FREE VISIBILITY REPORT" buttons section (duplicate
+         of our replacement CTA section). ROI Calculator + reviews + blog
+         carousel are intentionally LEFT VISIBLE per user request. */
       #section-OV7erCqiVF,
       .section-OV7erCqiVF{ display: none !important; }
 
@@ -708,8 +704,14 @@
   function ensureReviewsWidget() {
     if (document.querySelector('[data-snd-reviews]')) return;
     if (location.pathname !== '/' && location.pathname !== '/index.html') return;
-    var carousel = document.querySelector('[data-snd-blog-section]');
-    if (!carousel) return;
+    // Anchor: prefer placing reviews AFTER the demo-video section (per user
+    // request — "after the demo section i selected"). Fall back to original
+    // GHL demo section, then to the blog carousel.
+    var anchor =
+      document.querySelector('[data-snd-replaced="w2tQlxc9xd"]') ||
+      document.getElementById('section-w2tQlxc9xd') ||
+      document.querySelector('[data-snd-blog-section]');
+    if (!anchor) return;
     var section = document.createElement('section');
     section.setAttribute('data-snd-reviews', '');
     section.style.cssText = 'background:linear-gradient(180deg,#0a090e 0%,#0f172a 100%);padding:72px 20px;border-top:1px solid rgba(5,100,209,0.2)';
@@ -724,7 +726,7 @@
         </div>
       </div>
     `;
-    carousel.parentNode.insertBefore(section, carousel.nextSibling);
+    anchor.parentNode.insertBefore(section, anchor.nextSibling);
     if (!document.querySelector('script[data-snd-reviews-helper]')) {
       var s = document.createElement('script');
       s.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
