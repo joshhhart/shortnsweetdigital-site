@@ -25,6 +25,8 @@ const ogImage = image
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG9EKTBZE0"></script>
@@ -59,11 +61,20 @@ const ogImage = image
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Short n Sweet Digital — home"><img src="/assets/brand-mark.svg" alt="Short n Sweet Digital" width="200" height="42" /></a>
+      <a class="brand" href="/" aria-label="Short n Sweet Digital — home">
+        <img
+          src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/67188f8028f9aa4e4a87fa1e.webp"
+          alt="ShortNSweet Digital"
+          width="260" height="70"
+        />
+      </a>
       <nav>
         <a href="/">Home</a>
+        <a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU">Services</a>
         <a href="/pricing/">Pricing</a>
         <a href="/blog">Blog</a>
+        <a href="https://app.shortnsweetdigital.com" rel="noopener">Login</a>
+        <a href="https://learn.shortnsweetdigital.com" rel="noopener">LEARN</a>
         <a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav" rel="noopener" class="cta">Start free trial</a>
       </nav>
     </header>
@@ -87,8 +98,8 @@ const ogImage = image
       html, body {
         margin: 0;
         padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          Roboto, 'Helvetica Neue', Arial, sans-serif;
         color: var(--fg);
         background: var(--bg);
         line-height: 1.6;
@@ -119,15 +130,25 @@ const ogImage = image
       }
       .site-header .brand img {
         display: block;
-        height: 42px;
+        height: 56px;
         width: auto;
       }
+      .site-header nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
       .site-header nav a {
-        margin-left: 1rem;
+        margin-left: 0.5rem;
+        padding: 0.4rem 0.75rem;
         color: var(--fg);
         text-decoration: none;
+        font-family: 'Open Sans', sans-serif;
         font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 6px;
       }
+      .site-header nav a:hover { background: rgba(255,255,255,0.06); }
       .site-header nav a.cta {
         background: var(--accent);
         color: #fff;
