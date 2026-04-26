@@ -71,23 +71,9 @@
         --bg-edge-proximity: 0;
         --bg-cursor-angle: 45deg;
         --bg-edge-sensitivity: 30;
-        --bg-color-sensitivity: 50;
-        --bg-cone-spread: 25;
         --bg-glow-padding: 32px;
-        --bg-radius: 16px;
-        --bg-fill-opacity: 0.4;
         --bg-glow-color: 213deg 95% 65%;
-        --bg-grad-base: linear-gradient(#5271FF 0 100%);
-        --bg-grad-1: radial-gradient(at 80% 55%, #5271FF 0px, transparent 50%);
-        --bg-grad-2: radial-gradient(at 69% 34%, #0564D1 0px, transparent 50%);
-        --bg-grad-3: radial-gradient(at  8%  6%, #7c95ff 0px, transparent 50%);
-        --bg-grad-4: radial-gradient(at 41% 38%, #5271FF 0px, transparent 50%);
-        --bg-grad-5: radial-gradient(at 86% 85%, #0564D1 0px, transparent 50%);
-        --bg-grad-6: radial-gradient(at 82% 18%, #7c95ff 0px, transparent 50%);
-        --bg-grad-7: radial-gradient(at 51%  4%, #5271FF 0px, transparent 50%);
         position: relative;
-        isolation: isolate;
-        transform: translate3d(0,0,0.01px);
       }
       .snd-bg-card > .snd-bg-edge{
         content: "";
@@ -186,12 +172,15 @@
       .snd-sm-prelayers{
         position: absolute; top: 0; right: 0; bottom: 0;
         width: clamp(280px, 38vw, 460px);
-        pointer-events: none; z-index: 5; opacity: 0;
+        pointer-events: none; z-index: 5;
       }
       .snd-sm-prelayer{
         position: absolute; top: 0; right: 0; height: 100%; width: 100%;
         transform: translateX(100%);
+        transition: transform .45s cubic-bezier(.2,.8,.2,1);
       }
+      .snd-staggered-menu[data-open="true"] .snd-sm-prelayer:nth-child(1){ transform: translateX(0); transition-delay: 0s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-prelayer:nth-child(2){ transform: translateX(0); transition-delay: 0.07s; }
 
       .snd-sm-panel{
         position: absolute; top: 0; right: 0;
@@ -202,9 +191,11 @@
         display: flex; flex-direction: column;
         padding: 5.5em 2.2em 2em;
         overflow-y: auto; z-index: 10;
-        pointer-events: auto; opacity: 1;
+        pointer-events: auto;
         transform: translateX(100%);
+        transition: transform .55s cubic-bezier(.2,.8,.2,1);
       }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel{ transform: translateX(0); transition-delay: 0.18s; }
       .snd-sm-panel-list{
         list-style: none; margin: 0; padding: 0;
         display: flex; flex-direction: column; gap: 0.5rem;
@@ -225,7 +216,17 @@
       .snd-sm-panel-item-label{
         display: inline-block; will-change: transform;
         transform: translateY(140%) rotate(10deg); transform-origin: 50% 100%;
+        transition: transform .8s cubic-bezier(.2,.8,.2,1);
       }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-label{ transform: translateY(0) rotate(0); }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(1) .snd-sm-panel-item-label{ transition-delay: 0.30s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(2) .snd-sm-panel-item-label{ transition-delay: 0.38s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(3) .snd-sm-panel-item-label{ transition-delay: 0.46s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(4) .snd-sm-panel-item-label{ transition-delay: 0.54s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(5) .snd-sm-panel-item-label{ transition-delay: 0.62s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(6) .snd-sm-panel-item-label{ transition-delay: 0.70s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(7) .snd-sm-panel-item-label{ transition-delay: 0.78s; }
+      .snd-staggered-menu[data-open="true"] .snd-sm-panel-item-wrap:nth-child(8) .snd-sm-panel-item-label{ transition-delay: 0.86s; }
       .snd-sm-panel-item.cta{
         color: #fff; font-size: 1.1rem; padding: 12px 22px; border-radius: 999px;
         background: linear-gradient(120deg,#0564D1,#5271FF);
@@ -441,10 +442,8 @@
     wrap.appendChild(panel);
     document.body.appendChild(wrap);
 
-    // Toggle behavior — pure JS animation via gsap if available, else CSS
+    // Pure CSS class toggle — all transitions live in CSS via [data-open="true"]
     var open = false;
-    var preLayers = pre.querySelectorAll('.snd-sm-prelayer');
-    var labels = panel.querySelectorAll('.snd-sm-panel-item-label');
     var textInner = btn.querySelector('.snd-sm-toggle-text-inner');
 
     function setOpen(state) {
@@ -453,61 +452,24 @@
       btn.setAttribute('aria-expanded', String(state));
       btn.setAttribute('aria-label', state ? 'Close menu' : 'Open menu');
       panel.setAttribute('aria-hidden', String(!state));
-      // toggle button text via CSS transform
+      // swap "Menu" / "Close" by sliding the text-inner
       textInner.style.transform = state ? 'translateY(-50%)' : 'translateY(0)';
-
-      var hasGsap = !!window.gsap;
-      var offscreen = state ? 0 : 100;
-      if (hasGsap) {
-        var tl = window.gsap.timeline();
-        // pre-layers fan out
-        tl.to(preLayers, { xPercent: offscreen, duration: 0.45, ease: state ? 'power4.out' : 'power3.in', stagger: state ? 0.07 : 0 }, 0);
-        var panelStart = state ? (preLayers.length - 1) * 0.07 + 0.08 : 0;
-        tl.to(panel, { xPercent: offscreen, duration: state ? 0.6 : 0.32, ease: state ? 'power4.out' : 'power3.in' }, panelStart);
-        // labels slide up + rotate to 0
-        if (state) {
-          window.gsap.set(labels, { yPercent: 140, rotate: 10 });
-          tl.to(labels, { yPercent: 0, rotate: 0, duration: 0.9, ease: 'power4.out', stagger: 0.08 }, panelStart + 0.1);
-        } else {
-          window.gsap.to(labels, { yPercent: 140, rotate: 10, duration: 0.25, ease: 'power3.in' });
-        }
-      } else {
-        // Fallback CSS transition
-        preLayers.forEach(function (l, i) {
-          l.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1) ' + (state ? (i * 0.07) : 0) + 's';
-          l.style.transform = 'translateX(' + offscreen + '%)';
-        });
-        panel.style.transition = 'transform .55s cubic-bezier(.2,.8,.2,1) ' + (state ? 0.18 : 0) + 's';
-        panel.style.transform = 'translateX(' + offscreen + '%)';
-        labels.forEach(function (lab, i) {
-          lab.style.transition = 'transform .8s cubic-bezier(.2,.8,.2,1) ' + (state ? (0.3 + i * 0.08) : 0) + 's';
-          lab.style.transform = state ? 'translateY(0) rotate(0deg)' : 'translateY(140%) rotate(10deg)';
-        });
-      }
+      document.body.style.overflow = state ? 'hidden' : '';
     }
 
-    btn.addEventListener('click', function () { setOpen(!open); });
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!open);
+    });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && open) setOpen(false);
     });
-    // click-outside
     document.addEventListener('mousedown', function (e) {
       if (!open) return;
       if (panel.contains(e.target) || btn.contains(e.target)) return;
       setOpen(false);
     });
-  }
-
-  // ============================================================
-  // GSAP loader (lazy from CDN)
-  // ============================================================
-  function loadGsap() {
-    if (window.gsap || document.querySelector('script[data-snd-gsap]')) return;
-    var s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
-    s.async = true;
-    s.setAttribute('data-snd-gsap', '');
-    document.head.appendChild(s);
   }
 
   // ============================================================
@@ -581,7 +543,6 @@
   // ============================================================
   // ORCHESTRATION
   // ============================================================
-  loadGsap();
   function fix() {
     try { darkenWhiteCards(); } catch (e) {}
     try { buildStaggeredMenu(); } catch (e) {}
