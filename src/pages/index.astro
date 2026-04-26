@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GradientText from '../components/reactbits/GradientText.jsx';
 import { getCollection } from 'astro:content';
+
+const brandColors = ['#3b9bff', '#188bf6', '#5271FF', '#93c5fd', '#3b9bff'];
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -106,7 +109,7 @@ const testimonials = [
       <p class="eyebrow gradient-eyebrow" data-snd-reveal>AI Automation Platform · Trusted by 500+ businesses</p>
       <h1 class="hero-h1" data-snd-reveal>
         Save Time and Money With
-        <span class="gradient-text">AI-Automation</span>
+        <GradientText client:visible colors={brandColors} animationSpeed={6}>AI-Automation</GradientText>
       </h1>
       <p class="hero-sub" data-snd-reveal>
         Streamline workflows, boost productivity, and increase revenue — with the all-in-one
@@ -131,7 +134,7 @@ const testimonials = [
   <!-- STATS — TODAY'S CONSUMER -->
   <section class="stats-section bleed" data-snd-reveal>
     <div class="container">
-      <h2 class="section-h">Understand What <span class="gradient-text">Today’s Consumer</span> Prefers</h2>
+      <h2 class="section-h">Understand What <GradientText client:visible colors={brandColors} animationSpeed={7}>Today’s Consumer</GradientText> Prefers</h2>
       <div class="stat-grid">
         <article class="snd-darkened stat-card">
           <div class="stat-number" data-counter data-target="3" data-suffix="X">3X</div>
@@ -204,7 +207,7 @@ const testimonials = [
   <!-- SERVICES GRID -->
   <section class="services-section bleed" data-snd-reveal>
     <div class="container">
-      <h2 class="section-h"><span class="gradient-text">All The Tools</span> You Need To Scale, In One Place</h2>
+      <h2 class="section-h"><GradientText client:visible colors={brandColors} animationSpeed={7}>All The Tools</GradientText> You Need To Scale, In One Place</h2>
       <p class="section-lede">One login. One bill. Every channel your customers actually use.</p>
       <div class="services-grid">
         {services.map((s) => (
@@ -221,7 +224,7 @@ const testimonials = [
   <!-- CONTROL — secondary stats -->
   <section class="control-section bleed" data-snd-reveal>
     <div class="container">
-      <h2 class="section-h">We Built <span class="gradient-text">ShortNSweet</span> To Put Your Business In Control.</h2>
+      <h2 class="section-h">We Built <GradientText client:visible colors={brandColors} animationSpeed={7}>ShortNSweet</GradientText> To Put Your Business In Control.</h2>
       <p class="section-lede">
         Replace the 8–12 marketing tools you’re juggling with one AI-powered platform — built for solo operators and small teams.
       </p>
@@ -250,7 +253,7 @@ const testimonials = [
     <div class="container feature-row">
       <div class="feature-copy">
         <p class="eyebrow gradient-eyebrow">Why Text Wins</p>
-        <h2 class="section-h">Reach customers where they actually <span class="gradient-text">respond</span>.</h2>
+        <h2 class="section-h">Reach customers where they actually <GradientText client:visible colors={brandColors} animationSpeed={6}>respond</GradientText>.</h2>
         <ul class="feature-list">
           <li><strong>Text messaging</strong> is the new standard for quick, easy, two-way communication.</li>
           <li><strong>90% of texts</strong> are read within 3 minutes — vs. voicemails that rarely get returned.</li>
@@ -268,25 +271,9 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="reviews-section bleed" data-snd-reveal>
-    <div class="container">
-      <p class="eyebrow gradient-eyebrow">What clients say</p>
-      <h2 class="section-h">Real reviews from real businesses</h2>
-      <div class="testimonial-grid">
-        {testimonials.map((t) => (
-          <figure class="snd-darkened testimonial-card">
-            <blockquote>“{t.quote}”</blockquote>
-            <figcaption>
-              <strong>{t.name}</strong>
-              <span>{t.role}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <!-- ReputationHub iframe injected here by site-overrides.js -->
-    </div>
-  </section>
+  <!-- TESTIMONIALS — ReputationHub widget is JS-injected by site-overrides.js
+       (ensureReviewsWidget) anchored to the blog section below. We don't render
+       static quotes here to avoid the duplicate "Real reviews" heading. -->
 
   <!-- BLOG CAROUSEL -->
   <section class="blog-section bleed" data-snd-reveal data-snd-blog-section>
@@ -377,18 +364,30 @@ const testimonials = [
     }
     @media (prefers-reduced-motion: reduce) { .aurora { animation: none; } }
 
-    /* Gradient text — for accent words in headings */
+    /* Gradient text — vanilla port of React Bits <GradientText/>.
+       Matches the component's mechanics: linear-gradient with N+1 colors
+       (last duplicates first for seamless yoyo), background-size: 300%,
+       animated background-position, background-clip: text. Configurable via
+       CSS custom properties so each instance can tweak colors / speed. */
     .gradient-text {
-      background: linear-gradient(120deg, #3b9bff 0%, #188bf6 35%, #5271FF 70%, #93c5fd 100%);
-      -webkit-background-clip: text;
+      --grad-colors: #3b9bff, #188bf6, #5271FF, #93c5fd, #3b9bff;
+      --grad-speed: 8s;
+      --grad-direction: to right;
+      display: inline-block;
+      background-image: linear-gradient(var(--grad-direction), var(--grad-colors));
+      background-size: 300% 100%;
+      background-repeat: repeat;
       background-clip: text;
+      -webkit-background-clip: text;
       color: transparent;
-      background-size: 200% 200%;
-      animation: gradient-shift 6s ease-in-out infinite;
+      animation: gradient-text-yoyo var(--grad-speed) ease-in-out infinite alternate;
     }
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50%      { background-position: 100% 50%; }
+    @keyframes gradient-text-yoyo {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gradient-text { animation: none; background-position: 50% 50%; }
     }
 
     .gradient-eyebrow {
@@ -469,8 +468,13 @@ const testimonials = [
     .stat-number {
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       font-weight: 800;
-      background: linear-gradient(120deg, #3b9bff, #188bf6 50%, #5271FF);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      display: inline-block;
+      background-image: linear-gradient(to right, #3b9bff, #188bf6, #5271FF, #93c5fd, #3b9bff);
+      background-size: 300% 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradient-text-yoyo 6s ease-in-out infinite alternate;
       margin: 0 0 0.5rem;
       line-height: 1;
     }

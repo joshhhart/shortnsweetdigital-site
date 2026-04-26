@@ -3,6 +3,8 @@ import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import { remarkInternalLinks } from './src/lib/remark-internal-links.mjs';
 
+import react from '@astrojs/react';
+
 const SITE_URL = 'https://shortnsweetdigital.com';
 
 export default defineConfig({
@@ -14,11 +16,8 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkInternalLinks],
   },
-  integrations: [
-    sitemap(),
-    robotsTxt({
-      sitemap: true,
-      policy: [{ userAgent: '*', allow: '/' }],
-    }),
-  ],
+  integrations: [sitemap(), robotsTxt({
+    sitemap: true,
+    policy: [{ userAgent: '*', allow: '/' }],
+  }), react()],
 });
