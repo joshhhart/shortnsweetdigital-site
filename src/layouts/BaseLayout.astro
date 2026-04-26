@@ -10,13 +10,46 @@ interface Props {
     modifiedTime?: string;
     tags?: string[];
   };
+  breadcrumbs?: { name: string; item: string }[];
 }
 
-const { title, description, image, article } = Astro.props;
+const { title, description, image, article, breadcrumbs } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image
   ? new URL(image, Astro.site).toString()
   : new URL('/og-default.jpg', Astro.site).toString();
+
+// Auto-derive breadcrumbs if not provided (skip homepage)
+const autoCrumbs = (() => {
+  if (breadcrumbs) return breadcrumbs;
+  const path = Astro.url.pathname.replace(/\/$/, '');
+  if (!path) return null;
+  const parts = path.split('/').filter(Boolean);
+  const crumbs = [{ name: 'Home', item: new URL('/', Astro.site).toString() }];
+  let acc = '';
+  for (let i = 0; i < parts.length; i++) {
+    acc += '/' + parts[i];
+    const isLast = i === parts.length - 1;
+    const name = isLast
+      ? title.split('—')[0].trim()
+      : parts[i].charAt(0).toUpperCase() + parts[i].slice(1);
+    crumbs.push({ name, item: new URL(acc + '/', Astro.site).toString() });
+  }
+  return crumbs;
+})();
+
+const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: autoCrumbs.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.name,
+        item: c.item,
+      })),
+    }
+  : null;
 ---
 
 <!doctype html>
@@ -24,9 +57,14 @@ const ogImage = image
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Search engine verification — replace REPLACE_ME values once tokens are issued. -->
+    <meta name="google-site-verification" content="REPLACE_ME_GOOGLE_VERIFICATION_TOKEN" />
+    <meta name="msvalidate.01" content="REPLACE_ME_BING_VERIFICATION_TOKEN" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" /></noscript>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG9EKTBZE0"></script>
@@ -58,6 +96,9 @@ const ogImage = image
         image: ogImage,
       }}
     />
+    {breadcrumbLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+    )}
   </head>
   <body>
     <header class="site-header">
@@ -81,6 +122,9 @@ const ogImage = image
     <main>
       <slot />
     </main>
+    <a class="snd-mobile-cta" href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=mobile_sticky" rel="noopener">
+      Start free trial →
+    </a>
     <footer class="site-footer">
       <p>&copy; {new Date().getFullYear()} Short n Sweet Digital. All rights reserved.</p>
     </footer>
@@ -154,6 +198,27 @@ const ogImage = image
         color: #fff;
         padding: 0.5rem 1rem;
         border-radius: 999px;
+      }
+      .snd-mobile-cta {
+        display: none;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 999;
+        text-align: center;
+        background: linear-gradient(120deg, #0564D1, #5271FF);
+        color: #fff;
+        font-weight: 700;
+        padding: 14px 18px;
+        border-radius: 999px;
+        text-decoration: none;
+        box-shadow: 0 12px 32px rgba(5, 100, 209, 0.4);
+        font-family: 'Open Sans', sans-serif;
+      }
+      @media (max-width: 720px) {
+        .snd-mobile-cta { display: block; }
+        main { padding-bottom: 5rem; }
       }
       .site-footer {
         border-top: 1px solid var(--border);

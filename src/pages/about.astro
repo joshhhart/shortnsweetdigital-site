@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Short n Sweet Digital',
+  url: 'https://shortnsweetdigital.com/',
+  logo: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
+  description:
+    'Short n Sweet Digital is a white-label GoHighLevel reseller helping small businesses replace 8–12 marketing tools with one AI-powered platform.',
+  sameAs: ['https://www.gohighlevel.com/?fp_ref=shortnsweet53'],
+  founder: { '@type': 'Person', name: 'Josh Hart' },
+  areaServed: 'US',
+};
+---
+
+<BaseLayout
+  title="About — Short n Sweet Digital"
+  description="Short n Sweet Digital helps small businesses replace 8–12 marketing tools with one AI-powered platform. Built by Josh Hart on GoHighLevel."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+
+  <section class="about">
+    <p class="eyebrow">About</p>
+    <h1>One platform. Done right. Built for small businesses.</h1>
+    <p class="lede">
+      Short n Sweet Digital is a white-label partner of GoHighLevel — the all-in-one
+      CRM, marketing, and automation platform powering 100,000+ agencies worldwide.
+      We package it for solo operators, contractors, and local service businesses
+      who don't have time to glue together eight different SaaS tools.
+    </p>
+
+    <h2>What you get</h2>
+    <ul>
+      <li><strong>One login</strong> for CRM, email, SMS, web chat, scheduling, pipelines, and reviews.</li>
+      <li><strong>AI assistants</strong> that book appointments, answer FAQs, and follow up on leads 24/7.</li>
+      <li><strong>White-glove setup</strong> — we configure the workflows, you focus on the business.</li>
+      <li><strong>Transparent pricing</strong> with a 14-day free trial. No long-term contracts.</li>
+    </ul>
+
+    <h2>Why we exist</h2>
+    <p>
+      Most small businesses pay for 8–12 separate tools — and still lose leads
+      because none of them talk to each other. We replace the stack with a single
+      platform, configured to your industry, so every lead gets a fast, consistent
+      response.
+    </p>
+
+    <h2>Who we help</h2>
+    <p>
+      Home services, real estate, fitness, coaches, and local agencies. If you
+      live and die by inbound leads and follow-up, we built this for you.
+    </p>
+
+    <div class="cta-row">
+      <a class="primary" href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=about" rel="noopener">Start free trial →</a>
+      <a class="secondary" href="/pricing/">See pricing</a>
+    </div>
+  </section>
+
+  <style>
+    .about { padding: 1.5rem 0 3rem; }
+    .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; }
+    h1 { font-size: 2.2rem; line-height: 1.15; margin: 0 0 1rem; }
+    .lede { color: var(--muted); font-size: 1.1rem; }
+    h2 { margin-top: 2rem; }
+    ul { padding-left: 1.2rem; }
+    li { margin-bottom: 0.5rem; }
+    .cta-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 2rem; }
+    .cta-row a { display: inline-block; padding: 0.7rem 1.2rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
+    .primary { background: var(--accent); color: #fff; }
+    .secondary { background: rgba(5,100,209,0.15); color: #93c5fd; border: 1px solid rgba(5,100,209,0.3); }
+  </style>
+</BaseLayout>

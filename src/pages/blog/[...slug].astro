@@ -12,8 +12,45 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+// Extract FAQ-style Q&A from H2s + their first paragraph for FAQPage JSON-LD.
+// Heuristic: any H2 that ends with "?" OR starts with What/How/Why/When/Is/Does
+// becomes a Question. Answer is the first paragraph after the heading.
+const body = post.body || '';
+const sections = body.split(/^##\s+/m).slice(1);
+const QUESTION_PREFIX = /^(what|how|why|when|is|does|do|are|can|should|will|which|who)\b/i;
+const faqs = sections
+  .map((sec) => {
+    const lines = sec.split('\n');
+    const heading = (lines[0] || '').trim();
+    if (!heading) return null;
+    if (!heading.endsWith('?') && !QUESTION_PREFIX.test(heading)) return null;
+    // Grab first non-empty, non-blockquote, non-bullet paragraph
+    let answer = '';
+    for (let i = 1; i < lines.length; i++) {
+      const l = lines[i].trim();
+      if (!l || l.startsWith('>') || l.startsWith('-') || l.startsWith('*') || l.startsWith('![')) continue;
+      if (l.startsWith('#')) break;
+      answer = l;
+      break;
+    }
+    if (!answer) return null;
+    // Strip markdown links/bold/italic
+    answer = answer
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/<[^>]+>/g, '')
+      .trim();
+    if (answer.length < 40 || answer.length > 600) return null;
+    const question = heading.endsWith('?') ? heading : heading + '?';
+    return { question, answer };
+  })
+  .filter(Boolean)
+  .slice(0, 6);
 ---
 
-<BlogPost {...post.data} slug={post.slug}>
+<BlogPost {...post.data} slug={post.slug} faqs={faqs}>
   <Content />
 </BlogPost>

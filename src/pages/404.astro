@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const recent = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<BaseLayout
+  title="Page not found — Short n Sweet Digital"
+  description="The page you're looking for doesn't exist. Check out our latest posts or head back to the homepage."
+>
+  <section class="notfound">
+    <p class="eyebrow">404</p>
+    <h1>That page wandered off.</h1>
+    <p class="lede">
+      The link is broken or the page was moved. Try one of these instead:
+    </p>
+    <div class="cta-row">
+      <a class="primary" href="/">Back to home</a>
+      <a class="secondary" href="/blog/">Read the blog</a>
+      <a class="secondary" href="/pricing/">See pricing</a>
+    </div>
+
+    {recent.length > 0 && (
+      <>
+        <h2>Latest posts</h2>
+        <ul class="recent">
+          {recent.map((p) => (
+            <li>
+              <a href={`/blog/${p.slug}/`}>
+                <strong>{p.data.title}</strong>
+                <span>{p.data.description}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </section>
+
+  <style>
+    .notfound { padding: 3rem 0 4rem; }
+    .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; }
+    h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 1rem; }
+    .lede { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.5rem; }
+    .cta-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .cta-row a {
+      display: inline-block; padding: 0.65rem 1.1rem; border-radius: 999px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    }
+    .primary { background: var(--accent); color: #fff; }
+    .secondary { background: rgba(5,100,209,0.15); color: #93c5fd; border: 1px solid rgba(5,100,209,0.3); }
+    h2 { margin: 2rem 0 0.75rem; font-size: 1.3rem; }
+    .recent { list-style: none; padding: 0; margin: 0; }
+    .recent li { border-top: 1px solid var(--border); }
+    .recent a { display: block; padding: 0.9rem 0; text-decoration: none; }
+    .recent strong { color: var(--fg); display: block; margin-bottom: 0.2rem; }
+    .recent span { color: var(--muted); font-size: 0.92rem; }
+    .recent a:hover strong { color: #93c5fd; }
+  </style>
+</BaseLayout>

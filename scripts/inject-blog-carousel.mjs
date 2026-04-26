@@ -28,7 +28,9 @@ function escape(s) {
 }
 
 function fmt(d) {
-  return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  // Force UTC interpretation so a YYYY-MM-DD frontmatter date doesn't shift
+  // to the previous day in negative-offset timezones.
+  return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
 const posts = readdirSync(BLOG_DIR)
