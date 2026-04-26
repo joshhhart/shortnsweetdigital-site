@@ -85,7 +85,7 @@ Both have drag-and-drop kanban pipelines. GHL's CRM ties into SMS, email, calls,
 - You want a platform your client can use themselves without a 2-hour onboarding session
 - UI polish matters more than feature breadth for your client relationships
 
-Ready to try GoHighLevel under your own brand? [Start your free trial →](/trial?utm_source=blog&utm_medium=organic&utm_campaign=gohighlevel-vs-activecampaign)
+Ready to try GoHighLevel under your own brand? [Start your free trial →](https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=blog&utm_medium=organic&utm_campaign=gohighlevel-vs-activecampaign)
 
 ## FAQ
 
@@ -107,4 +107,4 @@ SaaS mode (available at $497/mo on the SaaS Pro plan) lets you white-label the e
 
 ---
 
-If your agency lives on email sequences and your clients don't need SMS, calling, or funnels, ActiveCampaign is the leaner, more intuitive choice. But for the gohighlevel vs activecampaign decision at the agency level — especially if you're managing multiple clients or building toward a software revenue stream — GoHighLevel is the more defensible long-term platform. [Start a free GoHighLevel trial](/trial?utm_source=blog&utm_medium=organic&utm_campaign=gohighlevel-vs-activecampaign) and see whether it fits how you actually run your business.
+If your agency lives on email sequences and your clients don't need SMS, calling, or funnels, ActiveCampaign is the leaner, more intuitive choice. But for the gohighlevel vs activecampaign decision at the agency level — especially if you're managing multiple clients or building toward a software revenue stream — GoHighLevel is the more defensible long-term platform. [Start a free GoHighLevel trial](https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=blog&utm_medium=organic&utm_campaign=gohighlevel-vs-activecampaign) and see whether it fits how you actually run your business.

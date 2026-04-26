@@ -19,11 +19,12 @@ const ogImage = image
   ? new URL(image, Astro.site).toString()
   : new URL('/og-default.jpg', Astro.site).toString();
 
-// Auto-derive breadcrumbs if not provided (skip homepage)
+// Auto-derive breadcrumbs if not provided (skip homepage + error pages)
 const autoCrumbs = (() => {
   if (breadcrumbs) return breadcrumbs;
   const path = Astro.url.pathname.replace(/\/$/, '');
   if (!path) return null;
+  if (path === '/404' || path === '/404.html' || path.endsWith('/404.html')) return null;
   const parts = path.split('/').filter(Boolean);
   const crumbs = [{ name: 'Home', item: new URL('/', Astro.site).toString() }];
   let acc = '';

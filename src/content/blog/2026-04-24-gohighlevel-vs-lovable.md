@@ -69,7 +69,7 @@ The honest reason to choose GHL is that you're building a *marketing services bu
 
 **Ready to see what running your whole agency on one platform looks like?** The free trial gets you full SaaS mode, white-label, and every AI feature for 14 days — no credit card required to explore.
 
-[Start my free GoHighLevel trial →](/trial?utm_source=blog&utm_medium=organic&utm_campaign=2026-04-24-gohighlevel-vs-lovable)
+[Start my free GoHighLevel trial →](https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=blog&utm_medium=organic&utm_campaign=2026-04-24-gohighlevel-vs-lovable)
 
 ## Cost comparison — the real numbers
 
@@ -129,4 +129,4 @@ Lovable can call GHL's API (and vice versa) — so you can ship a Lovable-built 
 
 If you're in the first camp and haven't tried GoHighLevel in its current form (the AI Voice, AI Email, and SaaS Configurator have all leveled up recently), give the trial a serious 14-day run and decide from inside the platform instead of from a YouTube review.
 
-[Start your free 14-day GoHighLevel trial →](/trial?utm_source=blog&utm_medium=organic&utm_campaign=2026-04-24-gohighlevel-vs-lovable)
+[Start your free 14-day GoHighLevel trial →](https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=blog&utm_medium=organic&utm_campaign=2026-04-24-gohighlevel-vs-lovable)
