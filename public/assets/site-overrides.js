@@ -1057,7 +1057,7 @@
   // NEWSLETTER FORM — POST email + session/UTM data to GHL webhook to
   // start the campaign, then redirect to the GHL affiliate trial link.
   // ============================================================
-  var SND_NEWSLETTER_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/LHvDkOgXpZdUYdjFzBff/webhook-trigger/453f292d-3c7f-4749-a0ce-8d38cd0cfac8';
+  var SND_NEWSLETTER_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/LHvDkOgXpZdUYdjFzBff/webhook-trigger/180d4d4e-bc84-48ba-a684-73c32ad72b7f';
   var SND_NEWSLETTER_REDIRECT = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer_newsletter';
 
   function sndCollectSession() {
