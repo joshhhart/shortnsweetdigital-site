@@ -448,13 +448,14 @@
   }
 
   function applyBorderGlow() {
-    var ctaSelector = 'a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta, .cbutton-_GnMb7NzQR, [aria-label*="VISIBILITY REPORT"], [aria-label*="WATCH DEMO"], [aria-label*="Watch Demo"], [aria-label*="Free Visibility"], a[href*="gohighlevel.com"], a[href*="book-a-call"]';
-    document.querySelectorAll(ctaSelector).forEach(attachBorderGlow);
     // Star Border ONLY on service cards (not CTAs / buttons / menu items)
     document.querySelectorAll('.snd-darkened').forEach(attachStarBorder);
-    // Drop any leftover legacy class
-    document.querySelectorAll('.snd-rotating-glow').forEach(function (el) {
-      el.classList.remove('snd-rotating-glow');
+    // Strip BorderGlow / Star Border / legacy rotating class from every CTA
+    var ctaSelector = 'a.cta, a.snd-bg-cta, button.snd-bg-cta, .button[role="button"], a.button, button.c-button, .snd-popup-cta, .snd-mobile-cta, .cbutton-_GnMb7NzQR, [aria-label*="VISIBILITY REPORT"], [aria-label*="WATCH DEMO"], [aria-label*="Watch Demo"], [aria-label*="Free Visibility"], a[href*="gohighlevel.com"], a[href*="book-a-call"], .btn-primary, .btn-secondary';
+    document.querySelectorAll(ctaSelector).forEach(function (el) {
+      el.classList.remove('snd-bg-card', 'snd-rotating-glow', 'snd-star-border');
+      el.__sndBg = false; el.__sndSb = false;
+      el.querySelectorAll(':scope > .snd-bg-edge, :scope > .snd-sb-top, :scope > .snd-sb-bottom').forEach(function (s) { s.remove(); });
     });
     // Strip Star Border from anything that isn't a service card
     document.querySelectorAll('.snd-star-border').forEach(function (el) {
@@ -463,6 +464,10 @@
         el.__sndSb = false;
         el.querySelectorAll(':scope > .snd-sb-top, :scope > .snd-sb-bottom').forEach(function (s) { s.remove(); });
       }
+    });
+    // Drop any leftover legacy rotating class anywhere
+    document.querySelectorAll('.snd-rotating-glow').forEach(function (el) {
+      el.classList.remove('snd-rotating-glow');
     });
   }
 
