@@ -71,10 +71,11 @@ const ogImage = image
 
     <style is:global>
       :root {
-        --fg: #0f172a;
-        --bg: #ffffff;
-        --muted: #475569;
-        --accent: #f97316;
+        --fg: #f8fafc;
+        --bg: #0a090e;
+        --muted: #94a3b8;
+        --accent: #0564D1;
+        --border: #1f2937;
         --max-width: 72ch;
       }
       * { box-sizing: border-box; }
@@ -104,7 +105,7 @@ const ogImage = image
         align-items: center;
         justify-content: space-between;
         padding: 1rem 1.5rem;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid var(--border);
       }
       .site-header .brand {
         font-weight: 800;
@@ -119,7 +120,7 @@ const ogImage = image
         font-weight: 600;
       }
       .site-footer {
-        border-top: 1px solid #e2e8f0;
+        border-top: 1px solid var(--border);
         padding: 1.5rem;
         text-align: center;
         color: var(--muted);
