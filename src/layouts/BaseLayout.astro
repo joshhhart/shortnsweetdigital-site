@@ -24,7 +24,7 @@ const ogImage = image
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <SEO
       title={title}
@@ -58,8 +58,10 @@ const ogImage = image
     <header class="site-header">
       <a class="brand" href="/">Short n Sweet Digital</a>
       <nav>
+        <a href="/">Home</a>
+        <a href="/pricing/">Pricing</a>
         <a href="/blog">Blog</a>
-        <a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav" rel="noopener">Start free trial</a>
+        <a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav" rel="noopener" class="cta">Start free trial</a>
       </nav>
     </header>
     <main>
@@ -118,6 +120,12 @@ const ogImage = image
         color: var(--fg);
         text-decoration: none;
         font-weight: 600;
+      }
+      .site-header nav a.cta {
+        background: var(--accent);
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
       }
       .site-footer {
         border-top: 1px solid var(--border);
