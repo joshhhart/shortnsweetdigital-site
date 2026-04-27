@@ -1102,17 +1102,29 @@
           source: 'weekly_playbook_newsletter',
           campaign_trigger: 'newsletter_signup',
         }, sndCollectSession());
-        // Fire-and-forget POST. keepalive lets the request finish during
-        // the redirect that follows.
+        // Fire-and-forget POST. Try sendBeacon first (purpose-built for
+        // analytics/webhooks; bypasses CORS preflight, survives navigation).
+        // Fall back to fetch with proper CORS so GHL parses JSON correctly.
+        var body = JSON.stringify(payload);
+        var sent = false;
         try {
-          fetch(SND_NEWSLETTER_WEBHOOK, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            keepalive: true,
-            mode: 'no-cors',
-          }).catch(function () {});
+          if (navigator.sendBeacon) {
+            sent = navigator.sendBeacon(
+              SND_NEWSLETTER_WEBHOOK,
+              new Blob([body], { type: 'application/json' })
+            );
+          }
         } catch (err) {}
+        if (!sent) {
+          try {
+            fetch(SND_NEWSLETTER_WEBHOOK, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: body,
+              keepalive: true,
+            }).catch(function () {});
+          } catch (err) {}
+        }
         if (msg) {
           msg.style.display = 'block';
           msg.textContent = 'Thanks — opening your free trial in a new tab…';
