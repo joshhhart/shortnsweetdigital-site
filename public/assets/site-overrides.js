@@ -1102,29 +1102,22 @@
           source: 'weekly_playbook_newsletter',
           campaign_trigger: 'newsletter_signup',
         }, sndCollectSession());
-        // Fire-and-forget POST. Try sendBeacon first (purpose-built for
-        // analytics/webhooks; bypasses CORS preflight, survives navigation).
-        // Fall back to fetch with proper CORS so GHL parses JSON correctly.
-        var body = JSON.stringify(payload);
-        var sent = false;
+        // Fire-and-forget POST via fetch with credentials omitted.
+        // sendBeacon can't be used here: it always sends credentials, and
+        // Cloudflare's __cf_bm cookie set on the OPTIONS preflight makes the
+        // POST a credentialed cross-origin request — which fails because
+        // GHL returns Access-Control-Allow-Origin:* (incompatible with
+        // include). credentials:'omit' guarantees the cookie never attaches.
         try {
-          if (navigator.sendBeacon) {
-            sent = navigator.sendBeacon(
-              SND_NEWSLETTER_WEBHOOK,
-              new Blob([body], { type: 'application/json' })
-            );
-          }
+          fetch(SND_NEWSLETTER_WEBHOOK, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'omit',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true,
+          }).catch(function () {});
         } catch (err) {}
-        if (!sent) {
-          try {
-            fetch(SND_NEWSLETTER_WEBHOOK, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: body,
-              keepalive: true,
-            }).catch(function () {});
-          } catch (err) {}
-        }
         if (msg) {
           msg.style.display = 'block';
           msg.textContent = 'Thanks — opening your free trial in a new tab…';
