@@ -1,0 +1,78 @@
+name: Daily SEO post
+
+on:
+  schedule:
+    # 13:00 UTC = 08:00 America/New_York during EST,
+    # 09:00 during EDT. Pick one and live with the DST shift,
+    # or add a second cron for the other half of the year.
+    - cron: '0 13 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: 'Override target keyword (optional)'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-post
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Install the claude-seo + claude-blog skill packs so the Agent SDK
+      # can use them the same way Josh's local Claude Code does.
+      - name: Install Claude skill packs
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.claude/skills ~/.claude/agents
+          tmp=$(mktemp -d)
+          git clone --depth=1 https://github.com/AgriciDaniel/claude-seo  "$tmp/claude-seo"
+          git clone --depth=1 https://github.com/AgriciDaniel/claude-blog "$tmp/claude-blog"
+          # Each pack ships an install.sh that copies skills/* and agents/*
+          # into ~/.claude. Run them non-interactively.
+          bash "$tmp/claude-seo/install.sh"  || cp -R "$tmp/claude-seo/skills/."  ~/.claude/skills/
+          bash "$tmp/claude-blog/install.sh" || cp -R "$tmp/claude-blog/skills/." ~/.claude/skills/
+          [[ -d "$tmp/claude-seo/agents" ]]  && cp -R "$tmp/claude-seo/agents/."  ~/.claude/agents/ || true
+          [[ -d "$tmp/claude-blog/agents" ]] && cp -R "$tmp/claude-blog/agents/." ~/.claude/agents/ || true
+          ls ~/.claude/skills | head -40
+
+      - name: Generate post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          KEYWORD_OVERRIDE: ${{ inputs.keyword }}
+        run: node scripts/daily-seo-job.mjs
+
+      - name: Smoke build
+        run: npm run build
+
+      - name: Commit & push
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes — pipeline produced nothing. Failing so it's visible."
+            exit 1
+          fi
+          git config user.name  "agentic-jimmy[bot]"
+          git config user.email "agentic-jimmy[bot]@users.noreply.github.com"
+          git add src/content/blog public/audio public/images
+          SLUG=$(git diff --cached --name-only -- src/content/blog | head -1 | xargs -I{} basename {} .md)
+          git commit -m "Publish: ${SLUG}"
+          git push origin HEAD:main
