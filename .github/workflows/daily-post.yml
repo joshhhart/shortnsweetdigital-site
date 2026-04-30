@@ -36,6 +36,10 @@ jobs:
 
       - run: npm ci
 
+      # The Agent SDK shells out to the `claude` CLI, so it must be on PATH.
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
       # Install the claude-seo + claude-blog skill packs so the Agent SDK
       # can use them the same way Josh's local Claude Code does.
       - name: Install Claude skill packs
