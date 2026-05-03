@@ -14,12 +14,24 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 
 const BLOG_DIR  = 'src/content/blog';
 const AUDIO_DIR = 'public/audio';
 
 const today = new Date().toISOString().slice(0, 10);
+
+// The SDK tries to spawn a bundled native binary under
+// node_modules/@anthropic-ai/claude-agent-sdk-<platform>/claude. On Ubuntu
+// runners that subpackage isn't always installed, so fall back to the global
+// `claude` CLI we installed in the workflow.
+let pathToClaudeCodeExecutable;
+try {
+  pathToClaudeCodeExecutable = execSync('which claude', { encoding: 'utf8' }).trim();
+} catch {
+  pathToClaudeCodeExecutable = undefined;
+}
 
 function slugify(s) {
   return s.toLowerCase().trim()
@@ -49,6 +61,7 @@ async function runAgent(prompt) {
       allowedTools: ['Read', 'Write', 'Edit', 'Bash', 'Glob', 'Grep'],
       permissionMode: 'bypassPermissions',
       cwd: process.cwd(),
+      pathToClaudeCodeExecutable,
     },
   })) {
     if (msg.type === 'assistant') {
