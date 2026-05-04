@@ -60,8 +60,8 @@ jobs:
       - name: Generate post
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_VOICE_ID: ${{ secrets.XAI_VOICE_ID }}
           KEYWORD_OVERRIDE: ${{ inputs.keyword }}
         run: node scripts/daily-seo-job.mjs
 
