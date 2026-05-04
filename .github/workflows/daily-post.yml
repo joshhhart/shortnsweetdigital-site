@@ -64,6 +64,14 @@ jobs:
           KEYWORD_OVERRIDE: ${{ inputs.keyword }}
         run: node scripts/daily-seo-job.mjs
 
+      - name: Show generated post (debug)
+        if: always()
+        run: |
+          set +e
+          for f in src/content/blog/$(date -u +%Y-%m-%d)-*.md; do
+            [[ -f "$f" ]] && echo "=== $f ===" && head -20 "$f"
+          done
+
       - name: Smoke build
         run: npm run build
 
