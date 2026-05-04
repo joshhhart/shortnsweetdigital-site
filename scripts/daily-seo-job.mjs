@@ -198,10 +198,20 @@ function splitFrontmatter(doc) {
   return { frontmatter: m[1], body: m[2] };
 }
 
+function formatYamlValue(v) {
+  if (typeof v === 'boolean' || typeof v === 'number') return String(v);
+  if (typeof v === 'string') {
+    // Bare ISO date — leave unquoted so YAML parses it as a Date.
+    if (/^\d{4}-\d{2}-\d{2}$/.test(v)) return v;
+    return JSON.stringify(v);
+  }
+  return JSON.stringify(v);
+}
+
 function patchFrontmatter(fm, patches) {
   let out = fm;
   for (const [k, v] of Object.entries(patches)) {
-    const line = `${k}: ${typeof v === 'string' ? JSON.stringify(v) : v}`;
+    const line = `${k}: ${formatYamlValue(v)}`;
     out = new RegExp(`^${k}:.*$`, 'm').test(out)
       ? out.replace(new RegExp(`^${k}:.*$`, 'm'), line)
       : `${out}\n${line}`;
