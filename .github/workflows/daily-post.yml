@@ -40,22 +40,23 @@ jobs:
       - name: Install Claude Code CLI
         run: npm install -g @anthropic-ai/claude-code
 
-      # Install the claude-seo + claude-blog skill packs so the Agent SDK
-      # can use them the same way Josh's local Claude Code does.
-      - name: Install Claude skill packs
+      # Install only the skills the daily pipeline actually uses. Loading all
+      # 24 claude-seo sub-skills + claude-blog put us over the 30k input
+      # tokens/min rate limit on startup. Trim aggressively.
+      - name: Install Claude skill packs (trimmed)
         run: |
           set -euo pipefail
           mkdir -p ~/.claude/skills ~/.claude/agents
           tmp=$(mktemp -d)
           git clone --depth=1 https://github.com/AgriciDaniel/claude-seo  "$tmp/claude-seo"
           git clone --depth=1 https://github.com/AgriciDaniel/claude-blog "$tmp/claude-blog"
-          # Each pack ships an install.sh that copies skills/* and agents/*
-          # into ~/.claude. Run them non-interactively.
-          bash "$tmp/claude-seo/install.sh"  || cp -R "$tmp/claude-seo/skills/."  ~/.claude/skills/
-          bash "$tmp/claude-blog/install.sh" || cp -R "$tmp/claude-blog/skills/." ~/.claude/skills/
-          [[ -d "$tmp/claude-seo/agents" ]]  && cp -R "$tmp/claude-seo/agents/."  ~/.claude/agents/ || true
-          [[ -d "$tmp/claude-blog/agents" ]] && cp -R "$tmp/claude-blog/agents/." ~/.claude/agents/ || true
-          ls ~/.claude/skills | head -40
+          # claude-seo: only the skills the daily pipeline references.
+          for skill in seo seo-audit seo-content seo-page; do
+            [[ -d "$tmp/claude-seo/skills/$skill" ]] && cp -R "$tmp/claude-seo/skills/$skill" ~/.claude/skills/ || true
+          done
+          # claude-blog: take everything (assumed small).
+          [[ -d "$tmp/claude-blog/skills" ]] && cp -R "$tmp/claude-blog/skills/." ~/.claude/skills/ || true
+          ls ~/.claude/skills
 
       - name: Generate post
         env:
