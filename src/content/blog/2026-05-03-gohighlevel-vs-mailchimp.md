@@ -65,31 +65,26 @@ The chart below shows where GoHighLevel Unlimited ($297/mo flat) becomes cheaper
   <!-- Title -->
   <text x="340" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">Mailchimp Standard vs GoHighLevel Unlimited</text>
   <text x="340" y="56" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">Monthly cost by contact tier (2026)</text>
-
   <!-- Legend -->
   <rect x="160" y="74" width="14" height="14" fill="#f97316" rx="3"/>
   <text x="180" y="85" font-family="system-ui,sans-serif" font-size="12" fill="#cbd5e1">Mailchimp Standard</text>
   <rect x="340" y="74" width="14" height="14" fill="#6366f1" rx="3"/>
   <text x="360" y="85" font-family="system-ui,sans-serif" font-size="12" fill="#cbd5e1">GoHighLevel Unlimited</text>
-
   <!-- Y-axis labels -->
   <text x="54" y="320" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">$0</text>
   <text x="54" y="265" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">$100</text>
   <text x="54" y="210" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">$200</text>
   <text x="54" y="155" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">$300</text>
   <text x="54" y="100" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">$400</text>
-
   <!-- Horizontal gridlines -->
   <line x1="60" y1="320" x2="640" y2="320" stroke="#2d2d4e" stroke-width="1"/>
   <line x1="60" y1="265" x2="640" y2="265" stroke="#2d2d4e" stroke-width="1"/>
   <line x1="60" y1="210" x2="640" y2="210" stroke="#2d2d4e" stroke-width="1"/>
   <line x1="60" y1="155" x2="640" y2="155" stroke="#2d2d4e" stroke-width="1"/>
   <line x1="60" y1="100" x2="640" y2="100" stroke="#2d2d4e" stroke-width="1"/>
-
   <!-- GHL $297 breakeven line -->
   <line x1="60" y1="156.5" x2="640" y2="156.5" stroke="#6366f1" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
   <text x="644" y="160" font-family="system-ui,sans-serif" font-size="10" fill="#6366f1" opacity="0.8">$297</text>
-
   <!-- 5K contacts group (x=110) -->
   <!-- Mailchimp $100 => height 55, top = 320-55=265 -->
   <rect x="100" y="265" width="40" height="55" fill="#f97316" rx="3"/>
@@ -99,7 +94,6 @@ The chart below shows where GoHighLevel Unlimited ($297/mo flat) becomes cheaper
   <text x="168" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#6366f1">$297</text>
   <!-- X label -->
   <text x="134" y="342" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">5K</text>
-
   <!-- 10K contacts group (x=240) -->
   <!-- Mailchimp $135 => height 74.25, top = 320-74.25=245.75 -->
   <rect x="240" y="246" width="40" height="74" fill="#f97316" rx="3"/>
@@ -109,7 +103,6 @@ The chart below shows where GoHighLevel Unlimited ($297/mo flat) becomes cheaper
   <text x="308" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#6366f1">$297</text>
   <!-- X label -->
   <text x="274" y="342" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">10K</text>
-
   <!-- 25K contacts group (x=380) -->
   <!-- Mailchimp $310 => height 170.5, top = 320-170.5=149.5 -->
   <rect x="380" y="150" width="40" height="170" fill="#f97316" rx="3"/>
@@ -119,7 +112,6 @@ The chart below shows where GoHighLevel Unlimited ($297/mo flat) becomes cheaper
   <text x="448" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#6366f1">$297</text>
   <!-- X label -->
   <text x="414" y="342" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">25K</text>
-
   <!-- 50K contacts group (x=520) -->
   <!-- Mailchimp $450 => height 247.5, top = 320-247.5=72.5 -->
   <rect x="520" y="73" width="40" height="247" fill="#f97316" rx="3"/>
@@ -129,10 +121,8 @@ The chart below shows where GoHighLevel Unlimited ($297/mo flat) becomes cheaper
   <text x="588" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#6366f1">$297</text>
   <!-- X label -->
   <text x="554" y="342" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#94a3b8">50K</text>
-
   <!-- X-axis -->
   <line x1="60" y1="320" x2="640" y2="320" stroke="#475569" stroke-width="1.5"/>
-
   <!-- Breakeven annotation -->
   <text x="340" y="370" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#94a3b8">Contacts per account — GHL becomes cheaper around 22K-25K contacts</text>
 </svg>
