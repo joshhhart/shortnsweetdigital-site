@@ -7,7 +7,7 @@
 //   1. Pick keyword         (seo skill)
 //   2. Draft post           (claude-blog skill)
 //   3. Hero image           (banana-claude / Nano Banana — TODO, optional)
-//   4. Audio                (ElevenLabs API — handled here, not by the agent)
+//   4. Audio                (xAI TTS — handled here, not by the agent)
 //   5. 19-point audit       (seo-audit skill)
 //   6. Smoke build          (workflow step, not here)
 //   7. Commit & push        (workflow step, not here)
@@ -130,38 +130,32 @@ Begin.`;
   return m[1];
 }
 
-// ---------- Step 4: audio (kept in JS — deterministic, no agent needed) ----------
+// ---------- Step 4: audio via xAI TTS ----------
 async function generateAudio(slug) {
-  if (!process.env.ELEVENLABS_API_KEY) {
-    console.warn('[skip] ELEVENLABS_API_KEY missing');
+  if (!process.env.XAI_API_KEY) {
+    console.warn('[skip] XAI_API_KEY missing');
     return;
   }
-  const voiceId = process.env.ELEVENLABS_VOICE_ID;
-  if (!voiceId) {
-    console.warn('[skip] ELEVENLABS_VOICE_ID missing');
-    return;
-  }
+  const voiceId = process.env.XAI_VOICE_ID || 'jivoallzgwzv';
 
   const mdPath = path.join(BLOG_DIR, `${today}-${slug}.md`);
   const md = await fs.readFile(mdPath, 'utf8');
   const body = md.replace(/^---[\s\S]*?---\n/, '');
   const text = body.replace(/[#>*_`[\]()]/g, '').slice(0, 4500);
 
-  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+  const res = await fetch('https://api.x.ai/v1/tts', {
     method: 'POST',
     headers: {
-      'xi-api-key': process.env.ELEVENLABS_API_KEY,
+      authorization: `Bearer ${process.env.XAI_API_KEY}`,
       'content-type': 'application/json',
-      accept: 'audio/mpeg',
     },
-    body: JSON.stringify({ text, model_id: 'eleven_turbo_v2_5' }),
+    body: JSON.stringify({ text, voice_id: voiceId, language: 'en' }),
   });
-  if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${await res.text()}`);
+  if (!res.ok) throw new Error(`xAI TTS ${res.status}: ${await res.text()}`);
   const buf = Buffer.from(await res.arrayBuffer());
   const audioName = `${today}-${slug}.mp3`;
   await fs.writeFile(path.join(AUDIO_DIR, audioName), buf);
 
-  // Patch the post's frontmatter to include the audio path.
   const patched = md.replace(/^---\n([\s\S]*?)\n---/, (_, fm) => {
     const line = `audio: /audio/${audioName}`;
     const next = /^audio:.*$/m.test(fm) ? fm.replace(/^audio:.*$/m, line) : `${fm}\n${line}`;
