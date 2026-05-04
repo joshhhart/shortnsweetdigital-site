@@ -99,8 +99,10 @@ Steps:
 
 3. AUDIT
    Run the claude-seo 19-point audit (skills/seo-audit) on the draft.
-   If it fails, revise and re-audit until it passes. Do NOT proceed to step 4
-   until auditPassed is true.
+   If the audit reports issues, FIX THEM YOURSELF and re-audit. Do not stop
+   to ask the user. Do not list "recommended actions" as next steps — apply
+   them. Iterate until the audit passes (no critical or high-severity items)
+   or you have iterated 3 times. The bar is "publishable," not "perfect."
 
 4. WRITE FILE
    Save the final post to src/content/blog/${today}-<slug>.md with frontmatter
@@ -115,19 +117,30 @@ Steps:
    <slug> is the keyword, lowercased, non-alphanumerics replaced with hyphens.
 
 5. REPORT
-   When done, output exactly one line:
+   When done, the LAST line of your final message MUST be exactly:
      RESULT: <slug>
-   Nothing else after that line.
+   Where <slug> matches the filename you wrote. This line is mandatory —
+   the pipeline will fail without it. Do not append anything after it.
 
 Begin.`;
 
   const text = await runAgent(prompt);
   const m = text.match(/RESULT:\s*([a-z0-9-]+)/);
-  if (!m) {
-    console.error('Agent transcript:\n', text);
-    throw new Error('Agent did not emit RESULT: <slug>');
+  if (m) return m[1];
+
+  // Fallback: agent wrote a file but forgot the RESULT line. Find any post
+  // dated today that was added during this run.
+  const files = await fs.readdir(BLOG_DIR);
+  const todays = files.filter(f => f.startsWith(`${today}-`) && f.endsWith('.md'));
+  if (todays.length === 1) {
+    const slug = todays[0].replace(`${today}-`, '').replace(/\.md$/, '');
+    console.warn(`[warn] Agent did not emit RESULT, recovered slug from filesystem: ${slug}`);
+    return slug;
   }
-  return m[1];
+  console.error('Agent transcript:\n', text);
+  throw new Error(
+    `Agent did not emit RESULT: <slug>. Found ${todays.length} dated files for ${today}: ${todays.join(', ')}`,
+  );
 }
 
 // ---------- Step 4: audio via xAI TTS ----------
