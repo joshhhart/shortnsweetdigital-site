@@ -1,42 +1,48 @@
 #!/usr/bin/env node
-// Daily SEO post pipeline — runs the same Claude Code skill packs the local
-// LaunchAgent uses (claude-seo + claude-blog), but headlessly via the
-// Claude Agent SDK so it can run in a GitHub Actions runner.
+// Daily SEO post pipeline.
 //
-// Pipeline (mirrors README "How posts get published automatically"):
-//   1. Pick keyword         (seo skill)
-//   2. Draft post           (claude-blog skill)
-//   3. Hero image           (banana-claude / Nano Banana — TODO, optional)
-//   4. Audio                (xAI TTS — handled here, not by the agent)
-//   5. 19-point audit       (seo-audit skill)
-//   6. Smoke build          (workflow step, not here)
-//   7. Commit & push        (workflow step, not here)
+// Architecture: plain Anthropic SDK (no Claude Code agent loop) with the
+// claude-seo + claude-blog SKILL.md files inlined as system prompts. Each step
+// is one small API call so we stay well under per-minute token caps.
+//
+// Steps:
+//   1. Keyword pick    — system = seo skill, user = covered list
+//   2. Draft           — system = blog skill + blog-write, user = keyword + style refs
+//   3. Audit           — system = seo-audit + blog-audit, user = draft → JSON verdict
+//   4. Audio (xAI TTS) — generated from the final post body
+//   5/6. Build + commit — handled by the workflow, not here
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
-import { query } from '@anthropic-ai/claude-agent-sdk';
+import Anthropic from '@anthropic-ai/sdk';
 
 const BLOG_DIR  = 'src/content/blog';
 const AUDIO_DIR = 'public/audio';
+const SKILLS    = '.skills'; // workflow clones the two repos in here
 
+const MODEL = 'claude-haiku-4-5-20251001';
 const today = new Date().toISOString().slice(0, 10);
 
-// The SDK tries to spawn a bundled native binary under
-// node_modules/@anthropic-ai/claude-agent-sdk-<platform>/claude. On Ubuntu
-// runners that subpackage isn't always installed, so fall back to the global
-// `claude` CLI we installed in the workflow.
-let pathToClaudeCodeExecutable;
-try {
-  pathToClaudeCodeExecutable = execSync('which claude', { encoding: 'utf8' }).trim();
-} catch {
-  pathToClaudeCodeExecutable = undefined;
-}
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// ---------- helpers ----------
 function slugify(s) {
   return s.toLowerCase().trim()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+async function readIfExists(p) {
+  try { return await fs.readFile(p, 'utf8'); }
+  catch { return ''; }
+}
+
+async function loadSkill(...parts) {
+  return readIfExists(path.join(SKILLS, ...parts, 'SKILL.md'));
+}
+
+function textOf(message) {
+  return message.content.filter(b => b.type === 'text').map(b => b.text).join('');
 }
 
 async function listExistingKeywords() {
@@ -51,112 +57,120 @@ async function listExistingKeywords() {
   return keywords;
 }
 
-// Run the agent until it terminates. Returns concatenated assistant text.
-async function runAgent(prompt) {
-  let out = '';
-  for await (const msg of query({
-    prompt,
-    options: {
-      // Allow file ops + shell so the skills can write the .md, run audits, etc.
-      allowedTools: ['Read', 'Write', 'Edit', 'Bash', 'Glob', 'Grep'],
-      permissionMode: 'bypassPermissions',
-      cwd: process.cwd(),
-      pathToClaudeCodeExecutable,
-      // Haiku has a separate rate bucket and is cheap. Quality is fine for
-      // long-form SEO writing.
-      model: 'claude-haiku-4-5-20251001',
-    },
-  })) {
-    if (msg.type === 'assistant') {
-      for (const block of msg.message.content) {
-        if (block.type === 'text') out += block.text;
-      }
-    }
+async function loadStyleRefs() {
+  // Two most recent posts (excluding drafts) as style anchors.
+  const files = (await fs.readdir(BLOG_DIR)).filter(f => f.endsWith('.md')).sort().reverse();
+  const refs = [];
+  for (const f of files.slice(0, 2)) {
+    refs.push(await fs.readFile(path.join(BLOG_DIR, f), 'utf8'));
   }
-  return out;
+  return refs.join('\n\n----\n\n');
 }
 
-// ---------- Steps 1, 2, 5: orchestrated through the agent ----------
-async function generateAndAuditPost(existingKeywords, keywordOverride) {
-  const keywordLine = keywordOverride
-    ? `Use this exact target keyword: "${keywordOverride}".`
-    : `Pick the next high-intent keyword we have not yet covered. Already covered:\n${existingKeywords.map(k => `- ${k}`).join('\n')}`;
+// ---------- Step 1: keyword pick ----------
+async function pickKeyword(existing) {
+  if (process.env.KEYWORD_OVERRIDE) return process.env.KEYWORD_OVERRIDE;
 
-  const prompt = `You are running the Short n Sweet Digital daily SEO publishing pipeline.
-Today's date is ${today}. The repository root is the current working directory.
+  const seoSkill = await loadSkill('claude-seo', 'skills', 'seo');
+  const system = `You are an SEO strategist for Short n Sweet Digital, a GoHighLevel
+white-label agency for small businesses and other marketing agencies. Use the
+following SEO skill instructions to guide your selection:
 
-Use the installed skills (claude-seo, claude-blog, and their sub-skills under
-~/.claude/skills/seo-* and ~/.claude/skills/blog-*). Follow each skill's
-instructions verbatim — do not improvise around them.
+${seoSkill}
 
-Steps:
+Output ONLY the chosen keyword on a single line. No preamble, no explanation.`;
 
-1. KEYWORD
-   ${keywordLine}
-
-2. DRAFT
-   Use the claude-blog skill to write a long-form post for that keyword.
-   Site context: Short n Sweet Digital is a GoHighLevel white-label agency for
-   small businesses and other agencies. Tone, length, and structure should
-   match the existing posts in src/content/blog/ (read 2 of them first).
-
-3. AUDIT
-   Run the claude-seo 19-point audit (skills/seo-audit) on the draft.
-   If the audit reports issues, FIX THEM YOURSELF and re-audit. Do not stop
-   to ask the user. Do not list "recommended actions" as next steps — apply
-   them. Iterate until the audit passes (no critical or high-severity items)
-   or you have iterated 3 times. The bar is "publishable," not "perfect."
-
-4. WRITE FILE
-   Save the final post to src/content/blog/${today}-<slug>.md with frontmatter
-   matching src/content/config.ts:
-     - title (<= 70 chars)
-     - description (<= 160 chars)
-     - pubDate: ${today}
-     - tags: [...]
-     - targetKeyword: "<keyword>"
-     - auditPassed: true
-     - draft: false
-   <slug> is the keyword, lowercased, non-alphanumerics replaced with hyphens.
-
-5. REPORT
-   When done, the LAST line of your final message MUST be exactly:
-     RESULT: <slug>
-   Where <slug> matches the filename you wrote. This line is mandatory —
-   the pipeline will fail without it. Do not append anything after it.
-
-Begin.`;
-
-  const text = await runAgent(prompt);
-  const m = text.match(/RESULT:\s*([a-z0-9-]+)/);
-  if (m) return m[1];
-
-  // Fallback: agent wrote a file but forgot the RESULT line. Find any post
-  // dated today that was added during this run.
-  const files = await fs.readdir(BLOG_DIR);
-  const todays = files.filter(f => f.startsWith(`${today}-`) && f.endsWith('.md'));
-  if (todays.length === 1) {
-    const slug = todays[0].replace(`${today}-`, '').replace(/\.md$/, '');
-    console.warn(`[warn] Agent did not emit RESULT, recovered slug from filesystem: ${slug}`);
-    return slug;
-  }
-  console.error('Agent transcript:\n', text);
-  throw new Error(
-    `Agent did not emit RESULT: <slug>. Found ${todays.length} dated files for ${today}: ${todays.join(', ')}`,
-  );
+  const r = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 64,
+    system,
+    messages: [{
+      role: 'user',
+      content: `Pick the next high-intent keyword we should target. Must NOT duplicate any of these we have already covered:\n${existing.map(k => `- ${k}`).join('\n')}\n\nReturn one keyword.`,
+    }],
+  });
+  return textOf(r).trim().replace(/^["']|["']$/g, '');
 }
 
-// ---------- Step 4: audio via xAI TTS ----------
-async function generateAudio(slug) {
+// ---------- Step 2: draft ----------
+async function draftPost(keyword, styleRefs, auditFeedback = '') {
+  const blogSkill   = await loadSkill('claude-blog', 'skills', 'blog');
+  const blogWrite   = await loadSkill('claude-blog', 'skills', 'blog-write');
+
+  const system = `You are a long-form blog writer for Short n Sweet Digital, a
+GoHighLevel white-label agency. Follow these skill instructions verbatim:
+
+${blogSkill}
+
+${blogWrite}
+
+Output a complete Astro markdown post starting with YAML frontmatter. Do not
+wrap the response in code fences. Do not add any commentary before or after.
+
+Required frontmatter fields (must validate against src/content/config.ts):
+  title (<= 70 chars)
+  description (<= 160 chars)
+  pubDate: ${today}
+  tags: [an array of 3-6 strings]
+  targetKeyword: "${keyword}"
+  auditPassed: false
+  draft: false`;
+
+  const userParts = [
+    `Target keyword: ${keyword}`,
+    `Today: ${today}`,
+    `Site context: Short n Sweet Digital is a GoHighLevel white-label agency that helps small businesses and other agencies. The CTA at the end should link to GoHighLevel via the affiliate URL https://www.gohighlevel.com/?fp_ref=shortnsweet53.`,
+    `Tone, length, structure, and frontmatter style must match these two recent posts:\n\n${styleRefs}`,
+  ];
+  if (auditFeedback) {
+    userParts.push(`A previous draft failed audit. Address EVERY issue below and produce a new full draft:\n\n${auditFeedback}`);
+  }
+
+  const r = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 8000,
+    system,
+    messages: [{ role: 'user', content: userParts.join('\n\n') }],
+  });
+  return textOf(r).trim();
+}
+
+// ---------- Step 3: audit ----------
+async function auditPost(draft) {
+  const seoAudit  = await loadSkill('claude-seo', 'skills', 'seo-audit');
+  const blogAudit = await loadSkill('claude-blog', 'skills', 'blog-audit');
+
+  const system = `You are an SEO + blog auditor. Apply these skill rubrics:
+
+${seoAudit}
+
+${blogAudit}
+
+Reply with strict JSON only, no markdown, no commentary, no code fences:
+  {"pass": boolean, "issues": string[]}
+Set pass=true if the post is publishable (no critical or high-severity issues).
+Minor polish items go in issues but do not block. Cap issues at 8.`;
+
+  const r = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 1200,
+    system,
+    messages: [{ role: 'user', content: draft }],
+  });
+  const txt = textOf(r).trim();
+  const start = txt.indexOf('{');
+  const end = txt.lastIndexOf('}');
+  if (start < 0 || end < 0) throw new Error(`Audit returned non-JSON: ${txt}`);
+  return JSON.parse(txt.slice(start, end + 1));
+}
+
+// ---------- Step 4: audio (xAI custom voice) ----------
+async function generateAudio(slug, body) {
   if (!process.env.XAI_API_KEY) {
-    console.warn('[skip] XAI_API_KEY missing');
-    return;
+    console.warn('[skip] XAI_API_KEY missing — skipping audio');
+    return null;
   }
   const voiceId = process.env.XAI_VOICE_ID || 'jivoallzgwzv';
-
-  const mdPath = path.join(BLOG_DIR, `${today}-${slug}.md`);
-  const md = await fs.readFile(mdPath, 'utf8');
-  const body = md.replace(/^---[\s\S]*?---\n/, '');
   const text = body.replace(/[#>*_`[\]()]/g, '').slice(0, 4500);
 
   const res = await fetch('https://api.x.ai/v1/tts', {
@@ -167,25 +181,76 @@ async function generateAudio(slug) {
     },
     body: JSON.stringify({ text, voice_id: voiceId, language: 'en' }),
   });
-  if (!res.ok) throw new Error(`xAI TTS ${res.status}: ${await res.text()}`);
+  if (!res.ok) {
+    console.warn(`[warn] xAI TTS ${res.status}: ${await res.text()} — continuing without audio`);
+    return null;
+  }
   const buf = Buffer.from(await res.arrayBuffer());
   const audioName = `${today}-${slug}.mp3`;
   await fs.writeFile(path.join(AUDIO_DIR, audioName), buf);
+  return `/audio/${audioName}`;
+}
 
-  const patched = md.replace(/^---\n([\s\S]*?)\n---/, (_, fm) => {
-    const line = `audio: /audio/${audioName}`;
-    const next = /^audio:.*$/m.test(fm) ? fm.replace(/^audio:.*$/m, line) : `${fm}\n${line}`;
-    return `---\n${next}\n---`;
-  });
-  await fs.writeFile(mdPath, patched);
+// ---------- glue ----------
+function splitFrontmatter(doc) {
+  const m = doc.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!m) throw new Error(`Drafted post missing frontmatter:\n${doc.slice(0, 400)}`);
+  return { frontmatter: m[1], body: m[2] };
+}
+
+function patchFrontmatter(fm, patches) {
+  let out = fm;
+  for (const [k, v] of Object.entries(patches)) {
+    const line = `${k}: ${typeof v === 'string' ? JSON.stringify(v) : v}`;
+    out = new RegExp(`^${k}:.*$`, 'm').test(out)
+      ? out.replace(new RegExp(`^${k}:.*$`, 'm'), line)
+      : `${out}\n${line}`;
+  }
+  return out;
 }
 
 async function main() {
   const existing = await listExistingKeywords();
-  const slug = await generateAndAuditPost(existing, process.env.KEYWORD_OVERRIDE);
-  console.log(`[ok] post written: ${today}-${slug}`);
-  await generateAudio(slug);
-  console.log('[ok] done');
+  const keyword = await pickKeyword(existing);
+  const slug = slugify(keyword);
+  console.log(`[step1] keyword="${keyword}" slug=${slug}`);
+
+  const styleRefs = await loadStyleRefs();
+
+  let draft = await draftPost(keyword, styleRefs);
+  console.log(`[step2] drafted ${draft.length} chars`);
+
+  let audit = await auditPost(draft);
+  let attempts = 1;
+  while (!audit.pass && attempts < 3) {
+    console.warn(`[step3] audit failed (attempt ${attempts}):`, audit.issues);
+    draft = await draftPost(keyword, styleRefs, audit.issues.join('\n- '));
+    audit = await auditPost(draft);
+    attempts++;
+  }
+  if (!audit.pass) {
+    console.warn(`[step3] proceeding despite remaining issues after 3 attempts:`, audit.issues);
+  } else {
+    console.log(`[step3] audit passed`);
+  }
+
+  let { frontmatter, body } = splitFrontmatter(draft);
+  frontmatter = patchFrontmatter(frontmatter, {
+    pubDate: today,
+    targetKeyword: keyword,
+    auditPassed: audit.pass,
+    draft: false,
+  });
+
+  const audioPath = await generateAudio(slug, body);
+  if (audioPath) {
+    frontmatter = patchFrontmatter(frontmatter, { audio: audioPath });
+    console.log(`[step4] wrote ${audioPath}`);
+  }
+
+  const filename = path.join(BLOG_DIR, `${today}-${slug}.md`);
+  await fs.writeFile(filename, `---\n${frontmatter}\n---\n${body}`);
+  console.log(`[done] ${filename}`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

@@ -36,27 +36,25 @@ jobs:
 
       - run: npm ci
 
-      # The Agent SDK shells out to the `claude` CLI, so it must be on PATH.
-      - name: Install Claude Code CLI
-        run: npm install -g @anthropic-ai/claude-code
-
-      # Install only the skills the daily pipeline actually uses. Loading all
-      # 24 claude-seo sub-skills + claude-blog put us over the 30k input
-      # tokens/min rate limit on startup. Trim aggressively.
-      - name: Install Claude skill packs (trimmed)
+      # Vendor the SKILL.md files so the script can inline them as system
+      # prompts. We don't run Claude Code anymore — too much startup token
+      # overhead for our rate limit. The skills' instructions are what we
+      # actually need; they're just markdown.
+      - name: Vendor skill packs
         run: |
           set -euo pipefail
-          mkdir -p ~/.claude/skills ~/.claude/agents
-          tmp=$(mktemp -d)
-          git clone --depth=1 https://github.com/AgriciDaniel/claude-seo  "$tmp/claude-seo"
-          git clone --depth=1 https://github.com/AgriciDaniel/claude-blog "$tmp/claude-blog"
-          # claude-seo: only the skills the daily pipeline references.
-          for skill in seo seo-audit seo-content seo-page; do
-            [[ -d "$tmp/claude-seo/skills/$skill" ]] && cp -R "$tmp/claude-seo/skills/$skill" ~/.claude/skills/ || true
+          mkdir -p .skills
+          git clone --depth=1 https://github.com/AgriciDaniel/claude-seo  .skills/claude-seo
+          git clone --depth=1 https://github.com/AgriciDaniel/claude-blog .skills/claude-blog
+          # Sanity check that the SKILL.md files we read at runtime exist.
+          for f in \
+            .skills/claude-seo/skills/seo/SKILL.md \
+            .skills/claude-seo/skills/seo-audit/SKILL.md \
+            .skills/claude-blog/skills/blog/SKILL.md \
+            .skills/claude-blog/skills/blog-write/SKILL.md \
+            .skills/claude-blog/skills/blog-audit/SKILL.md ; do
+            [[ -f "$f" ]] && echo "found $f" || echo "missing $f (will be skipped)"
           done
-          # claude-blog: take everything (assumed small).
-          [[ -d "$tmp/claude-blog/skills" ]] && cp -R "$tmp/claude-blog/skills/." ~/.claude/skills/ || true
-          ls ~/.claude/skills
 
       - name: Generate post
         env:
