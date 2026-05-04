@@ -78,7 +78,9 @@ following SEO skill instructions to guide your selection:
 
 ${seoSkill}
 
-Output ONLY the chosen keyword on a single line. No preamble, no explanation.`;
+Output ONLY the chosen keyword on a single line. No preamble, no explanation.
+Use proper grammar — write "vs" not "vrs", lowercase only, no abbreviations
+unless they are the brand's official short form (e.g. "GHL" is fine, "vrs" is not).`;
 
   const r = await anthropic.messages.create({
     model: MODEL,
@@ -158,10 +160,26 @@ Minor polish items go in issues but do not block. Cap issues at 8.`;
     messages: [{ role: 'user', content: draft }],
   });
   const txt = textOf(r).trim();
-  const start = txt.indexOf('{');
-  const end = txt.lastIndexOf('}');
-  if (start < 0 || end < 0) throw new Error(`Audit returned non-JSON: ${txt}`);
-  return JSON.parse(txt.slice(start, end + 1));
+  const json = extractFirstJsonObject(txt);
+  if (!json) throw new Error(`Audit returned non-JSON: ${txt.slice(0, 500)}`);
+  return JSON.parse(json);
+}
+
+// Walk the string respecting string literals and escapes, return the first
+// balanced top-level {...} block as a string. Robust against prose around the
+// JSON or `}` characters inside issue strings.
+function extractFirstJsonObject(txt) {
+  let depth = 0, start = -1, inString = false, escape = false;
+  for (let i = 0; i < txt.length; i++) {
+    const c = txt[i];
+    if (escape) { escape = false; continue; }
+    if (c === '\\') { escape = true; continue; }
+    if (c === '"') { inString = !inString; continue; }
+    if (inString) continue;
+    if (c === '{') { if (depth === 0) start = i; depth++; }
+    else if (c === '}') { depth--; if (depth === 0 && start >= 0) return txt.slice(start, i + 1); }
+  }
+  return null;
 }
 
 // ---------- Step 4: audio (xAI custom voice) ----------
