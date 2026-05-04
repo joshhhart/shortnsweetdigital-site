@@ -62,6 +62,9 @@ async function runAgent(prompt) {
       permissionMode: 'bypassPermissions',
       cwd: process.cwd(),
       pathToClaudeCodeExecutable,
+      // Haiku has a separate rate bucket and is cheap. Quality is fine for
+      // long-form SEO writing.
+      model: 'claude-haiku-4-5-20251001',
     },
   })) {
     if (msg.type === 'assistant') {
