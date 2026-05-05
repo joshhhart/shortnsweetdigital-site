@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Daily-post pushes via GITHUB_TOKEN, which by design doesn't trigger
+  # downstream workflows. Listen for it explicitly.
+  workflow_run:
+    workflows: ["Daily SEO post"]
+    types: [completed]
 
 permissions:
   contents: read
