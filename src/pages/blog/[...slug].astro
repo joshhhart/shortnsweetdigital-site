@@ -11,7 +11,31 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+
+// Reading time: 220 wpm is the conventional estimate for non-technical content.
+const wordCount = (post.body || '').trim().split(/\s+/).length;
+const readingTime = Math.max(1, Math.round(wordCount / 220));
+
+// Related posts: score every other published post by tag overlap, take top 3.
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const currentTags = new Set((post.data.tags || []).map((t) => t.toLowerCase()));
+const relatedPosts = allPosts
+  .filter((p) => p.slug !== post.slug)
+  .map((p) => {
+    const overlap = (p.data.tags || []).filter((t) => currentTags.has(t.toLowerCase())).length;
+    return { post: p, overlap };
+  })
+  .filter((x) => x.overlap > 0)
+  .sort((a, b) => b.overlap - a.overlap || b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf())
+  .slice(0, 3)
+  .map(({ post: p }) => ({
+    slug: p.slug,
+    title: p.data.title,
+    description: p.data.description,
+    heroImage: p.data.heroImage,
+    pubDate: p.data.pubDate,
+  }));
 
 // Extract FAQ-style Q&A from H2s + their first paragraph for FAQPage JSON-LD.
 // Heuristic: any H2 that ends with "?" OR starts with What/How/Why/When/Is/Does
@@ -51,6 +75,13 @@ const faqs = sections
   .slice(0, 6);
 ---
 
-<BlogPost {...post.data} slug={post.slug} faqs={faqs}>
+<BlogPost
+  {...post.data}
+  slug={post.slug}
+  faqs={faqs}
+  headings={headings}
+  relatedPosts={relatedPosts}
+  readingTime={readingTime}
+>
   <Content />
 </BlogPost>
