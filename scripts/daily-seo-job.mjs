@@ -80,8 +80,24 @@ following SEO skill instructions to guide your selection:
 ${seoSkill}
 
 Output ONLY the chosen keyword on a single line. No preamble, no explanation.
-Use proper grammar — write "vs" not "vrs", lowercase only, no abbreviations
-unless they are the brand's official short form (e.g. "GHL" is fine, "vrs" is not).`;
+
+CRITICAL FORMAT RULES (any violation = your output is invalid):
+- All lowercase.
+- The word "versus" must be written as "vs". NEVER "vrs", "vrs.", "vs.", "verus", "verses".
+- Each separator between brand names must be the literal two characters: v + s, lowercase, surrounded by single spaces.
+- No quotes, no punctuation at the end, no parentheses.
+- 3-7 words.
+
+Examples of valid output:
+  gohighlevel vs hubspot
+  gohighlevel vs activecampaign
+  yext vs synup vs uberall
+
+Examples of invalid output (do not produce):
+  GoHighLevel vs HubSpot          (uppercase)
+  yext vrs synup                  (typo: vrs)
+  "gohighlevel vs zoho crm"       (quotes)
+  what is gohighlevel?            (question/punctuation)`;
 
   const r = await anthropic.messages.create({
     model: MODEL,
@@ -92,7 +108,11 @@ unless they are the brand's official short form (e.g. "GHL" is fine, "vrs" is no
       content: `Pick the next high-intent keyword we should target. Must NOT duplicate any of these we have already covered:\n${existing.map(k => `- ${k}`).join('\n')}\n\nReturn one keyword.`,
     }],
   });
-  return textOf(r).trim().replace(/^["']|["']$/g, '');
+  return textOf(r).trim()
+    .replace(/^["']|["']$/g, '')
+    .toLowerCase()
+    // Belt-and-suspenders: model occasionally outputs typos despite the prompt.
+    .replace(/\bv(?:rs|er[sus]+|s\.)\b/g, 'vs');
 }
 
 // ---------- Step 2: draft ----------
@@ -198,7 +218,7 @@ async function generateHeroImage(slug, title, keyword) {
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'grok-2-image-1212',
+      model: 'grok-imagine-image',
       prompt,
       n: 1,
       response_format: 'url',

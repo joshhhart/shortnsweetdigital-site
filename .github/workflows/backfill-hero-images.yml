@@ -1,0 +1,46 @@
+name: Backfill hero images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Generate hero images
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        run: node scripts/backfill-hero-images.mjs
+
+      - name: Commit & push
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes — every post already has a valid hero."
+            exit 0
+          fi
+          git config user.name  "agentic-jimmy[bot]"
+          git config user.email "agentic-jimmy[bot]@users.noreply.github.com"
+          git add public/images src/content/blog
+          git commit -m "chore(images): backfill hero images for posts missing them"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
