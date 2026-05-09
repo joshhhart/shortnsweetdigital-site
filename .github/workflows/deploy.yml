@@ -7,7 +7,7 @@ on:
   # Daily-post pushes via GITHUB_TOKEN, which by design doesn't trigger
   # downstream workflows. Listen for it explicitly.
   workflow_run:
-    workflows: ["Daily SEO post"]
+    workflows: ["Daily SEO post", "Backfill hero images"]
     types: [completed]
 
 permissions:
