@@ -8,6 +8,7 @@ targetKeyword: "Yext vrs Synup vs Uberall vs GHL Listings"
 auditPassed: false
 draft: false
 audio: "/audio/2026-05-09-yext-vrs-synup-vs-uberall-vs-ghl-listings.mp3"
+heroImage: "/images/2026-05-09-yext-vrs-synup-vs-uberall-vs-ghl-listings.jpg"
 ---
 
 ![Multi-location business dashboard comparison showing Yext, Synup, Uberall, and GoHighLevel Listings platforms side by side](https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop&q=80)

@@ -2,7 +2,7 @@
 title: "GoHighLevel vs Mailchimp: Real Cost & Feature Breakdown"
 description: "GoHighLevel vs Mailchimp: at 25K contacts GHL Unlimited costs $297/mo vs Mailchimp Standard at $310/mo. Compare SMS, funnels, white-label, and total cost."
 pubDate: 2026-05-03
-heroImage: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80
+heroImage: "/images/2026-05-03-gohighlevel-vs-mailchimp.jpg"
 tags: ["gohighlevel", "mailchimp", "comparisons", "agency-tools", "email-marketing"]
 targetKeyword: "gohighlevel vs mailchimp"
 auditPassed: true

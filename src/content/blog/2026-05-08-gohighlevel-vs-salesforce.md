@@ -7,6 +7,7 @@ targetKeyword: "gohighlevel vs salesforce"
 auditPassed: true
 draft: false
 audio: "/audio/2026-05-08-gohighlevel-vs-salesforce.mp3"
+heroImage: "/images/2026-05-08-gohighlevel-vs-salesforce.jpg"
 ---
 
 ![GoHighLevel vs Salesforce comparison showing enterprise and SMB CRM dashboards for agencies](https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop&q=80)

@@ -7,6 +7,7 @@ targetKeyword: "gohighlevel vs pipedrive"
 auditPassed: true
 draft: false
 audio: "/audio/2026-05-07-gohighlevel-vs-pipedrive.mp3"
+heroImage: "/images/2026-05-07-gohighlevel-vs-pipedrive.jpg"
 ---
 
 ![GoHighLevel vs Pipedrive comparison showing CRM dashboards and pipeline management for agencies](https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop&q=80)
