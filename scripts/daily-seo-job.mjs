@@ -183,13 +183,47 @@ function extractFirstJsonObject(txt) {
 }
 
 // ---------- Step 4: audio (xAI custom voice) ----------
-async function generateAudio(slug, body) {
+async function summarizeForPodcast(title, body) {
+  // Strip markdown structure that wouldn't read well in audio.
+  const cleaned = body
+    .replace(/!\[[^\]]*]\([^)]+\)/g, '')              // images
+    .replace(/\[([^\]]+)]\([^)]+\)/g, '$1')           // links → text
+    .replace(/`{1,3}[^`]*`{1,3}/g, '')                // code
+    .replace(/[#>*_`]/g, '')
+    .trim();
+
+  const r = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 1200,
+    system: `You write tight 2-3 minute podcast intros that summarize a written
+blog post. Voice: conversational, first-person plural ("we"), confident, no
+hype. Skip URLs, image captions, statistics tables, and pricing grids — those
+are the article's job, not the audio's. Open with a hook, give 3-4 takeaways
+the listener walks away with, end with a short pointer to read the full post.
+Output ONLY the script. No stage directions, no headers, no markdown.`,
+    messages: [{
+      role: 'user',
+      content: `Title: ${title}\n\nFull post body:\n${cleaned}`,
+    }],
+  });
+  return textOf(r).trim();
+}
+
+async function generateAudio(slug, title, body) {
   if (!process.env.XAI_API_KEY) {
     console.warn('[skip] XAI_API_KEY missing — skipping audio');
     return null;
   }
-  const voiceId = process.env.XAI_VOICE_ID || 'jivoallzgwzv';
-  const text = body.replace(/[#>*_`[\]()]/g, '').slice(0, 4500);
+  const voiceId = process.env.XAI_VOICE_ID || 'e4kvdtv4zyv3';
+
+  let script;
+  try {
+    script = await summarizeForPodcast(title, body);
+    console.log(`[step4] podcast script: ${script.length} chars`);
+  } catch (e) {
+    console.warn(`[warn] podcast summary failed (${e.message}) — skipping audio`);
+    return null;
+  }
 
   const res = await fetch('https://api.x.ai/v1/tts', {
     method: 'POST',
@@ -197,7 +231,7 @@ async function generateAudio(slug, body) {
       authorization: `Bearer ${process.env.XAI_API_KEY}`,
       'content-type': 'application/json',
     },
-    body: JSON.stringify({ text, voice_id: voiceId, language: 'en' }),
+    body: JSON.stringify({ text: script, voice_id: voiceId, language: 'en' }),
   });
   if (!res.ok) {
     console.warn(`[warn] xAI TTS ${res.status}: ${await res.text()} — continuing without audio`);
@@ -263,6 +297,8 @@ async function main() {
   }
 
   let { frontmatter, body } = splitFrontmatter(draft);
+  const titleMatch = frontmatter.match(/^title:\s*["']?(.+?)["']?\s*$/m);
+  const title = titleMatch ? titleMatch[1] : keyword;
   frontmatter = patchFrontmatter(frontmatter, {
     pubDate: today,
     targetKeyword: keyword,
@@ -270,7 +306,7 @@ async function main() {
     draft: false,
   });
 
-  const audioPath = await generateAudio(slug, body);
+  const audioPath = await generateAudio(slug, title, body);
   if (audioPath) {
     frontmatter = patchFrontmatter(frontmatter, { audio: audioPath });
     console.log(`[step4] wrote ${audioPath}`);
