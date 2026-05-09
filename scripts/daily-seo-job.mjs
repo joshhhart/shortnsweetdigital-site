@@ -18,6 +18,7 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const BLOG_DIR  = 'src/content/blog';
 const AUDIO_DIR = 'public/audio';
+const IMAGE_DIR = 'public/images';
 const SKILLS    = '.skills'; // workflow clones the two repos in here
 
 const MODEL = 'claude-haiku-4-5-20251001';
@@ -182,6 +183,48 @@ function extractFirstJsonObject(txt) {
   return null;
 }
 
+// ---------- Step 3.5: hero image (xAI image gen) ----------
+async function generateHeroImage(slug, title, keyword) {
+  if (!process.env.XAI_API_KEY) {
+    console.warn('[skip] XAI_API_KEY missing — skipping hero image');
+    return null;
+  }
+  const prompt = `Editorial hero image for a marketing blog post titled "${title}". Subject: ${keyword}. Modern flat illustration, dark navy background (#0b1120), accent blues (#3b9bff, #5271FF), clean geometric shapes, no text, no logos, 16:9 composition.`;
+
+  const res = await fetch('https://api.x.ai/v1/images/generations', {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${process.env.XAI_API_KEY}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'grok-2-image-1212',
+      prompt,
+      n: 1,
+      response_format: 'url',
+    }),
+  });
+  if (!res.ok) {
+    console.warn(`[warn] xAI image ${res.status}: ${await res.text()} — continuing without hero`);
+    return null;
+  }
+  const json = await res.json();
+  const url = json?.data?.[0]?.url;
+  if (!url) {
+    console.warn(`[warn] xAI image response missing url:`, JSON.stringify(json).slice(0, 300));
+    return null;
+  }
+  const imgRes = await fetch(url);
+  if (!imgRes.ok) {
+    console.warn(`[warn] failed to download generated image: ${imgRes.status}`);
+    return null;
+  }
+  const buf = Buffer.from(await imgRes.arrayBuffer());
+  const imgName = `${today}-${slug}.jpg`;
+  await fs.writeFile(path.join(IMAGE_DIR, imgName), buf);
+  return `/images/${imgName}`;
+}
+
 // ---------- Step 4: audio (xAI custom voice) ----------
 async function summarizeForPodcast(title, body) {
   // Strip markdown structure that wouldn't read well in audio.
@@ -305,6 +348,12 @@ async function main() {
     auditPassed: audit.pass,
     draft: false,
   });
+
+  const heroPath = await generateHeroImage(slug, title, keyword);
+  if (heroPath) {
+    frontmatter = patchFrontmatter(frontmatter, { heroImage: heroPath });
+    console.log(`[step3.5] wrote ${heroPath}`);
+  }
 
   const audioPath = await generateAudio(slug, title, body);
   if (audioPath) {
