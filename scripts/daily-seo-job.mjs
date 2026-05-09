@@ -214,7 +214,7 @@ async function generateAudio(slug, title, body) {
     console.warn('[skip] XAI_API_KEY missing — skipping audio');
     return null;
   }
-  const voiceId = process.env.XAI_VOICE_ID || 'jivoallzgwzv';
+  const voiceId = process.env.XAI_VOICE_ID || 'e4kvdtv4zyv3';
 
   let script;
   try {
