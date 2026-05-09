@@ -130,6 +130,13 @@ ${blogWrite}
 Output a complete Astro markdown post starting with YAML frontmatter. Do not
 wrap the response in code fences. Do not add any commentary before or after.
 
+Hard rules for the body:
+- Do NOT include any inline image markdown. No \`![alt](url)\`. The hero image
+  is rendered automatically by the layout. Posting stock-photo URLs from
+  Unsplash or similar is forbidden — every post must look unique.
+- Do NOT invent statistics. If you cite a number, link to the source.
+- Use H2 (\`##\`) for top-level sections so the table of contents picks them up.
+
 Required frontmatter fields (must validate against src/content/config.ts):
   title (<= 70 chars)
   description (<= 160 chars)
@@ -360,6 +367,9 @@ async function main() {
   }
 
   let { frontmatter, body } = splitFrontmatter(draft);
+  // Defense in depth: strip any inline image markdown the model produced
+  // despite the prompt rule. The hero image is enough.
+  body = body.replace(/^\s*!\[[^\]]*]\([^)]+\)\s*$/gm, '').replace(/\n{3,}/g, '\n\n');
   const titleMatch = frontmatter.match(/^title:\s*["']?(.+?)["']?\s*$/m);
   const title = titleMatch ? titleMatch[1] : keyword;
   frontmatter = patchFrontmatter(frontmatter, {
