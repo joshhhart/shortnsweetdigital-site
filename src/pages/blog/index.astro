@@ -21,6 +21,19 @@ const fmt = (d: Date) =>
       Honest comparisons, agency-tested playbooks, and AI automation
       deep-dives — new post every weekday.
     </p>
+    <form data-snd-newsletter class="newsletter">
+      <label for="snd-newsletter-email" class="sr-only">Email address</label>
+      <input
+        id="snd-newsletter-email"
+        type="email"
+        name="email"
+        placeholder="you@youragency.com"
+        required
+        autocomplete="email"
+      />
+      <button type="submit">Get the playbook →</button>
+      <p class="newsletter-note">One short email a week. No spam. Unsubscribe in one click.</p>
+    </form>
   </section>
 
   <ul class="post-grid">
@@ -49,6 +62,53 @@ const fmt = (d: Date) =>
   .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; text-transform: uppercase; font-size: 0.85rem; }
   h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 1rem; }
   .lede { color: var(--muted); font-size: 1.1rem; max-width: 580px; margin: 0 auto; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+  .newsletter {
+    max-width: 520px;
+    margin: 1.5rem auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .newsletter input[type="email"] {
+    flex: 1 1 240px;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--fg, #f8fafc);
+    font-size: 1rem;
+  }
+  .newsletter input[type="email"]::placeholder { color: rgba(148, 163, 184, 0.7); }
+  .newsletter input[type="email"]:focus {
+    outline: none;
+    border-color: #3b9bff;
+    box-shadow: 0 0 0 3px rgba(59, 155, 255, 0.25);
+  }
+  .newsletter button {
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    border: 0;
+    background: linear-gradient(90deg, #188bf6, #5271FF);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.98rem;
+    cursor: pointer;
+  }
+  .newsletter button:hover { filter: brightness(1.08); }
+  .newsletter-note {
+    flex: 1 1 100%;
+    margin: 0.5rem 0 0;
+    text-align: center;
+    color: rgba(148, 163, 184, 0.85);
+    font-size: 0.78rem;
+  }
 
   .post-grid {
     list-style: none;
