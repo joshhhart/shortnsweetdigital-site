@@ -15,7 +15,6 @@ jobs:
         with:
           urls: |
             https://shortnsweetdigital.com/
-            https://shortnsweetdigital.com/pricing/
             https://shortnsweetdigital.com/blog/
             https://shortnsweetdigital.com/about/
           uploadArtifacts: true
