@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import { remarkInternalLinks } from './src/lib/remark-internal-links.mjs';
+import { remarkAffiliateLinks } from './src/lib/remark-affiliate-links.mjs';
 
 import react from '@astrojs/react';
 
@@ -14,7 +15,7 @@ export default defineConfig({
     format: 'directory',
   },
   markdown: {
-    remarkPlugins: [remarkInternalLinks],
+    remarkPlugins: [remarkInternalLinks, remarkAffiliateLinks],
   },
   integrations: [sitemap(), robotsTxt({
     sitemap: true,
