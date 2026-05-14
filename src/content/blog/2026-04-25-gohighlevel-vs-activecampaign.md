@@ -20,7 +20,7 @@ If you're comparing **GoHighLevel vs ActiveCampaign** for your agency, here's th
 
 ## What GoHighLevel Actually Does for Agencies
 
-GoHighLevel was built around one idea: a marketing agency should manage every client's entire stack from a single dashboard. At $97/mo (Starter), you get one account with unlimited contacts and users. At $297/mo (Unlimited), every client gets a separate sub-account — its own contacts, pipelines, automations, funnels, and reporting — all managed from one login. ([GoHighLevel pricing](https://www.gohighlevel.com/pricing))
+GoHighLevel was built around one idea: a marketing agency should manage every client's entire stack from a single dashboard. At $97/mo (Starter), you get one account with unlimited contacts and users. At $297/mo (Unlimited), every client gets a separate sub-account — its own contacts, pipelines, automations, funnels, and reporting — all managed from one login. ([GoHighLevel pricing](https://www.gohighlevel.com/pricing?fp_ref=shortnsweet53))
 
 That sub-account model is what makes the platform different. Managing five clients in ActiveCampaign means five accounts, five bills, and no shared context. In GHL, you build the client's funnel, configure their email and SMS sequences, connect their calendar, and set up their AI chatbot — all inside one platform. The client never has to log in unless they want to.
 

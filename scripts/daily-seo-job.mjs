@@ -132,10 +132,15 @@ wrap the response in code fences. Do not add any commentary before or after.
 
 Hard rules for the body:
 - Do NOT include any inline image markdown. No \`![alt](url)\`. The hero image
-  is rendered automatically by the layout. Posting stock-photo URLs from
-  Unsplash or similar is forbidden — every post must look unique.
+  is rendered automatically by the layout, and a section image will be injected
+  programmatically after the draft is written. Posting stock-photo URLs from
+  Unsplash or similar is forbidden.
 - Do NOT invent statistics. If you cite a number, link to the source.
 - Use H2 (\`##\`) for top-level sections so the table of contents picks them up.
+- AFFILIATE LINKS: Every link to gohighlevel.com (any path, any subdomain) MUST
+  include the query parameter \`fp_ref=shortnsweet53\`. Example:
+  \`https://www.gohighlevel.com/pricing?fp_ref=shortnsweet53\`. This applies to
+  citation links and CTAs alike. Missing it costs us revenue.
 
 Required frontmatter fields (must validate against src/content/config.ts):
   title (<= 70 chars)
@@ -248,6 +253,66 @@ async function generateHeroImage(slug, title, keyword) {
   }
   const buf = Buffer.from(await imgRes.arrayBuffer());
   const imgName = `${today}-${slug}.jpg`;
+  await fs.writeFile(path.join(IMAGE_DIR, imgName), buf);
+  return `/images/${imgName}`;
+}
+
+// ---------- Step 3.6: inline section images ----------
+// Generate one xAI image per chosen H2, return body with image markdown
+// inserted right after that H2.
+async function generateInlineImages(slug, title, body) {
+  if (!process.env.XAI_API_KEY) return body;
+
+  // Find H2 headings; pick middle ones (skip intro and conclusion).
+  const headings = [];
+  const re = /^##\s+(.+)$/gm;
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    headings.push({ text: m[1].trim(), index: m.index, end: m.index + m[0].length });
+  }
+  if (headings.length < 4) return body; // not worth fragmenting a short post
+
+  // Skip first and last H2; pick two evenly spaced from the rest.
+  const candidates = headings.slice(1, -1);
+  const picks = candidates.length <= 2
+    ? candidates
+    : [candidates[Math.floor(candidates.length / 3)], candidates[Math.floor((2 * candidates.length) / 3)]];
+
+  // Walk pick list in reverse so indexes stay valid after splicing.
+  let out = body;
+  for (let i = picks.length - 1; i >= 0; i--) {
+    const h = picks[i];
+    const imgPath = await generateSectionImage(slug, title, h.text, i + 1);
+    if (!imgPath) continue;
+    const insertAt = h.end;
+    const alt = h.text.replace(/"/g, '');
+    out = out.slice(0, insertAt) + `\n\n![${alt}](${imgPath})\n` + out.slice(insertAt);
+  }
+  return out;
+}
+
+async function generateSectionImage(slug, postTitle, sectionTitle, idx) {
+  const prompt = `Editorial section illustration for a marketing blog post about "${postTitle}". This section is titled "${sectionTitle}". Modern flat illustration, dark navy background (#0b1120), accent blues (#3b9bff, #5271FF), clean geometric shapes representing the concept, no text, no logos, 16:9 composition. Distinct from a hero image — more focused, conceptual.`;
+
+  const res = await fetch('https://api.x.ai/v1/images/generations', {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${process.env.XAI_API_KEY}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({ model: 'grok-imagine-image', prompt, n: 1, response_format: 'url' }),
+  });
+  if (!res.ok) {
+    console.warn(`[warn] xAI inline image ${idx} ${res.status}: ${await res.text().catch(() => '')}`);
+    return null;
+  }
+  const json = await res.json();
+  const url = json?.data?.[0]?.url;
+  if (!url) return null;
+  const imgRes = await fetch(url);
+  if (!imgRes.ok) return null;
+  const buf = Buffer.from(await imgRes.arrayBuffer());
+  const imgName = `${today}-${slug}-s${idx}.jpg`;
   await fs.writeFile(path.join(IMAGE_DIR, imgName), buf);
   return `/images/${imgName}`;
 }
@@ -384,6 +449,11 @@ async function main() {
     frontmatter = patchFrontmatter(frontmatter, { heroImage: heroPath });
     console.log(`[step3.5] wrote ${heroPath}`);
   }
+
+  // Inject 2 unique section images so the body isn't a wall of text.
+  const beforeLen = body.length;
+  body = await generateInlineImages(slug, title, body);
+  if (body.length > beforeLen) console.log(`[step3.6] inline images inserted`);
 
   const audioPath = await generateAudio(slug, title, body);
   if (audioPath) {
