@@ -70,35 +70,117 @@ async function loadStyleRefs() {
 }
 
 // ---------- Step 1: keyword pick ----------
+
+// Content category rotation. Comparisons were dominating; rotating across these
+// categories spreads our keyword footprint and stops the blog from reading
+// like seven variations of one post.
+const CATEGORIES = [
+  {
+    id: 'comparison',
+    label: 'Comparison',
+    desc: 'Head-to-head "X vs Y" between GoHighLevel and another platform.',
+    examples: ['gohighlevel vs hubspot', 'gohighlevel vs activecampaign', 'yext vs synup vs uberall'],
+  },
+  {
+    id: 'use-case',
+    label: 'Vertical use case',
+    desc: 'GoHighLevel for a specific industry. High-intent local search.',
+    examples: ['gohighlevel for chiropractors', 'gohighlevel for med spas', 'gohighlevel for real estate agents', 'gohighlevel for hvac companies'],
+  },
+  {
+    id: 'how-to',
+    label: 'How-to / tutorial',
+    desc: 'Specific GoHighLevel feature setup or workflow tutorial.',
+    examples: ['how to set up gohighlevel sub-accounts', 'how to white-label gohighlevel', 'gohighlevel saas mode setup', 'gohighlevel calendar automation setup'],
+  },
+  {
+    id: 'migration',
+    label: 'Migration guide',
+    desc: 'How to switch from another platform to GoHighLevel.',
+    examples: ['migrate from mailchimp to gohighlevel', 'migrate from hubspot to gohighlevel', 'export contacts from activecampaign to gohighlevel'],
+  },
+  {
+    id: 'pricing',
+    label: 'Pricing / ROI',
+    desc: 'Pricing breakdown, ROI math, or "is X worth it" search intent.',
+    examples: ['gohighlevel pricing 2026', 'is gohighlevel worth it', 'gohighlevel saas pro vs unlimited'],
+  },
+  {
+    id: 'agency-playbook',
+    label: 'Agency playbook',
+    desc: 'Tactics specifically for agencies running GoHighLevel under white-label.',
+    examples: ['how to price gohighlevel for clients', 'gohighlevel white-label client onboarding', 'gohighlevel agency snapshot templates'],
+  },
+  {
+    id: 'integration',
+    label: 'Integration guide',
+    desc: 'Connecting GoHighLevel to other tools (Stripe, Zapier, Make, etc).',
+    examples: ['gohighlevel stripe integration', 'gohighlevel zapier setup', 'gohighlevel make.com automation'],
+  },
+  {
+    id: 'feature-deep-dive',
+    label: 'Feature deep dive',
+    desc: 'One GoHighLevel feature explained at depth.',
+    examples: ['gohighlevel workflows explained', 'gohighlevel pipelines tutorial', 'gohighlevel ai assistant guide'],
+  },
+];
+
+// Look at the most recent posts and pick a category that hasn't been used
+// lately. Falls back to a deterministic round-robin if classification is fuzzy.
+async function pickCategory() {
+  const files = (await fs.readdir(BLOG_DIR))
+    .filter((f) => f.endsWith('.md'))
+    .sort()
+    .reverse()
+    .slice(0, 8);
+  const recent = new Set();
+  for (const f of files) {
+    const md = await fs.readFile(path.join(BLOG_DIR, f), 'utf8');
+    const kw = (md.match(/^targetKeyword:\s*["']?(.+?)["']?\s*$/m) || [])[1] || '';
+    const k = kw.toLowerCase();
+    if (/\bvs\b/.test(k)) recent.add('comparison');
+    else if (/\bfor\b/.test(k) && !/^how/.test(k)) recent.add('use-case');
+    else if (/^how to/.test(k) || /\bsetup\b|\btutorial\b/.test(k)) recent.add('how-to');
+    else if (/\bmigrate|migration|switch from|export from\b/.test(k)) recent.add('migration');
+    else if (/pricing|worth it|cost/.test(k)) recent.add('pricing');
+    else if (/agency|white.?label|snapshot|reseller/.test(k)) recent.add('agency-playbook');
+    else if (/integration|integrate|stripe|zapier|make\.com/.test(k)) recent.add('integration');
+    else if (/workflow|pipeline|feature|explained|deep dive/.test(k)) recent.add('feature-deep-dive');
+  }
+  // Prefer a category not used in the last 8 posts.
+  const unused = CATEGORIES.filter((c) => !recent.has(c.id));
+  const pool = unused.length > 0 ? unused : CATEGORIES;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 async function pickKeyword(existing) {
   if (process.env.KEYWORD_OVERRIDE) return process.env.KEYWORD_OVERRIDE;
 
   const seoSkill = await loadSkill('claude-seo', 'skills', 'seo');
+  const category = await pickCategory();
+  console.log(`[step1] category=${category.id}`);
+
   const system = `You are an SEO strategist for Short n Sweet Digital, a GoHighLevel
 white-label agency for small businesses and other marketing agencies. Use the
 following SEO skill instructions to guide your selection:
 
 ${seoSkill}
 
+TODAY'S CATEGORY: ${category.label}
+What that means: ${category.desc}
+Example keywords in this category (for shape, not to copy verbatim):
+${category.examples.map((e) => '  ' + e).join('\n')}
+
+Pick a high-intent keyword that fits THIS category. Do not default to a
+"gohighlevel vs ..." comparison unless the category is "Comparison".
+
 Output ONLY the chosen keyword on a single line. No preamble, no explanation.
 
 CRITICAL FORMAT RULES (any violation = your output is invalid):
 - All lowercase.
 - The word "versus" must be written as "vs". NEVER "vrs", "vrs.", "vs.", "verus", "verses".
-- Each separator between brand names must be the literal two characters: v + s, lowercase, surrounded by single spaces.
 - No quotes, no punctuation at the end, no parentheses.
-- 3-7 words.
-
-Examples of valid output:
-  gohighlevel vs hubspot
-  gohighlevel vs activecampaign
-  yext vs synup vs uberall
-
-Examples of invalid output (do not produce):
-  GoHighLevel vs HubSpot          (uppercase)
-  yext vrs synup                  (typo: vrs)
-  "gohighlevel vs zoho crm"       (quotes)
-  what is gohighlevel?            (question/punctuation)`;
+- 3-8 words.`;
 
   const r = await anthropic.messages.create({
     model: MODEL,
@@ -106,13 +188,12 @@ Examples of invalid output (do not produce):
     system,
     messages: [{
       role: 'user',
-      content: `Pick the next high-intent keyword we should target. Must NOT duplicate any of these we have already covered:\n${existing.map(k => `- ${k}`).join('\n')}\n\nReturn one keyword.`,
+      content: `Pick the next high-intent keyword we should target in the "${category.label}" category. Must NOT duplicate any of these we have already covered:\n${existing.map(k => `- ${k}`).join('\n')}\n\nReturn one keyword that fits today's category.`,
     }],
   });
   return textOf(r).trim()
     .replace(/^["']|["']$/g, '')
     .toLowerCase()
-    // Belt-and-suspenders: model occasionally outputs typos despite the prompt.
     .replace(/\bv(?:rs|er[sus]+|s\.)\b/g, 'vs');
 }
 
@@ -159,6 +240,7 @@ Required frontmatter fields (must validate against src/content/config.ts):
     `Target keyword: ${keyword}`,
     `Today: ${today}`,
     `Site context: Short n Sweet Digital is a GoHighLevel white-label agency that helps small businesses and other agencies. The CTA at the end should link to GoHighLevel via the affiliate URL https://www.gohighlevel.com/?fp_ref=shortnsweet53.`,
+    `Match the post structure to the keyword's intent. If the keyword is a comparison (X vs Y), use the comparison shape. If it's a how-to, use numbered steps. If it's a use case for a specific industry, lead with the vertical's problems and how GHL solves them. If it's a migration guide, structure as a step-by-step switch playbook. Do not force every post into a "vs" comparison frame.`,
     `Tone, length, structure, and frontmatter style must match these two recent posts:\n\n${styleRefs}`,
   ];
   if (auditFeedback) {
