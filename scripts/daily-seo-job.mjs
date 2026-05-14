@@ -128,8 +128,11 @@ ${blogSkill}
 
 ${blogWrite}
 
-Output a complete Astro markdown post starting with YAML frontmatter. Do not
-wrap the response in code fences. Do not add any commentary before or after.
+Output format: the response MUST begin with the literal three characters \`---\`
+on the first line (the YAML frontmatter opener) and end with the last line of
+the post body. NO code fences anywhere — not \`\`\`yaml, not \`\`\`markdown, not \`\`\`.
+NO commentary before or after. NO preamble like "Here is the post:". The first
+byte of your reply is \`-\`.
 
 Hard rules for the body:
 - Do NOT include any inline image markdown. No \`![alt](url)\`. The hero image
@@ -387,8 +390,19 @@ async function generateAudio(slug, title, body) {
 
 // ---------- glue ----------
 function splitFrontmatter(doc) {
-  const m = doc.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!m) throw new Error(`Drafted post missing frontmatter:\n${doc.slice(0, 400)}`);
+  // Strip wrapping code fences the model sometimes adds despite the prompt.
+  // Examples we want to tolerate:
+  //   ```yaml\n---\n...\n---\n...\n```
+  //   ```\n---\n...\n---\n...\n```
+  //   ```markdown\n---\n...\n---\n...\n```
+  let cleaned = doc.trim();
+  const fence = cleaned.match(/^```[a-zA-Z]*\n([\s\S]*?)\n```$/);
+  if (fence) cleaned = fence[1].trim();
+  // Some drafts have a leading BOM or stray newline before frontmatter.
+  cleaned = cleaned.replace(/^﻿/, '').replace(/^\s+/, '');
+
+  const m = cleaned.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!m) throw new Error(`Drafted post missing frontmatter:\n${cleaned.slice(0, 400)}`);
   return { frontmatter: m[1], body: m[2] };
 }
 
