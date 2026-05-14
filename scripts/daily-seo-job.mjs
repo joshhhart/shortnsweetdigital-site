@@ -15,6 +15,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import Anthropic from '@anthropic-ai/sdk';
+import sharp from 'sharp';
 
 const BLOG_DIR  = 'src/content/blog';
 const AUDIO_DIR = 'public/audio';
@@ -252,8 +253,14 @@ async function generateHeroImage(slug, title, keyword) {
     return null;
   }
   const buf = Buffer.from(await imgRes.arrayBuffer());
+  // xAI returns a square (~1024x1024); Open Graph wants 1.91:1 (1200x630).
+  // Cover-crop so the same file serves both the hero AND the social card.
+  const cropped = await sharp(buf)
+    .resize(1200, 630, { fit: 'cover', position: 'attention' })
+    .jpeg({ quality: 86, mozjpeg: true })
+    .toBuffer();
   const imgName = `${today}-${slug}.jpg`;
-  await fs.writeFile(path.join(IMAGE_DIR, imgName), buf);
+  await fs.writeFile(path.join(IMAGE_DIR, imgName), cropped);
   return `/images/${imgName}`;
 }
 

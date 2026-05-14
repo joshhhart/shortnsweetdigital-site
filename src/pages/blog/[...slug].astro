@@ -73,6 +73,32 @@ const faqs = sections
   })
   .filter(Boolean)
   .slice(0, 6);
+
+// HowTo schema: extract a "How to..." H2 and the numbered list under it.
+// Google's HowTo rich result requires at least 2 steps.
+function extractHowTo() {
+  const m = body.match(/^##\s+(How (?:to|do)[^\n]*)\n([\s\S]*?)(?=\n##\s|$)/im);
+  if (!m) return null;
+  const name = m[1].trim();
+  const block = m[2];
+  // Match numbered list items "1. ..." or bullet list items "- **...**"
+  const numbered = [...block.matchAll(/^\s*\d+\.\s+(.+?)(?=\n\s*\d+\.|\n##|\n\n[A-Z]|$)/gms)];
+  const bulleted = [...block.matchAll(/^\s*[-*]\s+\*\*([^*]+)\*\*[:.]?\s*(.+?)(?=\n\s*[-*]|\n##|\n\n[A-Z]|$)/gms)];
+  const steps = numbered.length >= 2 ? numbered.map((mm, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: mm[1].split(/[.!?:\n]/)[0].trim().slice(0, 110),
+    text: mm[1].replace(/\s+/g, ' ').trim().slice(0, 500),
+  })) : bulleted.length >= 2 ? bulleted.slice(0, 8).map((mm, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: mm[1].trim().slice(0, 110),
+    text: `${mm[1].trim()}: ${mm[2].replace(/\s+/g, ' ').trim()}`.slice(0, 500),
+  })) : null;
+  if (!steps) return null;
+  return { name, steps };
+}
+const howTo = extractHowTo();
 ---
 
 <BlogPost
@@ -82,6 +108,7 @@ const faqs = sections
   headings={headings}
   relatedPosts={relatedPosts}
   readingTime={readingTime}
+  howTo={howTo}
 >
   <Content />
 </BlogPost>

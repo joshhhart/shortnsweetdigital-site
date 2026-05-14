@@ -6,17 +6,20 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 
 type Heading = { depth: number; slug: string; text: string };
 type RelatedPost = { slug: string; title: string; description: string; heroImage?: string; pubDate: Date };
+type HowToStep = { '@type': 'HowToStep'; position: number; name: string; text: string };
+type HowTo = { name: string; steps: HowToStep[] };
 type Props = CollectionEntry<'blog'>['data'] & {
   slug: string;
   faqs?: { question: string; answer: string }[];
   headings?: Heading[];
   relatedPosts?: RelatedPost[];
   readingTime?: number;
+  howTo?: HowTo | null;
 };
 
 const {
   title, description, pubDate, updatedDate, heroImage, audio, tags, slug, faqs,
-  headings = [], relatedPosts = [], readingTime,
+  headings = [], relatedPosts = [], readingTime, howTo,
 } = Astro.props;
 
 // Only H2s in the TOC. H3s deepen the visual noise without aiding scanning.
@@ -63,6 +66,11 @@ const ldJson = {
       },
       keywords: tags.join(', '),
       inLanguage: 'en-US',
+      // Speakable marks the lede and key takeaways as Google Assistant-readable.
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.lede', '.post-body > blockquote:first-of-type'],
+      },
     },
     {
       '@type': 'BreadcrumbList',
@@ -80,6 +88,14 @@ const ldJson = {
             name: f.question,
             acceptedAnswer: { '@type': 'Answer', text: f.answer },
           })),
+        }]
+      : []),
+    ...(howTo
+      ? [{
+          '@type': 'HowTo',
+          name: howTo.name,
+          step: howTo.steps,
+          inLanguage: 'en-US',
         }]
       : []),
   ],
