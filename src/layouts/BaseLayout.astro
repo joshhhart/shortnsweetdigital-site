@@ -115,6 +115,34 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     {breadcrumbLd && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
     )}
+    {/* P2-12 from the May 2026 audit: sitewide Organization + WebSite entity
+        graph so every page (not just the homepage) gives Google the brand
+        anchor. Linked via @id so other JSON-LD on the page can reference it. */}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': 'https://shortnsweetdigital.com/#organization',
+          name: 'Short n Sweet Digital',
+          url: 'https://shortnsweetdigital.com/',
+          logo: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
+          description: 'White-label GoHighLevel agency helping small businesses and agencies replace 8–12 marketing tools with one AI-powered platform.',
+          sameAs: [
+            'https://www.facebook.com/shortnsweetmarketing',
+            'https://www.instagram.com/shortnsweetdigital',
+            'https://www.linkedin.com/company/shortnsweet-marketing/',
+          ],
+        },
+        {
+          '@type': 'WebSite',
+          '@id': 'https://shortnsweetdigital.com/#website',
+          url: 'https://shortnsweetdigital.com/',
+          name: 'Short n Sweet Digital',
+          publisher: { '@id': 'https://shortnsweetdigital.com/#organization' },
+        },
+      ],
+    })} />
   </head>
   <body>
     <a class="snd-skip-link" href="#main-content">Skip to content</a>
