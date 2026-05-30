@@ -426,8 +426,8 @@ const QUESTIONS = [
           hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
         });
         document.getElementById('confirm-when').textContent = friendly;
-        document.getElementById('confirm-who').textContent =
-          `${window.__sndLead.firstName} ${window.__sndLead.lastName}`.trim();
+        // "with" line shows the host (calendar owner), not the lead.
+        document.getElementById('confirm-who').textContent = 'Systems Integrator';
         document.getElementById('cal-confirm').hidden = false;
         document.getElementById('cal-confirm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
@@ -642,34 +642,10 @@ const QUESTIONS = [
       display: grid; grid-template-columns: repeat(7, 1fr);
       gap: 4px;
     }
-    .day {
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 10px;
-      border: 1.5px solid transparent;
-      background: rgba(82, 113, 255, 0.05);
-      color: #e2e8f0;
-      font-weight: 600;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: all 0.12s ease;
-    }
-    .day:hover:not(:disabled):not(.blank) {
-      background: rgba(82, 113, 255, 0.2);
-      border-color: rgba(82, 113, 255, 0.5);
-    }
-    .day.muted { color: rgba(148, 163, 184, 0.35); background: transparent; cursor: not-allowed; }
-    .day.today { border-color: rgba(82, 113, 255, 0.6); }
-    .day.selected {
-      background: linear-gradient(135deg, #188bf6, #5271FF);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
-      transform: scale(1.04);
-    }
-    .day.blank { background: transparent; cursor: default; pointer-events: none; }
+    /* Dynamic .day and .slot rules moved to the is:global block below —
+       Astro scoped styles don't reach JS-created elements. */
 
-    /* ============= Slots ============= */
+    /* ============= Slots container ============= */
     .cal-slot-col { padding: 22px; }
     .slot-day-label {
       margin: 0 0 14px;
@@ -683,33 +659,6 @@ const QUESTIONS = [
       gap: 8px;
       min-height: 200px;
       align-content: start;
-    }
-    .cal-empty {
-      grid-column: 1 / -1; color: var(--muted);
-      margin: 0; text-align: center; padding: 28px 12px;
-      font-size: 0.92rem;
-    }
-    .slot {
-      padding: 12px 8px;
-      border-radius: 10px;
-      background: rgba(82, 113, 255, 0.05);
-      border: 1.5px solid rgba(82, 113, 255, 0.3);
-      color: #e2e8f0;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: all 0.12s ease;
-    }
-    .slot:hover {
-      background: rgba(82, 113, 255, 0.15);
-      border-color: #5271FF;
-      transform: translateY(-1px);
-    }
-    .slot.selected {
-      background: linear-gradient(135deg, #188bf6, #5271FF);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
     }
 
     /* ============= Confirm ============= */
@@ -753,5 +702,66 @@ const QUESTIONS = [
     .r-item { padding: 20px; text-align: center; }
     .r-item strong { display: block; color: #fff; margin-bottom: 4px; font-size: 1.05rem; }
     .r-item span { color: var(--muted); font-size: 0.9rem; }
+  </style>
+
+  <!-- Global styles for JS-created day/slot buttons. Astro scoped styles
+       skip elements added via document.createElement, so these need to be
+       global. Selectors are parented to .cal-days / .cal-slots to scope them. -->
+  <style is:global>
+    .cal-days .day {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      background: rgba(82, 113, 255, 0.05);
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .cal-days .day:hover:not(:disabled):not(.blank) {
+      background: rgba(82, 113, 255, 0.2);
+      border-color: rgba(82, 113, 255, 0.5);
+    }
+    .cal-days .day.muted { color: rgba(148, 163, 184, 0.35); background: transparent; cursor: not-allowed; }
+    .cal-days .day.today { border-color: rgba(82, 113, 255, 0.6); }
+    .cal-days .day.selected {
+      background: linear-gradient(135deg, #188bf6, #5271FF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
+      transform: scale(1.04);
+    }
+    .cal-days .day.blank { background: transparent; cursor: default; pointer-events: none; }
+
+    .cal-slots .slot {
+      padding: 12px 8px;
+      border-radius: 10px;
+      background: rgba(82, 113, 255, 0.05);
+      border: 1.5px solid rgba(82, 113, 255, 0.3);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.12s ease;
+    }
+    .cal-slots .slot:hover {
+      background: rgba(82, 113, 255, 0.15);
+      border-color: #5271FF;
+      transform: translateY(-1px);
+    }
+    .cal-slots .slot.selected {
+      background: linear-gradient(135deg, #188bf6, #5271FF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
+    }
+    .cal-slots .cal-empty {
+      grid-column: 1 / -1;
+      color: rgba(203, 213, 225, 0.75);
+      margin: 0; text-align: center; padding: 28px 12px;
+      font-size: 0.92rem;
+    }
   </style>
 </BaseLayout>
