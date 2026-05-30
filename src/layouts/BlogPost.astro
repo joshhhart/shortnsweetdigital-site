@@ -15,11 +15,12 @@ type Props = CollectionEntry<'blog'>['data'] & {
   relatedPosts?: RelatedPost[];
   readingTime?: number;
   howTo?: HowTo | null;
+  comparison?: Record<string, any> | null;
 };
 
 const {
   title, description, pubDate, updatedDate, heroImage, audio, tags, slug, faqs,
-  headings = [], relatedPosts = [], readingTime, howTo,
+  headings = [], relatedPosts = [], readingTime, howTo, comparison,
 } = Astro.props;
 
 // Only H2s in the TOC. H3s deepen the visual noise without aiding scanning.
@@ -98,6 +99,7 @@ const ldJson = {
           inLanguage: 'en-US',
         }]
       : []),
+    ...(comparison ? [comparison] : []),
   ],
 };
 ---
