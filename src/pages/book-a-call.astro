@@ -22,6 +22,49 @@ const serviceLd = {
     availability: 'https://schema.org/InStock',
   },
 };
+
+const QUESTIONS = [
+  {
+    name: 'revenue_state',
+    label: 'Is your business currently generating revenue?',
+    options: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'not_yet', label: 'Not yet' },
+    ],
+  },
+  {
+    name: 'revenue',
+    label: "What's your current monthly revenue?",
+    options: [
+      { value: '0-1k', label: '$0 – $1K' },
+      { value: '1-5k', label: '$1K – $5K' },
+      { value: '5-25k', label: '$5K – $25K' },
+      { value: '25k+', label: '$25K+' },
+    ],
+  },
+  {
+    name: 'industry',
+    label: 'What kind of business?',
+    options: [
+      { value: 'service', label: 'Local service' },
+      { value: 'agency', label: 'Marketing agency' },
+      { value: 'ecom', label: 'E-commerce' },
+      { value: 'coach', label: 'Course / coaching' },
+      { value: 'other', label: 'Other' },
+    ],
+  },
+  {
+    name: 'bottleneck',
+    label: 'Biggest growth bottleneck right now?',
+    options: [
+      { value: 'leads', label: 'Getting leads' },
+      { value: 'followup', label: 'Lead follow-up' },
+      { value: 'booking', label: 'Booking / no-shows' },
+      { value: 'reporting', label: 'Tracking ROI' },
+      { value: 'time', label: 'Doing it all yourself' },
+    ],
+  },
+];
 ---
 
 <BaseLayout
@@ -38,51 +81,33 @@ const serviceLd = {
       with better systems. Answer 4 quick questions to see if we're a fit.
     </p>
 
-    <!-- Step 1: Quiz -->
-    <form id="snd-quiz" class="quiz snd-bg-card">
-      <ol class="qlist">
-        <li class="q">
-          <span class="qlabel">1. Is your business currently generating revenue?</span>
-          <div class="opts" data-name="revenue_state">
-            <button type="button" class="opt" data-value="yes">Yes</button>
-            <button type="button" class="opt" data-value="not_yet">Not yet</button>
-          </div>
-        </li>
+    <!-- ============================== -->
+    <!-- Step 1: Wizard quiz, one Q at a time -->
+    <!-- ============================== -->
+    <div id="snd-quiz" class="quiz-card">
+      <div class="progress" id="quiz-progress" aria-hidden="true"></div>
 
-        <li class="q">
-          <span class="qlabel">2. What's your current monthly revenue?</span>
-          <div class="opts" data-name="revenue">
-            <button type="button" class="opt" data-value="0-1k">$0–$1K</button>
-            <button type="button" class="opt" data-value="1-5k">$1K–$5K</button>
-            <button type="button" class="opt" data-value="5-25k">$5K–$25K</button>
-            <button type="button" class="opt" data-value="25k+">$25K+</button>
+      <div class="steps">
+        {QUESTIONS.map((q, i) => (
+          <div class="step" data-step={i} data-name={q.name} hidden={i !== 0}>
+            <p class="step-count">Question {i + 1} of {QUESTIONS.length + 1}</p>
+            <h2 class="step-q">{q.label}</h2>
+            <div class="step-opts">
+              {q.options.map((o) => (
+                <button type="button" class="opt-card" data-value={o.value}>
+                  <span class="opt-radio" aria-hidden="true"></span>
+                  <span>{o.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
-        </li>
+        ))}
 
-        <li class="q">
-          <span class="qlabel">3. What kind of business?</span>
-          <div class="opts" data-name="industry">
-            <button type="button" class="opt" data-value="service">Local service</button>
-            <button type="button" class="opt" data-value="agency">Marketing agency</button>
-            <button type="button" class="opt" data-value="ecom">E-commerce</button>
-            <button type="button" class="opt" data-value="coach">Course / coaching</button>
-            <button type="button" class="opt" data-value="other">Other</button>
-          </div>
-        </li>
-
-        <li class="q">
-          <span class="qlabel">4. Biggest growth bottleneck right now?</span>
-          <div class="opts" data-name="bottleneck">
-            <button type="button" class="opt" data-value="leads">Getting leads</button>
-            <button type="button" class="opt" data-value="followup">Lead follow-up</button>
-            <button type="button" class="opt" data-value="booking">Booking / no-shows</button>
-            <button type="button" class="opt" data-value="reporting">Tracking ROI</button>
-            <button type="button" class="opt" data-value="time">Doing it all yourself</button>
-          </div>
-        </li>
-
-        <li class="q fields">
-          <div class="grid2">
+        <!-- Final step: contact info -->
+        <div class="step" data-step={QUESTIONS.length} data-name="contact" hidden>
+          <p class="step-count">Question {QUESTIONS.length + 1} of {QUESTIONS.length + 1}</p>
+          <h2 class="step-q">Where should we send the confirmation?</h2>
+          <form id="contact-form" class="contact-grid" novalidate>
             <label>
               <span>First name</span>
               <input name="firstName" type="text" autocomplete="given-name" required />
@@ -91,65 +116,90 @@ const serviceLd = {
               <span>Last name</span>
               <input name="lastName" type="text" autocomplete="family-name" />
             </label>
-            <label>
+            <label class="full">
               <span>Email</span>
               <input name="email" type="email" autocomplete="email" required />
             </label>
-            <label>
+            <label class="full">
               <span>Phone (optional)</span>
               <input name="phone" type="tel" autocomplete="tel" />
             </label>
-          </div>
-        </li>
-      </ol>
+          </form>
+        </div>
+      </div>
 
-      <button type="submit" class="primary" id="quiz-submit">See if we're a fit →</button>
+      <div class="step-nav">
+        <button type="button" class="ghost" id="step-back" disabled>← Back</button>
+        <button type="button" class="primary" id="step-next" disabled>Next →</button>
+      </div>
       <p class="qerr" id="quiz-error" hidden></p>
-    </form>
+    </div>
 
+    <!-- ============================== -->
     <!-- Step 2: Calendar (revealed when qualified) -->
+    <!-- ============================== -->
     <div id="snd-calendar" hidden>
-      <div class="cal-head snd-bg-card">
+      <div class="cal-head">
         <div>
           <p class="eyebrow">You're a fit</p>
           <h2>Pick a time that works for you</h2>
-          <p class="sub">30-min strategy call. All times <span id="cal-tz"></span>.</p>
+          <p class="sub">30-min strategy call · All times <span id="cal-tz"></span></p>
         </div>
         <button type="button" class="ghost" id="cal-back">← Edit answers</button>
       </div>
 
-      <div class="cal-grid snd-bg-card">
-        <div class="cal-dates" id="cal-dates" aria-label="Choose a day"></div>
-        <div class="cal-slots" id="cal-slots">
-          <p class="cal-empty">Pick a day to see open times.</p>
+      <div class="cal-layout">
+        <!-- Month grid -->
+        <div class="cal-month">
+          <div class="cal-month-head">
+            <button type="button" class="month-nav" id="month-prev" aria-label="Previous month">‹</button>
+            <span class="month-label" id="month-label"></span>
+            <button type="button" class="month-nav" id="month-next" aria-label="Next month">›</button>
+          </div>
+          <div class="dow-row">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div class="cal-days" id="cal-days"></div>
+        </div>
+
+        <!-- Slot column -->
+        <div class="cal-slot-col">
+          <p class="slot-day-label" id="slot-day-label">Pick a day</p>
+          <div class="cal-slots" id="cal-slots">
+            <p class="cal-empty">Select a date on the left to see open times.</p>
+          </div>
         </div>
       </div>
 
-      <div class="cal-confirm snd-bg-card" id="cal-confirm" hidden>
-        <p class="confirm-line">
-          <strong id="confirm-when"></strong>
-        </p>
-        <p class="confirm-line subtext">with <strong id="confirm-who"></strong></p>
-        <button type="button" class="primary" id="cal-book">Confirm booking</button>
+      <div class="cal-confirm" id="cal-confirm" hidden>
+        <div class="confirm-content">
+          <p class="confirm-eyebrow">Confirming</p>
+          <p class="confirm-when" id="confirm-when"></p>
+          <p class="confirm-who">with <strong id="confirm-who"></strong></p>
+        </div>
+        <button type="button" class="primary" id="cal-book">Confirm booking →</button>
         <p class="qerr" id="cal-error" hidden></p>
       </div>
     </div>
 
+    <!-- ============================== -->
     <!-- Step 3: Success -->
-    <div id="snd-success" class="snd-bg-card success" hidden>
+    <!-- ============================== -->
+    <div id="snd-success" class="success" hidden>
+      <div class="check">✓</div>
       <p class="eyebrow">Confirmed</p>
       <h2>You're on the calendar.</h2>
       <p>Check your inbox for the confirmation + calendar invite. See you on the call.</p>
     </div>
 
     <div class="reassurance">
-      <div class="r-item snd-bg-card"><strong>30 minutes</strong><span>Focused, no fluff</span></div>
-      <div class="r-item snd-bg-card"><strong>Free</strong><span>No card, no pitch</span></div>
-      <div class="r-item snd-bg-card"><strong>Tailored</strong><span>Built around your stack</span></div>
+      <div class="r-item"><strong>30 minutes</strong><span>Focused, no fluff</span></div>
+      <div class="r-item"><strong>Free</strong><span>No card, no pitch</span></div>
+      <div class="r-item"><strong>Tailored</strong><span>Built around your stack</span></div>
     </div>
   </section>
 
-  <script is:inline define:vars={{ LEARN_URL }}>
+  <script is:inline define:vars={{ LEARN_URL, NUM_Q: QUESTIONS.length }}>
     (function () {
       const QUIZ = document.getElementById('snd-quiz');
       const CAL = document.getElementById('snd-calendar');
@@ -157,62 +207,97 @@ const serviceLd = {
       const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
       document.getElementById('cal-tz').textContent = `(${TZ})`;
 
-      // ---------- Quiz state ----------
+      // -------------------- Wizard --------------------
+      const TOTAL_STEPS = NUM_Q + 1; // questions + contact step
+      let current = 0;
       const answers = {};
-      QUIZ.querySelectorAll('.opts').forEach((group) => {
-        group.addEventListener('click', (e) => {
-          const b = e.target.closest('.opt');
-          if (!b) return;
-          group.querySelectorAll('.opt').forEach((x) => x.classList.remove('selected'));
-          b.classList.add('selected');
-          answers[group.dataset.name] = b.dataset.value;
-        });
-      });
+      let lead = { firstName: '', lastName: '', email: '', phone: '' };
 
-      function isQualified() {
-        return answers.revenue_state === 'yes' && ['1-5k', '5-25k', '25k+'].includes(answers.revenue);
+      const steps = Array.from(QUIZ.querySelectorAll('.step'));
+      const progressEl = document.getElementById('quiz-progress');
+      const backBtn = document.getElementById('step-back');
+      const nextBtn = document.getElementById('step-next');
+      const errEl = document.getElementById('quiz-error');
+
+      function renderProgress() {
+        progressEl.innerHTML = '';
+        for (let i = 0; i < TOTAL_STEPS; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'pdot' + (i === current ? ' active' : i < current ? ' done' : '');
+          progressEl.appendChild(dot);
+        }
+      }
+      function showStep(i) {
+        steps.forEach((s, idx) => (s.hidden = idx !== i));
+        current = i;
+        backBtn.disabled = i === 0;
+        nextBtn.textContent = i === TOTAL_STEPS - 1 ? 'See my times →' : 'Next →';
+        updateNextState();
+        renderProgress();
+        QUIZ.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      function updateNextState() {
+        const step = steps[current];
+        if (step.dataset.name === 'contact') {
+          const f = step.querySelector('form');
+          const first = f.firstName.value.trim();
+          const email = f.email.value.trim();
+          nextBtn.disabled = !(first && /.+@.+\..+/.test(email));
+        } else {
+          nextBtn.disabled = !answers[step.dataset.name];
+        }
       }
 
-      QUIZ.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const err = document.getElementById('quiz-error');
-        err.hidden = true;
-        const required = ['revenue_state', 'revenue', 'industry', 'bottleneck'];
-        for (const k of required) {
-          if (!answers[k]) {
-            err.textContent = 'Please answer all 4 questions.';
-            err.hidden = false;
-            return;
-          }
+      steps.forEach((step) => {
+        if (step.dataset.name === 'contact') {
+          step.querySelector('form').addEventListener('input', updateNextState);
+        } else {
+          step.querySelectorAll('.opt-card').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              step.querySelectorAll('.opt-card').forEach((b) => b.classList.remove('selected'));
+              btn.classList.add('selected');
+              answers[step.dataset.name] = btn.dataset.value;
+              updateNextState();
+              // small auto-advance for momentum
+              setTimeout(() => { if (current < TOTAL_STEPS - 1) showStep(current + 1); }, 220);
+            });
+          });
         }
-        const fd = new FormData(QUIZ);
-        const lead = {
-          firstName: (fd.get('firstName') || '').toString().trim(),
-          lastName: (fd.get('lastName') || '').toString().trim(),
-          email: (fd.get('email') || '').toString().trim(),
-          phone: (fd.get('phone') || '').toString().trim(),
+      });
+
+      backBtn.addEventListener('click', () => { if (current > 0) showStep(current - 1); });
+      nextBtn.addEventListener('click', async () => {
+        errEl.hidden = true;
+        if (current < TOTAL_STEPS - 1) { showStep(current + 1); return; }
+
+        // Final submit
+        const f = document.getElementById('contact-form');
+        lead = {
+          firstName: f.firstName.value.trim(),
+          lastName: f.lastName.value.trim(),
+          email: f.email.value.trim(),
+          phone: f.phone.value.trim(),
         };
         if (!lead.firstName || !lead.email) {
-          err.textContent = 'Name and email are required.';
-          err.hidden = false;
+          errEl.textContent = 'Name and email are required.';
+          errEl.hidden = false;
           return;
         }
-        window.__sndLead = lead;
-        window.__sndQuiz = { ...answers, qualified: isQualified() ? 'yes' : 'no' };
 
-        // Fire-and-forget: send every submission (qualified or not) to GHL via
-        // the existing newsletter webhook so leads land in CRM with tags.
+        const qualified = answers.revenue_state === 'yes' && ['1-5k', '5-25k', '25k+'].includes(answers.revenue);
+        window.__sndLead = lead;
+        window.__sndQuiz = { ...answers, qualified: qualified ? 'yes' : 'no' };
         sendToWebhook(lead, window.__sndQuiz);
 
-        if (!isQualified()) {
-          window.location.href = LEARN_URL;
-          return;
-        }
-
+        if (!qualified) { window.location.href = LEARN_URL; return; }
         QUIZ.hidden = true;
         CAL.hidden = false;
-        renderDateStrip();
+        renderCalendar();
+        CAL.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
+
+      renderProgress();
+      showStep(0);
 
       function sendToWebhook(lead, quiz) {
         try {
@@ -223,60 +308,84 @@ const serviceLd = {
               new Blob([body], { type: 'application/json' })
             );
           }
-        } catch (e) { /* non-fatal */ }
+        } catch (e) {}
       }
 
       document.getElementById('cal-back').addEventListener('click', () => {
-        CAL.hidden = true;
-        QUIZ.hidden = false;
+        CAL.hidden = true; QUIZ.hidden = false;
       });
 
-      // ---------- Date strip: next 14 weekdays ----------
-      let selectedDate = null;
+      // -------------------- Calendar (month grid) --------------------
+      let viewMonth = new Date();
+      viewMonth.setDate(1);
+      let selectedDateISO = null;
       let selectedSlot = null;
+      const today = new Date(); today.setHours(0,0,0,0);
 
-      function renderDateStrip() {
-        const wrap = document.getElementById('cal-dates');
-        wrap.innerHTML = '';
-        const out = [];
-        let d = new Date();
-        d.setHours(0, 0, 0, 0);
-        d.setDate(d.getDate() + 1); // start tomorrow
-        while (out.length < 14) {
-          if (d.getDay() !== 0 && d.getDay() !== 6) out.push(new Date(d));
-          d.setDate(d.getDate() + 1);
+      function renderCalendar() {
+        const label = document.getElementById('month-label');
+        label.textContent = viewMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+        // Disable "prev" when viewing current month
+        const isCurrentOrPast = viewMonth.getFullYear() < today.getFullYear() ||
+          (viewMonth.getFullYear() === today.getFullYear() && viewMonth.getMonth() <= today.getMonth());
+        document.getElementById('month-prev').disabled = isCurrentOrPast;
+
+        const grid = document.getElementById('cal-days');
+        grid.innerHTML = '';
+
+        const firstDow = viewMonth.getDay();
+        const daysInMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 0).getDate();
+
+        // Leading blanks
+        for (let i = 0; i < firstDow; i++) {
+          const b = document.createElement('span'); b.className = 'day blank'; grid.appendChild(b);
         }
-        out.forEach((day) => {
+        // Days
+        for (let d = 1; d <= daysInMonth; d++) {
+          const date = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), d);
+          const iso = isoDate(date);
+          const isPast = date < today;
+          const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+          const isToday = date.getTime() === today.getTime();
           const btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = 'date-pill';
-          btn.dataset.iso = isoDate(day);
-          btn.innerHTML = `
-            <span class="dow">${day.toLocaleDateString('en-US', { weekday: 'short' })}</span>
-            <span class="dom">${day.getDate()}</span>
-            <span class="mon">${day.toLocaleDateString('en-US', { month: 'short' })}</span>
-          `;
-          btn.addEventListener('click', () => selectDate(btn));
-          wrap.appendChild(btn);
-        });
+          btn.className = 'day' + (isPast || isWeekend ? ' muted' : '') + (isToday ? ' today' : '') + (selectedDateISO === iso ? ' selected' : '');
+          btn.dataset.iso = iso;
+          btn.textContent = d;
+          if (isPast || isWeekend) btn.disabled = true;
+          else btn.addEventListener('click', () => selectDate(iso));
+          grid.appendChild(btn);
+        }
       }
+
+      document.getElementById('month-prev').addEventListener('click', () => {
+        viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() - 1, 1);
+        renderCalendar();
+      });
+      document.getElementById('month-next').addEventListener('click', () => {
+        viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1);
+        renderCalendar();
+      });
 
       function isoDate(d) {
         return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       }
 
-      async function selectDate(btn) {
-        document.querySelectorAll('.date-pill').forEach((b) => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        selectedDate = btn.dataset.iso;
+      async function selectDate(iso) {
+        selectedDateISO = iso;
         selectedSlot = null;
         document.getElementById('cal-confirm').hidden = true;
-        await loadSlots(selectedDate);
+        renderCalendar();
+        const d = new Date(iso + 'T00:00:00');
+        document.getElementById('slot-day-label').textContent =
+          d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+        await loadSlots(iso);
       }
 
       async function loadSlots(date) {
         const slotsEl = document.getElementById('cal-slots');
-        slotsEl.innerHTML = '<p class="cal-empty">Loading times...</p>';
+        slotsEl.innerHTML = '<p class="cal-empty">Loading times…</p>';
         try {
           const res = await fetch(`/api/calendar/slots?date=${date}&timezone=${encodeURIComponent(TZ)}`);
           const json = await res.json();
@@ -320,6 +429,7 @@ const serviceLd = {
         document.getElementById('confirm-who').textContent =
           `${window.__sndLead.firstName} ${window.__sndLead.lastName}`.trim();
         document.getElementById('cal-confirm').hidden = false;
+        document.getElementById('cal-confirm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
       document.getElementById('cal-book').addEventListener('click', async () => {
@@ -327,7 +437,7 @@ const serviceLd = {
         err.hidden = true;
         const btn = document.getElementById('cal-book');
         btn.disabled = true;
-        btn.textContent = 'Booking...';
+        btn.textContent = 'Booking…';
         try {
           const res = await fetch('/api/calendar/book', {
             method: 'POST',
@@ -348,7 +458,7 @@ const serviceLd = {
           err.textContent = "Couldn't confirm that slot. Pick another or refresh.";
           err.hidden = false;
           btn.disabled = false;
-          btn.textContent = 'Confirm booking';
+          btn.textContent = 'Confirm booking →';
         }
       });
     })();
@@ -358,173 +468,289 @@ const serviceLd = {
     .book { padding: 1rem 0 4rem; }
     .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; text-transform: uppercase; font-size: 0.85rem; }
     h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 1rem; }
-    h2 { font-size: 1.65rem; line-height: 1.2; margin: 0; }
+    h2 { font-size: 1.5rem; line-height: 1.25; margin: 0; color: #f8fafc; }
     .lede { color: var(--muted); font-size: 1.1rem; margin: 0 0 2rem; }
 
-    .quiz {
-      background: rgba(15, 23, 42, 0.55);
+    /* ============= Shared card ============= */
+    .quiz-card, .cal-head, .cal-month, .cal-slot-col, .cal-confirm, .success, .r-item {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(10, 9, 14, 0.85));
       border: 1px solid rgba(82, 113, 255, 0.22);
-      border-radius: 16px;
-      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 24px 60px -20px rgba(8, 12, 32, 0.7);
     }
-    .qlist { list-style: none; padding: 0; margin: 0; counter-reset: q; }
-    .q { margin: 0 0 22px; }
-    .qlabel { display: block; font-weight: 600; color: #f8fafc; margin: 0 0 10px; font-size: 1.02rem; }
-    .opts { display: flex; flex-wrap: wrap; gap: 8px; }
-    .opt {
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(82, 113, 255, 0.06);
-      border: 1px solid rgba(82, 113, 255, 0.3);
+
+    /* ============= Wizard ============= */
+    .quiz-card { padding: 32px; }
+    .progress { display: flex; gap: 6px; margin: 0 0 22px; }
+    .pdot {
+      flex: 1; height: 4px; border-radius: 999px;
+      background: rgba(82, 113, 255, 0.15);
+      transition: background 0.2s;
+    }
+    .pdot.active { background: linear-gradient(90deg, #188bf6, #5271FF); }
+    .pdot.done { background: rgba(82, 113, 255, 0.55); }
+
+    .steps { min-height: 280px; }
+    .step-count {
+      color: #5271FF;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .step-q { margin: 0 0 22px; font-size: 1.45rem; line-height: 1.25; }
+    .step-opts { display: grid; gap: 10px; }
+    .opt-card {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: rgba(82, 113, 255, 0.05);
+      border: 1.5px solid rgba(82, 113, 255, 0.25);
       color: #e2e8f0;
       cursor: pointer;
-      font-size: 0.95rem;
+      text-align: left;
+      font-size: 1rem;
       transition: all 0.15s ease;
     }
-    .opt:hover { background: rgba(82, 113, 255, 0.18); }
-    .opt.selected {
-      background: linear-gradient(90deg, #188bf6, #5271FF);
-      border-color: transparent;
+    .opt-card:hover {
+      background: rgba(82, 113, 255, 0.12);
+      border-color: rgba(82, 113, 255, 0.55);
+      transform: translateY(-1px);
+    }
+    .opt-radio {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(148, 163, 184, 0.5);
+      flex: 0 0 18px;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .opt-card.selected {
+      background: linear-gradient(90deg, rgba(24, 139, 246, 0.18), rgba(82, 113, 255, 0.18));
+      border-color: #5271FF;
       color: #fff;
       font-weight: 600;
     }
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
-    .grid2 label { display: flex; flex-direction: column; gap: 5px; font-size: 0.85rem; color: var(--muted); }
-    .grid2 input {
-      padding: 10px 12px;
+    .opt-card.selected .opt-radio {
+      border-color: #5271FF;
+      background: radial-gradient(circle, #5271FF 0, #5271FF 4px, transparent 5px);
+    }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .contact-grid .full { grid-column: 1 / -1; }
+    @media (max-width: 520px) { .contact-grid { grid-template-columns: 1fr; } .contact-grid .full { grid-column: auto; } }
+    .contact-grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    .contact-grid input {
+      padding: 12px 14px;
       border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: rgba(15, 23, 42, 0.7);
+      border: 1.5px solid rgba(148, 163, 184, 0.3);
+      background: rgba(10, 9, 14, 0.6);
       color: #f8fafc;
       font-size: 1rem;
     }
-    .grid2 input:focus {
+    .contact-grid input:focus {
       outline: none;
-      border-color: #3b9bff;
-      box-shadow: 0 0 0 3px rgba(59, 155, 255, 0.25);
+      border-color: #5271FF;
+      box-shadow: 0 0 0 3px rgba(82, 113, 255, 0.25);
     }
-    .primary {
-      margin-top: 8px;
+
+    .step-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 24px; gap: 12px;
+    }
+    .primary, .ghost {
       padding: 12px 22px;
       border-radius: 12px;
-      border: 0;
-      background: linear-gradient(90deg, #188bf6, #5271FF);
-      color: #fff;
       font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .primary:hover { filter: brightness(1.08); }
-    .primary:disabled { opacity: 0.65; cursor: progress; }
-    .ghost {
-      padding: 8px 14px;
-      border-radius: 10px;
-      background: transparent;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: #cbd5e1;
-      cursor: pointer;
-    }
-    .qerr { color: #fca5a5; margin: 10px 0 0; font-size: 0.9rem; }
-
-    .cal-head {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 22px; border-radius: 16px; margin-top: 20px;
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(82, 113, 255, 0.22);
-    }
-    .cal-head .sub { color: var(--muted); margin: 6px 0 0; font-size: 0.9rem; }
-
-    .cal-grid {
-      margin-top: 16px;
-      padding: 20px;
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(82, 113, 255, 0.22);
-    }
-    .cal-dates {
-      display: flex; gap: 8px; overflow-x: auto;
-      padding-bottom: 8px; scrollbar-width: thin;
-    }
-    .date-pill {
-      flex: 0 0 78px;
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
-      padding: 10px 8px;
-      border-radius: 12px;
-      background: rgba(82, 113, 255, 0.06);
-      border: 1px solid rgba(82, 113, 255, 0.3);
-      color: #e2e8f0;
+      font-size: 0.98rem;
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .date-pill:hover { background: rgba(82, 113, 255, 0.18); }
-    .date-pill.selected {
-      background: linear-gradient(180deg, #188bf6, #5271FF);
+    .primary {
+      border: 0;
+      background: linear-gradient(90deg, #188bf6, #5271FF);
+      color: #fff;
+      box-shadow: 0 8px 20px -6px rgba(82, 113, 255, 0.6);
+    }
+    .primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; filter: none; }
+    .ghost {
+      background: transparent;
+      border: 1.5px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5e1;
+    }
+    .ghost:hover:not(:disabled) { border-color: rgba(82, 113, 255, 0.6); color: #fff; }
+    .ghost:disabled { opacity: 0.35; cursor: not-allowed; }
+    .qerr { color: #fca5a5; margin: 12px 0 0; font-size: 0.9rem; }
+
+    /* ============= Calendar header ============= */
+    .cal-head {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      padding: 24px 28px; margin-top: 20px;
+    }
+    .cal-head .sub { color: var(--muted); margin: 8px 0 0; font-size: 0.92rem; }
+
+    /* ============= Calendar layout ============= */
+    .cal-layout {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 760px) { .cal-layout { grid-template-columns: 1fr; } }
+
+    .cal-month { padding: 22px; }
+    .cal-month-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 0 0 14px;
+    }
+    .month-label { font-weight: 700; color: #f8fafc; font-size: 1.05rem; }
+    .month-nav {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(82, 113, 255, 0.3);
+      background: rgba(82, 113, 255, 0.06);
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 1.2rem; line-height: 1;
+      transition: all 0.15s ease;
+    }
+    .month-nav:hover:not(:disabled) {
+      border-color: #5271FF; color: #fff;
+      background: rgba(82, 113, 255, 0.15);
+    }
+    .month-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .dow-row {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px; margin-bottom: 4px;
+    }
+    .dow-row span {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.7);
+      font-weight: 700;
+      padding: 6px 0;
+    }
+    .cal-days {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .day {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      background: rgba(82, 113, 255, 0.05);
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .day:hover:not(:disabled):not(.blank) {
+      background: rgba(82, 113, 255, 0.2);
+      border-color: rgba(82, 113, 255, 0.5);
+    }
+    .day.muted { color: rgba(148, 163, 184, 0.35); background: transparent; cursor: not-allowed; }
+    .day.today { border-color: rgba(82, 113, 255, 0.6); }
+    .day.selected {
+      background: linear-gradient(135deg, #188bf6, #5271FF);
       color: #fff;
       border-color: transparent;
+      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
+      transform: scale(1.04);
     }
-    .date-pill .dow { font-size: 0.72rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.06em; }
-    .date-pill .dom { font-size: 1.45rem; font-weight: 800; line-height: 1; }
-    .date-pill .mon { font-size: 0.72rem; opacity: 0.85; }
+    .day.blank { background: transparent; cursor: default; pointer-events: none; }
 
-    .cal-slots {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 8px;
-      min-height: 80px;
+    /* ============= Slots ============= */
+    .cal-slot-col { padding: 22px; }
+    .slot-day-label {
+      margin: 0 0 14px;
+      color: #f8fafc;
+      font-weight: 700;
+      font-size: 1.02rem;
     }
-    .cal-empty { grid-column: 1 / -1; color: var(--muted); margin: 0; text-align: center; padding: 12px; }
+    .cal-slots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+      min-height: 200px;
+      align-content: start;
+    }
+    .cal-empty {
+      grid-column: 1 / -1; color: var(--muted);
+      margin: 0; text-align: center; padding: 28px 12px;
+      font-size: 0.92rem;
+    }
     .slot {
-      padding: 10px;
+      padding: 12px 8px;
       border-radius: 10px;
-      background: rgba(82, 113, 255, 0.06);
-      border: 1px solid rgba(82, 113, 255, 0.3);
+      background: rgba(82, 113, 255, 0.05);
+      border: 1.5px solid rgba(82, 113, 255, 0.3);
       color: #e2e8f0;
       cursor: pointer;
       font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.12s ease;
     }
-    .slot:hover { background: rgba(82, 113, 255, 0.18); }
+    .slot:hover {
+      background: rgba(82, 113, 255, 0.15);
+      border-color: #5271FF;
+      transform: translateY(-1px);
+    }
     .slot.selected {
-      background: linear-gradient(90deg, #188bf6, #5271FF);
+      background: linear-gradient(135deg, #188bf6, #5271FF);
       color: #fff;
       border-color: transparent;
-      font-weight: 600;
+      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
     }
 
+    /* ============= Confirm ============= */
     .cal-confirm {
       margin-top: 16px;
-      padding: 22px;
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(82, 113, 255, 0.22);
-      text-align: center;
+      padding: 26px;
+      display: flex; flex-direction: column; gap: 16px;
+      align-items: center; text-align: center;
     }
-    .confirm-line { margin: 0 0 6px; font-size: 1.05rem; color: #f8fafc; }
-    .confirm-line.subtext { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
+    .confirm-eyebrow {
+      margin: 0; color: #5271FF; font-size: 0.78rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .confirm-when { margin: 4px 0 2px; color: #f8fafc; font-size: 1.15rem; font-weight: 700; }
+    .confirm-who { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
+    /* ============= Success ============= */
     .success {
       margin-top: 20px;
-      padding: 32px;
-      border-radius: 16px;
+      padding: 40px 28px;
       text-align: center;
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(34, 197, 94, 0.35);
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+    .check {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-size: 2rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
     }
 
+    /* ============= Reassurance ============= */
     .reassurance {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
       margin-top: 2.5rem;
     }
-    .r-item {
-      background: rgba(5, 100, 209, 0.08);
-      border: 1px solid rgba(5, 100, 209, 0.25);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-    }
+    .r-item { padding: 20px; text-align: center; }
     .r-item strong { display: block; color: #fff; margin-bottom: 4px; font-size: 1.05rem; }
     .r-item span { color: var(--muted); font-size: 0.9rem; }
   </style>
