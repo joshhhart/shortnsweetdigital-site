@@ -228,13 +228,22 @@ Hard rules for the body:
   citation links and CTAs alike. Missing it costs us revenue.
 
 Required frontmatter fields (must validate against src/content.config.ts):
-  title (<= 70 chars)
-  description (<= 160 chars)
+  title (<= 60 chars — Google truncates around 60 in SERPs; treat 60 as a HARD ceiling, not a target)
+  description (<= 155 chars — Google snippet cutoff; HARD ceiling)
   pubDate: ${today}
   tags: [an array of 3-6 strings]
   targetKeyword: "${keyword}"
   auditPassed: false
-  draft: false`;
+  draft: false
+
+CTR rules for title:
+- Front-load the keyword: brand-vs-brand belongs in the first ~40 chars.
+- Drop year clutter ("in 2026", "2026 Edition") unless the keyword itself
+  is dated. Most of our pages get re-crawled often enough that "2026" hurts
+  more than helps once the year rolls.
+- Drop empty phrases ("Which Platform Wins for Agencies", "Complete Guide
+  to", "Honest Pick for", "A Clear Explanation of") unless they replace
+  something already in the title.`;
 
   const userParts = [
     `Target keyword: ${keyword}`,
@@ -488,6 +497,20 @@ function splitFrontmatter(doc) {
   return { frontmatter: m[1], body: m[2] };
 }
 
+// Trim a string to <= max chars, but back up to the last word boundary so we
+// don't cut a word in half. Adds an ellipsis only if we actually clipped.
+function clipAtBoundary(s, max) {
+  if (typeof s !== 'string') return s;
+  s = s.trim();
+  if (s.length <= max) return s;
+  // Search for a separator (space, dash, colon) within the last 15 chars of
+  // the budget. Falls back to a hard cut if none.
+  const window = s.slice(0, max);
+  const lastBreak = Math.max(window.lastIndexOf(' '), window.lastIndexOf('—'), window.lastIndexOf(':'));
+  const cutAt = lastBreak > max - 20 ? lastBreak : max;
+  return s.slice(0, cutAt).replace(/[\s—:.,;]+$/, '');
+}
+
 function formatYamlValue(v) {
   if (typeof v === 'boolean' || typeof v === 'number') return String(v);
   if (typeof v === 'string') {
@@ -539,8 +562,20 @@ async function main() {
   // despite the prompt rule. The hero image is enough.
   body = body.replace(/^\s*!\[[^\]]*]\([^)]+\)\s*$/gm, '').replace(/\n{3,}/g, '\n\n');
   const titleMatch = frontmatter.match(/^title:\s*["']?(.+?)["']?\s*$/m);
-  const title = titleMatch ? titleMatch[1] : keyword;
+  let title = titleMatch ? titleMatch[1] : keyword;
+
+  // SERP-fit guard. LLM still spits over-long titles even with the prompt
+  // rule, so enforce here. Last-word-boundary clip at 60, with the same
+  // treatment for description at 155. These are hard SERP truncation points
+  // — exceeding them just hides characters in Google.
+  const descMatch = frontmatter.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+  let description = descMatch ? descMatch[1] : '';
+  title = clipAtBoundary(title, 60);
+  description = clipAtBoundary(description, 155);
+
   frontmatter = patchFrontmatter(frontmatter, {
+    title,
+    description,
     pubDate: today,
     targetKeyword: keyword,
     auditPassed: audit.pass,

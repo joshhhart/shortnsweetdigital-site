@@ -99,6 +99,30 @@ function extractHowTo() {
   return { name, steps };
 }
 const howTo = extractHowTo();
+
+// Comparison schema: detect a markdown table where the first column header
+// is "Feature"/"Tier"/blank and other columns name products. For each row,
+// emit a Thing entry, then wrap as ItemList. Google doesn't render a special
+// "comparison" rich result yet, but ItemList + named entities help LLM-based
+// search engines (Perplexity, ChatGPT, Google AI Overviews) cite the page.
+function extractComparison() {
+  const tableMatch = body.match(/^\|([^\n]+)\|\n\|[\s|:-]+\|\n((?:\|[^\n]*\|\n?)+)/m);
+  if (!tableMatch) return null;
+  const headerCells = tableMatch[1].split('|').map(s => s.trim()).filter(Boolean);
+  // We want >=2 product columns (so headerCells length >= 3 with a leading label col).
+  if (headerCells.length < 3) return null;
+  const products = headerCells.slice(1); // skip the first label col
+  return {
+    '@type': 'ItemList',
+    name: `${post.data.title} — Comparison`,
+    itemListElement: products.map((name, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: { '@type': 'SoftwareApplication', name, applicationCategory: 'BusinessApplication' },
+    })),
+  };
+}
+const comparison = extractComparison();
 ---
 
 <BlogPost
@@ -109,6 +133,7 @@ const howTo = extractHowTo();
   relatedPosts={relatedPosts}
   readingTime={readingTime}
   howTo={howTo}
+  comparison={comparison}
 >
   <Content />
 </BlogPost>
