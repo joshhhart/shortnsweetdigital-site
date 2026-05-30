@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const LEARN_URL = 'https://start.shortnsweetdigital.com/si_affiliates';
+
 const serviceLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -32,51 +34,484 @@ const serviceLd = {
     <p class="eyebrow">Book a call</p>
     <h1>Free 30-min strategy call</h1>
     <p class="lede">
-      Pick a time below. On the call we'll audit your current marketing stack
-      (CRM, email, SMS, web chat, scheduling) and show you exactly what we can
-      consolidate into one AI-powered platform — no pitch, no pressure.
+      We work with operators who already have revenue and want to grow faster
+      with better systems. Answer 4 quick questions to see if we're a fit.
     </p>
 
-    <div class="calendar-wrap">
-      <iframe
-        src="https://seo.shortnsweetdigital.com/widget/booking/ViRdkidnenr14Qx74gcZ?backgroundColor=%230a090e&primaryColor=%235271FF&textColor=%23f1f5f9&buttonText=Confirm+Booking&borderRadius=14"
-        style="width:100%;border:none;overflow:hidden;min-height:780px;background:transparent"
-        scrolling="no"
-        id="msgsndr-calendar"
-        title="Book a strategy call with Short n Sweet Digital"
-        loading="lazy"
-      ></iframe>
+    <!-- Step 1: Quiz -->
+    <form id="snd-quiz" class="quiz snd-bg-card">
+      <ol class="qlist">
+        <li class="q">
+          <span class="qlabel">1. Is your business currently generating revenue?</span>
+          <div class="opts" data-name="revenue_state">
+            <button type="button" class="opt" data-value="yes">Yes</button>
+            <button type="button" class="opt" data-value="not_yet">Not yet</button>
+          </div>
+        </li>
+
+        <li class="q">
+          <span class="qlabel">2. What's your current monthly revenue?</span>
+          <div class="opts" data-name="revenue">
+            <button type="button" class="opt" data-value="0-1k">$0–$1K</button>
+            <button type="button" class="opt" data-value="1-5k">$1K–$5K</button>
+            <button type="button" class="opt" data-value="5-25k">$5K–$25K</button>
+            <button type="button" class="opt" data-value="25k+">$25K+</button>
+          </div>
+        </li>
+
+        <li class="q">
+          <span class="qlabel">3. What kind of business?</span>
+          <div class="opts" data-name="industry">
+            <button type="button" class="opt" data-value="service">Local service</button>
+            <button type="button" class="opt" data-value="agency">Marketing agency</button>
+            <button type="button" class="opt" data-value="ecom">E-commerce</button>
+            <button type="button" class="opt" data-value="coach">Course / coaching</button>
+            <button type="button" class="opt" data-value="other">Other</button>
+          </div>
+        </li>
+
+        <li class="q">
+          <span class="qlabel">4. Biggest growth bottleneck right now?</span>
+          <div class="opts" data-name="bottleneck">
+            <button type="button" class="opt" data-value="leads">Getting leads</button>
+            <button type="button" class="opt" data-value="followup">Lead follow-up</button>
+            <button type="button" class="opt" data-value="booking">Booking / no-shows</button>
+            <button type="button" class="opt" data-value="reporting">Tracking ROI</button>
+            <button type="button" class="opt" data-value="time">Doing it all yourself</button>
+          </div>
+        </li>
+
+        <li class="q fields">
+          <div class="grid2">
+            <label>
+              <span>First name</span>
+              <input name="firstName" type="text" autocomplete="given-name" required />
+            </label>
+            <label>
+              <span>Last name</span>
+              <input name="lastName" type="text" autocomplete="family-name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Phone (optional)</span>
+              <input name="phone" type="tel" autocomplete="tel" />
+            </label>
+          </div>
+        </li>
+      </ol>
+
+      <button type="submit" class="primary" id="quiz-submit">See if we're a fit →</button>
+      <p class="qerr" id="quiz-error" hidden></p>
+    </form>
+
+    <!-- Step 2: Calendar (revealed when qualified) -->
+    <div id="snd-calendar" hidden>
+      <div class="cal-head snd-bg-card">
+        <div>
+          <p class="eyebrow">You're a fit</p>
+          <h2>Pick a time that works for you</h2>
+          <p class="sub">30-min strategy call. All times <span id="cal-tz"></span>.</p>
+        </div>
+        <button type="button" class="ghost" id="cal-back">← Edit answers</button>
+      </div>
+
+      <div class="cal-grid snd-bg-card">
+        <div class="cal-dates" id="cal-dates" aria-label="Choose a day"></div>
+        <div class="cal-slots" id="cal-slots">
+          <p class="cal-empty">Pick a day to see open times.</p>
+        </div>
+      </div>
+
+      <div class="cal-confirm snd-bg-card" id="cal-confirm" hidden>
+        <p class="confirm-line">
+          <strong id="confirm-when"></strong>
+        </p>
+        <p class="confirm-line subtext">with <strong id="confirm-who"></strong></p>
+        <button type="button" class="primary" id="cal-book">Confirm booking</button>
+        <p class="qerr" id="cal-error" hidden></p>
+      </div>
     </div>
-    <script src="https://seo.shortnsweetdigital.com/js/embed.js" type="text/javascript" is:inline></script>
+
+    <!-- Step 3: Success -->
+    <div id="snd-success" class="snd-bg-card success" hidden>
+      <p class="eyebrow">Confirmed</p>
+      <h2>You're on the calendar.</h2>
+      <p>Check your inbox for the confirmation + calendar invite. See you on the call.</p>
+    </div>
 
     <div class="reassurance">
-      <div class="r-item snd-bg-card">
-        <strong>30 minutes</strong>
-        <span>Quick, focused, zero fluff</span>
-      </div>
-      <div class="r-item snd-bg-card">
-        <strong>Free</strong>
-        <span>No credit card, no commitment</span>
-      </div>
-      <div class="r-item snd-bg-card">
-        <strong>Tailored to you</strong>
-        <span>Built around your industry &amp; stack</span>
-      </div>
+      <div class="r-item snd-bg-card"><strong>30 minutes</strong><span>Focused, no fluff</span></div>
+      <div class="r-item snd-bg-card"><strong>Free</strong><span>No card, no pitch</span></div>
+      <div class="r-item snd-bg-card"><strong>Tailored</strong><span>Built around your stack</span></div>
     </div>
   </section>
+
+  <script is:inline define:vars={{ LEARN_URL }}>
+    (function () {
+      const QUIZ = document.getElementById('snd-quiz');
+      const CAL = document.getElementById('snd-calendar');
+      const SUCCESS = document.getElementById('snd-success');
+      const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      document.getElementById('cal-tz').textContent = `(${TZ})`;
+
+      // ---------- Quiz state ----------
+      const answers = {};
+      QUIZ.querySelectorAll('.opts').forEach((group) => {
+        group.addEventListener('click', (e) => {
+          const b = e.target.closest('.opt');
+          if (!b) return;
+          group.querySelectorAll('.opt').forEach((x) => x.classList.remove('selected'));
+          b.classList.add('selected');
+          answers[group.dataset.name] = b.dataset.value;
+        });
+      });
+
+      function isQualified() {
+        return answers.revenue_state === 'yes' && ['1-5k', '5-25k', '25k+'].includes(answers.revenue);
+      }
+
+      QUIZ.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const err = document.getElementById('quiz-error');
+        err.hidden = true;
+        const required = ['revenue_state', 'revenue', 'industry', 'bottleneck'];
+        for (const k of required) {
+          if (!answers[k]) {
+            err.textContent = 'Please answer all 4 questions.';
+            err.hidden = false;
+            return;
+          }
+        }
+        const fd = new FormData(QUIZ);
+        const lead = {
+          firstName: (fd.get('firstName') || '').toString().trim(),
+          lastName: (fd.get('lastName') || '').toString().trim(),
+          email: (fd.get('email') || '').toString().trim(),
+          phone: (fd.get('phone') || '').toString().trim(),
+        };
+        if (!lead.firstName || !lead.email) {
+          err.textContent = 'Name and email are required.';
+          err.hidden = false;
+          return;
+        }
+        window.__sndLead = lead;
+        window.__sndQuiz = { ...answers, qualified: isQualified() ? 'yes' : 'no' };
+
+        // Fire-and-forget: send every submission (qualified or not) to GHL via
+        // the existing newsletter webhook so leads land in CRM with tags.
+        sendToWebhook(lead, window.__sndQuiz);
+
+        if (!isQualified()) {
+          window.location.href = LEARN_URL;
+          return;
+        }
+
+        QUIZ.hidden = true;
+        CAL.hidden = false;
+        renderDateStrip();
+      });
+
+      function sendToWebhook(lead, quiz) {
+        try {
+          const body = JSON.stringify({ ...lead, quiz, source: 'book-a-call-quiz', page_url: location.href });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(
+              'https://services.leadconnectorhq.com/hooks/LHvDkOgXpZdUYdjFzBff/webhook-trigger/180d4d4e-bc84-48ba-a684-73c32ad72b7f',
+              new Blob([body], { type: 'application/json' })
+            );
+          }
+        } catch (e) { /* non-fatal */ }
+      }
+
+      document.getElementById('cal-back').addEventListener('click', () => {
+        CAL.hidden = true;
+        QUIZ.hidden = false;
+      });
+
+      // ---------- Date strip: next 14 weekdays ----------
+      let selectedDate = null;
+      let selectedSlot = null;
+
+      function renderDateStrip() {
+        const wrap = document.getElementById('cal-dates');
+        wrap.innerHTML = '';
+        const out = [];
+        let d = new Date();
+        d.setHours(0, 0, 0, 0);
+        d.setDate(d.getDate() + 1); // start tomorrow
+        while (out.length < 14) {
+          if (d.getDay() !== 0 && d.getDay() !== 6) out.push(new Date(d));
+          d.setDate(d.getDate() + 1);
+        }
+        out.forEach((day) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'date-pill';
+          btn.dataset.iso = isoDate(day);
+          btn.innerHTML = `
+            <span class="dow">${day.toLocaleDateString('en-US', { weekday: 'short' })}</span>
+            <span class="dom">${day.getDate()}</span>
+            <span class="mon">${day.toLocaleDateString('en-US', { month: 'short' })}</span>
+          `;
+          btn.addEventListener('click', () => selectDate(btn));
+          wrap.appendChild(btn);
+        });
+      }
+
+      function isoDate(d) {
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      }
+
+      async function selectDate(btn) {
+        document.querySelectorAll('.date-pill').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedDate = btn.dataset.iso;
+        selectedSlot = null;
+        document.getElementById('cal-confirm').hidden = true;
+        await loadSlots(selectedDate);
+      }
+
+      async function loadSlots(date) {
+        const slotsEl = document.getElementById('cal-slots');
+        slotsEl.innerHTML = '<p class="cal-empty">Loading times...</p>';
+        try {
+          const res = await fetch(`/api/calendar/slots?date=${date}&timezone=${encodeURIComponent(TZ)}`);
+          const json = await res.json();
+          if (!res.ok) throw new Error(json.error || 'load failed');
+          renderSlots(json.slots || []);
+        } catch (e) {
+          slotsEl.innerHTML = `<p class="cal-empty">Couldn't load times. Refresh and try again.</p>`;
+        }
+      }
+
+      function renderSlots(slots) {
+        const slotsEl = document.getElementById('cal-slots');
+        if (!slots.length) {
+          slotsEl.innerHTML = '<p class="cal-empty">No times open this day. Try another.</p>';
+          return;
+        }
+        slotsEl.innerHTML = '';
+        slots.forEach((iso) => {
+          const t = new Date(iso);
+          const label = t.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slot';
+          btn.textContent = label;
+          btn.dataset.iso = iso;
+          btn.addEventListener('click', () => selectSlot(btn, iso));
+          slotsEl.appendChild(btn);
+        });
+      }
+
+      function selectSlot(btn, iso) {
+        document.querySelectorAll('.slot').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSlot = iso;
+        const t = new Date(iso);
+        const friendly = t.toLocaleString('en-US', {
+          weekday: 'long', month: 'long', day: 'numeric',
+          hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+        });
+        document.getElementById('confirm-when').textContent = friendly;
+        document.getElementById('confirm-who').textContent =
+          `${window.__sndLead.firstName} ${window.__sndLead.lastName}`.trim();
+        document.getElementById('cal-confirm').hidden = false;
+      }
+
+      document.getElementById('cal-book').addEventListener('click', async () => {
+        const err = document.getElementById('cal-error');
+        err.hidden = true;
+        const btn = document.getElementById('cal-book');
+        btn.disabled = true;
+        btn.textContent = 'Booking...';
+        try {
+          const res = await fetch('/api/calendar/book', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              ...window.__sndLead,
+              startTime: selectedSlot,
+              timezone: TZ,
+              quiz: window.__sndQuiz,
+            }),
+          });
+          const json = await res.json();
+          if (!res.ok || !json.ok) throw new Error(json.error || 'booking failed');
+          CAL.hidden = true;
+          SUCCESS.hidden = false;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (e) {
+          err.textContent = "Couldn't confirm that slot. Pick another or refresh.";
+          err.hidden = false;
+          btn.disabled = false;
+          btn.textContent = 'Confirm booking';
+        }
+      });
+    })();
+  </script>
 
   <style>
     .book { padding: 1rem 0 4rem; }
     .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; text-transform: uppercase; font-size: 0.85rem; }
     h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 1rem; }
+    h2 { font-size: 1.65rem; line-height: 1.2; margin: 0; }
     .lede { color: var(--muted); font-size: 1.1rem; margin: 0 0 2rem; }
-    .calendar-wrap {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(5, 100, 209, 0.3);
+
+    .quiz {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(82, 113, 255, 0.22);
       border-radius: 16px;
-      padding: 12px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      padding: 28px;
     }
+    .qlist { list-style: none; padding: 0; margin: 0; counter-reset: q; }
+    .q { margin: 0 0 22px; }
+    .qlabel { display: block; font-weight: 600; color: #f8fafc; margin: 0 0 10px; font-size: 1.02rem; }
+    .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .opt {
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(82, 113, 255, 0.06);
+      border: 1px solid rgba(82, 113, 255, 0.3);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+    }
+    .opt:hover { background: rgba(82, 113, 255, 0.18); }
+    .opt.selected {
+      background: linear-gradient(90deg, #188bf6, #5271FF);
+      border-color: transparent;
+      color: #fff;
+      font-weight: 600;
+    }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+    .grid2 label { display: flex; flex-direction: column; gap: 5px; font-size: 0.85rem; color: var(--muted); }
+    .grid2 input {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.7);
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+    .grid2 input:focus {
+      outline: none;
+      border-color: #3b9bff;
+      box-shadow: 0 0 0 3px rgba(59, 155, 255, 0.25);
+    }
+    .primary {
+      margin-top: 8px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      border: 0;
+      background: linear-gradient(90deg, #188bf6, #5271FF);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .primary:hover { filter: brightness(1.08); }
+    .primary:disabled { opacity: 0.65; cursor: progress; }
+    .ghost {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+    .qerr { color: #fca5a5; margin: 10px 0 0; font-size: 0.9rem; }
+
+    .cal-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 22px; border-radius: 16px; margin-top: 20px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(82, 113, 255, 0.22);
+    }
+    .cal-head .sub { color: var(--muted); margin: 6px 0 0; font-size: 0.9rem; }
+
+    .cal-grid {
+      margin-top: 16px;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(82, 113, 255, 0.22);
+    }
+    .cal-dates {
+      display: flex; gap: 8px; overflow-x: auto;
+      padding-bottom: 8px; scrollbar-width: thin;
+    }
+    .date-pill {
+      flex: 0 0 78px;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: rgba(82, 113, 255, 0.06);
+      border: 1px solid rgba(82, 113, 255, 0.3);
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .date-pill:hover { background: rgba(82, 113, 255, 0.18); }
+    .date-pill.selected {
+      background: linear-gradient(180deg, #188bf6, #5271FF);
+      color: #fff;
+      border-color: transparent;
+    }
+    .date-pill .dow { font-size: 0.72rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.06em; }
+    .date-pill .dom { font-size: 1.45rem; font-weight: 800; line-height: 1; }
+    .date-pill .mon { font-size: 0.72rem; opacity: 0.85; }
+
+    .cal-slots {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
+      min-height: 80px;
+    }
+    .cal-empty { grid-column: 1 / -1; color: var(--muted); margin: 0; text-align: center; padding: 12px; }
+    .slot {
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(82, 113, 255, 0.06);
+      border: 1px solid rgba(82, 113, 255, 0.3);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .slot:hover { background: rgba(82, 113, 255, 0.18); }
+    .slot.selected {
+      background: linear-gradient(90deg, #188bf6, #5271FF);
+      color: #fff;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    .cal-confirm {
+      margin-top: 16px;
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(82, 113, 255, 0.22);
+      text-align: center;
+    }
+    .confirm-line { margin: 0 0 6px; font-size: 1.05rem; color: #f8fafc; }
+    .confirm-line.subtext { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
+
+    .success {
+      margin-top: 20px;
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
     .reassurance {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
