@@ -1,17 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
 
 const post = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 
 // Reading time: 220 wpm is the conventional estimate for non-technical content.
 const wordCount = (post.body || '').trim().split(/\s+/).length;
@@ -21,7 +21,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 220));
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const currentTags = new Set((post.data.tags || []).map((t) => t.toLowerCase()));
 const relatedPosts = allPosts
-  .filter((p) => p.slug !== post.slug)
+  .filter((p) => p.id !== post.id)
   .map((p) => {
     const overlap = (p.data.tags || []).filter((t) => currentTags.has(t.toLowerCase())).length;
     return { post: p, overlap };
@@ -30,7 +30,7 @@ const relatedPosts = allPosts
   .sort((a, b) => b.overlap - a.overlap || b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf())
   .slice(0, 3)
   .map(({ post: p }) => ({
-    slug: p.slug,
+    slug: p.id,
     title: p.data.title,
     description: p.data.description,
     heroImage: p.data.heroImage,
@@ -103,7 +103,7 @@ const howTo = extractHowTo();
 
 <BlogPost
   {...post.data}
-  slug={post.slug}
+  slug={post.id}
   faqs={faqs}
   headings={headings}
   relatedPosts={relatedPosts}

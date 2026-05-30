@@ -227,7 +227,7 @@ Hard rules for the body:
   \`https://www.gohighlevel.com/pricing?fp_ref=shortnsweet53\`. This applies to
   citation links and CTAs alike. Missing it costs us revenue.
 
-Required frontmatter fields (must validate against src/content/config.ts):
+Required frontmatter fields (must validate against src/content.config.ts):
   title (<= 70 chars)
   description (<= 160 chars)
   pubDate: ${today}
