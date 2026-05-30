@@ -68,7 +68,13 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <meta name="application-name" content="Short n Sweet Digital" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
     <link rel="alternate" type="application/rss+xml" title="Short n Sweet Digital — Blog" href="/rss.xml" />
+    <!-- Preconnect to render-critical third-party origins to drop the
+         TCP+TLS handshake off the first request to each (mobile LCP win). -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://storage.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://images.leadconnectorhq.com" crossorigin />
+    <link rel="dns-prefetch" href="https://services.leadconnectorhq.com" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" /></noscript>
