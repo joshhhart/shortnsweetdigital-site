@@ -94,8 +94,8 @@ const testimonials = [
   title="Short n Sweet Digital — AI-Powered All-in-One Platform for Small Business"
   description="Replace 8–12 marketing tools with one AI-powered platform. CRM, SMS, email, web chat, scheduling, pipelines, reviews — all in one login. 14-day free trial."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+  {/* Organization + WebSite now emitted sitewide from BaseLayout (P2-12).
+      Homepage only adds its unique aggregate-rating + FAQ schema. */}
   <script type="application/ld+json" set:html={JSON.stringify(aggregateLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 

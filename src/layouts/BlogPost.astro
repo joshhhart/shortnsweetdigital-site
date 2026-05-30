@@ -133,7 +133,7 @@ const ldJson = {
       <h1>{title}</h1>
       <p class="lede">{description}</p>
       {heroImage && (
-        <img class="hero" src={heroImage} alt={title} loading="eager" />
+        <img class="hero" src={heroImage} alt={title} width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" />
       )}
     </header>
 
@@ -162,7 +162,7 @@ const ldJson = {
         <div class="related-grid">
           {relatedPosts.map((p) => (
             <a class="related-card" href={`/blog/${p.slug}/`}>
-              {p.heroImage && <img src={p.heroImage} alt="" loading="lazy" />}
+              {p.heroImage && <img src={p.heroImage} alt="" width="1200" height="630" loading="lazy" decoding="async" />}
               <div class="related-body">
                 <h3>{p.title}</h3>
                 <p>{p.description}</p>

@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Pillar page: the GoHighLevel comparison hub. Centralizes topical authority by
+// linking out to every "vs" comparison post + the topical guides. Comparison
+// posts link back here via the "compare GoHighLevel" internal-link term.
+const all = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const comparisons = all.filter((p) => /\bvs\b|vrs/i.test(p.data.targetKeyword || p.id));
+const guides = all.filter((p) => !comparisons.includes(p));
+
+const itemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'GoHighLevel Comparisons & Guides',
+  itemListElement: comparisons.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `https://shortnsweetdigital.com/blog/${p.id}/`,
+    name: p.data.title,
+  })),
+};
+---
+
+<BaseLayout
+  title="GoHighLevel Comparisons & Guides — Compare Hub"
+  description="Every GoHighLevel comparison and guide in one place. See how GHL stacks up against HubSpot, Kajabi, Salesforce, Pipedrive, and more — plus pricing, white-label, and automation playbooks."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+
+  <section class="hub" data-snd-reveal>
+    <p class="eyebrow">Compare</p>
+    <h1>GoHighLevel, compared to everything</h1>
+    <p class="lede">
+      Honest, agency-tested breakdowns of how GoHighLevel stacks up against the
+      tools you're already paying for — plus the pricing math, white-label
+      playbooks, and automation guides that actually move revenue.
+    </p>
+    <a class="hub-cta" href="/book-a-call/">Book a free strategy call →</a>
+
+    <h2>Head-to-head comparisons</h2>
+    <ul class="hub-grid">
+      {comparisons.map((p) => (
+        <li>
+          <a href={`/blog/${p.id}/`}>
+            <span class="t">{p.data.title}</span>
+            <span class="d">{p.data.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <h2>Guides &amp; playbooks</h2>
+    <ul class="hub-grid">
+      {guides.map((p) => (
+        <li>
+          <a href={`/blog/${p.id}/`}>
+            <span class="t">{p.data.title}</span>
+            <span class="d">{p.data.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <style>
+    .hub { padding: 1rem 0 4rem; }
+    .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; text-transform: uppercase; font-size: 0.85rem; }
+    h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 1rem; }
+    h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; }
+    .lede { color: var(--muted); font-size: 1.1rem; max-width: 640px; margin: 0 0 1.5rem; }
+    .hub-cta {
+      display: inline-block; margin-bottom: 1rem;
+      padding: 12px 22px; border-radius: 12px;
+      background: linear-gradient(90deg, #188bf6, #5271FF);
+      color: #fff; font-weight: 700; text-decoration: none;
+    }
+    .hub-cta:hover { filter: brightness(1.08); }
+    .hub-grid {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;
+    }
+    .hub-grid a {
+      display: flex; flex-direction: column; gap: 6px; height: 100%;
+      padding: 18px; border-radius: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(82, 113, 255, 0.22);
+      text-decoration: none; color: inherit;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .hub-grid a:hover { transform: translateY(-2px); border-color: rgba(82, 113, 255, 0.55); }
+    .hub-grid .t { color: #fff; font-weight: 700; font-size: 1rem; line-height: 1.3; }
+    .hub-grid .d { color: var(--muted); font-size: 0.85rem; line-height: 1.45;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</BaseLayout>
