@@ -1122,6 +1122,16 @@
           msg.style.display = 'block';
           msg.textContent = 'Thanks — opening your free trial in a new tab…';
         }
+        // GA4 conversion event. Mark `generate_lead` as a Key Event in GA4
+        // (Admin → Events → Mark as conversion) to count subs as conversions.
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              method: 'newsletter',
+              event_label: form.getAttribute('data-snd-newsletter-source') || 'footer',
+            });
+          }
+        } catch (e) {}
         // Brief delay so the user sees the confirmation before redirect.
         setTimeout(function () {
           var redirect = SND_NEWSLETTER_REDIRECT + '&email=' + encodeURIComponent(email);

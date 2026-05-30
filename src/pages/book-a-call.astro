@@ -293,6 +293,17 @@ const QUESTIONS = [
         window.__sndQuiz = { ...answers, qualified: qualified ? 'yes' : 'no' };
         sendToWebhook(lead, window.__sndQuiz);
 
+        // GA4: quiz completion (regardless of qualification).
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'quiz_complete', {
+              qualified: qualified ? 'yes' : 'no',
+              revenue_band: answers.revenue || '',
+              industry: answers.industry || '',
+            });
+          }
+        } catch (e) {}
+
         if (!qualified) { window.location.href = LEARN_URL; return; }
         QUIZ.hidden = true;
         CAL.hidden = false;
@@ -464,6 +475,22 @@ const QUESTIONS = [
           CAL.hidden = true;
           SUCCESS.hidden = false;
           window.scrollTo({ top: 0, behavior: 'smooth' });
+          // GA4: high-value lead booked a call. Mark `book_a_call` as a
+          // Key Event in GA4 (Admin → Events → Mark as conversion).
+          try {
+            if (typeof gtag === 'function') {
+              gtag('event', 'book_a_call', {
+                method: 'website_quiz',
+                value: 1,
+                currency: 'USD',
+              });
+              gtag('event', 'generate_lead', {
+                method: 'strategy_call',
+                value: 1,
+                currency: 'USD',
+              });
+            }
+          } catch (e) {}
         } catch (e) {
           err.textContent = "Couldn't confirm that slot. Pick another or refresh.";
           err.hidden = false;

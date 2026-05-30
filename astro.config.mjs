@@ -10,7 +10,9 @@ const SITE_URL = 'https://shortnsweetdigital.com';
 
 export default defineConfig({
   site: SITE_URL,
-  trailingSlash: 'ignore',
+  // Canonicalize to trailing-slash URLs — matches build.format: 'directory'
+  // and prevents Google indexing both /blog/foo and /blog/foo/ as duplicates.
+  trailingSlash: 'always',
   build: {
     format: 'directory',
   },
