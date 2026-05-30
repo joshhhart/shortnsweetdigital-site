@@ -39,6 +39,12 @@ const LINKS = [
   { term: 'migrate from Infusionsoft',        href: '/blog/2026-05-20-migrate-from-infusionsoft-to-gohighlevel/' },
   { term: 'GoHighLevel for personal trainers',href: '/blog/2026-05-18-gohighlevel-for-personal-trainers/' },
 
+  // ----- Conversion targets: push readers to the booking + comparison hub -----
+  { term: 'free strategy call',  href: '/book-a-call/' },
+  { term: 'book a strategy call',href: '/book-a-call/' },
+  { term: 'book a call',         href: '/book-a-call/' },
+  { term: 'compare GoHighLevel', href: '/compare/' },
+
   // ----- Single-brand fallbacks (link to the relevant comparison) -----
   { term: 'ActiveCampaign', href: '/blog/2026-04-25-gohighlevel-vs-activecampaign/' },
   { term: 'ClickFunnels',   href: '/blog/2026-04-29-gohighlevel-vs-clickfunnels/' },
