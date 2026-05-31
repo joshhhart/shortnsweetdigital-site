@@ -19,8 +19,35 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkInternalLinks, remarkAffiliateLinks],
   },
-  integrations: [sitemap(), robotsTxt({
-    sitemap: true,
-    policy: [{ userAgent: '*', allow: '/' }],
-  }), react()],
+  integrations: [
+    sitemap(),
+    robotsTxt({
+      sitemap: true,
+      // Explicit allow for every major search + AI crawler. Cloudflare's AI
+      // Audit may still intercept at the edge — disable it in dashboard to
+      // make this authoritative.
+      policy: [
+        { userAgent: '*', allow: '/' },
+        // AI search engines / answer engines
+        { userAgent: 'GPTBot',            allow: '/' },
+        { userAgent: 'ChatGPT-User',      allow: '/' },
+        { userAgent: 'OAI-SearchBot',     allow: '/' },
+        { userAgent: 'ClaudeBot',         allow: '/' },
+        { userAgent: 'Claude-Web',        allow: '/' },
+        { userAgent: 'anthropic-ai',      allow: '/' },
+        { userAgent: 'PerplexityBot',     allow: '/' },
+        { userAgent: 'Perplexity-User',   allow: '/' },
+        { userAgent: 'Google-Extended',   allow: '/' },
+        { userAgent: 'Applebot-Extended', allow: '/' },
+        { userAgent: 'Bytespider',        allow: '/' },
+        { userAgent: 'CCBot',             allow: '/' },
+        { userAgent: 'Amazonbot',         allow: '/' },
+        { userAgent: 'meta-externalagent',allow: '/' },
+        { userAgent: 'Diffbot',           allow: '/' },
+        { userAgent: 'YouBot',            allow: '/' },
+        { userAgent: 'cohere-ai',         allow: '/' },
+      ],
+    }),
+    react(),
+  ],
 });
