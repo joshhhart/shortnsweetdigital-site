@@ -1,8 +1,0 @@
-# Cloudflare Pages redirects. Canonicalize all URLs to trailing-slash so Google
-# doesn't index both /blog/foo and /blog/foo/. Astro also enforces this at
-# build time (trailingSlash: 'always'), but this is a belt-and-suspenders rule
-# in case anything links to the non-trailing form.
-
-/blog/*   /blog/:splat/   301
-/about    /about/         301
-/book-a-call  /book-a-call/  301
