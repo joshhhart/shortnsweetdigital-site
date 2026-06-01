@@ -141,6 +141,32 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
           name: 'Short n Sweet Digital',
           publisher: { '@id': 'https://shortnsweetdigital.com/#organization' },
         },
+        {
+          // LocalBusiness — service-area type since we serve clients
+          // remotely across the US from Palm City, FL. 24/7 because the
+          // platform is AI-run.
+          '@type': ['LocalBusiness', 'ProfessionalService'],
+          '@id': 'https://shortnsweetdigital.com/#localbusiness',
+          name: 'Short n Sweet Digital',
+          image: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
+          url: 'https://shortnsweetdigital.com/',
+          telephone: '+1-877-455-7727',
+          priceRange: '$$',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Palm City',
+            addressRegion: 'FL',
+            addressCountry: 'US',
+          },
+          areaServed: { '@type': 'Country', name: 'United States' },
+          openingHoursSpecification: [{
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            opens: '00:00',
+            closes: '23:59',
+          }],
+          parentOrganization: { '@id': 'https://shortnsweetdigital.com/#organization' },
+        },
       ],
     })} />
   </head>
