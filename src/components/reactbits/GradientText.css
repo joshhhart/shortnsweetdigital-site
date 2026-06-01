@@ -5,8 +5,12 @@
   align-items: center;
   justify-content: center;
   font-weight: inherit;
-  overflow: hidden;
+  /* overflow: hidden was clipping descenders ('g' / 'y') when paired with
+     the tight line-height: 1.05 used in the hero h1. Visible + extra
+     padding lets letters render in full. */
+  overflow: visible;
   line-height: inherit;
+  padding-bottom: 0.1em;
 }
 
 .animated-gradient-text.with-border {
