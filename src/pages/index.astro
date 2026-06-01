@@ -383,6 +383,8 @@ const testimonials = [
       -webkit-background-clip: text;
       color: transparent;
       animation: gradient-text-yoyo var(--grad-speed) ease-in-out infinite alternate;
+      /* Room for descenders ('g'/'y') under tight headline line-heights. */
+      padding-bottom: 0.1em;
     }
     @keyframes gradient-text-yoyo {
       0%   { background-position: 0% 50%; }
