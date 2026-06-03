@@ -10,23 +10,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      # Audit the just-built dist/ via LHCI's own static server (127.0.0.1).
+      # Sidesteps every flavor of edge protection (Cloudflare Bot Fight on
+      # production, the same on *.pages.dev) that was throwing
+      # CHROME_INTERSTITIAL_ERROR on every audit. Same bytes Cloudflare
+      # serves to real users — just from localhost so LHCI Chrome can load
+      # them. When staticDistDir is set, LHCI rewrites these paths against
+      # its own server port.
       - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
-          # Audit the Cloudflare Pages origin (*.pages.dev) instead of the
-          # production domain. Cloudflare's Bot Fight Mode / WAF served the
-          # LHCI headless Chrome an interstitial on every request to
-          # shortnsweetdigital.com, aborting every audit with
-          # CHROME_INTERSTITIAL_ERROR. The .pages.dev origin serves the same
-          # built artifact without that protection layer, so we get clean
-          # scores while real visitors keep the full Cloudflare shield.
           urls: |
-            https://shortnsweetdigital.pages.dev/
-            https://shortnsweetdigital.pages.dev/blog/
-            https://shortnsweetdigital.pages.dev/about/
-            https://shortnsweetdigital.pages.dev/pricing/
-            https://shortnsweetdigital.pages.dev/compare/
-            https://shortnsweetdigital.pages.dev/book-a-call/
+            /index.html
+            /blog/index.html
+            /about/index.html
+            /pricing/index.html
+            /compare/index.html
+            /book-a-call/index.html
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: ./.lighthouserc.json
+          staticDistDir: ./dist
