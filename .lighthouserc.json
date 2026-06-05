@@ -1,6 +1,7 @@
 {
   "ci": {
     "collect": {
+      "staticDistDir": "./dist",
       "settings": {
         "preset": "desktop"
       }
