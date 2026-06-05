@@ -21,13 +21,12 @@ jobs:
       - name: Build site
         run: npm run build
 
-      # Audit the just-built dist/ via LHCI's own static server (127.0.0.1).
-      # Sidesteps every flavor of edge protection (Cloudflare Bot Fight on
-      # production, the same on *.pages.dev) that was throwing
-      # CHROME_INTERSTITIAL_ERROR on every audit. Same bytes Cloudflare
-      # serves to real users — just from localhost so LHCI Chrome can load
-      # them. When staticDistDir is set, LHCI rewrites these paths against
-      # its own server port.
+      # treosh/lighthouse-ci-action doesn't accept `staticDistDir` as an
+      # action input — it lives in .lighthouserc.json under ci.collect.
+      # With that set, LHCI starts its own static server against ./dist on
+      # a local port and rewrites these paths to load from there. Sidesteps
+      # every flavor of Cloudflare bot/WAF protection that was returning
+      # CHROME_INTERSTITIAL_ERROR on both production and *.pages.dev.
       - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
@@ -41,4 +40,3 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: ./.lighthouserc.json
-          staticDistDir: ./dist
