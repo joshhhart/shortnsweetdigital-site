@@ -24,7 +24,7 @@ Here's why.
 
 ## What Is GoHighLevel Actually Built For?
 
-GoHighLevel is an all-in-one platform built from the ground up for marketing agencies. It includes a CRM, funnel builder, email marketing, SMS campaigns, pipeline management, booking calendars, website builder, reputation management, and a white-label option that lets you resell the entire platform under your own brand. According to GoHighLevel's 2025 year-in-review, the platform now powers over 1 million businesses across 150 countries ([GoHighLevel](https://www.gohighlevel.com/post/highlevel-2025-a-year-in-review), 2025).
+GoHighLevel is an all-in-one platform built from the ground up for marketing agencies. It includes a CRM, funnel builder, email marketing, SMS campaigns, pipeline management, booking calendars, website builder, reputation management, and a white-label option that lets you resell the entire platform under your own brand. According to GoHighLevel's 2025 year-in-review, the platform now powers over 1 million businesses across 150 countries ([GoHighLevel](https://www.gohighlevel.com/post/highlevel-2025-a-year-in-review?fp_ref=shortnsweet53), 2025).
 
 The pricing reflects its agency positioning:
 

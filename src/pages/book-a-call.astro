@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const LEARN_URL = 'https://start.shortnsweetdigital.com/si_affiliates';
+
 const serviceLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -20,6 +22,49 @@ const serviceLd = {
     availability: 'https://schema.org/InStock',
   },
 };
+
+const QUESTIONS = [
+  {
+    name: 'revenue_state',
+    label: 'Is your business currently generating revenue?',
+    options: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'not_yet', label: 'Not yet' },
+    ],
+  },
+  {
+    name: 'revenue',
+    label: "What's your current monthly revenue?",
+    options: [
+      { value: '0-1k', label: '$0 – $1K' },
+      { value: '1-5k', label: '$1K – $5K' },
+      { value: '5-25k', label: '$5K – $25K' },
+      { value: '25k+', label: '$25K+' },
+    ],
+  },
+  {
+    name: 'industry',
+    label: 'What kind of business?',
+    options: [
+      { value: 'service', label: 'Local service' },
+      { value: 'agency', label: 'Marketing agency' },
+      { value: 'ecom', label: 'E-commerce' },
+      { value: 'coach', label: 'Course / coaching' },
+      { value: 'other', label: 'Other' },
+    ],
+  },
+  {
+    name: 'bottleneck',
+    label: 'Biggest growth bottleneck right now?',
+    options: [
+      { value: 'leads', label: 'Getting leads' },
+      { value: 'followup', label: 'Lead follow-up' },
+      { value: 'booking', label: 'Booking / no-shows' },
+      { value: 'reporting', label: 'Tracking ROI' },
+      { value: 'time', label: 'Doing it all yourself' },
+    ],
+  },
+];
 ---
 
 <BaseLayout
@@ -32,65 +77,738 @@ const serviceLd = {
     <p class="eyebrow">Book a call</p>
     <h1>Free 30-min strategy call</h1>
     <p class="lede">
-      Pick a time below. On the call we'll audit your current marketing stack
-      (CRM, email, SMS, web chat, scheduling) and show you exactly what we can
-      consolidate into one AI-powered platform — no pitch, no pressure.
+      We work with operators who already have revenue and want to grow faster
+      with better systems. Answer 4 quick questions to see if we're a fit.
     </p>
 
-    <div class="calendar-wrap">
-      <iframe
-        src="https://seo.shortnsweetdigital.com/widget/booking/ViRdkidnenr14Qx74gcZ?backgroundColor=%230a090e&primaryColor=%235271FF&textColor=%23f1f5f9&buttonText=Confirm+Booking&borderRadius=14"
-        style="width:100%;border:none;overflow:hidden;min-height:780px;background:transparent"
-        scrolling="no"
-        id="msgsndr-calendar"
-        title="Book a strategy call with Short n Sweet Digital"
-        loading="lazy"
-      ></iframe>
+    <!-- ============================== -->
+    <!-- Step 1: Wizard quiz, one Q at a time -->
+    <!-- ============================== -->
+    <div id="snd-quiz" class="quiz-card">
+      <div class="progress" id="quiz-progress" aria-hidden="true"></div>
+
+      <div class="steps">
+        {QUESTIONS.map((q, i) => (
+          <div class="step" data-step={i} data-name={q.name} hidden={i !== 0}>
+            <p class="step-count">Question {i + 1} of {QUESTIONS.length + 1}</p>
+            <h2 class="step-q">{q.label}</h2>
+            <div class="step-opts">
+              {q.options.map((o) => (
+                <button type="button" class="opt-card" data-value={o.value}>
+                  <span class="opt-radio" aria-hidden="true"></span>
+                  <span>{o.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Final step: contact info -->
+        <div class="step" data-step={QUESTIONS.length} data-name="contact" hidden>
+          <p class="step-count">Question {QUESTIONS.length + 1} of {QUESTIONS.length + 1}</p>
+          <h2 class="step-q">Where should we send the confirmation?</h2>
+          <form id="contact-form" class="contact-grid" novalidate>
+            <label>
+              <span>First name</span>
+              <input name="firstName" type="text" autocomplete="given-name" required />
+            </label>
+            <label>
+              <span>Last name</span>
+              <input name="lastName" type="text" autocomplete="family-name" />
+            </label>
+            <label class="full">
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label class="full">
+              <span>Phone (optional)</span>
+              <input name="phone" type="tel" autocomplete="tel" />
+            </label>
+          </form>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="ghost" id="step-back" disabled>← Back</button>
+        <button type="button" class="primary" id="step-next" disabled>Next →</button>
+      </div>
+      <p class="qerr" id="quiz-error" hidden></p>
     </div>
-    <script src="https://seo.shortnsweetdigital.com/js/embed.js" type="text/javascript" is:inline></script>
+
+    <!-- ============================== -->
+    <!-- Step 2: Calendar (revealed when qualified) -->
+    <!-- ============================== -->
+    <div id="snd-calendar" hidden>
+      <div class="cal-head">
+        <div>
+          <p class="eyebrow">You're a fit</p>
+          <h2>Pick a time that works for you</h2>
+          <p class="sub">30-min strategy call · All times <span id="cal-tz"></span></p>
+        </div>
+        <button type="button" class="ghost" id="cal-back">← Edit answers</button>
+      </div>
+
+      <div class="cal-layout">
+        <!-- Month grid -->
+        <div class="cal-month">
+          <div class="cal-month-head">
+            <button type="button" class="month-nav" id="month-prev" aria-label="Previous month">‹</button>
+            <span class="month-label" id="month-label"></span>
+            <button type="button" class="month-nav" id="month-next" aria-label="Next month">›</button>
+          </div>
+          <div class="dow-row">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div class="cal-days" id="cal-days"></div>
+        </div>
+
+        <!-- Slot column -->
+        <div class="cal-slot-col">
+          <p class="slot-day-label" id="slot-day-label">Pick a day</p>
+          <div class="cal-slots" id="cal-slots">
+            <p class="cal-empty">Select a date on the left to see open times.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cal-confirm" id="cal-confirm" hidden>
+        <div class="confirm-content">
+          <p class="confirm-eyebrow">Confirming</p>
+          <p class="confirm-when" id="confirm-when"></p>
+          <p class="confirm-who">with <strong id="confirm-who"></strong></p>
+        </div>
+        <button type="button" class="primary" id="cal-book">Confirm booking →</button>
+        <p class="qerr" id="cal-error" hidden></p>
+      </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- Step 3: Success -->
+    <!-- ============================== -->
+    <div id="snd-success" class="success" hidden>
+      <div class="check">✓</div>
+      <p class="eyebrow">Confirmed</p>
+      <h2>You're on the calendar.</h2>
+      <div class="success-when">
+        <p class="success-date" id="success-date"></p>
+        <p class="success-time" id="success-time"></p>
+      </div>
+      <p>Check your inbox for the confirmation + calendar invite. See you on the call.</p>
+    </div>
 
     <div class="reassurance">
-      <div class="r-item snd-bg-card">
-        <strong>30 minutes</strong>
-        <span>Quick, focused, zero fluff</span>
-      </div>
-      <div class="r-item snd-bg-card">
-        <strong>Free</strong>
-        <span>No credit card, no commitment</span>
-      </div>
-      <div class="r-item snd-bg-card">
-        <strong>Tailored to you</strong>
-        <span>Built around your industry &amp; stack</span>
-      </div>
+      <div class="r-item"><strong>30 minutes</strong><span>Focused, no fluff</span></div>
+      <div class="r-item"><strong>Free</strong><span>No card, no pitch</span></div>
+      <div class="r-item"><strong>Tailored</strong><span>Built around your stack</span></div>
     </div>
   </section>
+
+  <script is:inline define:vars={{ LEARN_URL, NUM_Q: QUESTIONS.length }}>
+    (function () {
+      const QUIZ = document.getElementById('snd-quiz');
+      const CAL = document.getElementById('snd-calendar');
+      const SUCCESS = document.getElementById('snd-success');
+      const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      document.getElementById('cal-tz').textContent = `(${TZ})`;
+
+      // -------------------- Wizard --------------------
+      const TOTAL_STEPS = NUM_Q + 1; // questions + contact step
+      let current = 0;
+      const answers = {};
+      let lead = { firstName: '', lastName: '', email: '', phone: '' };
+
+      const steps = Array.from(QUIZ.querySelectorAll('.step'));
+      const progressEl = document.getElementById('quiz-progress');
+      const backBtn = document.getElementById('step-back');
+      const nextBtn = document.getElementById('step-next');
+      const errEl = document.getElementById('quiz-error');
+
+      function renderProgress() {
+        progressEl.innerHTML = '';
+        for (let i = 0; i < TOTAL_STEPS; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'pdot' + (i === current ? ' active' : i < current ? ' done' : '');
+          progressEl.appendChild(dot);
+        }
+      }
+      function showStep(i) {
+        steps.forEach((s, idx) => (s.hidden = idx !== i));
+        current = i;
+        backBtn.disabled = i === 0;
+        nextBtn.textContent = i === TOTAL_STEPS - 1 ? 'See my times →' : 'Next →';
+        updateNextState();
+        renderProgress();
+        QUIZ.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      function updateNextState() {
+        const step = steps[current];
+        if (step.dataset.name === 'contact') {
+          const f = step.querySelector('form');
+          const first = f.firstName.value.trim();
+          const email = f.email.value.trim();
+          nextBtn.disabled = !(first && /.+@.+\..+/.test(email));
+        } else {
+          nextBtn.disabled = !answers[step.dataset.name];
+        }
+      }
+
+      steps.forEach((step) => {
+        if (step.dataset.name === 'contact') {
+          step.querySelector('form').addEventListener('input', updateNextState);
+        } else {
+          step.querySelectorAll('.opt-card').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              step.querySelectorAll('.opt-card').forEach((b) => b.classList.remove('selected'));
+              btn.classList.add('selected');
+              answers[step.dataset.name] = btn.dataset.value;
+              updateNextState();
+              // small auto-advance for momentum
+              setTimeout(() => { if (current < TOTAL_STEPS - 1) showStep(current + 1); }, 220);
+            });
+          });
+        }
+      });
+
+      backBtn.addEventListener('click', () => { if (current > 0) showStep(current - 1); });
+      nextBtn.addEventListener('click', async () => {
+        errEl.hidden = true;
+        if (current < TOTAL_STEPS - 1) { showStep(current + 1); return; }
+
+        // Final submit
+        const f = document.getElementById('contact-form');
+        lead = {
+          firstName: f.firstName.value.trim(),
+          lastName: f.lastName.value.trim(),
+          email: f.email.value.trim(),
+          phone: f.phone.value.trim(),
+        };
+        if (!lead.firstName || !lead.email) {
+          errEl.textContent = 'Name and email are required.';
+          errEl.hidden = false;
+          return;
+        }
+
+        const qualified = answers.revenue_state === 'yes' && ['1-5k', '5-25k', '25k+'].includes(answers.revenue);
+        window.__sndLead = lead;
+        window.__sndQuiz = { ...answers, qualified: qualified ? 'yes' : 'no' };
+        sendToWebhook(lead, window.__sndQuiz);
+
+        // GA4: quiz completion (regardless of qualification).
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'quiz_complete', {
+              qualified: qualified ? 'yes' : 'no',
+              revenue_band: answers.revenue || '',
+              industry: answers.industry || '',
+            });
+          }
+        } catch (e) {}
+
+        if (!qualified) { window.location.href = LEARN_URL; return; }
+        QUIZ.hidden = true;
+        CAL.hidden = false;
+        renderCalendar();
+        CAL.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      renderProgress();
+      showStep(0);
+
+      function sendToWebhook(lead, quiz) {
+        try {
+          const body = JSON.stringify({ ...lead, quiz, source: 'book-a-call-quiz', page_url: location.href });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(
+              'https://services.leadconnectorhq.com/hooks/LHvDkOgXpZdUYdjFzBff/webhook-trigger/180d4d4e-bc84-48ba-a684-73c32ad72b7f',
+              new Blob([body], { type: 'application/json' })
+            );
+          }
+        } catch (e) {}
+      }
+
+      document.getElementById('cal-back').addEventListener('click', () => {
+        CAL.hidden = true; QUIZ.hidden = false;
+      });
+
+      // -------------------- Calendar (month grid) --------------------
+      let viewMonth = new Date();
+      viewMonth.setDate(1);
+      let selectedDateISO = null;
+      let selectedSlot = null;
+      const today = new Date(); today.setHours(0,0,0,0);
+
+      function renderCalendar() {
+        const label = document.getElementById('month-label');
+        label.textContent = viewMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+        // Disable "prev" when viewing current month
+        const isCurrentOrPast = viewMonth.getFullYear() < today.getFullYear() ||
+          (viewMonth.getFullYear() === today.getFullYear() && viewMonth.getMonth() <= today.getMonth());
+        document.getElementById('month-prev').disabled = isCurrentOrPast;
+
+        const grid = document.getElementById('cal-days');
+        grid.innerHTML = '';
+
+        const firstDow = viewMonth.getDay();
+        const daysInMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 0).getDate();
+
+        // Leading blanks
+        for (let i = 0; i < firstDow; i++) {
+          const b = document.createElement('span'); b.className = 'day blank'; grid.appendChild(b);
+        }
+        // Days
+        for (let d = 1; d <= daysInMonth; d++) {
+          const date = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), d);
+          const iso = isoDate(date);
+          const isPast = date < today;
+          const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+          const isToday = date.getTime() === today.getTime();
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'day' + (isPast || isWeekend ? ' muted' : '') + (isToday ? ' today' : '') + (selectedDateISO === iso ? ' selected' : '');
+          btn.dataset.iso = iso;
+          btn.textContent = d;
+          if (isPast || isWeekend) btn.disabled = true;
+          else btn.addEventListener('click', () => selectDate(iso));
+          grid.appendChild(btn);
+        }
+      }
+
+      document.getElementById('month-prev').addEventListener('click', () => {
+        viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() - 1, 1);
+        renderCalendar();
+      });
+      document.getElementById('month-next').addEventListener('click', () => {
+        viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1);
+        renderCalendar();
+      });
+
+      function isoDate(d) {
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      }
+
+      async function selectDate(iso) {
+        selectedDateISO = iso;
+        selectedSlot = null;
+        document.getElementById('cal-confirm').hidden = true;
+        renderCalendar();
+        const d = new Date(iso + 'T00:00:00');
+        document.getElementById('slot-day-label').textContent =
+          d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+        await loadSlots(iso);
+      }
+
+      async function loadSlots(date) {
+        const slotsEl = document.getElementById('cal-slots');
+        slotsEl.innerHTML = '<p class="cal-empty">Loading times…</p>';
+        try {
+          const res = await fetch(`/api/calendar/slots?date=${date}&timezone=${encodeURIComponent(TZ)}`);
+          const json = await res.json();
+          if (!res.ok) throw new Error(json.error || 'load failed');
+          renderSlots(json.slots || []);
+        } catch (e) {
+          slotsEl.innerHTML = `<p class="cal-empty">Couldn't load times. Refresh and try again.</p>`;
+        }
+      }
+
+      function renderSlots(slots) {
+        const slotsEl = document.getElementById('cal-slots');
+        if (!slots.length) {
+          slotsEl.innerHTML = '<p class="cal-empty">No times open this day. Try another.</p>';
+          return;
+        }
+        slotsEl.innerHTML = '';
+        slots.forEach((iso) => {
+          const t = new Date(iso);
+          const label = t.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slot';
+          btn.textContent = label;
+          btn.dataset.iso = iso;
+          btn.addEventListener('click', () => selectSlot(btn, iso));
+          slotsEl.appendChild(btn);
+        });
+      }
+
+      function selectSlot(btn, iso) {
+        document.querySelectorAll('.slot').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSlot = iso;
+        const t = new Date(iso);
+        const friendly = t.toLocaleString('en-US', {
+          weekday: 'long', month: 'long', day: 'numeric',
+          hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+        });
+        document.getElementById('confirm-when').textContent = friendly;
+        // "with" line shows the host (calendar owner), not the lead.
+        document.getElementById('confirm-who').textContent = 'Systems Integrator';
+        document.getElementById('cal-confirm').hidden = false;
+        document.getElementById('cal-confirm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      document.getElementById('cal-book').addEventListener('click', async () => {
+        const err = document.getElementById('cal-error');
+        err.hidden = true;
+        const btn = document.getElementById('cal-book');
+        btn.disabled = true;
+        btn.textContent = 'Booking…';
+        try {
+          const res = await fetch('/api/calendar/book', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              ...window.__sndLead,
+              startTime: selectedSlot,
+              timezone: TZ,
+              quiz: window.__sndQuiz,
+            }),
+          });
+          const json = await res.json();
+          if (!res.ok || !json.ok) throw new Error(json.error || 'booking failed');
+          // Show the confirmed date + time on the success screen.
+          const booked = new Date(selectedSlot);
+          document.getElementById('success-date').textContent =
+            booked.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+          document.getElementById('success-time').textContent =
+            booked.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+          CAL.hidden = true;
+          SUCCESS.hidden = false;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          // GA4: high-value lead booked a call. Mark `book_a_call` as a
+          // Key Event in GA4 (Admin → Events → Mark as conversion).
+          try {
+            if (typeof gtag === 'function') {
+              gtag('event', 'book_a_call', {
+                method: 'website_quiz',
+                value: 1,
+                currency: 'USD',
+              });
+              gtag('event', 'generate_lead', {
+                method: 'strategy_call',
+                value: 1,
+                currency: 'USD',
+              });
+            }
+          } catch (e) {}
+        } catch (e) {
+          err.textContent = "Couldn't confirm that slot. Pick another or refresh.";
+          err.hidden = false;
+          btn.disabled = false;
+          btn.textContent = 'Confirm booking →';
+        }
+      });
+    })();
+  </script>
 
   <style>
     .book { padding: 1rem 0 4rem; }
     .eyebrow { color: #5271FF; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 0.5rem; text-transform: uppercase; font-size: 0.85rem; }
     h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 1rem; }
+    h2 { font-size: 1.5rem; line-height: 1.25; margin: 0; color: #f8fafc; }
     .lede { color: var(--muted); font-size: 1.1rem; margin: 0 0 2rem; }
-    .calendar-wrap {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(5, 100, 209, 0.3);
-      border-radius: 16px;
-      padding: 12px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    /* ============= Shared card ============= */
+    .quiz-card, .cal-head, .cal-month, .cal-slot-col, .cal-confirm, .success, .r-item {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(10, 9, 14, 0.85));
+      border: 1px solid rgba(82, 113, 255, 0.22);
+      border-radius: 18px;
+      box-shadow: 0 24px 60px -20px rgba(8, 12, 32, 0.7);
     }
+
+    /* ============= Wizard ============= */
+    .quiz-card { padding: 32px; }
+    .progress { display: flex; gap: 6px; margin: 0 0 22px; }
+    .pdot {
+      flex: 1; height: 4px; border-radius: 999px;
+      background: rgba(82, 113, 255, 0.15);
+      transition: background 0.2s;
+    }
+    .pdot.active { background: linear-gradient(90deg, #188bf6, #5271FF); }
+    .pdot.done { background: rgba(82, 113, 255, 0.55); }
+
+    .steps { min-height: 280px; }
+    .step-count {
+      color: #5271FF;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .step-q { margin: 0 0 22px; font-size: 1.45rem; line-height: 1.25; }
+    .step-opts { display: grid; gap: 10px; }
+    .opt-card {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: rgba(82, 113, 255, 0.05);
+      border: 1.5px solid rgba(82, 113, 255, 0.25);
+      color: #e2e8f0;
+      cursor: pointer;
+      text-align: left;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+    }
+    .opt-card:hover {
+      background: rgba(82, 113, 255, 0.12);
+      border-color: rgba(82, 113, 255, 0.55);
+      transform: translateY(-1px);
+    }
+    .opt-radio {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(148, 163, 184, 0.5);
+      flex: 0 0 18px;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .opt-card.selected {
+      background: linear-gradient(90deg, rgba(24, 139, 246, 0.18), rgba(82, 113, 255, 0.18));
+      border-color: #5271FF;
+      color: #fff;
+      font-weight: 600;
+    }
+    .opt-card.selected .opt-radio {
+      border-color: #5271FF;
+      background: radial-gradient(circle, #5271FF 0, #5271FF 4px, transparent 5px);
+    }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .contact-grid .full { grid-column: 1 / -1; }
+    @media (max-width: 520px) { .contact-grid { grid-template-columns: 1fr; } .contact-grid .full { grid-column: auto; } }
+    .contact-grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    .contact-grid input {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(148, 163, 184, 0.3);
+      background: rgba(10, 9, 14, 0.6);
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+    .contact-grid input:focus {
+      outline: none;
+      border-color: #5271FF;
+      box-shadow: 0 0 0 3px rgba(82, 113, 255, 0.25);
+    }
+
+    .step-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 24px; gap: 12px;
+    }
+    .primary, .ghost {
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .primary {
+      border: 0;
+      background: linear-gradient(90deg, #188bf6, #5271FF);
+      color: #fff;
+      box-shadow: 0 8px 20px -6px rgba(82, 113, 255, 0.6);
+    }
+    .primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; filter: none; }
+    .ghost {
+      background: transparent;
+      border: 1.5px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5e1;
+    }
+    .ghost:hover:not(:disabled) { border-color: rgba(82, 113, 255, 0.6); color: #fff; }
+    .ghost:disabled { opacity: 0.35; cursor: not-allowed; }
+    .qerr { color: #fca5a5; margin: 12px 0 0; font-size: 0.9rem; }
+
+    /* ============= Calendar header ============= */
+    .cal-head {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      padding: 24px 28px; margin-top: 20px;
+    }
+    .cal-head .sub { color: var(--muted); margin: 8px 0 0; font-size: 0.92rem; }
+
+    /* ============= Calendar layout ============= */
+    .cal-layout {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 760px) { .cal-layout { grid-template-columns: 1fr; } }
+
+    .cal-month { padding: 22px; }
+    .cal-month-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 0 0 14px;
+    }
+    .month-label { font-weight: 700; color: #f8fafc; font-size: 1.05rem; }
+    .month-nav {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(82, 113, 255, 0.3);
+      background: rgba(82, 113, 255, 0.06);
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 1.2rem; line-height: 1;
+      transition: all 0.15s ease;
+    }
+    .month-nav:hover:not(:disabled) {
+      border-color: #5271FF; color: #fff;
+      background: rgba(82, 113, 255, 0.15);
+    }
+    .month-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .dow-row {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px; margin-bottom: 4px;
+    }
+    .dow-row span {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.7);
+      font-weight: 700;
+      padding: 6px 0;
+    }
+    .cal-days {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    /* Dynamic .day and .slot rules moved to the is:global block below —
+       Astro scoped styles don't reach JS-created elements. */
+
+    /* ============= Slots container ============= */
+    .cal-slot-col { padding: 22px; }
+    .slot-day-label {
+      margin: 0 0 14px;
+      color: #f8fafc;
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+    .cal-slots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+      min-height: 200px;
+      align-content: start;
+    }
+
+    /* ============= Confirm ============= */
+    .cal-confirm {
+      margin-top: 16px;
+      padding: 26px;
+      display: flex; flex-direction: column; gap: 16px;
+      align-items: center; text-align: center;
+    }
+    .confirm-eyebrow {
+      margin: 0; color: #5271FF; font-size: 0.78rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .confirm-when { margin: 4px 0 2px; color: #f8fafc; font-size: 1.15rem; font-weight: 700; }
+    .confirm-who { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    /* ============= Success ============= */
+    .success {
+      margin-top: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+    .check {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-size: 2rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .success-when {
+      margin: 4px auto 16px;
+      max-width: 360px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .success-date { margin: 0; color: #f8fafc; font-weight: 700; font-size: 1.15rem; }
+    .success-time { margin: 4px 0 0; color: #86efac; font-weight: 600; font-size: 1rem; }
+
+    /* ============= Reassurance ============= */
     .reassurance {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
       margin-top: 2.5rem;
     }
-    .r-item {
-      background: rgba(5, 100, 209, 0.08);
-      border: 1px solid rgba(5, 100, 209, 0.25);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-    }
+    .r-item { padding: 20px; text-align: center; }
     .r-item strong { display: block; color: #fff; margin-bottom: 4px; font-size: 1.05rem; }
     .r-item span { color: var(--muted); font-size: 0.9rem; }
+  </style>
+
+  <!-- Global styles for JS-created day/slot buttons. Astro scoped styles
+       skip elements added via document.createElement, so these need to be
+       global. Selectors are parented to .cal-days / .cal-slots to scope them. -->
+  <style is:global>
+    .cal-days .day {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      background: rgba(82, 113, 255, 0.05);
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .cal-days .day:hover:not(:disabled):not(.blank) {
+      background: rgba(82, 113, 255, 0.2);
+      border-color: rgba(82, 113, 255, 0.5);
+    }
+    .cal-days .day.muted { color: rgba(148, 163, 184, 0.35); background: transparent; cursor: not-allowed; }
+    .cal-days .day.today { border-color: rgba(82, 113, 255, 0.6); }
+    .cal-days .day.selected {
+      background: linear-gradient(135deg, #188bf6, #5271FF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
+      transform: scale(1.04);
+    }
+    .cal-days .day.blank { background: transparent; cursor: default; pointer-events: none; }
+
+    .cal-slots .slot {
+      padding: 12px 8px;
+      border-radius: 10px;
+      background: rgba(82, 113, 255, 0.05);
+      border: 1.5px solid rgba(82, 113, 255, 0.3);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.12s ease;
+    }
+    .cal-slots .slot:hover {
+      background: rgba(82, 113, 255, 0.15);
+      border-color: #5271FF;
+      transform: translateY(-1px);
+    }
+    .cal-slots .slot.selected {
+      background: linear-gradient(135deg, #188bf6, #5271FF);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 14px -4px rgba(82, 113, 255, 0.7);
+    }
+    .cal-slots .cal-empty {
+      grid-column: 1 / -1;
+      color: rgba(203, 213, 225, 0.75);
+      margin: 0; text-align: center; padding: 28px 12px;
+      font-size: 0.92rem;
+    }
   </style>
 </BaseLayout>

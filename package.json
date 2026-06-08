@@ -11,13 +11,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@anthropic-ai/claude-agent-sdk": "^0.2.123",
-    "@astrojs/react": "^5.0.4",
-    "@astrojs/rss": "^4.0.7",
-    "@astrojs/sitemap": "^3.1.6",
+    "@anthropic-ai/sdk": "^0.92.0",
+    "@astrojs/react": "^5.0.6",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^4.16.0",
+    "astro": "^6.4.2",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "motion": "^12.38.0",

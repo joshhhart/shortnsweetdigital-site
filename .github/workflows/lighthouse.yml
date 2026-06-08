@@ -10,14 +10,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      # treosh/lighthouse-ci-action doesn't accept `staticDistDir` as an
+      # action input — it lives in .lighthouserc.json under ci.collect.
+      # With that set, LHCI starts its own static server against ./dist on
+      # a local port and rewrites these paths to load from there. Sidesteps
+      # every flavor of Cloudflare bot/WAF protection that was returning
+      # CHROME_INTERSTITIAL_ERROR on both production and *.pages.dev.
       - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
-            https://shortnsweetdigital.com/
-            https://shortnsweetdigital.com/pricing/
-            https://shortnsweetdigital.com/blog/
-            https://shortnsweetdigital.com/about/
+            /index.html
+            /blog/index.html
+            /about/index.html
+            /pricing/index.html
+            /compare/index.html
+            /book-a-call/index.html
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: ./.lighthouserc.json

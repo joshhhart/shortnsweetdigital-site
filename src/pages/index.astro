@@ -91,11 +91,11 @@ const testimonials = [
 ---
 
 <BaseLayout
-  title="Short n Sweet Digital — AI-Powered All-in-One Platform for Small Business"
-  description="Replace 8–12 marketing tools with one AI-powered platform. CRM, SMS, email, web chat, scheduling, pipelines, reviews — all in one login. 14-day free trial."
+  title="GoHighLevel Agency — Done-for-You Setup & White-Label"
+  description="GoHighLevel agency that sets up, white-labels, and runs the platform for your business. CRM, SMS, email, funnels — one bill, done-for-you. Free strategy call."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+  {/* Organization + WebSite now emitted sitewide from BaseLayout (P2-12).
+      Homepage only adds its unique aggregate-rating + FAQ schema. */}
   <script type="application/ld+json" set:html={JSON.stringify(aggregateLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
@@ -106,14 +106,16 @@ const testimonials = [
   <!-- HERO -->
   <section class="hero bleed">
     <div class="hero-inner">
-      <p class="eyebrow gradient-eyebrow" data-snd-reveal>AI Automation Platform · Trusted by 500+ businesses</p>
+      <p class="eyebrow gradient-eyebrow" data-snd-reveal>GoHighLevel Agency · Trusted by 500+ businesses</p>
       <h1 class="hero-h1" data-snd-reveal>
-        Save Time and Money With
-        <GradientText client:visible colors={brandColors} animationSpeed={6}>AI-Automation</GradientText>
+        The
+        <GradientText client:visible colors={brandColors} animationSpeed={6}>GoHighLevel Agency</GradientText>
+        that builds, brands, and runs your stack
       </h1>
       <p class="hero-sub" data-snd-reveal>
-        Streamline workflows, boost productivity, and increase revenue — with the all-in-one
-        platform that replaces 8–12 of the marketing tools you’re juggling today.
+        Done-for-you GoHighLevel setup, white-label, and SaaS-mode support. Replace
+        8–12 marketing tools with one CRM, SMS, email, funnels, and AI automation —
+        one bill, one team, all in.
       </p>
       <div class="hero-ctas" data-snd-reveal>
         <a class="btn-primary magnet"
@@ -287,7 +289,7 @@ const testimonials = [
       </div>
       <div class="blog-grid">
         {posts.map((p) => (
-          <a class="snd-darkened blog-card" href={`/blog/${p.slug}/`}>
+          <a class="snd-darkened blog-card" href={`/blog/${p.id}/`}>
             {p.data.heroImage && <img src={p.data.heroImage} alt={p.data.title} loading="lazy" width="600" height="338" />}
             <div class="blog-card-body">
               <p class="blog-date">{p.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
@@ -381,6 +383,8 @@ const testimonials = [
       -webkit-background-clip: text;
       color: transparent;
       animation: gradient-text-yoyo var(--grad-speed) ease-in-out infinite alternate;
+      /* Room for descenders ('g'/'y') under tight headline line-heights. */
+      padding-bottom: 0.1em;
     }
     @keyframes gradient-text-yoyo {
       0%   { background-position: 0% 50%; }

@@ -30,6 +30,11 @@ const href = url.toString();
   <h3>{headline}</h3>
   <p>{subline}</p>
   <a class="cta-button" href={href} rel="noopener">{buttonText}</a>
+  <p class="cta-alt">
+    Prefer to talk first? <a href="/book-a-call/">Book a free strategy call</a> ·
+    <a href="/pricing/">See pricing</a> ·
+    <a href="/compare/">Compare platforms</a>
+  </p>
 </aside>
 
 <style>
@@ -62,4 +67,11 @@ const href = url.toString();
   .cta-button:hover {
     background: #fb923c;
   }
+  .cta-alt {
+    margin: 1.1rem 0 0;
+    font-size: 0.88rem;
+    color: #94a3b8;
+  }
+  .cta-alt a { color: #93c5fd; text-decoration: none; }
+  .cta-alt a:hover { text-decoration: underline; }
 </style>

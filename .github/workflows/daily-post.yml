@@ -31,39 +31,46 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
 
-      # The Agent SDK shells out to the `claude` CLI, so it must be on PATH.
-      - name: Install Claude Code CLI
-        run: npm install -g @anthropic-ai/claude-code
-
-      # Install the claude-seo + claude-blog skill packs so the Agent SDK
-      # can use them the same way Josh's local Claude Code does.
-      - name: Install Claude skill packs
+      # Vendor the SKILL.md files so the script can inline them as system
+      # prompts. We don't run Claude Code anymore — too much startup token
+      # overhead for our rate limit. The skills' instructions are what we
+      # actually need; they're just markdown.
+      - name: Vendor skill packs
         run: |
           set -euo pipefail
-          mkdir -p ~/.claude/skills ~/.claude/agents
-          tmp=$(mktemp -d)
-          git clone --depth=1 https://github.com/AgriciDaniel/claude-seo  "$tmp/claude-seo"
-          git clone --depth=1 https://github.com/AgriciDaniel/claude-blog "$tmp/claude-blog"
-          # Each pack ships an install.sh that copies skills/* and agents/*
-          # into ~/.claude. Run them non-interactively.
-          bash "$tmp/claude-seo/install.sh"  || cp -R "$tmp/claude-seo/skills/."  ~/.claude/skills/
-          bash "$tmp/claude-blog/install.sh" || cp -R "$tmp/claude-blog/skills/." ~/.claude/skills/
-          [[ -d "$tmp/claude-seo/agents" ]]  && cp -R "$tmp/claude-seo/agents/."  ~/.claude/agents/ || true
-          [[ -d "$tmp/claude-blog/agents" ]] && cp -R "$tmp/claude-blog/agents/." ~/.claude/agents/ || true
-          ls ~/.claude/skills | head -40
+          mkdir -p .skills
+          git clone --depth=1 https://github.com/AgriciDaniel/claude-seo  .skills/claude-seo
+          git clone --depth=1 https://github.com/AgriciDaniel/claude-blog .skills/claude-blog
+          # Sanity check that the SKILL.md files we read at runtime exist.
+          for f in \
+            .skills/claude-seo/skills/seo/SKILL.md \
+            .skills/claude-seo/skills/seo-audit/SKILL.md \
+            .skills/claude-blog/skills/blog/SKILL.md \
+            .skills/claude-blog/skills/blog-write/SKILL.md \
+            .skills/claude-blog/skills/blog-audit/SKILL.md ; do
+            [[ -f "$f" ]] && echo "found $f" || echo "missing $f (will be skipped)"
+          done
 
       - name: Generate post
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_VOICE_ID: ${{ secrets.XAI_VOICE_ID }}
           KEYWORD_OVERRIDE: ${{ inputs.keyword }}
         run: node scripts/daily-seo-job.mjs
+
+      - name: Show generated post (debug)
+        if: always()
+        run: |
+          set +e
+          for f in src/content/blog/$(date -u +%Y-%m-%d)-*.md; do
+            [[ -f "$f" ]] && echo "=== $f ===" && head -20 "$f"
+          done
 
       - name: Smoke build
         run: npm run build
@@ -79,4 +86,18 @@ jobs:
           git add src/content/blog public/audio public/images
           SLUG=$(git diff --cached --name-only -- src/content/blog | head -1 | xargs -I{} basename {} .md)
           git commit -m "Publish: ${SLUG}"
-          git push origin HEAD:main
+          # Main may have moved during the run (this job takes minutes). Rebase
+          # our publish on top of whatever else landed before pushing. Retry
+          # once on transient races.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push attempt $attempt failed, retrying..."
+            sleep 5
+          done
+          echo "push failed after 3 attempts"
+          exit 1

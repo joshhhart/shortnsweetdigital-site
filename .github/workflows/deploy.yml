@@ -1,50 +1,46 @@
-name: Deploy site to GitHub Pages
+name: Deploy site to Cloudflare Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Daily-post pushes via GITHUB_TOKEN, which by design doesn't trigger
+  # downstream workflows. Listen for it explicitly.
+  workflow_run:
+    workflows: ["Daily SEO post", "Backfill hero images"]
+    types: [completed]
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: pages-deploy
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: 20
+          fetch-depth: 2  # IndexNow step needs diff against parent commit
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
           cache: npm
 
-      - name: Install
-        run: npm ci
+      - run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: dist
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=shortnsweetdigital --branch=main
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Ping IndexNow
+        run: node scripts/ping-indexnow.mjs

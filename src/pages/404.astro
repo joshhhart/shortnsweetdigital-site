@@ -30,7 +30,7 @@ const recent = (await getCollection('blog', ({ data }) => !data.draft))
         <ul class="recent">
           {recent.map((p) => (
             <li>
-              <a href={`/blog/${p.slug}/`}>
+              <a href={`/blog/${p.id}/`}>
                 <strong>{p.data.title}</strong>
                 <span>{p.data.description}</span>
               </a>

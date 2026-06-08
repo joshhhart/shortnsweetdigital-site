@@ -68,7 +68,13 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <meta name="application-name" content="Short n Sweet Digital" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
     <link rel="alternate" type="application/rss+xml" title="Short n Sweet Digital — Blog" href="/rss.xml" />
+    <!-- Preconnect to render-critical third-party origins to drop the
+         TCP+TLS handshake off the first request to each (mobile LCP win). -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://storage.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://images.leadconnectorhq.com" crossorigin />
+    <link rel="dns-prefetch" href="https://services.leadconnectorhq.com" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" /></noscript>
@@ -109,6 +115,60 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     {breadcrumbLd && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
     )}
+    {/* P2-12 from the May 2026 audit: sitewide Organization + WebSite entity
+        graph so every page (not just the homepage) gives Google the brand
+        anchor. Linked via @id so other JSON-LD on the page can reference it. */}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': 'https://shortnsweetdigital.com/#organization',
+          name: 'Short n Sweet Digital',
+          url: 'https://shortnsweetdigital.com/',
+          logo: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
+          description: 'White-label GoHighLevel agency helping small businesses and agencies replace 8–12 marketing tools with one AI-powered platform.',
+          sameAs: [
+            'https://www.facebook.com/shortnsweetmarketing',
+            'https://www.instagram.com/shortnsweetdigital',
+            'https://www.linkedin.com/company/shortnsweet-marketing/',
+          ],
+        },
+        {
+          '@type': 'WebSite',
+          '@id': 'https://shortnsweetdigital.com/#website',
+          url: 'https://shortnsweetdigital.com/',
+          name: 'Short n Sweet Digital',
+          publisher: { '@id': 'https://shortnsweetdigital.com/#organization' },
+        },
+        {
+          // LocalBusiness — service-area type since we serve clients
+          // remotely across the US from Palm City, FL. 24/7 because the
+          // platform is AI-run.
+          '@type': ['LocalBusiness', 'ProfessionalService'],
+          '@id': 'https://shortnsweetdigital.com/#localbusiness',
+          name: 'Short n Sweet Digital',
+          image: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
+          url: 'https://shortnsweetdigital.com/',
+          telephone: '+1-877-455-7727',
+          priceRange: '$$',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Palm City',
+            addressRegion: 'FL',
+            addressCountry: 'US',
+          },
+          areaServed: { '@type': 'Country', name: 'United States' },
+          openingHoursSpecification: [{
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            opens: '00:00',
+            closes: '23:59',
+          }],
+          parentOrganization: { '@id': 'https://shortnsweetdigital.com/#organization' },
+        },
+      ],
+    })} />
   </head>
   <body>
     <a class="snd-skip-link" href="#main-content">Skip to content</a>
