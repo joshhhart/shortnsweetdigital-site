@@ -5,12 +5,8 @@
   align-items: center;
   justify-content: center;
   font-weight: inherit;
-  /* overflow: hidden was clipping descenders ('g' / 'y') when paired with
-     the tight line-height: 1.05 used in the hero h1. Visible + extra
-     padding lets letters render in full. */
   overflow: visible;
   line-height: inherit;
-  padding-bottom: 0.1em;
 }
 
 .animated-gradient-text.with-border {
@@ -47,6 +43,13 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  /* background-clip: text only paints within this element's background area.
+     With background-size: 300% 100%, the vertical 100% is the content-box
+     height — which at the parent's line-height: 1.05 is shorter than the
+     glyphs themselves, so ascenders/descenders render transparent. Taller
+     line-height + vertical padding enlarge the paint area to cover them. */
+  line-height: 1.25;
+  padding: 0.12em 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
