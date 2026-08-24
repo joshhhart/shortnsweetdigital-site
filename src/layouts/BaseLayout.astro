@@ -45,6 +45,17 @@ const autoCrumbs = (() => {
   return crumbs;
 })();
 
+// GEO/AIO: every page has a markdown twin at <path-minus-trailing-slash>.md
+// (homepage -> /index.md). Advertised via rel=alternate so AI crawlers and
+// answer engines can fetch clean markdown instead of parsing HTML.
+const mdAlternate = (() => {
+  if (isErrorPage) return null;
+  const path = Astro.url.pathname.replace(/\/$/, '');
+  if (!path) return '/index.md';
+  if (path === '/blog') return null; // blog index has no .md twin; /llms.txt covers it
+  return `${path}.md`;
+})();
+
 const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
   ? {
       '@context': 'https://schema.org',
@@ -68,6 +79,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <meta name="application-name" content="Short n Sweet Digital" />
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png" />
     <link rel="alternate" type="application/rss+xml" title="Short n Sweet Digital — Blog" href="/rss.xml" />
+    {mdAlternate && <link rel="alternate" type="text/markdown" title="Markdown version" href={mdAlternate} />}
     <!-- Preconnect to render-critical third-party origins to drop the
          TCP+TLS handshake off the first request to each (mobile LCP win). -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
