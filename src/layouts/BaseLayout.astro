@@ -91,6 +91,10 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" /></noscript>
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Google Preferred Sources button library
+         (https://developers.google.com/search/docs/appearance/preferred-sources).
+         Renders every [google-add-preferred-source-btn] element on the page. -->
+    <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
     <!-- Site-wide overrides (BorderGlow + StaggeredMenu + GHL polish) -->
     <script src="/assets/site-overrides.js" defer></script>
     <!-- GA4 -->
@@ -209,6 +213,15 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
       Start free trial →
     </a>
     <footer class="site-footer">
+      <div class="preferred-source">
+        <p>Like what you're reading? Get more of us in your Google results:</p>
+        <div google-add-preferred-source-btn data-theme="dark"></div>
+        <noscript>
+          <a href="https://www.google.com/preferences/source?q=shortnsweetdigital.com" rel="noopener">
+            Add Short n Sweet Digital as a preferred source on Google
+          </a>
+        </noscript>
+      </div>
       <p>&copy; {new Date().getFullYear()} Short n Sweet Digital. All rights reserved.</p>
     </footer>
 
@@ -323,6 +336,12 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         .snd-mobile-cta { display: block; }
         main { padding-bottom: 5rem; }
       }
+      .preferred-source {
+        display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .preferred-source p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+      .preferred-source a { color: #93c5fd; }
       .site-footer {
         border-top: 1px solid var(--border);
         padding: 1.5rem;
