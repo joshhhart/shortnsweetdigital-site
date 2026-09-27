@@ -641,9 +641,11 @@
         var isLogo =
           (node.matches && node.matches('a.brand, .nav-menu-wrapper .branding a, .nav-menu-wrapper .branding img, .sm-logo, .sm-logo img, header img.logo, header .logo a, header [class*="logo"] a, header [class*="logo"] img')) ||
           (node.getAttribute && (
-            (node.getAttribute('aria-label') || '').toLowerCase().indexOf('mallo') !== -1 ||
+            (node.getAttribute('aria-label') || '').toLowerCase().indexOf('mallo digital') !== -1 ||
             (node.getAttribute('alt') || '').toLowerCase().indexOf('shortnsweet') !== -1
           ));
+        // Mascots (peeking bot, chat skin) are never the logo.
+        if (node.closest && node.closest('.mallo-peek, .mallo-chat-skin, .mascot')) isLogo = false;
         if (isLogo) {
           e.preventDefault();
           e.stopImmediatePropagation();
