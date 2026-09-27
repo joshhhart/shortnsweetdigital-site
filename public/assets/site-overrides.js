@@ -44,14 +44,14 @@
         background-color:rgba(26,15,46,0.96)!important;
         background-image:linear-gradient(180deg,rgba(26,15,46,0.96),rgba(20,10,36,0.96))!important;
       }
-      .snd-darkened *,.snd-darkened *:hover,.snd-darkened:hover *{
+      .snd-darkened *:not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)),.snd-darkened *:not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)):hover,.snd-darkened:hover *:not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)){
         background:transparent!important;background-color:transparent!important;background-image:none!important;
       }
-      .snd-darkened p,.snd-darkened span,.snd-darkened li,.snd-darkened td,.snd-darkened strong,.snd-darkened em,.snd-darkened div,.snd-darkened label{color:#efe6ff!important}
+      .snd-darkened :is(p,span,li,td,strong,em,div,label):not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)){color:#efe6ff!important}
       .snd-darkened h1,.snd-darkened h2,.snd-darkened h3,.snd-darkened h4,.snd-darkened h5,.snd-darkened h6{color:#ffffff!important}
-      .snd-darkened:hover p,.snd-darkened:hover span,.snd-darkened:hover li,.snd-darkened:hover td,.snd-darkened:hover strong,.snd-darkened:hover em,.snd-darkened:hover div,.snd-darkened:hover label{color:#efe6ff!important}
+      .snd-darkened:hover :is(p,span,li,td,strong,em,div,label):not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)){color:#efe6ff!important}
       .snd-darkened:hover h1,.snd-darkened:hover h2,.snd-darkened:hover h3,.snd-darkened:hover h4,.snd-darkened:hover h5,.snd-darkened:hover h6{color:#ffffff!important}
-      .snd-darkened a,.snd-darkened a:hover,.snd-darkened a:visited{color:#3b9bff!important}
+      .snd-darkened a:not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)),.snd-darkened a:not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)):hover,.snd-darkened a:not(:is(.btn-primary,.btn-secondary,.eyebrow,.gradient-eyebrow,.highlight-label,.win-label,.topic-chip,.stat-number,.mascot,.mascot *,.svc-icon,.svc-icon *)):visited{color:#3b9bff!important}
       .snd-darkened svg:not(.svc-icon svg),.snd-darkened svg:not(.svc-icon svg) *,.snd-darkened i,.snd-darkened [class*="icon"]:not(.svc-icon){color:#3b9bff!important;fill:#3b9bff!important;stroke:#3b9bff!important}
 
       /* ---- Image fade-in ---- */
