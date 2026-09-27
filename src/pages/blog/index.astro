@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Mascot from '../../components/Mascot.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -16,6 +17,7 @@ const fmt = (d: Date) =>
 >
   <section class="blog-hero" data-snd-reveal>
     <p class="eyebrow">The Blog</p>
+    <Mascot name="puff" size={140} eager />
     <h1>Insights, comparisons &amp; playbooks</h1>
     <p class="lede">
       Honest comparisons, agency-tested playbooks, and AI automation

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
 
 // P0-1 from the May 2026 SEO audit: /pricing returned a 404 while indexed at
 // ~position 5 and taking 45 sessions/mo. This restores it as a real route.
@@ -112,6 +113,7 @@ const faqLd = {
 
   <section class="pricing" data-snd-reveal>
     <p class="eyebrow">Pricing</p>
+    <Mascot name="toasty" size={140} eager />
     <h1>Simple pricing. One platform. No surprise renewals.</h1>
     <p class="lede">
       Replace 8–12 marketing tools with one system — set up and supported by us.

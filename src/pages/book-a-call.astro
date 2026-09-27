@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
 
 const LEARN_URL = 'https://start.shortnsweetdigital.com/si_affiliates';
 
@@ -75,6 +76,7 @@ const QUESTIONS = [
 
   <section class="book" data-snd-reveal>
     <p class="eyebrow">Book a call</p>
+    <Mascot name="blip" size={140} eager />
     <h1>Free 30-min strategy call</h1>
     <p class="lede">
       We work with operators who already have revenue and want to grow faster

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
 
 const orgLd = {
   '@context': 'https://schema.org',
@@ -23,6 +24,7 @@ const orgLd = {
 
   <section class="about" data-snd-reveal>
     <p class="eyebrow">About</p>
+    <Mascot name="bun" size={140} eager />
     <h1>One platform. Done right. Built for small businesses.</h1>
     <p class="lede">
       Mallo Digital is a white-label partner of GoHighLevel — the all-in-one

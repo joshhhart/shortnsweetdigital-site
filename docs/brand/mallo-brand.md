@@ -4,7 +4,12 @@ Formerly Short n Sweet Digital. Short, soft, sweet.
 
 ## Name
 - Brand: **Mallo Digital** (short form: **Mallo**)
-- Mascot: **Mallo**, a squishy alien mochi marshmallow (one curly antenna with a glowing blue orb, big glossy eyes, pink blush, tiny feet)
+- Mascots: **the Mallo crew**, five animated 3D characters used around the site
+  - **Puff**: cotton candy cloud raining sprinkles (logo, favicon, homepage hero, blog)
+  - **Jelli**: pink gummy jellyfish (homepage stats, 404)
+  - **Bun**: marshmallow bunny (homepage services, about)
+  - **Blip**: floating orb robot (texting section, book a call)
+  - **Toasty**: toasted marshmallow on a stick (final CTA, pricing)
 - Domains checked open on 2026-09-27: `mallodigital.com`, `mallo.digital` (not yet purchased)
 - Unchanged for now: `shortnsweetdigital.com` URLs, `app.shortnsweetdigital.com`, affiliate code `fp_ref=shortnsweet53`, social handles, legal pages
 
@@ -21,11 +26,12 @@ Formerly Short n Sweet Digital. Short, soft, sweet.
 Wordmark is lowercase `mallo` in a rounded heavy sans (Nunito 800), with `DIGITAL` tracked out underneath.
 
 ## Assets
-- `public/assets/mallo.webp`: animated 3D mascot (bounce, wave, blink loop, transparent animated WebP)
-- `public/assets/mallo-still.webp`: still frame, shown to visitors who prefer reduced motion
-- `public/assets/brand-mark.svg`: header/footer logo (3D mascot + wordmark)
+- `public/assets/mascots/<name>.webp`: animated loop per character (transparent animated WebP, desktop)
+- `public/assets/mascots/<name>-still.webp`: still frame, served on phones and for reduced motion
+- `src/components/Mascot.astro`: drop in `<Mascot name="puff" />` anywhere; handles the desktop/mobile swap
+- `public/assets/brand-mark.svg`: header/footer logo (Puff + wordmark)
 - `public/favicon.png`: icon
-- `docs/brand/mallo-3d.html`: the three.js scene Mallo is rendered from. Open it in a browser (add `?play=1` to watch it animate, `&bg=%230b1020` for a dark backdrop) and screenshot, or tweak poses and colors there
+- `docs/brand/mascots-3d.html`: the three.js scene all five are rendered from. Open with `?m=toasty|jelli|bun|puff|blip` (add `&bg=%230b1020` for a dark backdrop)
 
 ## 3D mascot render prompt (Meta Muse style)
 Use this in Higgsfield, Midjourney, or any image model to make the hero 3D version.

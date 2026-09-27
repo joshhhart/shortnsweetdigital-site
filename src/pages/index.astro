@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GradientText from '../components/reactbits/GradientText.jsx';
+import Mascot from '../components/Mascot.astro';
 import { getCollection } from 'astro:content';
 
 const brandColors = ['#3b9bff', '#188bf6', '#5271FF', '#93c5fd', '#3b9bff'];
@@ -106,6 +107,7 @@ const testimonials = [
   <!-- HERO -->
   <section class="hero bleed">
     <div class="hero-inner">
+      <Mascot name="puff" size={200} placement="corner" eager />
       <p class="eyebrow gradient-eyebrow" data-snd-reveal>GoHighLevel Agency · Trusted by 500+ businesses</p>
       <h1 class="hero-h1" data-snd-reveal>
         The
@@ -136,6 +138,7 @@ const testimonials = [
   <!-- STATS — TODAY'S CONSUMER -->
   <section class="stats-section bleed" data-snd-reveal>
     <div class="container">
+      <Mascot name="jelli" size={130} placement="corner" />
       <h2 class="section-h">Understand What <GradientText client:visible colors={brandColors} animationSpeed={7}>Today’s Consumer</GradientText> Prefers</h2>
       <div class="stat-grid">
         <article class="snd-darkened stat-card">
@@ -209,6 +212,7 @@ const testimonials = [
   <!-- SERVICES GRID -->
   <section class="services-section bleed" data-snd-reveal>
     <div class="container">
+      <Mascot name="bun" size={130} placement="corner" />
       <h2 class="section-h"><GradientText client:visible colors={brandColors} animationSpeed={7}>All The Tools</GradientText> You Need To Scale, In One Place</h2>
       <p class="section-lede">One login. One bill. Every channel your customers actually use.</p>
       <div class="services-grid">
@@ -226,10 +230,13 @@ const testimonials = [
   <!-- CONTROL — secondary stats -->
   <section class="control-section bleed" data-snd-reveal>
     <div class="container">
-      <picture>
-        <source srcset="/assets/mallo-still.webp" media="(prefers-reduced-motion: reduce)" />
-        <img class="mallo-mascot" src="/assets/mallo.webp" alt="Mallo, the alien marshmallow mascot, bouncing and waving" width="431" height="369" loading="lazy" />
-      </picture>
+      <div class="mascot-crew" aria-label="Meet the Mallo crew">
+        <Mascot name="toasty" size={110} />
+        <Mascot name="jelli" size={120} />
+        <Mascot name="puff" size={150} />
+        <Mascot name="bun" size={110} />
+        <Mascot name="blip" size={120} />
+      </div>
       <h2 class="section-h">We Built <GradientText client:visible colors={brandColors} animationSpeed={7}>Mallo</GradientText> To Put Your Business In Control.</h2>
       <p class="section-lede">
         Replace the 8–12 marketing tools you’re juggling with one AI-powered platform — built for solo operators and small teams.
@@ -258,6 +265,7 @@ const testimonials = [
   <section class="feature-section bleed" data-snd-reveal>
     <div class="container feature-row">
       <div class="feature-copy">
+        <Mascot name="blip" size={140} />
         <p class="eyebrow gradient-eyebrow">Why Text Wins</p>
         <h2 class="section-h">Reach customers where they actually <GradientText client:visible colors={brandColors} animationSpeed={6}>respond</GradientText>.</h2>
         <ul class="feature-list">
@@ -311,6 +319,7 @@ const testimonials = [
   <section class="final-cta bleed" data-snd-reveal>
     <div class="container">
       <div class="final-card snd-darkened">
+        <Mascot name="toasty" size={120} />
         <h2>Ready to consolidate your stack?</h2>
         <p>No credit card required. Free 14-day trial. Live support every step of the way.</p>
         <div class="hero-ctas">
@@ -568,7 +577,10 @@ const testimonials = [
       .services-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 3rem; }
     }
-    .mallo-mascot { display: block; margin: 0 auto 12px; width: 240px; height: auto; filter: drop-shadow(0 12px 28px rgba(59,155,255,.3)); }
+    .mascot-crew { display: flex; align-items: flex-end; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .mascot-crew :global(.mascot) { margin: 0; }
+    @media (min-width: 769px) { .hero-inner :global(.mascot-corner) { top: -90px; right: -20px; } }
+    .hero-inner, .stats-section .container, .services-section .container { position: relative; }
 </style>
 
   <script is:inline>
