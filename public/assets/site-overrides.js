@@ -251,6 +251,8 @@
       }
       .snd-sm-panel-item.cta:hover{ filter: brightness(1.08); transform: translateY(-2px); }
       .snd-sm-panel-item.cta .snd-sm-panel-item-label{ transform: none; }
+      /* rows clip their labels for the slide-in; let the CTA row show its whole glow */
+      .snd-sm-panel-item-wrap:has(.cta){ overflow: visible; padding: 4px 0 14px; }
 
       .snd-sm-socials{ margin-top: auto; padding-top: 2rem; }
       .snd-sm-socials-title{
