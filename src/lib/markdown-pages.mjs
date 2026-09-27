@@ -179,7 +179,7 @@ Book a **free 30-minute strategy call** to scope your CRM, automation, and AI se
     path: '/services/',
     title: 'Services — Mallo Digital',
     description:
-      'Reviews, messaging, web chat, CRM, payments, missed call text back, an AI assistant and a mobile app in one platform, set up for you by Mallo Digital.',
+      'Reviews, messaging, web chat, CRM, funnels and websites, payments, missed call text back, an AI assistant and a mobile app in one platform, set up for you by Mallo Digital.',
     markdown: `# Services
 
 Mallo Digital replaces the 8–12 marketing tools most small businesses juggle with one AI-powered platform built on GoHighLevel. Every plan includes all of the services below.
@@ -196,7 +196,7 @@ ${services.map((s) => `## ${s.title}\n\n${s.body}\n\n${s.detail}\n\nLink: ${SITE
 ## Frequently asked questions
 
 **What services does Mallo Digital offer?**
-One platform covering online reviews, a unified messaging inbox, website chat, CRM, payments, missed call text back, an AI assistant and a mobile app. It runs on GoHighLevel and replaces the 8 to 12 separate tools most small businesses pay for.
+One platform covering online reviews, a unified messaging inbox, website chat, CRM, funnels and websites, payments, missed call text back, an AI assistant and a mobile app. It runs on GoHighLevel and replaces the 8 to 12 separate tools most small businesses pay for.
 
 **Do I have to set it all up myself?**
 No. We do a done-for-you setup: we connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations with you.

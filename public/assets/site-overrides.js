@@ -986,7 +986,7 @@
               <li><a href="https://shortnsweetdigital.com/services/#messaging" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Email &amp; SMS</a></li>
               <li><a href="https://shortnsweetdigital.com/services/#ai-assistant" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Web Chat &amp; AI</a></li>
               <li><a href="https://shortnsweetdigital.com/services/#reviews" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Reputation</a></li>
-              <li><a href="https://shortnsweetdigital.com/services/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Funnels &amp; Sites</a></li>
+              <li><a href="https://shortnsweetdigital.com/services/#funnels" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Funnels &amp; Websites</a></li>
             </ul>
           </div>
           <div>

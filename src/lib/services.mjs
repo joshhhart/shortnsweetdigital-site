@@ -26,6 +26,12 @@ export const services = [
     detail: 'Contacts, pipelines, tags and custom fields with source tracking on every lead, so you know which ads, pages and channels actually bring in revenue.',
   },
   {
+    slug: 'funnels',
+    title: 'Funnels & Websites',
+    body: 'Launch fast, mobile-friendly websites and sales funnels that turn visitors into booked leads.',
+    detail: 'Drag-and-drop websites, landing pages and multi-step funnels with built-in forms, calendars, order forms and A/B testing, all connected to your CRM so every signup triggers your follow-up automatically.',
+  },
+  {
     slug: 'payments',
     title: 'Payments',
     body: 'Easy text-2-pay invoicing. Simplify your client billing & get paid faster.',
