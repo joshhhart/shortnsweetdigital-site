@@ -1,6 +1,7 @@
 <html><body style="margin:0;background:transparent"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 const W=900,H=900;
 const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(W,H);r.setPixelRatio(1);
@@ -8,7 +9,7 @@ r.toneMapping=THREE.ACESFilmicToneMapping;r.outputColorSpace=THREE.SRGBColorSpac
 document.body.appendChild(r.domElement);
 const s=new THREE.Scene();const pm=new THREE.PMREMGenerator(r);s.environment=pm.fromScene(new RoomEnvironment(),0.04).texture;
 const bg=new URLSearchParams(location.search).get('bg');if(bg)s.background=new THREE.Color(bg);
-const cam=new THREE.PerspectiveCamera(30,1,0.1,100);cam.position.set(0,1.6,8.4);cam.lookAt(0,1.25,0);
+const cam=new THREE.PerspectiveCamera(30,1,0.1,100);cam.position.set(0,1.7,9.2);cam.lookAt(0,1.35,0);
 // marshmallow body: lathe profile, soft rounded cylinder
 const pts=[];const R=1.2,h=2.05,rr=0.5;
 pts.push(new THREE.Vector2(0,-h/2));
@@ -35,12 +36,24 @@ for(const sx of [-1,1]){
  const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(sx*0.3,2.0,0),new THREE.Vector3(sx*0.42,2.45,0.05),new THREE.Vector3(sx*0.75,2.75,0.1)]);
  const st=new THREE.Mesh(new THREE.TubeGeometry(curve,24,0.055,12),mallowM);st.castShadow=true;g.add(st);
  const bulb=new THREE.Mesh(new THREE.SphereGeometry(0.17,32,32),new THREE.MeshPhysicalMaterial({color:0x3b9bff,emissive:0x2a7fff,emissiveIntensity:1.4,roughness:0.2,clearcoat:1}));bulb.position.set(sx*0.78,2.8,0.1);g.add(bulb);
- // stubby arms
- const arm=new THREE.Mesh(new THREE.SphereGeometry(0.28,32,32),mallowM);arm.scale.set(0.8,1.1,0.8);arm.position.set(sx*1.36,sx>0?1.35:0.8,0.25);arm.rotation.z=sx>0?-0.9:0.5;arm.castShadow=true;g.add(arm);
+ // arms: right waves, left holds phone
+ if(sx>0){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(0.2,0.45,12,24),mallowM);arm.position.set(1.45,1.95,0.2);arm.rotation.z=-0.45;arm.castShadow=true;g.add(arm);
+  const hand=new THREE.Mesh(new THREE.SphereGeometry(0.26,32,32),mallowM);hand.position.set(1.62,2.3,0.22);g.add(hand);
+  for(const [a,rad] of [[0.2,0.62],[0.55,0.72]]){const arc=new THREE.Mesh(new THREE.TorusGeometry(rad,0.025,8,32,0.9),new THREE.MeshBasicMaterial({color:0x7cc4ff}));arc.position.set(1.62,2.3,0.22);arc.rotation.z=a-0.2;g.add(arc);}
+ }else{
+  const arm=new THREE.Mesh(new THREE.CapsuleGeometry(0.2,0.35,12,24),mallowM);arm.position.set(-1.2,0.75,0.75);arm.rotation.z=1.1;arm.rotation.y=0.6;arm.castShadow=true;g.add(arm);
+  const ph=new THREE.Group();ph.position.set(-1.05,1.05,1.25);ph.rotation.set(-0.1,0.45,0.12);g.add(ph);
+  const bodyP=new THREE.Mesh(new RoundedBoxGeometry(0.62,1.1,0.08,6,0.08),new THREE.MeshPhysicalMaterial({color:0x1e293b,roughness:0.3,clearcoat:1}));bodyP.castShadow=true;ph.add(bodyP);
+  const scr=new THREE.Mesh(new THREE.PlaneGeometry(0.52,0.98),new THREE.MeshBasicMaterial({color:0x0b2a55}));scr.position.z=0.042;ph.add(scr);
+  const b1=new THREE.Mesh(new RoundedBoxGeometry(0.34,0.16,0.01,4,0.06),new THREE.MeshBasicMaterial({color:0x3b9bff}));b1.position.set(-0.06,0.25,0.05);ph.add(b1);
+  const b2=new THREE.Mesh(new RoundedBoxGeometry(0.3,0.16,0.01,4,0.06),new THREE.MeshBasicMaterial({color:0xffb3cf}));b2.position.set(0.08,0.02,0.05);ph.add(b2);
+  const b3=new THREE.Mesh(new RoundedBoxGeometry(0.24,0.16,0.01,4,0.06),new THREE.MeshBasicMaterial({color:0x3b9bff}));b3.position.set(-0.1,-0.21,0.05);ph.add(b3);
+  const hand=new THREE.Mesh(new THREE.SphereGeometry(0.24,32,32),mallowM);hand.scale.set(1,0.8,0.8);hand.position.set(-0.78,0.62,1.35);g.add(hand);
+ }
 }
 // smile
 const sm=new THREE.Mesh(new THREE.TorusGeometry(0.11,0.025,12,32,Math.PI),eyeM);sm.rotation.z=Math.PI;sm.position.set(0,0.92,1.36);g.add(sm);
-g.rotation.y=-0.18;
+g.rotation.y=-0.1;
 // ground shadow
 const gr=new THREE.Mesh(new THREE.PlaneGeometry(12,12),new THREE.ShadowMaterial({opacity:0.28}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;s.add(gr);
 const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(3,6,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=8;s.add(key);

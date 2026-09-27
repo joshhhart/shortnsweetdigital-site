@@ -21,7 +21,7 @@ Formerly Short n Sweet Digital. Short, soft, sweet.
 Wordmark is lowercase `mallo` in a rounded heavy sans (Nunito 800), with `DIGITAL` tracked out underneath.
 
 ## Assets
-- `public/assets/mallo-3d.png`: 3D mascot render (transparent)
+- `public/assets/mallo-3d.webp`: 3D mascot render, waving with a phone (transparent WebP)
 - `public/assets/brand-mark.svg`: header/footer logo (3D mascot + wordmark)
 - `public/favicon.png`: icon
 - `docs/brand/mallo-3d.html`: the three.js scene Mallo is rendered from. Open it in a browser (add `?bg=%230b1020` for a dark backdrop) and screenshot, or tweak poses and colors there
