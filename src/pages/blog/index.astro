@@ -7,6 +7,22 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+// Topic buckets for the filter chips (derived from the slug/title).
+const topicOf = (id: string, title: string) => {
+  const t = `${id} ${title}`.toLowerCase();
+  if (/\bvs\b|vrs|compared/.test(t)) return 'compare';
+  if (/pric|cost|worth|plan/.test(t)) return 'pricing';
+  if (/-for-|real estate|dental|law firm|plumb|hvac|med spa|trainer|contractor/.test(t)) return 'industries';
+  return 'guides';
+};
+const topics = [
+  { key: 'all', label: 'All posts' },
+  { key: 'compare', label: 'Comparisons' },
+  { key: 'guides', label: 'How-to guides' },
+  { key: 'industries', label: 'Industries' },
+  { key: 'pricing', label: 'Pricing' },
+];
+
 const fmt = (d: Date) =>
   new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(d);
 ---
@@ -38,9 +54,15 @@ const fmt = (d: Date) =>
     </form>
   </section>
 
+  <div class="topic-chips" role="group" aria-label="Filter posts by topic">
+    {topics.map((t, i) => (
+      <button type="button" class="topic-chip" data-topic={t.key} aria-pressed={i === 0 ? 'true' : 'false'}>{t.label}</button>
+    ))}
+  </div>
+
   <ul class="post-grid">
-    {posts.map((post) => (
-      <li class="snd-bg-card">
+    {posts.map((post, i) => (
+      <li class:list={['snd-bg-card', { featured: i === 0 }]} data-topic={topicOf(post.id, post.data.title)}>
         <a href={`/blog/${post.id}/`}>
           {post.data.heroImage ? (
             <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
@@ -57,6 +79,16 @@ const fmt = (d: Date) =>
       </li>
     ))}
   </ul>
+
+  <script>
+    const chips = document.querySelectorAll<HTMLButtonElement>('.topic-chip');
+    const cards = document.querySelectorAll<HTMLElement>('.post-grid li');
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      const topic = chip.dataset.topic;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      cards.forEach((card) => { card.hidden = topic !== 'all' && card.dataset.topic !== topic; });
+    }));
+  </script>
 </BaseLayout>
 
 <style>

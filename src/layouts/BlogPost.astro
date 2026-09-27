@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import AudioPlayer from '../components/AudioPlayer.astro';
+import Mascot from '../components/Mascot.astro';
 
 type Heading = { depth: number; slug: string; text: string };
 type RelatedPost = { slug: string; title: string; description: string; heroImage?: string; pubDate: Date };
@@ -102,6 +103,7 @@ const ldJson = {
     ...(comparison ? [comparison] : []),
   ],
 };
+const crew = ['toasty', 'jelli', 'bun', 'puff', 'blip'] as const;
 ---
 
 <BaseLayout
@@ -158,6 +160,7 @@ const ldJson = {
 
     {relatedPosts.length > 0 && (
       <section class="related" aria-labelledby="related-title">
+        <Mascot name={crew[[...slug].reduce((n, c) => n + c.charCodeAt(0), 0) % crew.length]} size={110} />
         <h2 id="related-title">Keep reading</h2>
         <div class="related-grid">
           {relatedPosts.map((p) => (
