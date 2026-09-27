@@ -7,8 +7,8 @@ dateModified: 2026-08-06
 tags: ["gohighlevel", "woocommerce", "e-commerce-automation", "order-management", "customer-sync", "integration-guide", "shopify-alternative", "sales-automation"]
 keywords: ["gohighlevel woocommerce integration", "how to integrate woocommerce gohighlevel", "sync woocommerce orders gohighlevel", "gohighlevel ecommerce automation", "woocommerce crm integration", "automate woocommerce sales funnel"]
 targetKeyword: "gohighlevel woocommerce integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital integrates WooCommerce stores with GoHighLevel for 24+ partner agencies (2024–2026). Field data: Average setup time 45–90 minutes. Post-integration, agencies report 35–50% reduction in manual order entry, 40–60% faster customer follow-up (orders trigger automated SMS/email within minutes vs. 24-hour manual delays), and 15–25% revenue lift from automated upsell sequences. Verification: Data from agency project logs, WooCommerce/GHL sync audits, and customer interview summaries. See 'Research Methodology' section for scope and limitations."
+author: "Mallo Digital"
+authorBio: "Mallo Digital integrates WooCommerce stores with GoHighLevel for 24+ partner agencies (2024–2026). Field data: Average setup time 45–90 minutes. Post-integration, agencies report 35–50% reduction in manual order entry, 40–60% faster customer follow-up (orders trigger automated SMS/email within minutes vs. 24-hour manual delays), and 15–25% revenue lift from automated upsell sequences. Verification: Data from agency project logs, WooCommerce/GHL sync audits, and customer interview summaries. See 'Research Methodology' section for scope and limitations."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-06-gohighlevel-woocommerce-integration-setup.jpg"
@@ -65,7 +65,7 @@ This guide walks you through integrating WooCommerce with GoHighLevel in 7 steps
 - **Recency**: Data from 2024–2026 reflects current WooCommerce and GHL versions. Integration methods and platform features may evolve.
 - **Verification**: Setup-time and sync-reliability data from agency project logs, WooCommerce event logs, and GHL sync dashboards. Revenue-lift data from agency-tracked order analytics and conversion reports.
 
-For full case study datasets or partner agency contact information, reach out to Short n Sweet Digital.
+For full case study datasets or partner agency contact information, reach out to Mallo Digital.
 
 ---
 

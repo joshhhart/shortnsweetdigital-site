@@ -7,8 +7,8 @@ dateModified: 2026-09-04
 tags: ["gohighlevel", "white-label", "client-contracts", "saas-terms", "agency-agreements", "reseller-contracts", "legal-templates"]
 keywords: ["white label client contract", "gohighlevel client contract template", "saas client agreement", "reseller contract template", "agency service agreement"]
 targetKeyword: "gohighlevel white label client contract templates"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. Since 2024, we've helped 80+ agencies implement compliant client contracts and service agreements. This post includes three template contracts based on real deployments; we are not attorneys and do not provide legal advice. All templates must be reviewed and customized by a qualified attorney licensed in your jurisdiction before use."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label agency. Since 2024, we've helped 80+ agencies implement compliant client contracts and service agreements. This post includes three template contracts based on real deployments; we are not attorneys and do not provide legal advice. All templates must be reviewed and customized by a qualified attorney licensed in your jurisdiction before use."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-04-gohighlevel-white-label-client-contract-templates.jpg"
@@ -74,13 +74,13 @@ The contract templates in this post are provided as educational examples only. T
 4. **Disclose affiliate relationships** — If you earn a commission from GoHighLevel or any third-party vendor mentioned in the agreement, disclose this upfront in the contract or in a separate rider
 5. **Test with your specific clients** — Use an attorney who understands your business model and client base
 
-**Short n Sweet Digital is not responsible for any legal disputes, breaches, or liabilities arising from the use of these templates without proper attorney review.**
+**Mallo Digital is not responsible for any legal disputes, breaches, or liabilities arising from the use of these templates without proper attorney review.**
 
 ---
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital earns a commission when you sign up for GoHighLevel through the affiliate link provided in this post. You are not charged extra—the commission comes from GoHighLevel's partner program budget. This disclosure is made in the interest of transparency. If you prefer to sign up directly without the affiliate link, visit https://www.gohighlevel.com and create an account—features and pricing are identical.
+Mallo Digital earns a commission when you sign up for GoHighLevel through the affiliate link provided in this post. You are not charged extra—the commission comes from GoHighLevel's partner program budget. This disclosure is made in the interest of transparency. If you prefer to sign up directly without the affiliate link, visit https://www.gohighlevel.com and create an account—features and pricing are identical.
 
 **All contract terms, pricing advice, and recommendations in this post are based on our implementation experience with 80+ agencies, not on commission incentives.**
 

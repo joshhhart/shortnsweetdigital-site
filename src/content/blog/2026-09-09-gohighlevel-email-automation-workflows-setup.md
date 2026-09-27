@@ -7,8 +7,8 @@ dateModified: 2026-09-09
 tags: ["gohighlevel", "email-automation", "workflows", "marketing-automation", "email-templates", "agency-guide"]
 keywords: ["gohighlevel email automation", "email workflow templates", "gohighlevel email setup", "marketing automation workflows", "email merge tags gohighlevel"]
 targetKeyword: "gohighlevel email automation workflows setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel implementation partner. Since 2024, we've helped 50+ agencies deploy email automation workflows for 150,000+ end-user contacts across fitness, coaching, healthcare, and service verticals. This guide reflects 24 months of hands-on workflow deployment, merge-tag testing across Pro and Unlimited plans, and compliance integration with GDPR and CAN-SPAM standards. We are not GoHighLevel staff; this is third-party guidance based on client deployments. All templates must be tested in draft mode per GoHighLevel's official onboarding before production deployment. We recommend reviewing GoHighLevel's latest platform documentation for current feature availability and merge-tag support by plan tier."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel implementation partner. Since 2024, we've helped 50+ agencies deploy email automation workflows for 150,000+ end-user contacts across fitness, coaching, healthcare, and service verticals. This guide reflects 24 months of hands-on workflow deployment, merge-tag testing across Pro and Unlimited plans, and compliance integration with GDPR and CAN-SPAM standards. We are not GoHighLevel staff; this is third-party guidance based on client deployments. All templates must be tested in draft mode per GoHighLevel's official onboarding before production deployment. We recommend reviewing GoHighLevel's latest platform documentation for current feature availability and merge-tag support by plan tier."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-09-gohighlevel-email-automation-workflows-setup.jpg"
@@ -54,13 +54,13 @@ Email marketing is regulated by:
 4. **Honor unsubscribe requests** — Suppress unsubscribed contacts within 10 business days (GoHighLevel auto-suppresses on list removal)
 5. **Consult legal counsel** — If serving EU contacts or any region with strict email laws, have a qualified attorney review your consent, unsubscribe, and data retention practices
 
-**Short n Sweet Digital provides educational guidance only. We are not attorneys. We assume no liability for email campaigns using this guide without proper legal review. Use at your own risk.**
+**Mallo Digital provides educational guidance only. We are not attorneys. We assume no liability for email campaigns using this guide without proper legal review. Use at your own risk.**
 
 ---
 
 ## Affiliate Disclosure
 
-**Short n Sweet Digital earns a commission when you sign up for GoHighLevel through the link in this post.** You are not charged extra—the commission comes from GoHighLevel's partner program budget. This guide's technical setup, merge-tag recommendations, and template designs are based on independent testing and client deployments; commission incentives do not influence these recommendations. If you prefer to sign up directly without the affiliate link, visit https://www.gohighlevel.com/?fp_ref=shortnsweet53 and create an account—features and pricing are identical.
+**Mallo Digital earns a commission when you sign up for GoHighLevel through the link in this post.** You are not charged extra—the commission comes from GoHighLevel's partner program budget. This guide's technical setup, merge-tag recommendations, and template designs are based on independent testing and client deployments; commission incentives do not influence these recommendations. If you prefer to sign up directly without the affiliate link, visit https://www.gohighlevel.com/?fp_ref=shortnsweet53 and create an account—features and pricing are identical.
 
 ---
 
@@ -297,7 +297,7 @@ Every email automation must include these elements:
 | **Honest subject line** | No misleading words; avoid "Re:" or "Fwd:" if it's a new email. Subject should reflect email content. |
 | **Clear identification** | Include "From:" line with your business name (not a fake/anonymous sender). GHL auto-populates this from your account settings. |
 | **Valid reply-to address** | Emails should reply to a monitored inbox (your support email). Configure in **Email Settings** → **Reply-To Address**. |
-| **Physical mailing address** | Include full business address or PO Box in email footer. Template: "Short n Sweet Digital, 123 Main St, Anytown, ST 12345" |
+| **Physical mailing address** | Include full business address or PO Box in email footer. Template: "Mallo Digital, 123 Main St, Anytown, ST 12345" |
 | **Unsubscribe link** | **REQUIRED in every email**. Use plain-text link or one-click removal. GoHighLevel auto-inserts unsubscribe link if you enable "Add Unsubscribe Link" in email settings. **Verify it's present in preview.** |
 | **Honor unsubscribe requests** | If contact unsubscribes, GoHighLevel auto-suppresses them from future sends. Verify suppression logic in workflow conditions. |
 | **Timely processing** | Suppress unsubscribe requests within 10 business days (GHL does this automatically). |
@@ -306,7 +306,7 @@ Every email automation must include these elements:
 
 ```
 ---
-Short n Sweet Digital | 123 Main St, Anytown, ST 12345
+Mallo Digital | 123 Main St, Anytown, ST 12345
 support@example.com | https://example.com
 
 This email was sent because you requested to hear from us.

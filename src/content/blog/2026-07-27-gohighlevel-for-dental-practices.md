@@ -7,8 +7,8 @@ dateModified: 2026-07-27
 tags: ["gohighlevel", "dental-practice", "scheduling-automation", "patient-retention", "dental-marketing", "no-show-reduction", "crm-for-dentists", "practice-management"]
 keywords: ["gohighlevel for dentists", "dental practice crm", "reduce dental no-shows", "patient reminder automation", "dental practice software", "gohighlevel dental setup", "dentist crm", "dental appointment reminders"]
 targetKeyword: "gohighlevel for dental practices"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has implemented GoHighLevel for 15+ dental practices (2024–2026), managing workflow automation, patient reminders, and treatment acceptance sequences. Partner practices report 18–35% no-show reduction and 12–22% treatment acceptance increase within 90 days. Results vary by baseline metrics and practice size; see ROI calculator below."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has implemented GoHighLevel for 15+ dental practices (2024–2026), managing workflow automation, patient reminders, and treatment acceptance sequences. Partner practices report 18–35% no-show reduction and 12–22% treatment acceptance increase within 90 days. Results vary by baseline metrics and practice size; see ROI calculator below."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-27-gohighlevel-for-dental-practices.jpg"

@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GradientText from '../components/reactbits/GradientText.jsx';
+import Mascot from '../components/Mascot.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import { services } from '../lib/services.mjs';
 import { getCollection } from 'astro:content';
 
-const brandColors = ['#3b9bff', '#188bf6', '#5271FF', '#93c5fd', '#3b9bff'];
+const brandColors = ['#ff5c99', '#ffd23f', '#5ef2c0', '#3b9bff', '#ff5c99'];
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -12,7 +15,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Short n Sweet Digital',
+  name: 'Mallo Digital',
   url: 'https://shortnsweetdigital.com/',
   logo: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
   description:
@@ -26,7 +29,7 @@ const websiteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   url: 'https://shortnsweetdigital.com/',
-  name: 'Short n Sweet Digital',
+  name: 'Mallo Digital',
   potentialAction: {
     '@type': 'SearchAction',
     target: 'https://shortnsweetdigital.com/?q={search_term_string}',
@@ -37,7 +40,7 @@ const websiteLd = {
 const aggregateLd = {
   '@context': 'https://schema.org',
   '@type': 'AggregateRating',
-  itemReviewed: { '@type': 'Organization', name: 'Short n Sweet Digital' },
+  itemReviewed: { '@type': 'Organization', name: 'Mallo Digital' },
   ratingValue: '4.9',
   reviewCount: '127',
 };
@@ -48,7 +51,7 @@ const faqLd = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What does Short n Sweet Digital do?',
+      name: 'What does Mallo Digital do?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'We replace the 8–12 marketing SaaS tools you are juggling with one AI-powered all-in-one platform — CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.',
@@ -73,20 +76,10 @@ const faqLd = {
   ],
 };
 
-const services = [
-  { title: 'Online Reviews', body: 'Automate your online reviews with a few simple clicks & respond to reviews in 1 place.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/d1f936b4-5c3f-4917-9207-247b3530f01f.gif' },
-  { title: 'Messaging', body: 'Manage your messages with a single inbox for text, Facebook messages, Google, and more.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/61abf4e4-a30e-45f1-9906-e653e4bd70a8.gif' },
-  { title: 'Webchat', body: 'Talk with customers even after regular hours of operation with a chat widget on your website.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/523c88b4-b875-4733-b2e2-042969a95871.gif' },
-  { title: 'CRM', body: 'Grow your audience & know where all of your business’ new leads are coming from.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/155cece1-8105-4bbf-a61b-3d1f8c693d9f.gif' },
-  { title: 'Payments', body: 'Easy text-2-pay invoicing. Simplify your client billing & get paid faster.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/8b1c4556-3ff4-4c8f-97b0-b1ddae962b73.gif' },
-  { title: 'Missed Call Text Back', body: 'When you’re away, have your business follow up via text to never lose another customer.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/ecd704c8-6047-4d34-a642-820671ac74d7.gif' },
-  { title: 'AI Assistant', body: 'AI assistant converses with customers to schedule open appointments on your calendar.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/593e774c-023e-41d7-a59e-77c2531c8086.gif' },
-  { title: 'Mobile App', body: 'Manage your entire business on your phone! Check in on your customers when on the go.', icon: 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/33668e2e-ae0e-4950-92db-ba6afcbdb4ab.gif' },
-];
 
 const testimonials = [
   { quote: 'Clients used to message me on several platforms and it wasn’t uncommon for me to go weeks before seeing their messages. Now I see them instantly, in the same message thread, so I’m able to serve my clients quicker, and better.', name: 'Julie Hice', role: 'Realtor' },
-  { quote: 'ShortNSweet helps me never miss chat conversations with potential leads. It used to be a hassle finding customer’s messages, now it’s easy and they’re all in one place.', name: 'Zach Stacey', role: 'Auto Detailer' },
+  { quote: 'Mallo helps me never miss chat conversations with potential leads. It used to be a hassle finding customer’s messages, now it’s easy and they’re all in one place.', name: 'Zach Stacey', role: 'Auto Detailer' },
 ];
 ---
 
@@ -99,13 +92,11 @@ const testimonials = [
   <script type="application/ld+json" set:html={JSON.stringify(aggregateLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
-  <!-- City background layer -->
-  <img class="city-bg" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/66ef6250acfd667f6577ccee.jpeg" alt="" aria-hidden="true" />
-  <div class="city-veil" aria-hidden="true"></div>
 
   <!-- HERO -->
   <section class="hero bleed">
     <div class="hero-inner">
+      <Mascot name="puff" size={200} placement="corner" eager />
       <p class="eyebrow gradient-eyebrow" data-snd-reveal>GoHighLevel Agency · Trusted by 500+ businesses</p>
       <h1 class="hero-h1" data-snd-reveal>
         The
@@ -136,6 +127,7 @@ const testimonials = [
   <!-- STATS — TODAY'S CONSUMER -->
   <section class="stats-section bleed" data-snd-reveal>
     <div class="container">
+      <Mascot name="jelli" size={130} placement="corner" />
       <h2 class="section-h">Understand What <GradientText client:visible colors={brandColors} animationSpeed={7}>Today’s Consumer</GradientText> Prefers</h2>
       <div class="stat-grid">
         <article class="snd-darkened stat-card">
@@ -209,15 +201,16 @@ const testimonials = [
   <!-- SERVICES GRID -->
   <section class="services-section bleed" data-snd-reveal>
     <div class="container">
+      <Mascot name="bun" size={130} placement="corner" />
       <h2 class="section-h"><GradientText client:visible colors={brandColors} animationSpeed={7}>All The Tools</GradientText> You Need To Scale, In One Place</h2>
       <p class="section-lede">One login. One bill. Every channel your customers actually use.</p>
       <div class="services-grid">
         {services.map((s) => (
-          <article class="snd-darkened service-card">
-            <img class="service-icon" src={s.icon} alt={s.title} loading="lazy" width="120" height="120" />
+          <a class="snd-darkened service-card" href={`/services/#${s.slug}`}>
+            <ServiceIcon name={s.slug} size={96} />
             <h3>{s.title}</h3>
             <p>{s.body}</p>
-          </article>
+          </a>
         ))}
       </div>
     </div>
@@ -226,7 +219,14 @@ const testimonials = [
   <!-- CONTROL — secondary stats -->
   <section class="control-section bleed" data-snd-reveal>
     <div class="container">
-      <h2 class="section-h">We Built <GradientText client:visible colors={brandColors} animationSpeed={7}>ShortNSweet</GradientText> To Put Your Business In Control.</h2>
+      <div class="mascot-crew" aria-label="Meet the Mallo crew">
+        <Mascot name="toasty" size={110} />
+        <Mascot name="jelli" size={120} />
+        <Mascot name="puff" size={150} />
+        <Mascot name="bun" size={110} />
+        <Mascot name="blip" size={120} />
+      </div>
+      <h2 class="section-h">We Built <GradientText client:visible colors={brandColors} animationSpeed={7}>Mallo</GradientText> To Put Your Business In Control.</h2>
       <p class="section-lede">
         Replace the 8–12 marketing tools you’re juggling with one AI-powered platform — built for solo operators and small teams.
       </p>
@@ -254,6 +254,7 @@ const testimonials = [
   <section class="feature-section bleed" data-snd-reveal>
     <div class="container feature-row">
       <div class="feature-copy">
+        <Mascot name="blip" size={140} />
         <p class="eyebrow gradient-eyebrow">Why Text Wins</p>
         <h2 class="section-h">Reach customers where they actually <GradientText client:visible colors={brandColors} animationSpeed={6}>respond</GradientText>.</h2>
         <ul class="feature-list">
@@ -307,6 +308,7 @@ const testimonials = [
   <section class="final-cta bleed" data-snd-reveal>
     <div class="container">
       <div class="final-card snd-darkened">
+        <Mascot name="toasty" size={120} />
         <h2>Ready to consolidate your stack?</h2>
         <p>No credit card required. Free 14-day trial. Live support every step of the way.</p>
         <div class="hero-ctas">
@@ -343,7 +345,7 @@ const testimonials = [
     }
     .city-veil {
       position: fixed; inset: 0; z-index: -1;
-      background: linear-gradient(180deg, rgba(10,9,14,0.55) 0%, rgba(15,23,42,0.70) 60%, rgba(10,9,14,0.82) 100%);
+      background: linear-gradient(180deg, rgba(20,10,36,0.55) 0%, rgba(26,15,46,0.70) 60%, rgba(20,10,36,0.82) 100%);
       pointer-events: none;
     }
   </style>
@@ -353,9 +355,9 @@ const testimonials = [
     .aurora {
       position: fixed; inset: -10%; z-index: -1; pointer-events: none;
       background:
-        radial-gradient(60% 40% at 20% 15%, rgba(5,100,209,0.35), transparent 60%),
-        radial-gradient(50% 35% at 80% 25%, rgba(24,139,246,0.28), transparent 60%),
-        radial-gradient(70% 50% at 50% 90%, rgba(82,113,255,0.22), transparent 60%);
+        radial-gradient(60% 40% at 20% 15%, rgba(255,92,153,0.35), transparent 60%),
+        radial-gradient(50% 35% at 80% 25%, rgba(255,92,153,0.28), transparent 60%),
+        radial-gradient(70% 50% at 50% 90%, rgba(166,124,255,0.22), transparent 60%);
       filter: blur(40px);
       animation: aurora-drift 22s ease-in-out infinite alternate;
     }
@@ -372,7 +374,7 @@ const testimonials = [
        animated background-position, background-clip: text. Configurable via
        CSS custom properties so each instance can tweak colors / speed. */
     .gradient-text {
-      --grad-colors: #3b9bff, #188bf6, #5271FF, #93c5fd, #3b9bff;
+      --grad-colors: #3b9bff, #ff5c99, #a67cff, #ffb3d1, #3b9bff;
       --grad-speed: 8s;
       --grad-direction: to right;
       display: inline-block;
@@ -396,15 +398,15 @@ const testimonials = [
 
     .gradient-eyebrow {
       display: inline-block;
-      color: #93c5fd;
+      color: #ffb3d1;
       font-weight: 800;
       font-size: 0.78rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       padding: 0.4rem 0.85rem;
       border-radius: 999px;
-      background: linear-gradient(120deg, rgba(5,100,209,0.18), rgba(82,113,255,0.18));
-      border: 1px solid rgba(24,139,246,0.4);
+      background: linear-gradient(120deg, rgba(255,92,153,0.18), rgba(166,124,255,0.18));
+      border: 1px solid rgba(255,92,153,0.4);
       margin: 0 0 1rem;
     }
 
@@ -420,7 +422,7 @@ const testimonials = [
     }
     .hero-sub {
       font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      color: #cbd5e1;
+      color: #d9cdf2;
       max-width: 680px;
       margin: 0 0 1.75rem;
     }
@@ -428,7 +430,7 @@ const testimonials = [
     .hero-trust {
       list-style: none; padding: 0; margin: 1rem 0 0;
       display: flex; flex-wrap: wrap; gap: 1rem;
-      color: #94a3b8; font-size: 0.9rem;
+      color: #b7a6d9; font-size: 0.9rem;
     }
 
     /* Buttons — magnet/glow style */
@@ -443,18 +445,18 @@ const testimonials = [
       will-change: transform;
     }
     .btn-primary {
-      background: linear-gradient(120deg, #0564D1, #188bf6);
+      background: linear-gradient(120deg, #e8457f, #ff5c99);
       color: #fff;
-      box-shadow: 0 12px 32px rgba(5,100,209,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+      box-shadow: 0 12px 32px rgba(255,92,153,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(5,100,209,0.55); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(255,92,153,0.55); }
     .btn-secondary {
-      background: rgba(15,23,42,0.55);
-      color: #e2e8f0;
-      border: 1px solid rgba(24,139,246,0.45);
+      background: rgba(26,15,46,0.55);
+      color: #efe6ff;
+      border: 1px solid rgba(255,92,153,0.45);
       backdrop-filter: blur(8px);
     }
-    .btn-secondary:hover { transform: translateY(-2px); background: rgba(24,139,246,0.18); }
+    .btn-secondary:hover { transform: translateY(-2px); background: rgba(255,92,153,0.18); }
 
     /* Section headings */
     .section-h {
@@ -464,7 +466,7 @@ const testimonials = [
       letter-spacing: -0.01em;
       font-weight: 800;
     }
-    .section-lede { color: #cbd5e1; max-width: 720px; margin: 0 0 2rem; font-size: 1.05rem; }
+    .section-lede { color: #d9cdf2; max-width: 720px; margin: 0 0 2rem; font-size: 1.05rem; }
 
     /* STAT GRID */
     .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
@@ -473,7 +475,7 @@ const testimonials = [
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       font-weight: 800;
       display: inline-block;
-      background-image: linear-gradient(to right, #3b9bff, #188bf6, #5271FF, #93c5fd, #3b9bff);
+      background-image: linear-gradient(to right, #3b9bff, #ff5c99, #a67cff, #ffb3d1, #3b9bff);
       background-size: 300% 100%;
       background-clip: text;
       -webkit-background-clip: text;
@@ -483,18 +485,19 @@ const testimonials = [
       line-height: 1;
     }
     .stat-card h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
-    .stat-card p { margin: 0; color: #cbd5e1; font-size: 0.95rem; }
+    .stat-card p { margin: 0; color: #d9cdf2; font-size: 0.95rem; }
 
     /* SERVICES GRID */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.1rem;
     }
-    .service-card { padding: 1.5rem; border-radius: 16px; text-align: center; }
-    .service-icon { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 0.75rem; display: block; }
+    .service-card { display: block; padding: 1.5rem; border-radius: 16px; text-align: center; color: inherit; text-decoration: none; }
+    .service-card:hover { text-decoration: none; }
+    .service-card :global(.svc-icon) { margin: 0 auto 0.75rem; }
     .service-card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
-    .service-card p { margin: 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
+    .service-card p { margin: 0; color: #d9cdf2; font-size: 0.92rem; line-height: 1.5; }
 
     /* ROI CALC */
     .roi-card { padding: 2rem; border-radius: 20px; }
@@ -502,30 +505,30 @@ const testimonials = [
     .roi-inputs { display: flex; flex-direction: column; gap: 1.1rem; }
     .roi-inputs label { display: flex; flex-direction: column; gap: 0.4rem; }
     .roi-inputs label > span:first-child { display: flex; justify-content: space-between; font-weight: 600; }
-    .num-out { color: #188bf6; }
-    .roi-inputs input[type="range"] { width: 100%; accent-color: #188bf6; }
-    .roi-note { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.85rem; line-height: 1.5; }
+    .num-out { color: #ff5c99; }
+    .roi-inputs input[type="range"] { width: 100%; accent-color: #ff5c99; }
+    .roi-note { margin: 0.25rem 0 0; color: #b7a6d9; font-size: 0.85rem; line-height: 1.5; }
     .roi-results { display: flex; flex-direction: column; justify-content: center; gap: 0.8rem; }
-    .result-card { padding: 1rem 1.25rem; border-radius: 14px; background: rgba(5,100,209,0.12); border: 1px solid rgba(5,100,209,0.35); }
-    .result-card.highlight { background: linear-gradient(135deg, rgba(5,100,209,0.25), rgba(82,113,255,0.18)); border-color: rgba(24,139,246,0.55); }
+    .result-card { padding: 1rem 1.25rem; border-radius: 14px; background: rgba(255,92,153,0.12); border: 1px solid rgba(255,92,153,0.35); }
+    .result-card.highlight { background: linear-gradient(135deg, rgba(255,92,153,0.25), rgba(166,124,255,0.18)); border-color: rgba(255,92,153,0.55); }
     .result-card.win { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.4); }
-    .result-label { margin: 0 0 0.25rem; color: #cbd5e1; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
-    .highlight-label { color: #93c5fd; }
+    .result-label { margin: 0 0 0.25rem; color: #d9cdf2; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .highlight-label { color: #ffb3d1; }
     .win-label { color: #86efac; }
     .result-value { margin: 0; font-size: 1.7rem; font-weight: 800; color: #fff; }
-    .result-value span { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }
+    .result-value span { font-size: 0.9rem; color: #b7a6d9; font-weight: 600; }
 
     /* FEATURE / WHY TEXT WINS */
     .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
-    .feature-list { padding-left: 1rem; color: #cbd5e1; font-size: 1rem; line-height: 1.6; }
+    .feature-list { padding-left: 1rem; color: #d9cdf2; font-size: 1rem; line-height: 1.6; }
     .feature-list li { margin-bottom: 0.6rem; }
     .feature-visual { padding: 1.5rem; border-radius: 22px; }
     .phone-mockup { display: flex; flex-direction: column; gap: 0.6rem; }
     .msg { padding: 0.7rem 1rem; border-radius: 14px; max-width: 80%; font-size: 0.95rem; line-height: 1.4; }
-    .msg-them { align-self: flex-start; background: rgba(255,255,255,0.08); color: #e2e8f0; border-bottom-left-radius: 4px; }
-    .msg-us { align-self: flex-end; background: linear-gradient(120deg, #0564D1, #188bf6); color: #fff; border-bottom-right-radius: 4px; }
+    .msg-them { align-self: flex-start; background: rgba(255,255,255,0.08); color: #efe6ff; border-bottom-left-radius: 4px; }
+    .msg-us { align-self: flex-end; background: linear-gradient(120deg, #e8457f, #ff5c99); color: #fff; border-bottom-right-radius: 4px; }
     .msg-typing { align-self: flex-start; background: rgba(255,255,255,0.08); border-radius: 14px; padding: 0.65rem 0.9rem; display: inline-flex; gap: 4px; }
-    .msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; animation: typing-bounce 1.2s infinite ease-in-out; }
+    .msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #b7a6d9; animation: typing-bounce 1.2s infinite ease-in-out; }
     .msg-typing span:nth-child(2) { animation-delay: 0.15s; }
     .msg-typing span:nth-child(3) { animation-delay: 0.3s; }
     @keyframes typing-bounce { 0%,80%,100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-4px); opacity: 1; } }
@@ -533,9 +536,9 @@ const testimonials = [
     /* TESTIMONIALS */
     .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
     .testimonial-card { padding: 1.75rem; border-radius: 18px; }
-    .testimonial-card blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.6; color: #e2e8f0; font-style: italic; }
+    .testimonial-card blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.6; color: #efe6ff; font-style: italic; }
     .testimonial-card figcaption strong { display: block; color: #fff; }
-    .testimonial-card figcaption span { color: #94a3b8; font-size: 0.9rem; }
+    .testimonial-card figcaption span { color: #b7a6d9; font-size: 0.9rem; }
 
     /* BLOG GRID */
     .blog-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
@@ -543,15 +546,15 @@ const testimonials = [
     .blog-card { display: block; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; }
     .blog-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
     .blog-card-body { padding: 1.25rem; }
-    .blog-date { color: #94a3b8; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.5rem; font-weight: 700; }
+    .blog-date { color: #b7a6d9; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.5rem; font-weight: 700; }
     .blog-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; line-height: 1.3; color: #fff; }
-    .blog-card p { margin: 0 0 0.75rem; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
-    .blog-cta { color: #188bf6; font-weight: 700; font-size: 0.9rem; }
+    .blog-card p { margin: 0 0 0.75rem; color: #d9cdf2; font-size: 0.92rem; line-height: 1.5; }
+    .blog-cta { color: #ff5c99; font-weight: 700; font-size: 0.9rem; }
 
     /* FINAL CTA */
     .final-card { text-align: center; padding: 3rem 1.5rem; border-radius: 24px; }
     .final-card h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin: 0 0 0.75rem; }
-    .final-card p { color: #cbd5e1; margin: 0 0 1.5rem; }
+    .final-card p { color: #d9cdf2; margin: 0 0 1.5rem; }
     .final-card .hero-ctas { justify-content: center; }
 
     /* Mobile breakpoints */
@@ -564,7 +567,11 @@ const testimonials = [
       .services-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 3rem; }
     }
-  </style>
+    .mascot-crew { display: flex; align-items: flex-end; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .mascot-crew :global(.mascot) { margin: 0; }
+    @media (min-width: 769px) { .hero-inner :global(.mascot-corner) { top: -90px; right: -20px; } }
+    .hero-inner, .stats-section .container, .services-section .container { position: relative; }
+</style>
 
   <script is:inline>
     // Animated counters — count up on scroll

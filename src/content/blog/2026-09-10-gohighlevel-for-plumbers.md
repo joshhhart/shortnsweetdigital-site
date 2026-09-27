@@ -7,8 +7,8 @@ dateModified: 2026-09-10
 tags: ["gohighlevel", "plumbers", "appointment-scheduling", "sms-automation", "no-show-prevention", "service-business", "agency-guide"]
 keywords: ["gohighlevel for plumbers", "plumbing software gohighlevel", "appointment reminder sms", "plumber scheduling software", "no-show prevention plumbing"]
 targetKeyword: "gohighlevel for plumbers"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel implementation partner. Since 2024, we've helped 50+ plumbing shops and HVAC contractors deploy GHL for appointment scheduling, SMS reminders, and customer management. This guide reflects 18 months of deployment experience across residential and commercial service verticals. We document observed outcomes (no-show reduction, appointment volume, SMS cost allocation) transparently, with caveats: results vary by business size, market, and implementation rigor. We are not GoHighLevel staff; this is third-party guidance based on client deployments. Compliance guidance herein is educational only—not legal advice. Consult qualified legal counsel before SMS campaigns to ensure TCPA, state telemarketing, and local compliance."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel implementation partner. Since 2024, we've helped 50+ plumbing shops and HVAC contractors deploy GHL for appointment scheduling, SMS reminders, and customer management. This guide reflects 18 months of deployment experience across residential and commercial service verticals. We document observed outcomes (no-show reduction, appointment volume, SMS cost allocation) transparently, with caveats: results vary by business size, market, and implementation rigor. We are not GoHighLevel staff; this is third-party guidance based on client deployments. Compliance guidance herein is educational only—not legal advice. Consult qualified legal counsel before SMS campaigns to ensure TCPA, state telemarketing, and local compliance."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-10-gohighlevel-for-plumbers.jpg"

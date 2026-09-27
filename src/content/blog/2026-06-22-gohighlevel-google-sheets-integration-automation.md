@@ -7,7 +7,7 @@ dateModified: 2026-06-22
 tags: ["gohighlevel", "google-sheets", "integration", "automation", "zapier", "lead-management"]
 keywords: ["gohighlevel google sheets", "gohighlevel zapier", "automate leads", "sync contacts", "gohighlevel automation", "google sheets crm"]
 targetKeyword: "gohighlevel google sheets integration automation"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-22-gohighlevel-google-sheets-integration-automation.jpg"
@@ -672,7 +672,7 @@ What if you want to push data from Sheets *back* into GoHighLevel? For example, 
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All features, pricing, and integration details referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest updates.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All features, pricing, and integration details referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest updates.
 
 ---
 

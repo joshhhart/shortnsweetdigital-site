@@ -1,0 +1,33 @@
+---
+// Animated 3D mascot. Desktop gets the looping animated WebP; phones and
+// reduced-motion visitors get a lightweight still frame.
+interface Props {
+  name: 'toasty' | 'jelli' | 'bun' | 'puff' | 'blip';
+  size?: number;
+  placement?: 'inline' | 'corner';
+  eager?: boolean;
+}
+const { name, size = 160, placement = 'inline', eager = false } = Astro.props;
+const alts = {
+  toasty: 'Toasty, a toasted marshmallow on a stick',
+  jelli: 'Jelli, a pink gummy jellyfish',
+  bun: 'Bun, a fluffy marshmallow bunny',
+  puff: 'Puff, a cotton candy cloud raining sprinkles',
+  blip: 'Blip, a floating orb robot',
+};
+---
+<picture class={`mascot mascot-${placement}`} style={`--mascot-w:${size}px`}>
+  <source srcset={`/assets/mascots/${name}-still.webp`} media="(max-width: 768px), (prefers-reduced-motion: reduce)" />
+  <img src={`/assets/mascots/${name}.webp`} alt={alts[name]} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+</picture>
+
+<style>
+  .mascot { display: block; width: var(--mascot-w); max-width: 40vw; pointer-events: none; }
+  .mascot img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 30px rgba(59,155,255, 0.28)); }
+  .mascot-inline { margin: 0 auto 12px; }
+  .mascot-corner { position: absolute; top: 12px; right: 2%; z-index: 1; }
+  @media (max-width: 768px) {
+    .mascot { width: calc(var(--mascot-w) * 0.6); }
+    .mascot-corner { position: static; margin: 0 auto 8px; }
+  }
+</style>

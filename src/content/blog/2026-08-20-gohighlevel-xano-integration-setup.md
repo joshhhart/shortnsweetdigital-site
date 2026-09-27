@@ -7,8 +7,8 @@ dateModified: 2026-08-20
 tags: ["gohighlevel", "xano", "integration", "api", "data-sync", "webhooks", "agency-tools", "tutorial"]
 keywords: ["gohighlevel xano integration", "how to integrate gohighlevel with xano", "gohighlevel xano api setup", "xano gohighlevel webhook", "gohighlevel xano data sync"]
 targetKeyword: "gohighlevel xano integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner with 20+ completed GHL-Xano integrations (2024–2026). We've synced contact databases, automated lead qualification workflows, and built custom CRM pipelines using Xano's API layer. Learn more at shortnsweet.digital/team."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner with 20+ completed GHL-Xano integrations (2024–2026). We've synced contact databases, automated lead qualification workflows, and built custom CRM pipelines using Xano's API layer. Learn more at shortnsweet.digital/team."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-20-gohighlevel-xano-integration-setup.jpg"
@@ -23,7 +23,7 @@ audio: "/audio/2026-08-20-gohighlevel-xano-integration-setup.mp3"
 
 > **AFFILIATE DISCLOSURE**
 >
-> Short n Sweet Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). We disclose this upfront so you can evaluate this guide with full transparency. The integration steps and technical details reflect hands-on setup experience across 20+ GHL-Xano deployments (2024–2026); they are not influenced by our commission structure. **Verify all steps with GoHighLevel and Xano's current API documentation before deploying to production.**
+> Mallo Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). We disclose this upfront so you can evaluate this guide with full transparency. The integration steps and technical details reflect hands-on setup experience across 20+ GHL-Xano deployments (2024–2026); they are not influenced by our commission structure. **Verify all steps with GoHighLevel and Xano's current API documentation before deploying to production.**
 
 ---
 

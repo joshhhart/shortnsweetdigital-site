@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
+
+const SITE = 'https://shortnsweetdigital.com';
+const TRIAL = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=get_started';
+
+const steps = [
+  {
+    name: 'Pick a plan',
+    text: 'Starter is $97/mo for one business, Unlimited is $297/mo for agencies with unlimited client sub-accounts, and SaaS Pro is $497/mo for white-label reselling. All plans are month to month.',
+    link: { href: '/pricing/', label: 'Compare plans' },
+    color: '#ff5c99',
+  },
+  {
+    name: 'Start your 14-day free trial',
+    text: 'Create your account and try every tool for 14 days before your first bill.',
+    link: { href: TRIAL, label: 'Start free trial →' },
+    color: '#ffd23f',
+  },
+  {
+    name: 'Book your onboarding call',
+    text: 'A free strategy call where we look at the tools you use today and plan what moves over first.',
+    link: { href: '/book-a-call/', label: 'Book a call' },
+    color: '#5ef2c0',
+  },
+  {
+    name: 'We set it up with you',
+    text: 'We connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations, then show you how to run it.',
+    link: null,
+    color: '#3b9bff',
+  },
+];
+
+const howToLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to get started with Mallo Digital',
+  description: 'Four steps from picking a plan to a fully set up all-in-one marketing platform.',
+  url: `${SITE}/get-started/`,
+  step: steps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+    ...(s.link ? { url: s.link.href.startsWith('/') ? `${SITE}${s.link.href}` : s.link.href } : {}),
+  })),
+};
+---
+
+<BaseLayout
+  title="Get Started — Mallo Digital"
+  description="Get started with Mallo Digital in four steps: pick a plan, start a 14-day free trial, book an onboarding call, and we set it up with you."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(howToLd)} />
+
+  <section class="intro" data-snd-reveal>
+    <p class="eyebrow">Get started</p>
+    <Mascot name="toasty" size={140} eager />
+    <h1>Four steps to one platform.</h1>
+    <p class="lede">
+      No long setup project and no contract. Here is exactly what happens from the moment you
+      decide to try Mallo Digital.
+    </p>
+  </section>
+
+  <ol class="steps">
+    {steps.map((s, i) => (
+      <li class="step snd-darkened" data-snd-reveal style={`--c:${s.color}`}>
+        <span class="num">{i + 1}</span>
+        <div>
+          <h2>{s.name}</h2>
+          <p>{s.text}</p>
+          {s.link && (
+            <a class={i === 1 ? 'btn-primary' : 'btn-secondary'} href={s.link.href} rel={s.link.href.startsWith('http') ? 'noopener' : undefined}>{s.link.label}</a>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <section class="cta" data-snd-reveal>
+    <h2>Questions first?</h2>
+    <p class="lede">See <a href="/services/">what's included</a> or <a href="/contact/">send us a message</a>.</p>
+  </section>
+
+  <style>
+    section { padding: 1.5rem 0; }
+    h1, h2 { font-family: var(--display); color: #fff7fb; }
+    h1 { font-size: 2.2rem; line-height: 1.15; margin: 0.5rem 0 1rem; }
+    .lede { color: #d9cdf2; font-size: 1.1rem; }
+    .lede a { color: #5ef2c0; }
+    .steps { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 1rem; }
+    .step { display: grid; grid-template-columns: 56px 1fr; gap: 1rem; padding: 1.5rem; border-radius: 20px; }
+    .num { width: 56px; height: 56px; border-radius: 50%; background: var(--c); color: #2a1850; font-family: var(--display); font-size: 1.6rem; font-weight: 800; display: grid; place-items: center; }
+    .step h2 { margin: 0 0 0.4rem; font-size: 1.4rem; }
+    .step p { color: #d9cdf2; margin: 0 0 0.8rem; }
+  </style>
+</BaseLayout>

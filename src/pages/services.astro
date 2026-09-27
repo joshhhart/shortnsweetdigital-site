@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import { services } from '../lib/services.mjs';
+
+const TRIAL = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=services';
+const SITE = 'https://shortnsweetdigital.com';
+
+const faqs = [
+  {
+    q: 'What services does Mallo Digital offer?',
+    a: 'One platform covering online reviews, a unified messaging inbox, website chat, CRM, funnels and websites, payments, missed call text back, an AI assistant and a mobile app. It runs on GoHighLevel and replaces the 8 to 12 separate tools most small businesses pay for.',
+  },
+  {
+    q: 'Do I have to set it all up myself?',
+    a: 'No. We do a done-for-you setup: we connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations with you.',
+  },
+  {
+    q: 'Can I use only some of the services?',
+    a: 'Yes. Every plan includes all of the tools, so you can switch on what you need now and add the rest later without paying for another app.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'Plans are Starter $97/mo, Unlimited $297/mo and SaaS Pro $497/mo. Every plan starts with a 14-day free trial and bills month to month.',
+  },
+];
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'All-in-one marketing platform and done-for-you setup',
+  serviceType: 'Marketing automation and CRM platform',
+  provider: { '@type': 'Organization', name: 'Mallo Digital', url: `${SITE}/` },
+  areaServed: 'US',
+  url: `${SITE}/services/`,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Mallo Digital services',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.detail,
+        url: `${SITE}/services/#${s.slug}`,
+      },
+    })),
+  },
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Services — Mallo Digital"
+  description="Reviews, messaging, web chat, CRM, funnels and websites, payments, missed call text back, an AI assistant and a mobile app in one platform, set up for you by Mallo Digital."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <section class="intro" data-snd-reveal>
+    <p class="eyebrow">Services</p>
+    <Mascot name="puff" size={140} eager />
+    <h1>Everything your business runs on, in one place.</h1>
+    <p class="lede">
+      Mallo Digital replaces the 8 to 12 marketing tools most small businesses juggle with one
+      AI-powered platform built on GoHighLevel. Here is what is included in every plan, and what
+      each piece actually does for you.
+    </p>
+    <nav class="jump" aria-label="Services on this page">
+      {services.map((s) => <a href={`#${s.slug}`}>{s.title}</a>)}
+    </nav>
+  </section>
+
+  {services.map((s) => (
+    <section class="service snd-darkened" id={s.slug} data-snd-reveal>
+      <div class="icon"><ServiceIcon name={s.slug} size={96} /></div>
+      <div>
+        <h2>{s.title}</h2>
+        <p class="body">{s.body}</p>
+        <p>{s.detail}</p>
+      </div>
+    </section>
+  ))}
+
+  <section class="how" data-snd-reveal>
+    <h2>How it works: done-for-you setup</h2>
+    <ol>
+      <li><strong>Start your trial.</strong> Pick a plan and start the 14-day free trial. No long-term contract.</li>
+      <li><strong>Strategy call.</strong> We map the tools you use today and decide what moves over first.</li>
+      <li><strong>We build it.</strong> We connect your phone number, calendar, website and social accounts, import your contacts and set up your first automations.</li>
+      <li><strong>You run your business.</strong> Leads get answered, followed up and booked from one login, on desktop or the mobile app.</li>
+    </ol>
+  </section>
+
+  <section class="faq" data-snd-reveal>
+    <h2>Frequently asked questions</h2>
+    {faqs.map((f) => (
+      <details>
+        <summary>{f.q}</summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="cta" data-snd-reveal>
+    <h2>Ready to cut the tool pile down to one?</h2>
+    <div class="cta-row">
+      <a class="btn-primary" href={TRIAL} rel="noopener">Start free trial →</a>
+      <a class="btn-secondary" href="/book-a-call/">Book a call</a>
+    </div>
+  </section>
+
+  <style>
+    section { padding: 1.5rem 0; }
+    .intro { padding-top: 1.5rem; }
+    h1, h2 { font-family: var(--display); color: #fff7fb; }
+    h1 { font-size: 2.2rem; line-height: 1.15; margin: 0.5rem 0 1rem; }
+    .lede { color: #d9cdf2; font-size: 1.1rem; }
+    .jump { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .jump a { padding: 0.35rem 0.8rem; border-radius: 999px; background: #2a1850; color: #5ef2c0; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .service { display: grid; grid-template-columns: 96px 1fr; gap: 1.25rem; align-items: start; margin: 1rem 0; padding: 1.5rem; border-radius: 20px; scroll-margin-top: 90px; }
+    .service h2 { margin: 0 0 0.4rem; font-size: 1.5rem; }
+    .service p { color: #d9cdf2; margin: 0 0 0.5rem; }
+    .service .body { color: #ffd23f; font-weight: 600; }
+    .how ol { padding-left: 1.2rem; color: #d9cdf2; }
+    .how li { margin-bottom: 0.6rem; }
+    .how strong { color: #fff7fb; }
+    details { background: #2a1850; border-radius: 14px; padding: 0.9rem 1.1rem; margin-bottom: 0.6rem; }
+    summary { cursor: pointer; font-weight: 700; color: #fff7fb; }
+    details p { color: #d9cdf2; margin: 0.6rem 0 0; }
+    .cta-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; }
+    @media (max-width: 560px) { .service { grid-template-columns: 1fr; } }
+  </style>
+</BaseLayout>

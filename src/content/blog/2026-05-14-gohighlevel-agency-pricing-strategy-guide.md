@@ -5,7 +5,7 @@ pubDate: 2026-05-14
 lastUpdated: 2026-05-14
 tags: ["gohighlevel", "agency-pricing", "pricing-strategy", "white-label", "recurring-revenue", "sop", "profitability"]
 targetKeyword: "gohighlevel agency pricing strategy guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-05-14-gohighlevel-agency-pricing-strategy-guide.jpg"

@@ -7,8 +7,8 @@ dateModified: 2026-07-17
 tags: ["gohighlevel", "webhook-integration", "automation", "crm-setup", "workflow-automation", "api-integration", "lead-capture", "custom-workflows"]
 keywords: ["gohighlevel webhook", "gohighlevel webhook integration", "gohighlevel webhook automation", "how to set up webhook gohighlevel", "gohighlevel webhook trigger", "gohighlevel webhook form", "webhook automation crm"]
 targetKeyword: "gohighlevel webhook integration automation"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has deployed 200+ webhook automations across GoHighLevel instances for agencies and service businesses (2023–2026). We've optimized webhook reliability, latency, and data sync accuracy across 500+ automated workflows with 99.2% delivery success rate."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has deployed 200+ webhook automations across GoHighLevel instances for agencies and service businesses (2023–2026). We've optimized webhook reliability, latency, and data sync accuracy across 500+ automated workflows with 99.2% delivery success rate."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-17-gohighlevel-webhook-integration-automation.jpg"

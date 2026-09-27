@@ -7,7 +7,7 @@ dateModified: 2026-06-09
 tags: ["gohighlevel", "slack-integration", "automation", "team-notifications", "workflow-automation", "agency-tools"]
 keywords: ["gohighlevel slack integration", "how to connect gohighlevel to slack", "gohighlevel slack notifications", "gohighlevel slack workflows", "slack automation gohighlevel"]
 targetKeyword: "gohighlevel slack integration automation"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-09-gohighlevel-slack-integration-automation.jpg"
@@ -640,7 +640,7 @@ Slack + GoHighLevel is the fastest way to eliminate notification delays and keep
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This post reflects our genuine experience implementing Slack automation for 15+ agencies running GoHighLevel.
+Mallo Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This post reflects our genuine experience implementing Slack automation for 15+ agencies running GoHighLevel.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Built by agricidaniel - Join the AI Marketing Hub community

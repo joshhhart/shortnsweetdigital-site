@@ -5,7 +5,7 @@ pubDate: 2026-05-15
 lastUpdated: 2026-05-15
 tags: ["gohighlevel", "white-label", "reseller-program", "saas-pro", "agency-scaling", "recurring-revenue", "profitability"]
 targetKeyword: "gohighlevel white label reseller program setup"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-05-15-gohighlevel-white-label-reseller-program-setup.jpg"

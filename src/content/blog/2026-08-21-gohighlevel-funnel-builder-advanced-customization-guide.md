@@ -7,8 +7,8 @@ dateModified: 2026-08-21
 tags: ["gohighlevel", "funnel-builder", "customization", "conditional-logic", "landing-pages", "agency-tools", "tutorial"]
 keywords: ["gohighlevel funnel builder customization", "gohighlevel advanced funnel setup", "gohighlevel conditional logic", "gohighlevel hidden fields", "gohighlevel multi-step funnel"]
 targetKeyword: "gohighlevel funnel builder advanced customization guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner with 50+ completed advanced funnel builds (2024–2026). We've optimized conversion funnels across SaaS, ecommerce, and agency verticals, achieving average conversion improvements of 23–41% through advanced conditional logic, progressive profiling, and mobile-optimized form flows. Learn more at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner with 50+ completed advanced funnel builds (2024–2026). We've optimized conversion funnels across SaaS, ecommerce, and agency verticals, achieving average conversion improvements of 23–41% through advanced conditional logic, progressive profiling, and mobile-optimized form flows. Learn more at shortnsweet.digital/case-studies."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-21-gohighlevel-funnel-builder-advanced-customization-guide.jpg"
@@ -23,7 +23,7 @@ audio: "/audio/2026-08-21-gohighlevel-funnel-builder-advanced-customization-guid
 
 > **Affiliate Disclosure**
 >
-> Short n Sweet Digital is a GoHighLevel white-label implementation partner and earns referral commissions when readers sign up via https://www.gohighlevel.com/?fp_ref=shortnsweet53. We disclose this upfront so you can evaluate this guide with transparency. The advanced techniques and testing methodology reflect hands-on optimization across 50+ client funnels; they are not influenced by our commission structure. **Always test advanced customizations in a staging funnel before deploying to production.**
+> Mallo Digital is a GoHighLevel white-label implementation partner and earns referral commissions when readers sign up via https://www.gohighlevel.com/?fp_ref=shortnsweet53. We disclose this upfront so you can evaluate this guide with transparency. The advanced techniques and testing methodology reflect hands-on optimization across 50+ client funnels; they are not influenced by our commission structure. **Always test advanced customizations in a staging funnel before deploying to production.**
 
 ---
 

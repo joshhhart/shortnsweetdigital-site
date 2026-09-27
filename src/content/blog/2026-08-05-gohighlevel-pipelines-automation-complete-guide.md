@@ -7,8 +7,8 @@ dateModified: 2026-08-02
 tags: ["gohighlevel", "pipelines", "sales-automation", "deal-management", "workflow-automation", "lead-scoring", "sales-pipeline", "agency-automation"]
 keywords: ["gohighlevel pipelines", "how to set up gohighlevel pipeline", "gohighlevel automation", "sales pipeline automation", "deal tracking gohighlevel", "lead scoring gohighlevel", "gohighlevel workflow"]
 targetKeyword: "gohighlevel pipelines automation complete guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has configured 180+ GoHighLevel pipeline automation systems across 14 partner agencies (2024–2026). See case studies and client testimonials at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has configured 180+ GoHighLevel pipeline automation systems across 14 partner agencies (2024–2026). See case studies and client testimonials at shortnsweet.digital/case-studies."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-05-gohighlevel-pipelines-automation-complete-guide.jpg"

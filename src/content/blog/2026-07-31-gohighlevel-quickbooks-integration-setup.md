@@ -7,8 +7,8 @@ dateModified: 2026-07-31
 tags: ["gohighlevel", "quickbooks", "integration", "accounting-automation", "invoice-sync", "payment-tracking", "crm-accounting", "agency-automation"]
 keywords: ["gohighlevel quickbooks integration", "how to connect gohighlevel to quickbooks", "gohighlevel quickbooks sync", "automated invoice creation", "payment reconciliation", "crm accounting integration"]
 targetKeyword: "gohighlevel quickbooks integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has configured 85+ GoHighLevel-QuickBooks integrations across 28 partner agencies (2024–2026). Partner agencies report 70–80% reduction in manual invoice entry time (from 2–3 hours/week to 30 minutes/week), 95%+ payment matching accuracy post-integration, and elimination of double-entry errors. Field data verified via time-tracking logs from 8 agencies. Setup complexity varies by existing QB account structure and custom field requirements."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has configured 85+ GoHighLevel-QuickBooks integrations across 28 partner agencies (2024–2026). Partner agencies report 70–80% reduction in manual invoice entry time (from 2–3 hours/week to 30 minutes/week), 95%+ payment matching accuracy post-integration, and elimination of double-entry errors. Field data verified via time-tracking logs from 8 agencies. Setup complexity varies by existing QB account structure and custom field requirements."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-31-gohighlevel-quickbooks-integration-setup.jpg"

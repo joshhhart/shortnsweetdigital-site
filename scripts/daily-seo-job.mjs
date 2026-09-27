@@ -160,7 +160,7 @@ async function pickKeyword(existing) {
   const category = await pickCategory();
   console.log(`[step1] category=${category.id}`);
 
-  const system = `You are an SEO strategist for Short n Sweet Digital, a GoHighLevel
+  const system = `You are an SEO strategist for Mallo Digital, a GoHighLevel
 white-label agency for small businesses and other marketing agencies. Use the
 following SEO skill instructions to guide your selection:
 
@@ -202,7 +202,7 @@ async function draftPost(keyword, styleRefs, auditFeedback = '') {
   const blogSkill   = await loadSkill('claude-blog', 'skills', 'blog');
   const blogWrite   = await loadSkill('claude-blog', 'skills', 'blog-write');
 
-  const system = `You are a long-form blog writer for Short n Sweet Digital, a
+  const system = `You are a long-form blog writer for Mallo Digital, a
 GoHighLevel white-label agency. Follow these skill instructions verbatim:
 
 ${blogSkill}
@@ -248,7 +248,7 @@ CTR rules for title:
   const userParts = [
     `Target keyword: ${keyword}`,
     `Today: ${today}`,
-    `Site context: Short n Sweet Digital is a GoHighLevel white-label agency that helps small businesses and other agencies. The CTA at the end should link to GoHighLevel via the affiliate URL https://www.gohighlevel.com/?fp_ref=shortnsweet53.`,
+    `Site context: Mallo Digital is a GoHighLevel white-label agency that helps small businesses and other agencies. The CTA at the end should link to GoHighLevel via the affiliate URL https://www.gohighlevel.com/?fp_ref=shortnsweet53.`,
     `Match the post structure to the keyword's intent. If the keyword is a comparison (X vs Y), use the comparison shape. If it's a how-to, use numbered steps. If it's a use case for a specific industry, lead with the vertical's problems and how GHL solves them. If it's a migration guide, structure as a step-by-step switch playbook. Do not force every post into a "vs" comparison frame.`,
     `Tone, length, structure, and frontmatter style must match these two recent posts:\n\n${styleRefs}`,
   ];

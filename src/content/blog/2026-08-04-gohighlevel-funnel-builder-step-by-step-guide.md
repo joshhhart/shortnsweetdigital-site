@@ -7,8 +7,8 @@ dateModified: 2026-08-04
 tags: ["gohighlevel", "funnel-builder", "sales-funnel", "landing-pages", "email-automation", "payment-processing", "sales-automation", "funnel-setup"]
 keywords: ["gohighlevel funnel builder", "how to build funnel in gohighlevel", "gohighlevel sales funnel", "gohighlevel landing page", "automated sales funnel", "funnel automation", "payment funnel setup"]
 targetKeyword: "gohighlevel funnel builder step by step guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has built 150+ GoHighLevel sales funnels across 18 partner agencies (2024–2026). Research methodology: Field data from 12 agencies managing 50–500 active funnels per agency. Metrics tracked: funnel conversion rate improvement pre/post-setup (baseline 2–4%, post-setup 6–12% with proper optimization), time to build funnel (30–120 minutes depending on complexity), and automation reliability (95%+ email delivery, 98%+ payment processing success). Setup data verified via funnel analytics exports, email performance reports, and payment gateway reconciliation logs. See 'Research Methodology' section below for audit scope and limitations."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has built 150+ GoHighLevel sales funnels across 18 partner agencies (2024–2026). Research methodology: Field data from 12 agencies managing 50–500 active funnels per agency. Metrics tracked: funnel conversion rate improvement pre/post-setup (baseline 2–4%, post-setup 6–12% with proper optimization), time to build funnel (30–120 minutes depending on complexity), and automation reliability (95%+ email delivery, 98%+ payment processing success). Setup data verified via funnel analytics exports, email performance reports, and payment gateway reconciliation logs. See 'Research Methodology' section below for audit scope and limitations."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-04-gohighlevel-funnel-builder-step-by-step-guide.jpg"
@@ -72,7 +72,7 @@ This guide walks you through building a high-converting sales funnel in GoHighLe
 - Payment data from payment gateway reconciliation (Stripe, PayPal dashboards)
 - Time-to-build from agency project management logs and interviews
 
-For the full case study dataset, contact Short n Sweet Digital.
+For the full case study dataset, contact Mallo Digital.
 
 ---
 

@@ -6,7 +6,7 @@ lastUpdated: 2026-05-27
 tags: ["gohighlevel", "make.com", "automation", "crm", "integration", "workflow", "lead-capture"]
 keywords: ["gohighlevel make.com integration", "make.com automation", "crm automation", "workflow automation", "gohighlevel setup"]
 targetKeyword: "gohighlevel make.com integration guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-05-27-gohighlevel-make-com-integration-guide.jpg"

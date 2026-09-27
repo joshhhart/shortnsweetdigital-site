@@ -7,7 +7,7 @@ dateModified: 2026-06-26
 tags: ["gohighlevel", "klaviyo", "email-marketing", "migration", "automation", "crm-switch"]
 keywords: ["migrate from klaviyo to gohighlevel", "switch from klaviyo to gohighlevel", "klaviyo alternative", "gohighlevel email marketing", "email list migration"]
 targetKeyword: "migrate from klaviyo to gohighlevel"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-06-26-migrate-from-klaviyo-to-gohighlevel.jpg"

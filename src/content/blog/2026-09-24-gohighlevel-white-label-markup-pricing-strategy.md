@@ -5,8 +5,8 @@ pubDate: 2026-09-24
 lastUpdated: 2026-09-24
 tags: ["gohighlevel", "white-label", "pricing-strategy", "agency-business", "markup", "profitability", "resale"]
 targetKeyword: "gohighlevel white label markup pricing strategy"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label reseller since 2024. We help agencies price and position white-label GHL plans to maximize profit margins while staying competitive. This guide reflects hands-on experience with 50+ agencies on white-label deployment, pricing negotiations with GHL, and real P&L data from client campaigns. GHL white-label pricing and plan structures verified from official GHL White Label documentation as of September 2024. Actual GHL white-label rates are subject to change; consult gohighlevel.com/white-label for current pricing. Margin calculations use industry-standard SaaS pricing models and assume no volume discounts unless negotiated directly with GHL."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label reseller since 2024. We help agencies price and position white-label GHL plans to maximize profit margins while staying competitive. This guide reflects hands-on experience with 50+ agencies on white-label deployment, pricing negotiations with GHL, and real P&L data from client campaigns. GHL white-label pricing and plan structures verified from official GHL White Label documentation as of September 2024. Actual GHL white-label rates are subject to change; consult gohighlevel.com/white-label for current pricing. Margin calculations use industry-standard SaaS pricing models and assume no volume discounts unless negotiated directly with GHL."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-09-24-gohighlevel-white-label-markup-pricing-strategy.jpg"

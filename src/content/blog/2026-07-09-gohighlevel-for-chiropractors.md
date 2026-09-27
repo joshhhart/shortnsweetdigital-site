@@ -7,8 +7,8 @@ dateModified: 2026-07-09
 tags: ["gohighlevel", "chiropractors", "patient-automation", "appointment-reminders", "lead-generation", "healthcare-crm", "practice-management", "patient-retention"]
 keywords: ["gohighlevel for chiropractors", "chiropractic practice management software", "patient reminder automation", "chiropractic lead generation", "appointment scheduling crm", "healthcare practice software"]
 targetKeyword: "gohighlevel for chiropractors"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital helps 60+ chiropractic practices implement GoHighLevel for patient retention and lead capture (2023–2026). Typical clients see 35% more patient check-ins within 60 days and reduce no-shows by 40% through automated appointment reminders and SMS sequences."
+author: "Mallo Digital"
+authorBio: "Mallo Digital helps 60+ chiropractic practices implement GoHighLevel for patient retention and lead capture (2023–2026). Typical clients see 35% more patient check-ins within 60 days and reduce no-shows by 40% through automated appointment reminders and SMS sequences."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-09-gohighlevel-for-chiropractors.jpg"
@@ -600,7 +600,7 @@ You now understand how GoHighLevel solves the three biggest problems for chiropr
 **Ready to set up GoHighLevel for your practice?**
 
 1. **Start a 14-day free trial** (no credit card required): [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53)
-2. **Complete the 5-hour setup** using the step-by-step guide above (or hire Short n Sweet Digital to set it up for you)
+2. **Complete the 5-hour setup** using the step-by-step guide above (or hire Mallo Digital to set it up for you)
 3. **Measure ROI** within 30 days by tracking no-show reduction and new patient conversions
 
 **Most chiropractors recover their $297/month investment within 11 days** through reduced no-shows and improved lead conversion. Within 3 months, typical practices gain $8,000–15,000 in additional revenue.

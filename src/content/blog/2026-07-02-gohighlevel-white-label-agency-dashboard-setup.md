@@ -7,7 +7,7 @@ dateModified: 2026-07-02
 tags: ["gohighlevel", "white-label", "setup-guide", "custom-domain", "team-roles", "branding", "reseller-guide", "stripe-billing"]
 keywords: ["gohighlevel white label setup", "gohighlevel custom domain", "gohighlevel white label dashboard", "gohighlevel team roles", "gohighlevel branding setup", "gohighlevel reseller billing"]
 targetKeyword: "gohighlevel white label agency dashboard setup"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-02-gohighlevel-white-label-agency-dashboard-setup.jpg"

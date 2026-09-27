@@ -7,8 +7,8 @@ dateModified: 2026-07-20
 tags: ["gohighlevel", "funnel-builder", "sales-funnels", "landing-pages", "conversion-optimization", "email-sequences", "upsells", "crm-setup"]
 keywords: ["gohighlevel funnel builder", "gohighlevel sales funnel", "how to create funnel gohighlevel", "gohighlevel funnel templates", "gohighlevel landing page", "funnel conversion optimization"]
 targetKeyword: "gohighlevel funnel builder complete guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has built 200+ conversion funnels in GoHighLevel for agencies and service businesses (2023–2026). Our funnels average 32% opt-in rates and 18% upsell conversion rates, verified via client case studies at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has built 200+ conversion funnels in GoHighLevel for agencies and service businesses (2023–2026). Our funnels average 32% opt-in rates and 18% upsell conversion rates, verified via client case studies at shortnsweet.digital/case-studies."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-20-gohighlevel-funnel-builder-complete-guide.jpg"
@@ -329,7 +329,7 @@ The landing page is the gateway. Optimize for clarity and conversions.
 1. In your funnel, click **Landing Page** (or **Page 1**)
 2. Click **Edit Page**
 3. **Page Title**: "[Benefit Headline] - [Your Company]"
-   - Example: "10 Qualified Leads per Week on LinkedIn - Short n Sweet Digital"
+   - Example: "10 Qualified Leads per Week on LinkedIn - Mallo Digital"
 4. **Page Description** (for SEO): 150–160 characters, includes keyword
    - Example: "Learn how to generate 10 qualified leads per week on LinkedIn without paid ads. Free guide + video walkthrough."
 

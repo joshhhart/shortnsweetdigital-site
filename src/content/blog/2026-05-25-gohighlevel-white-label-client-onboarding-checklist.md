@@ -5,7 +5,7 @@ pubDate: 2026-05-25
 lastUpdated: 2026-05-25
 tags: ["gohighlevel", "white-label", "client-onboarding", "setup-checklist", "agency", "crm-setup", "automation"]
 targetKeyword: "gohighlevel white label client onboarding checklist"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-05-25-gohighlevel-white-label-client-onboarding-checklist.jpg"
@@ -16,18 +16,18 @@ audio: "/audio/2026-05-25-gohighlevel-white-label-client-onboarding-checklist.mp
 # GoHighLevel White Label Client Onboarding Checklist: 14-Step Complete Setup
 
 > **Affiliate Disclosure & Transparency**
-> This post contains affiliate links to GoHighLevel. Short n Sweet Digital earns a commission (currently 30% recurring) if you sign up via our link at no additional cost to you. We only recommend tools we've personally tested and use with clients. All steps, pricing, and features reflect GoHighLevel's current platform (May 2026). This content is not sponsored by GoHighLevel; it represents our independent experience onboarding 200+ white-label clients.
+> This post contains affiliate links to GoHighLevel. Mallo Digital earns a commission (currently 30% recurring) if you sign up via our link at no additional cost to you. We only recommend tools we've personally tested and use with clients. All steps, pricing, and features reflect GoHighLevel's current platform (May 2026). This content is not sponsored by GoHighLevel; it represents our independent experience onboarding 200+ white-label clients.
 
 When you bring a new client into your GoHighLevel white-label agency, the first 5 days are critical. A fast, well-organized onboarding sets the tone for your entire relationship. Slow or chaotic onboarding leads to scope creep, client frustration, and churn.
 
 A typical client onboarding involves: setting up their branded CRM, importing their contact list, creating landing pages and forms, configuring email/SMS automations, connecting payment processing, and training them on daily tasks. Without a checklist, this takes 15-20 hours spread over 2-3 weeks. With this 14-step checklist, you can complete onboarding in 4-5 focused hours—and do it the same way every time.
 
-According to a 2026 survey of 150+ white-label agencies, those using a standardized onboarding checklist reduced client time-to-value from 3 weeks to 5 days, improved first-month client satisfaction by 40%, and recovered 20% more at-risk clients through faster issue resolution ([Short n Sweet Digital agency audit](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026).
+According to a 2026 survey of 150+ white-label agencies, those using a standardized onboarding checklist reduced client time-to-value from 3 weeks to 5 days, improved first-month client satisfaction by 40%, and recovered 20% more at-risk clients through faster issue resolution ([Mallo Digital agency audit](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026).
 
 This guide walks through all 14 steps in order, with timing estimates, quality gates, and a downloadable checklist template you can use with every client.
 
 > **Key Takeaways**
-> - 14-step onboarding reduces setup time from 15-20 hours to 4-5 hours and improves first-month client satisfaction by 40% ([Short n Sweet Digital agency audit](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
+> - 14-step onboarding reduces setup time from 15-20 hours to 4-5 hours and improves first-month client satisfaction by 40% ([Mallo Digital agency audit](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - Steps 1-5 focus on account setup and branding (80 minutes); Steps 6-10 cover core CRM functionality and automations (120 minutes); Steps 11-14 complete integrations and training (60 minutes)
 > - Standardized onboarding reduces scope creep by 60% and client churn by 25% because clients know exactly what they're getting and when ([agency implementation case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - Quality gates at Steps 5, 10, and 14 prevent incomplete setups; each gate is a 10-minute audit before moving to the next phase

@@ -7,7 +7,7 @@ dateModified: 2026-06-19
 tags: ["gohighlevel", "sub-accounts", "white-label", "agency", "permissions", "client-management"]
 keywords: ["gohighlevel sub-accounts", "gohighlevel white-label", "create sub-account", "agency permissions", "gohighlevel account setup"]
 targetKeyword: "how to set up gohighlevel sub-accounts"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-19-how-to-set-up-gohighlevel-sub-accounts.jpg"
@@ -381,7 +381,7 @@ Set footer text to your agency name and support contact:
 
 ✅ Good:
 ```
-Powered by Short n Sweet Digital
+Powered by Mallo Digital
 support@shortnsweet.digital | (555) 123-4567
 ```
 
@@ -431,7 +431,7 @@ This sets expectations and shows you're invested in their success.
 Add a help link or button to your sub-account footer:
 
 ```
-Footer Text: "Powered by Short n Sweet Digital | Need help? Check our guides or email support@shortnsweet.digital"
+Footer Text: "Powered by Mallo Digital | Need help? Check our guides or email support@shortnsweet.digital"
 ```
 
 Link them to:
@@ -748,7 +748,7 @@ For official GoHighLevel sub-account documentation:
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All pricing and features referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All pricing and features referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
 
 ---
 

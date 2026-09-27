@@ -7,7 +7,7 @@ dateModified: 2026-06-11
 tags: ["gohighlevel", "pricing", "plans", "features", "agency-tools", "crm-pricing"]
 keywords: ["gohighlevel pricing", "gohighlevel plans comparison", "gohighlevel cost", "gohighlevel pricing 2026", "gohighlevel starter vs pro vs unlimited"]
 targetKeyword: "gohighlevel pricing plans features breakdown"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-11-gohighlevel-pricing-plans-features-breakdown.jpg"
@@ -613,7 +613,7 @@ For deeper dives on features and use cases, see:
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This pricing breakdown reflects data current as of June 2026. GoHighLevel pricing and features change periodically; verify current details on their official pricing page.
+Mallo Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This pricing breakdown reflects data current as of June 2026. GoHighLevel pricing and features change periodically; verify current details on their official pricing page.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Built by agricidaniel - Join the AI Marketing Hub community

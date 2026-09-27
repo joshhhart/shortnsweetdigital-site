@@ -6,7 +6,7 @@ lastUpdated: 2026-06-05
 tags: ["gohighlevel", "white-label", "reseller", "commission-structure", "agency-revenue", "recurring-revenue"]
 keywords: ["gohighlevel white label commission", "gohighlevel reseller pricing", "gohighlevel affiliate commission structure", "how much can you earn from gohighlevel", "gohighlevel reseller margin"]
 targetKeyword: "gohighlevel white label reseller commission structure"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-05-gohighlevel-white-label-reseller-commission-structure.jpg"
@@ -439,7 +439,7 @@ White label commissions are the highest-margin revenue an agency can generate. Y
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This post reflects our genuine experience implementing white label for 15+ agencies and our own client base of 87 white-labeled accounts.
+Mallo Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This post reflects our genuine experience implementing white label for 15+ agencies and our own client base of 87 white-labeled accounts.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Built by agricidaniel - Join the AI Marketing Hub community

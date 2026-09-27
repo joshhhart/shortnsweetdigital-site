@@ -7,7 +7,7 @@ dateModified: 2026-07-03
 tags: ["gohighlevel", "pipeline-setup", "sales-automation", "lead-routing", "deal-stages", "crm-workflow", "sales-process", "follow-up-automation"]
 keywords: ["gohighlevel pipelines", "gohighlevel pipeline automation", "gohighlevel deal stages", "gohighlevel lead routing", "gohighlevel sales pipeline", "gohighlevel automation setup", "gohighlevel follow-up sequences"]
 targetKeyword: "gohighlevel pipelines automation complete guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-03-gohighlevel-pipelines-automation-complete-guide.jpg"

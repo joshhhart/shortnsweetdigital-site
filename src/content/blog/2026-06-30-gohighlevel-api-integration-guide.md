@@ -7,7 +7,7 @@ dateModified: 2026-06-30
 tags: ["gohighlevel", "api-integration", "automation", "zapier", "webhooks", "crm-workflow", "slack", "google-sheets"]
 keywords: ["gohighlevel api", "gohighlevel api integration guide", "gohighlevel slack integration", "gohighlevel zapier", "gohighlevel webhook", "gohighlevel google sheets", "gohighlevel stripe integration"]
 targetKeyword: "gohighlevel api integration guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-06-30-gohighlevel-api-integration-guide.jpg"

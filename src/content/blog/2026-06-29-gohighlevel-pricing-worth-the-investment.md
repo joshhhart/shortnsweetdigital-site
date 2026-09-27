@@ -7,7 +7,7 @@ dateModified: 2026-06-29
 tags: ["gohighlevel", "pricing", "crm-cost", "roi-analysis", "agency-software", "saas-comparison"]
 keywords: ["gohighlevel pricing", "is gohighlevel worth it", "gohighlevel cost", "gohighlevel roi", "gohighlevel vs hubspot pricing", "gohighlevel vs salesforce"]
 targetKeyword: "gohighlevel pricing worth the investment"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-29-gohighlevel-pricing-worth-the-investment.jpg"

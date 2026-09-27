@@ -7,7 +7,7 @@ dateModified: 2026-06-17
 tags: ["gohighlevel", "pipelines", "automation", "sales-funnel", "lead-routing", "crm"]
 keywords: ["gohighlevel pipelines", "gohighlevel automation", "sales pipeline setup", "lead routing automation", "gohighlevel deal stages"]
 targetKeyword: "gohighlevel pipelines automation complete guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-17-gohighlevel-pipelines-automation-complete-guide.jpg"
@@ -606,7 +606,7 @@ For deeper help with GoHighLevel features, see:
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All pricing and features referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All pricing and features referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
 
 ---
 

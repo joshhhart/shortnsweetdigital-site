@@ -1,0 +1,102 @@
+<html><body style="margin:0;background:transparent"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+const q=new URLSearchParams(location.search);const W=+(q.get('size')||480);const M=q.get('m')||'toasty';
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(W,W);r.setPixelRatio(1);
+r.toneMapping=THREE.ACESFilmicToneMapping;r.outputColorSpace=THREE.SRGBColorSpace;r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
+document.body.appendChild(r.domElement);
+const s=new THREE.Scene();s.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),0.04).texture;
+if(q.get('bg'))s.background=new THREE.Color(q.get('bg'));
+const cam=new THREE.PerspectiveCamera(28,1,0.1,100);cam.position.set(0,2.3,12.5);cam.lookAt(0,2.1,0);
+const gr=new THREE.Mesh(new THREE.PlaneGeometry(14,14),new THREE.ShadowMaterial({opacity:0.25}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;s.add(gr);
+const key=new THREE.DirectionalLight(0xffffff,2.1);key.position.set(3,6,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=10;s.add(key);
+const rim=new THREE.DirectionalLight(0x6fb4ff,2.6);rim.position.set(-4,3,-4);s.add(rim);
+const rim2=new THREE.DirectionalLight(0xffb3cf,1.4);rim2.position.set(4,2,-3);s.add(rim2);
+s.add(new THREE.HemisphereLight(0xffffff,0xa9c0ff,0.5));
+const P=(o)=>new THREE.MeshPhysicalMaterial(o);const B=(c,o={})=>new THREE.MeshBasicMaterial({color:c,...o});
+const sph=(r,m,seg=48)=>{const x=new THREE.Mesh(new THREE.SphereGeometry(r,seg,seg),m);x.castShadow=true;return x;};
+const ink=P({color:0x14142a,roughness:0.05,clearcoat:1});
+// cute eyes helper: returns group; blink via scale.y
+function eyes(parent,{x=0.4,y=0,z=1,size=0.26,iris=0x4aa8ff,gap=1}={}){const out=[];for(const sx of [-1,1]){const g=new THREE.Group();g.position.set(sx*x*gap,y,z);g.rotation.y=sx*0.3;parent.add(g);
+ const e=sph(size,ink);e.scale.set(0.85,1.1,0.35);g.add(e);
+ const i=sph(size*0.5,B(iris));i.scale.set(1,0.75,0.3);i.position.set(0,-size*0.42,size*0.3);g.add(i);
+ const h=sph(size*0.27,B(0xffffff));h.position.set(size*0.3,size*0.4,size*0.36);g.add(h);
+ const h2=sph(size*0.12,B(0xffffff));h2.position.set(-size*0.3,-size*0.3,size*0.36);g.add(h2);out.push(g);}return out;}
+function smile(parent,y,z,rad=0.1){const m=new THREE.Mesh(new THREE.TorusGeometry(rad,0.028,12,32,Math.PI),ink);m.rotation.z=Math.PI;m.position.set(0,y,z);parent.add(m);return m;}
+function blush(parent,x,y,z,c=0xff9fc0){for(const sx of [-1,1]){const b=sph(0.17,B(c,{transparent:true,opacity:0.5}));b.castShadow=false;b.scale.set(1.1,0.55,0.2);b.position.set(sx*x,y,z);b.rotation.y=sx*0.55;parent.add(b);}}
+const root=new THREE.Group();s.add(root);let update=()=>{};
+const blinkAt=t=>(t>0.72&&t<0.78)?0.12:1;
+
+if(M==='toasty'){ // toasted marshmallow on a stick
+ const stick=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.09,2.2,16),P({color:0x9a6b3f,roughness:0.8}));stick.position.set(0,1.1,0);stick.castShadow=true;root.add(stick);
+ const body=new THREE.Group();body.position.y=2.75;root.add(body);
+ const mw=P({color:0xfff6ee,roughness:0.6,sheen:1,sheenColor:new THREE.Color(0xffe0c0)});
+ const cyl=new THREE.Mesh(new THREE.CylinderGeometry(1.05,1.05,1.5,64,1),mw);cyl.castShadow=true;body.add(cyl);
+ const toast=P({color:0xd98a3a,roughness:0.45,clearcoat:0.6,sheen:1,sheenColor:new THREE.Color(0xffc070)});
+ const top=new THREE.Mesh(new THREE.SphereGeometry(1.05,64,32,0,Math.PI*2,0,Math.PI/2),toast);top.scale.y=0.35;top.position.y=0.75;body.add(top);
+ const bot=new THREE.Mesh(new THREE.SphereGeometry(1.05,64,32,0,Math.PI*2,Math.PI/2,Math.PI/2),mw);bot.scale.y=0.3;bot.position.y=-0.75;body.add(bot);
+ const band=new THREE.Mesh(new THREE.CylinderGeometry(1.06,1.06,0.35,64,1,true),toast);band.position.y=0.62;body.add(band);
+ const E=eyes(body,{x:0.38,y:0.05,z:0.98,size:0.26});smile(body,-0.3,1.04);blush(body,0.72,-0.25,0.76);
+ const flame=new THREE.Group();flame.position.set(0,1.25,0);body.add(flame);
+ const outer=sph(0.42,B(0xff3d00,{toneMapped:false,transparent:true,opacity:0.95}));outer.scale.set(1,1.7,1);outer.position.y=0.35;flame.add(outer);
+ const tip=new THREE.Mesh(new THREE.ConeGeometry(0.33,0.75,32),B(0xff3d00,{toneMapped:false,transparent:true,opacity:0.95}));tip.position.y=0.92;flame.add(tip);
+ const mid=sph(0.3,B(0xff9500,{toneMapped:false}));mid.scale.set(1,1.6,1);mid.position.set(0,0.28,0.2);flame.add(mid);
+ const core=sph(0.17,B(0xffe14d,{toneMapped:false}));core.scale.set(1,1.5,1);core.position.set(0,0.2,0.36);flame.add(core);
+ const fl=new THREE.PointLight(0xff8a2a,6,5);fl.position.y=0.4;flame.add(fl);
+ update=(t,T)=>{root.rotation.z=0.08*Math.sin(T);root.position.y=0.08*Math.sin(T*2);flame.scale.set(1+0.12*Math.sin(T*6),1+0.2*Math.sin(T*8+1),1);flame.rotation.z=0.12*Math.sin(T*5);tip.rotation.z=0.25*Math.sin(T*7);fl.intensity=5+2*Math.sin(T*9);E.forEach(e=>e.scale.y=blinkAt(t));root.rotation.y=0.15*Math.sin(T);};
+}
+if(M==='jelli'){ // gummy jellyfish
+ const jm=P({color:0xff8fb8,roughness:0.12,transmission:0.75,thickness:1.2,ior:1.35,clearcoat:1,attenuationColor:new THREE.Color(0xff4f8f),attenuationDistance:1.2});
+ const bell=new THREE.Group();bell.position.y=2.1;root.add(bell);
+ const dome=new THREE.Mesh(new THREE.SphereGeometry(1.2,64,48,0,Math.PI*2,0,Math.PI*0.58),jm);dome.scale.y=0.95;bell.add(dome);
+ const core=sph(0.55,P({color:0xffd0e2,emissive:0xff6fa5,emissiveIntensity:0.6,roughness:0.3}));core.position.y=0.25;bell.add(core);
+ const E=eyes(bell,{x:0.4,y:0.3,z:1.02,size:0.24,iris:0xff5c99});smile(bell,0.0,1.13,0.09);
+ const tents=[];for(let i=0;i<6;i++){const a=i/6*Math.PI*2+0.3;const pts=[];for(let k=0;k<6;k++)pts.push(new THREE.Vector3(Math.cos(a)*0.75,-k*0.3,Math.sin(a)*0.75));
+  const c=new THREE.CatmullRomCurve3(pts);const m=new THREE.Mesh(new THREE.TubeGeometry(c,30,0.07,10),jm);m.position.y=-0.15;bell.add(m);tents.push({m,a,c});}
+ const lip=new THREE.Mesh(new THREE.TorusGeometry(1.08,0.1,16,64),jm);lip.rotation.x=Math.PI/2;lip.position.y=-0.2;bell.add(lip);
+ update=(t,T)=>{bell.position.y=2.1+0.25*Math.sin(T);const p=Math.sin(T*2);bell.scale.set(1+0.06*p,1-0.06*p,1+0.06*p);
+  tents.forEach(({m,a},i)=>{const g=m.geometry;const pos=g.attributes.position;if(!m.userData.o)m.userData.o=pos.array.slice();const o=m.userData.o;for(let v=0;v<pos.count;v++){const y=o[v*3+1];pos.array[v*3]=o[v*3]+0.18*Math.sin(T*2+y*2+i)*(-y);pos.array[v*3+2]=o[v*3+2]+0.12*Math.cos(T*2+y*2+i)*(-y);}pos.needsUpdate=true;});
+  E.forEach(e=>e.scale.y=blinkAt(t));root.rotation.y=0.2*Math.sin(T);};
+}
+if(M==='bun'){ // marshmallow bunny
+ const mw=P({color:0xfffaf7,roughness:0.6,sheen:1,sheenColor:new THREE.Color(0xffe3ee)});
+ const g=new THREE.Group();root.add(g);
+ const body=sph(1.05,mw);body.scale.set(1,0.85,0.95);body.position.y=0.9;g.add(body);
+ const head=new THREE.Group();head.position.y=2.1;g.add(head);
+ const hs=sph(0.95,mw);hs.scale.set(1.1,0.92,1);head.add(hs);
+ const ears=[];for(const sx of [-1,1]){const eg=new THREE.Group();eg.position.set(sx*0.4,0.7,-0.1);head.add(eg);const e=sph(0.3,mw);e.scale.set(0.8,2.6,0.6);e.position.y=0.65;eg.add(e);const inner=sph(0.2,B(0xffc2d6));inner.scale.set(0.6,2.2,0.3);inner.position.set(0,0.65,0.13);eg.add(inner);ears.push(eg);}
+ const E=eyes(head,{x:0.36,y:0.05,z:0.86,size:0.2,iris:0xff7fae});blush(head,0.62,-0.2,0.72);
+ const nose=sph(0.07,B(0xff8fb3));nose.position.set(0,-0.15,0.95);head.add(nose);smile(head,-0.3,0.93,0.08);
+ const tail=sph(0.3,mw);tail.position.set(0,0.7,-1.0);g.add(tail);
+ for(const sx of [-1,1]){const f=sph(0.32,mw);f.scale.set(1,0.55,1.4);f.position.set(sx*0.55,0.12,0.45);g.add(f);const pw=sph(0.22,mw);pw.position.set(sx*0.6,1.25,0.85);g.add(pw);}
+ update=(t,T)=>{const hop=Math.max(0,Math.sin(T*2));g.position.y=hop*0.4;g.scale.set(1+0.05*Math.cos(T*2),1-0.05*Math.cos(T*2),1);ears[0].rotation.z=0.25+0.2*Math.sin(T*2);ears[1].rotation.z=-0.25-0.2*Math.sin(T*2+0.5);head.rotation.z=0.08*Math.sin(T);E.forEach(e=>e.scale.y=blinkAt(t));root.rotation.y=0.15*Math.sin(T);};
+}
+if(M==='puff'){ // cotton candy cloud
+ const cc=P({color:0xffb6d9,roughness:0.9,sheen:1,sheenColor:new THREE.Color(0xc8e6ff),sheenRoughness:0.3});
+ const cc2=P({color:0xb9dcff,roughness:0.9,sheen:1,sheenColor:new THREE.Color(0xffd0e8)});
+ const cl=new THREE.Group();cl.position.y=2.2;root.add(cl);
+ [[0,0,0,1.0,cc],[-0.9,-0.2,0,0.72,cc2],[0.95,-0.15,0,0.75,cc],[-0.45,0.55,-0.1,0.65,cc],[0.45,0.6,-0.1,0.6,cc2],[0,-0.35,0.2,0.75,cc],[-1.5,-0.35,-0.1,0.45,cc],[1.55,-0.3,-0.1,0.45,cc2]].forEach(([x,y,z,r,m])=>{const b=sph(r,m);b.position.set(x,y,z);cl.add(b);});
+ const E=eyes(cl,{x:0.36,y:0.05,z:0.97,size:0.22,iris:0x7a5cff});smile(cl,-0.28,1.0,0.09);blush(cl,0.68,-0.25,0.85,0xff6fa5);
+ const drops=[];const cols=[0xff5c99,0x3b9bff,0xffd23f,0x7cf2c0,0xa67cff];for(let i=0;i<12;i++){const d=new THREE.Mesh(new THREE.CapsuleGeometry(0.045,0.16,6,12),B(cols[i%5]));d.userData={x:(Math.random()-0.5)*2.4,z:(Math.random()-0.5)*0.8+0.3,o:i/12,rz:Math.random()};root.add(d);drops.push(d);}
+ update=(t,T)=>{cl.position.y=2.2+0.18*Math.sin(T);cl.rotation.z=0.06*Math.sin(T);cl.scale.set(1+0.03*Math.sin(T*2),1-0.03*Math.sin(T*2),1);
+  drops.forEach(d=>{const u=(t+d.userData.o)%1;d.position.set(d.userData.x,1.4-u*1.4,d.userData.z);d.rotation.z=d.userData.rz*3;d.visible=u<0.95;});E.forEach(e=>e.scale.y=blinkAt(t));root.rotation.y=0.15*Math.sin(T);};
+}
+if(M==='blip'){ // floating orb bot
+ const shell=P({color:0xf4f7fb,roughness:0.18,clearcoat:1,clearcoatRoughness:0.05,metalness:0.0});
+ const bot=new THREE.Group();bot.position.y=2.0;root.add(bot);
+ const b=sph(1.1,shell,64);b.scale.set(1,0.95,0.95);bot.add(b);
+ const scr=new THREE.Mesh(new THREE.SphereGeometry(1.105,64,32,-0.75+Math.PI/2,1.5,1.05,0.95),P({color:0x0b1226,roughness:0.08,clearcoat:1}));scr.scale.set(1,0.95,0.95);scr.rotation.y=-Math.PI/2+Math.PI/2;bot.add(scr);
+ scr.rotation.y=0;
+ const fe=new THREE.Group();fe.position.set(0,0.1,1.06);bot.add(fe);
+ const EM=B(0x5fd0ff);const ey=[];for(const sx of [-1,1]){const e=new THREE.Mesh(new RoundedBoxGeometry(0.2,0.3,0.02,4,0.09),EM);e.position.set(sx*0.3,0,0);fe.add(e);ey.push(e);}
+ const m=new THREE.Mesh(new THREE.TorusGeometry(0.1,0.03,8,24,Math.PI),EM);m.rotation.z=Math.PI;m.position.set(0,-0.22,0);fe.add(m);
+ const ring=new THREE.Mesh(new THREE.TorusGeometry(1.45,0.05,16,96),P({color:0x3b9bff,emissive:0x3b9bff,emissiveIntensity:1.6}));ring.position.y=-0.55;ring.rotation.x=Math.PI/2-0.25;bot.add(ring);
+ const ant=sph(0.12,P({color:0xff7fae,emissive:0xff5c99,emissiveIntensity:1.2}));ant.position.set(0,1.2,0);bot.add(ant);
+ const earM=P({color:0x3b9bff,roughness:0.2,clearcoat:1});for(const sx of [-1,1]){const e=new THREE.Mesh(new THREE.CylinderGeometry(0.22,0.22,0.12,32),earM);e.rotation.z=Math.PI/2;e.position.set(sx*1.1,0.05,0);bot.add(e);}
+ const glowP=new THREE.PointLight(0x5fd0ff,4,3);glowP.position.set(0,0,1.6);bot.add(glowP);
+ update=(t,T)=>{bot.position.y=2.0+0.2*Math.sin(T);bot.rotation.z=0.08*Math.sin(T+1);ring.rotation.z=T;ring.rotation.x=Math.PI/2-0.25+0.05*Math.sin(T*2);ey.forEach(e=>e.scale.y=blinkAt(t));fe.position.x=0.12*Math.sin(T);bot.rotation.y=0.2*Math.sin(T);};
+}
+window.renderAt=(t)=>{update(t,t*Math.PI*2);r.render(s,cam);};window.renderAt(0.1);window.done=true;
+</script></body></html>

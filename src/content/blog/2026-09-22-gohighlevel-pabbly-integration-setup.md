@@ -7,8 +7,8 @@ dateModified: 2026-09-22
 tags: ["gohighlevel", "pabbly", "automation", "workflow-integration", "email-marketing", "agency-tools", "zapier-alternative"]
 keywords: ["gohighlevel pabbly integration", "ghl pabbly connect", "pabbly gohighlevel setup", "gohighlevel email integration", "workflow automation"]
 targetKeyword: "gohighlevel pabbly integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. Since 2024, we've configured 50+ GHL-Pabbly integrations for agencies and service businesses. This guide reflects hands-on setup experience with Pabbly Connect (the automation layer), including common failure modes, cost-optimization strategies, and real-world workflow examples. We maintain an active commercial partnership with GoHighLevel; no affiliation with competing platforms. Pabbly pricing and API availability verified from pabbly.com and gohighlevel.com on 2026-09-22. Integration complexity varies by workflow depth and data schema alignment; test in sandbox accounts before production deployment. Sync latency depends on Pabbly's polling frequency; real-time webhooks are available on higher Pabbly tiers."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. Since 2024, we've configured 50+ GHL-Pabbly integrations for agencies and service businesses. This guide reflects hands-on setup experience with Pabbly Connect (the automation layer), including common failure modes, cost-optimization strategies, and real-world workflow examples. We maintain an active commercial partnership with GoHighLevel; no affiliation with competing platforms. Pabbly pricing and API availability verified from pabbly.com and gohighlevel.com on 2026-09-22. Integration complexity varies by workflow depth and data schema alignment; test in sandbox accounts before production deployment. Sync latency depends on Pabbly's polling frequency; real-time webhooks are available on higher Pabbly tiers."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-22-gohighlevel-pabbly-integration-setup.jpg"

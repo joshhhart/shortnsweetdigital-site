@@ -7,8 +7,8 @@ dateModified: 2026-08-07
 tags: ["gohighlevel", "law-firm-software", "client-intake", "case-management", "legal-automation", "practice-management", "law-firm-crm", "client-onboarding"]
 keywords: ["gohighlevel for law firms", "law firm intake forms gohighlevel", "legal case pipeline gohighlevel", "law firm client management", "legal automation workflow", "attorney crm setup"]
 targetKeyword: "gohighlevel for law firms"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital helps legal service providers and small law firms implement GoHighLevel for client intake, case management, and billing workflows (2024–2026). Short n Sweet Digital earns referral commissions when readers sign up for GoHighLevel via links in this post. See disclosure below."
+author: "Mallo Digital"
+authorBio: "Mallo Digital helps legal service providers and small law firms implement GoHighLevel for client intake, case management, and billing workflows (2024–2026). Mallo Digital earns referral commissions when readers sign up for GoHighLevel via links in this post. See disclosure below."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-08-07-gohighlevel-for-law-firms.jpg"
@@ -22,7 +22,7 @@ audio: "/audio/2026-08-07-gohighlevel-for-law-firms.mp3"
 
 > **DISCLOSURE: Conflict of Interest & Affiliate Commission**
 >
-> This post is written by Short n Sweet Digital, a GoHighLevel implementation partner. Short n Sweet Digital earns referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to promote GoHighLevel. We disclose this upfront so you can evaluate the recommendation with full context. The technical information and setup steps reflect operational experience; the promotional framing reflects our business model. **This is not legal advice.** Consult your state bar ethics hotline or a legal tech compliance attorney before deploying this setup to ensure it meets your jurisdiction's ethics rules.
+> This post is written by Mallo Digital, a GoHighLevel implementation partner. Mallo Digital earns referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to promote GoHighLevel. We disclose this upfront so you can evaluate the recommendation with full context. The technical information and setup steps reflect operational experience; the promotional framing reflects our business model. **This is not legal advice.** Consult your state bar ethics hotline or a legal tech compliance attorney before deploying this setup to ensure it meets your jurisdiction's ethics rules.
 
 ---
 

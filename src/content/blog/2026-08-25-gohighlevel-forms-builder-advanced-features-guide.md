@@ -7,8 +7,8 @@ dateModified: 2026-08-25
 tags: ["gohighlevel", "forms", "conditional-logic", "advanced-setup", "agency-tools", "lead-generation", "tutorial"]
 keywords: ["gohighlevel forms builder", "gohighlevel conditional logic", "gohighlevel hidden fields", "gohighlevel progressive profiling", "gohighlevel forms advanced"]
 targetKeyword: "gohighlevel forms builder advanced features guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner specializing in form optimization and lead qualification workflows."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner specializing in form optimization and lead qualification workflows."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-08-25-gohighlevel-forms-builder-advanced-features-guide.jpg"
@@ -604,4 +604,4 @@ Questions about conditional logic, CSS styling, or troubleshooting? Reach out to
 
 ---
 
-**Affiliate Disclosure**: Short n Sweet Digital earns a referral commission when you sign up for GoHighLevel via the link above. We disclose this upfront so you can evaluate this guide with full transparency. Our advanced techniques reflect hands-on optimization across 50+ client funnels and are not influenced by commission structure.
+**Affiliate Disclosure**: Mallo Digital earns a referral commission when you sign up for GoHighLevel via the link above. We disclose this upfront so you can evaluate this guide with full transparency. Our advanced techniques reflect hands-on optimization across 50+ client funnels and are not influenced by commission structure.

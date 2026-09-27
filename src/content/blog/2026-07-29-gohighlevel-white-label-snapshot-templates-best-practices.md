@@ -7,8 +7,8 @@ dateModified: 2026-07-29
 tags: ["gohighlevel", "white-label", "snapshot-templates", "agency-automation", "client-onboarding", "workflow-templates", "crm-setup", "gohighlevel-setup"]
 keywords: ["gohighlevel white-label templates", "snapshot templates gohighlevel", "gohighlevel agency templates", "white-label crm setup", "gohighlevel automation templates", "client onboarding templates", "gohighlevel best practices"]
 targetKeyword: "gohighlevel white label snapshot templates best practices"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has deployed 150+ white-label GoHighLevel snapshot templates across 40+ partner agencies (2024–2026). Field data from partner agencies shows 35–50% faster client onboarding, 70%+ template reuse across similar verticals, and $50K–$150K annual labor savings per agency. Methodology: pre- and post-implementation time tracking from 12 partner agencies; verified by GoHighLevel partner support team. Results vary by agency vertical, client sophistication, and customization scope."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has deployed 150+ white-label GoHighLevel snapshot templates across 40+ partner agencies (2024–2026). Field data from partner agencies shows 35–50% faster client onboarding, 70%+ template reuse across similar verticals, and $50K–$150K annual labor savings per agency. Methodology: pre- and post-implementation time tracking from 12 partner agencies; verified by GoHighLevel partner support team. Results vary by agency vertical, client sophistication, and customization scope."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-29-gohighlevel-white-label-snapshot-templates-best-practices.jpg"

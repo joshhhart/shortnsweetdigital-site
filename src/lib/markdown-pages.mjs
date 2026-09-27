@@ -3,9 +3,11 @@
 // with the corresponding .astro pages when content changes.
 
 export const SITE_URL = 'https://shortnsweetdigital.com';
-export const SITE_NAME = 'Short n Sweet Digital';
+export const SITE_NAME = 'Mallo Digital';
 export const SITE_SUMMARY =
-  'Short n Sweet Digital is a white-label GoHighLevel partner that helps small businesses and agencies replace 8–12 marketing SaaS tools with one AI-powered all-in-one platform — CRM, email, SMS, web chat, scheduling, pipelines, reviews, and automation under a single login.';
+  'Mallo Digital is a white-label GoHighLevel partner that helps small businesses and agencies replace 8–12 marketing SaaS tools with one AI-powered all-in-one platform — CRM, email, SMS, web chat, scheduling, pipelines, reviews, and automation under a single login.';
+
+import { services } from './services.mjs';
 
 const AFFILIATE = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53';
 
@@ -13,10 +15,10 @@ export const staticPages = [
   {
     slug: 'index',
     path: '/',
-    title: 'Short n Sweet Digital — One AI-Powered Platform for Your Whole Business',
+    title: 'Mallo Digital — One AI-Powered Platform for Your Whole Business',
     description:
       'Replace 8–12 marketing tools with one AI-powered platform: CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.',
-    markdown: `# Short n Sweet Digital
+    markdown: `# Mallo Digital
 
 **One AI-powered platform for your whole business.**
 
@@ -41,7 +43,7 @@ All plans start with a **14-day free trial**. Month-to-month billing, no long-te
 
 ## Frequently asked questions
 
-**What does Short n Sweet Digital do?**
+**What does Mallo Digital do?**
 We replace the 8–12 marketing SaaS tools you are juggling with one AI-powered all-in-one platform — CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.
 
 **How much does it cost?**
@@ -60,14 +62,14 @@ No long-term contracts. Month-to-month billing, cancel anytime.
   {
     slug: 'about',
     path: '/about/',
-    title: 'About — Short n Sweet Digital',
+    title: 'About — Mallo Digital',
     description:
-      'Short n Sweet Digital helps small businesses replace 8–12 marketing tools with one AI-powered platform. Built by Josh Hart on GoHighLevel.',
-    markdown: `# About Short n Sweet Digital
+      'Mallo Digital helps small businesses replace 8–12 marketing tools with one AI-powered platform. Built by Josh Hart on GoHighLevel.',
+    markdown: `# About Mallo Digital
 
 **One platform. Done right. Built for small businesses.**
 
-Short n Sweet Digital is a white-label partner of GoHighLevel — the all-in-one CRM, marketing, and automation platform powering 100,000+ agencies worldwide. We package it for solo operators, contractors, and local service businesses who don't have time to glue together eight different SaaS tools. Founded by Josh Hart.
+Mallo Digital is a white-label partner of GoHighLevel — the all-in-one CRM, marketing, and automation platform powering 100,000+ agencies worldwide. We package it for solo operators, contractors, and local service businesses who don't have time to glue together eight different SaaS tools. Founded by Josh Hart.
 
 ## What you get
 
@@ -91,7 +93,7 @@ Home services, real estate, fitness, coaches, and local agencies. If you live an
   {
     slug: 'pricing',
     path: '/pricing/',
-    title: 'Pricing — Short n Sweet Digital',
+    title: 'Pricing — Mallo Digital',
     description:
       'Simple pricing: Starter $97/mo, Unlimited $297/mo, SaaS Pro $497/mo. Every plan starts with a 14-day free trial. No contracts.',
     markdown: `# Pricing
@@ -158,7 +160,7 @@ The full, always-current list of comparisons and guides lives in the blog index 
   {
     slug: 'book-a-call',
     path: '/book-a-call/',
-    title: 'Book a Free Strategy Call — Short n Sweet Digital',
+    title: 'Book a Free Strategy Call — Mallo Digital',
     description:
       'Book a free 30-minute strategy call. We map your current stack and show you exactly which tools we can replace with one platform.',
     markdown: `# Book a Free Strategy Call
@@ -170,6 +172,79 @@ Book a **free 30-minute strategy call** to scope your CRM, automation, and AI se
 **Who it's for:** Small businesses, local service companies, and agencies that run on inbound leads and follow-up.
 
 [Book your call](${SITE_URL}/book-a-call/)
+`,
+  },
+  {
+    slug: 'services',
+    path: '/services/',
+    title: 'Services — Mallo Digital',
+    description:
+      'Reviews, messaging, web chat, CRM, funnels and websites, payments, missed call text back, an AI assistant and a mobile app in one platform, set up for you by Mallo Digital.',
+    markdown: `# Services
+
+Mallo Digital replaces the 8–12 marketing tools most small businesses juggle with one AI-powered platform built on GoHighLevel. Every plan includes all of the services below.
+
+${services.map((s) => `## ${s.title}\n\n${s.body}\n\n${s.detail}\n\nLink: ${SITE_URL}/services/#${s.slug}`).join('\n\n')}
+
+## How it works: done-for-you setup
+
+1. **Start your trial.** Pick a plan and start the 14-day free trial. No long-term contract.
+2. **Strategy call.** We map the tools you use today and decide what moves over first.
+3. **We build it.** We connect your phone number, calendar, website and social accounts, import your contacts and set up your first automations.
+4. **You run your business.** Leads get answered, followed up and booked from one login, on desktop or the mobile app.
+
+## Frequently asked questions
+
+**What services does Mallo Digital offer?**
+One platform covering online reviews, a unified messaging inbox, website chat, CRM, funnels and websites, payments, missed call text back, an AI assistant and a mobile app. It runs on GoHighLevel and replaces the 8 to 12 separate tools most small businesses pay for.
+
+**Do I have to set it all up myself?**
+No. We do a done-for-you setup: we connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations with you.
+
+**Can I use only some of the services?**
+Yes. Every plan includes all of the tools, so you can switch on what you need now and add the rest later without paying for another app.
+
+**How much does it cost?**
+Plans are Starter $97/mo, Unlimited $297/mo and SaaS Pro $497/mo. Every plan starts with a 14-day free trial and bills month to month.
+
+- [Start a free trial](${AFFILIATE})
+- [Book a call](${SITE_URL}/book-a-call/)
+`,
+  },
+  {
+    slug: 'contact',
+    path: '/contact/',
+    title: 'Contact — Mallo Digital',
+    description:
+      'Contact Mallo Digital. Send us a message, book a free strategy call, or reach us on Facebook, Instagram or LinkedIn.',
+    markdown: `# Contact Mallo Digital
+
+Questions about the platform, pricing or moving your tools over? Send a message through the contact form at ${SITE_URL}/contact/ and we will get back to you.
+
+## Other ways to reach us
+
+- **Book a call:** a free 30-minute strategy call — ${SITE_URL}/book-a-call/
+- **Facebook:** https://www.facebook.com/shortnsweetmarketing
+- **Instagram:** https://www.instagram.com/shortnsweetdigital
+- **LinkedIn:** https://www.linkedin.com/company/shortnsweet-marketing/
+`,
+  },
+  {
+    slug: 'get-started',
+    path: '/get-started/',
+    title: 'Get Started — Mallo Digital',
+    description:
+      'Get started with Mallo Digital in four steps: pick a plan, start a 14-day free trial, book an onboarding call, and we set it up with you.',
+    markdown: `# Get Started with Mallo Digital
+
+Four steps from deciding to try Mallo Digital to a fully set up platform. No contract.
+
+1. **Pick a plan.** Starter is $97/mo for one business, Unlimited is $297/mo for agencies with unlimited client sub-accounts, and SaaS Pro is $497/mo for white-label reselling. All plans are month to month. [Compare plans](${SITE_URL}/pricing/)
+2. **Start your 14-day free trial.** Create your account and try every tool for 14 days before your first bill. [Start free trial](${AFFILIATE})
+3. **Book your onboarding call.** A free strategy call where we look at the tools you use today and plan what moves over first. [Book a call](${SITE_URL}/book-a-call/)
+4. **We set it up with you.** We connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations, then show you how to run it.
+
+See [what's included](${SITE_URL}/services/) or [contact us](${SITE_URL}/contact/).
 `,
   },
 ];

@@ -7,8 +7,8 @@ dateModified: 2026-08-26
 tags: ["gohighlevel", "airtable", "integration", "api-setup", "data-sync", "automation", "tutorial"]
 keywords: ["gohighlevel airtable integration", "how to connect airtable to gohighlevel", "gohighlevel airtable setup", "airtable webhook gohighlevel", "gohighlevel airtable sync"]
 targetKeyword: "gohighlevel airtable integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner specializing in CRM integrations and data automation. We've completed 40+ GHL-Airtable integrations (2024–2026) syncing 150,000+ records across client accounts."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner specializing in CRM integrations and data automation. We've completed 40+ GHL-Airtable integrations (2024–2026) syncing 150,000+ records across client accounts."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-26-gohighlevel-airtable-integration-setup.jpg"

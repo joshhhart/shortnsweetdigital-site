@@ -5,8 +5,8 @@ pubDate: 2026-08-28
 tags: ["gohighlevel", "pro-plan", "pricing", "cost-breakdown", "roi", "agency-software"]
 keywords: ["gohighlevel pro plan cost", "gohighlevel pricing 2026", "gohighlevel pro plan features", "gohighlevel cost breakdown", "is gohighlevel pro plan worth it"]
 targetKeyword: "gohighlevel pro plan cost breakdown"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. We've deployed GHL across 150+ agencies and coaching businesses since 2024. We earn commission on all GoHighLevel referral signups; commission applies only to signup, not your ongoing monthly plan cost."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. We've deployed GHL across 150+ agencies and coaching businesses since 2024. We earn commission on all GoHighLevel referral signups; commission applies only to signup, not your ongoing monthly plan cost."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-28-gohighlevel-pro-plan-cost-breakdown.jpg"

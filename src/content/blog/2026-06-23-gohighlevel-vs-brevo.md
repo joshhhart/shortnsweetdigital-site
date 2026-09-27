@@ -7,7 +7,7 @@ dateModified: 2026-06-23
 tags: ["gohighlevel", "brevo", "crm-comparison", "agency-tools", "automation", "white-label"]
 keywords: ["gohighlevel vs brevo", "brevo vs gohighlevel", "best crm for agencies", "gohighlevel alternative", "brevo features"]
 targetKeyword: "gohighlevel vs brevo"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-23-gohighlevel-vs-brevo.jpg"
@@ -484,7 +484,7 @@ Send your client their new GoHighLevel login (custom domain, if set up):
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. We have no financial relationship with Brevo. All pricing and features referenced in this article are current as of June 2026 and subject to change. Check official sites for the latest details.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. We have no financial relationship with Brevo. All pricing and features referenced in this article are current as of June 2026 and subject to change. Check official sites for the latest details.
 
 ---
 

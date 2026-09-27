@@ -7,8 +7,8 @@ dateModified: 2026-07-13
 tags: ["gohighlevel", "constant-contact-migration", "email-migration", "crm-switch", "data-import", "deliverability", "agency-tools", "automation-setup"]
 keywords: ["migrate from constant contact to gohighlevel", "constant contact to gohighlevel", "switch from constant contact", "gohighlevel email migration", "data migration gohighlevel"]
 targetKeyword: "migrate from constant contact to gohighlevel"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has guided 80+ agencies and small businesses through email platform migrations, including 35+ Constant Contact → GoHighLevel switches (2023–2026). Zero data loss across 100% of migrations; average cutover time 3–5 days."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has guided 80+ agencies and small businesses through email platform migrations, including 35+ Constant Contact → GoHighLevel switches (2023–2026). Zero data loss across 100% of migrations; average cutover time 3–5 days."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-13-migrate-from-constant-contact-to-gohighlevel.jpg"

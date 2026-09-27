@@ -5,7 +5,7 @@ pubDate: 2026-05-22
 lastUpdated: 2026-05-22
 tags: ["gohighlevel", "stripe-integration", "payment-processing", "recurring-billing", "invoicing", "automation", "crm"]
 targetKeyword: "gohighlevel stripe payment integration setup"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-05-22-gohighlevel-stripe-payment-integration-setup.jpg"
@@ -24,7 +24,7 @@ Connecting Stripe to GoHighLevel transforms your CRM into a complete payment and
 > - Stripe integration is available on GoHighLevel Standard ($197/mo) and Unlimited ($297/mo) tiers; includes payment processing at Stripe's standard rates (2.9% + $0.30 per transaction, subject to change per Stripe terms)
 > - A typical setup takes 15-20 minutes: connect Stripe account, create a payment product, add to landing page or invoice template, test a transaction, and enable automations
 > - Agencies using Stripe + GoHighLevel automations see 40-60% faster payment collection (average 3 days to receipt vs. 12+ days with manual invoicing), measured across 150+ client implementations (2025)
-> - Recurring billing automations eliminate manual payment reminders; one client recovered $18K in Year 1 from previously-unpaid invoices via automated dunning sequences ([Short n Sweet Digital case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), 2025)
+> - Recurring billing automations eliminate manual payment reminders; one client recovered $18K in Year 1 from previously-unpaid invoices via automated dunning sequences ([Mallo Digital case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), 2025)
 > - Payment data stays PCI-compliant: Stripe handles card security and encryption; GoHighLevel never stores raw card data (Stripe handles Level 1 PCI compliance)
 
 ---
@@ -607,7 +607,7 @@ Stripe + GoHighLevel transforms invoicing from a manual, error-prone process int
 
 ---
 
-**About Short n Sweet Digital**
+**About Mallo Digital**
 
 We're a GoHighLevel white-label agency helping small businesses and agencies scale without hiring. All integration steps and workflows in this guide come from real client implementations with proven results.
 

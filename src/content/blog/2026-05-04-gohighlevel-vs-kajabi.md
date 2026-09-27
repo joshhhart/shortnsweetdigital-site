@@ -80,4 +80,4 @@ The only clean switch case is: **you're under 12 months in, under $10K/mo MRR, a
 
 If you've decided GHL is the right fit, the difference between using it and using it well is the build-out. We set up GHL for agencies and small businesses — sub-accounts, automations, pipelines, white-label DNS, and the integrations that actually drive revenue.
 
-[Start your GoHighLevel trial through Short n Sweet Digital](https://www.gohighlevel.com/?fp_ref=shortnsweet53) and we'll handle the rest.
+[Start your GoHighLevel trial through Mallo Digital](https://www.gohighlevel.com/?fp_ref=shortnsweet53) and we'll handle the rest.

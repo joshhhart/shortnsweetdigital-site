@@ -7,8 +7,8 @@ dateModified: 2026-08-18
 tags: ["gohighlevel", "white-label", "snapshot", "customization", "branding", "agency-tools", "client-setup", "tutorial"]
 keywords: ["gohighlevel snapshot customization", "gohighlevel white label branding", "how to customize gohighlevel snapshots", "gohighlevel snapshot colors fonts", "white label gohighlevel setup"]
 targetKeyword: "gohighlevel white label snapshot customization guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner with 100+ completed white-label client deployments (2024–2026). We've customized snapshots for agencies across all pricing tiers. This guide reflects hands-on setup experience, common customization errors, and branding best practices from production white-label implementations. Learn more at shortnsweet.digital/team."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner with 100+ completed white-label client deployments (2024–2026). We've customized snapshots for agencies across all pricing tiers. This guide reflects hands-on setup experience, common customization errors, and branding best practices from production white-label implementations. Learn more at shortnsweet.digital/team."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-18-gohighlevel-white-label-snapshot-customization-guide.jpg"
@@ -23,7 +23,7 @@ audio: "/audio/2026-08-18-gohighlevel-white-label-snapshot-customization-guide.m
 
 > **AFFILIATE DISCLOSURE**
 >
-> Short n Sweet Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to recommend GoHighLevel.
+> Mallo Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to recommend GoHighLevel.
 >
 > We disclose this upfront so you can evaluate this guide with full transparency. The snapshot customization steps and technical details reflect hands-on setup experience across 100+ white-label client deployments (2024–2026); they are not influenced by our commission structure. **Verify all steps with GoHighLevel's current documentation before deploying to production.**
 

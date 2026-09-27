@@ -7,8 +7,8 @@ dateModified: 2026-09-21
 tags: ["gohighlevel", "pricing", "pro-plan", "cost-analysis", "crm", "agency-tools"]
 keywords: ["gohighlevel pro plan cost", "gohighlevel pricing", "ghl pro plan features", "gohighlevel pro vs unlimited"]
 targetKeyword: "gohighlevel pro plan cost breakdown"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. Since 2024, we've deployed GHL for 80+ agencies, with 45+ running Pro ($199/month) and 35+ on Unlimited ($299/month). This guide reflects real pricing data from September 2026 and hands-on cost analysis from client implementations. We maintain an active commercial partnership with GoHighLevel; no affiliation with competing platforms. Pricing verified directly from gohighlevel.com/pricing on 2026-09-20. Contact overage costs, seat pricing, and annual billing discounts are subject to change; see official GHL pricing page for current rates."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. Since 2024, we've deployed GHL for 80+ agencies, with 45+ running Pro ($199/month) and 35+ on Unlimited ($299/month). This guide reflects real pricing data from September 2026 and hands-on cost analysis from client implementations. We maintain an active commercial partnership with GoHighLevel; no affiliation with competing platforms. Pricing verified directly from gohighlevel.com/pricing on 2026-09-20. Contact overage costs, seat pricing, and annual billing discounts are subject to change; see official GHL pricing page for current rates."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-21-gohighlevel-pro-plan-cost-breakdown.jpg"

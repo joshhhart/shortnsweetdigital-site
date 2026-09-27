@@ -7,8 +7,8 @@ dateModified: 2026-07-21
 tags: ["gohighlevel", "pipeline-automation", "sales-automation", "deal-management", "workflow-automation", "crm-setup", "sales-process", "conversion-optimization"]
 keywords: ["gohighlevel pipelines", "gohighlevel pipeline automation", "how to set up pipelines gohighlevel", "gohighlevel deal stages", "gohighlevel pipeline workflow", "gohighlevel sales automation", "gohighlevel pipeline management"]
 targetKeyword: "gohighlevel pipelines automation step by step guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has built and optimized 300+ sales pipelines in GoHighLevel for agencies and service businesses (2023–2026). Our pipelines average 32% faster deal closure, 78% conversion rates through qualified stages, and $8K–$45K average deal values. Verified via client implementations at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has built and optimized 300+ sales pipelines in GoHighLevel for agencies and service businesses (2023–2026). Our pipelines average 32% faster deal closure, 78% conversion rates through qualified stages, and $8K–$45K average deal values. Verified via client implementations at shortnsweet.digital/case-studies."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-21-gohighlevel-pipelines-automation-step-by-step-guide.jpg"

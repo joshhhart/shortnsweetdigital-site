@@ -7,7 +7,7 @@ dateModified: 2026-06-18
 tags: ["gohighlevel", "client-snapshot", "templates", "reporting", "agency", "dashboard"]
 keywords: ["gohighlevel client snapshot", "gohighlevel templates", "client dashboard", "agency reporting", "gohighlevel white label"]
 targetKeyword: "gohighlevel white label client snapshot templates"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-18-gohighlevel-white-label-client-snapshot-templates.jpg"
@@ -663,7 +663,7 @@ This requires:
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All features, pricing, and plans referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All features, pricing, and plans referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
 
 ---
 
