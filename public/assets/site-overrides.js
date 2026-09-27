@@ -818,7 +818,7 @@
     var strip = document.createElement('div');
     strip.setAttribute('data-snd-trust', '');
     strip.innerHTML = `
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1.5rem;padding:8px 16px;background:linear-gradient(90deg,rgba(255,92,153,0.12),rgba(255,92,153,0.12));border-bottom:1px solid rgba(255,92,153,0.25);font-family:Open Sans,-apple-system,sans-serif;font-size:0.82rem;color:#d9cdf2;text-align:center;position:relative;z-index:9991">
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1.5rem;padding:8px 16px;background:linear-gradient(90deg,rgba(255,92,153,0.12),rgba(255,92,153,0.12));border-bottom:1px solid rgba(255,92,153,0.25);font-family:Open Sans,-apple-system,sans-serif;font-size:0.82rem;color:#d9cdf2;text-align:center;position:relative;z-index:1">
         <span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#facc15;font-weight:700">★★★★★</span> Trusted by 100,000+ agencies on GoHighLevel</span>
         <span style="opacity:0.4">·</span>
         <span>14-day free trial</span>
@@ -827,6 +827,26 @@
       </div>
     `;
     header.parentElement.insertBefore(strip, header);
+
+    // Keep the fixed MENU toggle clear of the banner: sit it just below the
+    // banner at the top of the page, then slide back to the corner once the
+    // banner has scrolled away.
+    function placeMenu() {
+      var menuHeader = document.querySelector('.snd-sm-header');
+      if (!menuHeader) return;
+      var bottom = Math.max(0, strip.getBoundingClientRect().bottom);
+      menuHeader.style.transform = bottom ? 'translateY(' + bottom + 'px)' : '';
+    }
+    menuHeaderTransition();
+    window.addEventListener('scroll', placeMenu, { passive: true });
+    window.addEventListener('resize', placeMenu);
+    placeMenu();
+    setTimeout(placeMenu, 300);
+    function menuHeaderTransition() {
+      var style = document.createElement('style');
+      style.textContent = '.snd-sm-header{transition:transform .2s ease-out}';
+      document.head.appendChild(style);
+    }
   }
 
   function ensureMobileCta() {
