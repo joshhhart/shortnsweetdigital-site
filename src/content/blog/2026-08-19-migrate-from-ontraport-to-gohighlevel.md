@@ -7,8 +7,8 @@ dateModified: 2026-08-19
 tags: ["gohighlevel", "ontraport", "migration", "data-migration", "crm-switch", "agency-tools", "automation", "tutorial"]
 keywords: ["ontraport to gohighlevel migration", "how to migrate from ontraport to gohighlevel", "migrate ontraport data to gohighlevel", "ontraport vs gohighlevel", "switch from ontraport to gohighlevel"]
 targetKeyword: "migrate from ontraport to gohighlevel"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner with 25+ completed Ontraport-to-GHL migrations (2024–2026). We've moved 5K–100K+ contact databases, rebuilt custom automations, and trained teams on GHL workflows. View our [migration case studies](https://shortnsweet.digital/migrations) or [connect on LinkedIn](https://linkedin.com/company/short-n-sweet-digital)."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner with 25+ completed Ontraport-to-GHL migrations (2024–2026). We've moved 5K–100K+ contact databases, rebuilt custom automations, and trained teams on GHL workflows. View our [migration case studies](https://shortnsweet.digital/migrations) or [connect on LinkedIn](https://linkedin.com/company/short-n-sweet-digital)."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-19-migrate-from-ontraport-to-gohighlevel.jpg"
@@ -23,7 +23,7 @@ audio: "/audio/2026-08-19-migrate-from-ontraport-to-gohighlevel.mp3"
 
 > **AFFILIATE DISCLOSURE**
 >
-> Short n Sweet Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). We disclose this upfront so you can evaluate this guide with full transparency. The migration steps and technical details reflect hands-on experience across 25+ agency deployments; they are not influenced by our commission structure. **Verify all steps with GoHighLevel and Ontraport's current documentation before migrating production data.**
+> Mallo Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). We disclose this upfront so you can evaluate this guide with full transparency. The migration steps and technical details reflect hands-on experience across 25+ agency deployments; they are not influenced by our commission structure. **Verify all steps with GoHighLevel and Ontraport's current documentation before migrating production data.**
 
 ---
 

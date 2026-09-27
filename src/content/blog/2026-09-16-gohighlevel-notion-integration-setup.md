@@ -7,8 +7,8 @@ dateModified: 2026-09-16
 tags: ["gohighlevel", "notion", "integration", "workflow-automation", "crm-setup", "agency-tools", "zapier"]
 keywords: ["gohighlevel notion integration", "ghl notion setup", "sync gohighlevel notion", "notion database gohighlevel", "crm automation agency"]
 targetKeyword: "gohighlevel notion integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. We help SaaS agencies, service businesses, and coaching practices deploy GHL with custom integrations. Since 2024, we've configured 40+ GHL-Notion integrations using Zapier and Make, syncing contacts, appointments, and custom workflows. This guide reflects hands-on deployment experience. We are not affiliated with Notion or Zapier; this is third-party technical guidance. Integration complexity varies by data volume and workflow scope; test in sandbox Notion workspaces before production deployment."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. We help SaaS agencies, service businesses, and coaching practices deploy GHL with custom integrations. Since 2024, we've configured 40+ GHL-Notion integrations using Zapier and Make, syncing contacts, appointments, and custom workflows. This guide reflects hands-on deployment experience. We are not affiliated with Notion or Zapier; this is third-party technical guidance. Integration complexity varies by data volume and workflow scope; test in sandbox Notion workspaces before production deployment."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-16-gohighlevel-notion-integration-setup.jpg"

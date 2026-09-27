@@ -7,8 +7,8 @@ dateModified: 2026-07-30
 tags: ["gohighlevel", "calendar-automation", "appointment-reminders", "workflow-automation", "agency-automation", "client-management", "no-show-prevention", "gohighlevel-setup"]
 keywords: ["gohighlevel calendar automation", "appointment reminders gohighlevel", "gohighlevel calendar workflows", "no-show prevention", "appointment confirmation automation", "gohighlevel scheduling"]
 targetKeyword: "how to set up gohighlevel calendar automation"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has configured 200+ GoHighLevel calendar automation workflows across 45+ partner agencies (2024–2026). Field data from partner implementations shows 25–35% reduction in no-show rates (baseline: 25–35% industry average per Capterra 2024 agency management benchmark; verified via pre- and post-implementation appointment data from 12 agencies). Agencies report 2–4 hours/week saved on manual reminder and confirmation tasks. Methodology: appointment tracking across 12 partner agencies; no-show rate calculation based on (missed appointments / scheduled appointments) × 100."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has configured 200+ GoHighLevel calendar automation workflows across 45+ partner agencies (2024–2026). Field data from partner implementations shows 25–35% reduction in no-show rates (baseline: 25–35% industry average per Capterra 2024 agency management benchmark; verified via pre- and post-implementation appointment data from 12 agencies). Agencies report 2–4 hours/week saved on manual reminder and confirmation tasks. Methodology: appointment tracking across 12 partner agencies; no-show rate calculation based on (missed appointments / scheduled appointments) × 100."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-30-how-to-set-up-gohighlevel-calendar-automation.jpg"

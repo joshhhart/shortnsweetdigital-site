@@ -7,7 +7,7 @@ dateModified: 2025-06-15
 tags: ["gohighlevel", "getresponse", "migration", "email-marketing", "crm", "automation"]
 keywords: ["migrate from getresponse to gohighlevel", "getresponse to gohighlevel migration", "switch from getresponse", "gohighlevel import contacts", "getresponse alternative"]
 targetKeyword: "migrate from getresponse to gohighlevel"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-15-migrate-from-getresponse-to-gohighlevel.jpg"
@@ -533,7 +533,7 @@ For deeper help on GoHighLevel features, see:
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label reseller. We earn a commission on qualified signups through our affiliate link at no cost to you. All pricing and features referenced reflect data current as of June 2025. Check GoHighLevel's official site for the latest pricing and features.
+Mallo Digital is a GoHighLevel white-label reseller. We earn a commission on qualified signups through our affiliate link at no cost to you. All pricing and features referenced reflect data current as of June 2025. Check GoHighLevel's official site for the latest pricing and features.
 
 ---
 

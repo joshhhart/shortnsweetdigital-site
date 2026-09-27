@@ -7,7 +7,7 @@ dateModified: 2026-06-10
 tags: ["gohighlevel", "getresponse", "crm-comparison", "agency-tools", "marketing-automation", "saas-comparison"]
 keywords: ["gohighlevel vs getresponse", "gohighlevel vs getresponse comparison", "getresponse vs gohighlevel", "which is better gohighlevel or getresponse", "gohighlevel alternative"]
 targetKeyword: "gohighlevel vs getresponse"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-10-gohighlevel-vs-getresponse.jpg"
@@ -611,7 +611,7 @@ For deeper dives on each platform and alternative comparisons, see:
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This comparison reflects our analysis of both platforms as of June 2026. Platform features and pricing change frequently; check the official websites for current details.
+Mallo Digital is a GoHighLevel white-label reseller and affiliate. We earn commissions on qualified signups through our referral link at no cost to you. This comparison reflects our analysis of both platforms as of June 2026. Platform features and pricing change frequently; check the official websites for current details.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Built by agricidaniel - Join the AI Marketing Hub community

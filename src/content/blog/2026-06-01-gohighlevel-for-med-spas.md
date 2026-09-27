@@ -6,7 +6,7 @@ lastUpdated: 2026-06-01
 tags: ["gohighlevel", "med-spa", "crm", "automation", "appointment-booking", "patient-nurture", "sms-marketing"]
 keywords: ["gohighlevel for med spas", "med spa crm", "appointment automation", "patient management crm", "aesthetic practice software"]
 targetKeyword: "gohighlevel for med spas"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-06-01-gohighlevel-for-med-spas.jpg"
@@ -18,7 +18,7 @@ schemaType: "HowToGuide"
 # GoHighLevel for Med Spas: CRM Setup & Client Management Guide
 
 > **Affiliate Disclosure**
-> This post contains affiliate links to GoHighLevel. Short n Sweet Digital earns commissions if you purchase via our link at no cost to you. All pricing and features reflect June 2026 GoHighLevel testing across 40+ med spa implementations.
+> This post contains affiliate links to GoHighLevel. Mallo Digital earns commissions if you purchase via our link at no cost to you. All pricing and features reflect June 2026 GoHighLevel testing across 40+ med spa implementations.
 
 Med spas face a unique problem: patient acquisition is expensive, but patient retention is even harder. According to the American Academy of Aesthetic Medicine (AAAM), 58% of med spa patients abandon after one treatment because follow-up is manual, inconsistent, or non-existent. A single lost patient costs $3,000-8,000 in lifetime value.
 

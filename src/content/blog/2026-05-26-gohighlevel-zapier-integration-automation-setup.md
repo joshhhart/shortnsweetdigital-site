@@ -6,7 +6,7 @@ lastUpdated: 2026-05-26
 tags: ["gohighlevel", "zapier", "automation", "crm", "integration", "workflow", "lead-capture"]
 keywords: ["gohighlevel zapier integration", "zapier automation", "crm integration", "workflow automation", "gohighlevel setup"]
 targetKeyword: "gohighlevel zapier integration automation setup"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-05-26-gohighlevel-zapier-integration-automation-setup.jpg"
@@ -17,7 +17,7 @@ audio: "/audio/2026-05-26-gohighlevel-zapier-integration-automation-setup.mp3"
 # GoHighLevel Zapier Integration: Complete Automation Setup Guide
 
 > **Affiliate Disclosure**
-> This post contains affiliate links to GoHighLevel. Short n Sweet Digital earns a 30% recurring commission if you sign up via our link at no additional cost to you. All pricing and features reflect GoHighLevel's current platform (May 2026). This guide is based on direct testing across 50+ client implementations.
+> This post contains affiliate links to GoHighLevel. Mallo Digital earns a 30% recurring commission if you sign up via our link at no additional cost to you. All pricing and features reflect GoHighLevel's current platform (May 2026). This guide is based on direct testing across 50+ client implementations.
 
 When you connect GoHighLevel to Zapier, your CRM stops being an isolated tool. It becomes the central hub of your entire business ecosystem. A form submission in GoHighLevel instantly adds a contact to Google Sheets, posts in Slack, triggers an email in ConvertKit, and creates a task in Asana—all without a single line of code.
 

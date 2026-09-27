@@ -1,4 +1,4 @@
-// Exit-intent lead-magnet popup for Short n Sweet Digital
+// Exit-intent lead-magnet popup for Mallo Digital
 // Triggers when cursor leaves the viewport top edge (desktop) OR after a fast
 // scroll-to-top on mobile. Suppressed for 7 days via localStorage.
 (function () {

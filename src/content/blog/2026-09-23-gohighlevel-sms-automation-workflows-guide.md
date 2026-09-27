@@ -6,8 +6,8 @@ lastUpdated: 2026-09-23
 tags: ["gohighlevel", "sms-automation", "workflows", "texting", "lead-nurture", "compliance", "agency-tools"]
 keywords: ["gohighlevel sms automation", "ghl sms workflows", "sms automation setup", "gohighlevel texting", "sms compliance"]
 targetKeyword: "gohighlevel sms automation workflows guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency implementing SMS automation for 50+ clients since 2024. This guide reflects hands-on GHL SMS setup, TCPA compliance audits, and real workflow templates. We maintain an active commercial partnership with GoHighLevel; no affiliation with competing SMS platforms. SMS pricing and GHL features verified from gohighlevel.com/pricing (2026-09-23). TCPA compliance guidance sourced from CTIA Short Code Handbook and FCC regulations; consult a compliance attorney for your jurisdiction."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label agency implementing SMS automation for 50+ clients since 2024. This guide reflects hands-on GHL SMS setup, TCPA compliance audits, and real workflow templates. We maintain an active commercial partnership with GoHighLevel; no affiliation with competing SMS platforms. SMS pricing and GHL features verified from gohighlevel.com/pricing (2026-09-23). TCPA compliance guidance sourced from CTIA Short Code Handbook and FCC regulations; consult a compliance attorney for your jurisdiction."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-09-23-gohighlevel-sms-automation-workflows-guide.jpg"

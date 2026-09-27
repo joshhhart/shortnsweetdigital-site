@@ -7,8 +7,8 @@ dateModified: 2026-07-08
 tags: ["gohighlevel", "client-retention", "churn-reduction", "qbr-playbook", "agency-growth", "recurring-revenue", "client-success", "automation"]
 keywords: ["gohighlevel client retention", "how to reduce agency client churn", "gohighlevel qbr quarterly business review", "agency client success strategy", "saas retention tactics", "gohighlevel reseller retention"]
 targetKeyword: "gohighlevel agency client retention strategies"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital helps 200+ GoHighLevel agencies and resellers retain 85%+ of clients year-over-year through QBRs, health dashboards, and proactive retention automation (2023–2026). Co-founded by practitioners who've scaled SaaS and agency retention from 65% to 91% LTV/CAC ratios."
+author: "Mallo Digital"
+authorBio: "Mallo Digital helps 200+ GoHighLevel agencies and resellers retain 85%+ of clients year-over-year through QBRs, health dashboards, and proactive retention automation (2023–2026). Co-founded by practitioners who've scaled SaaS and agency retention from 65% to 91% LTV/CAC ratios."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-08-gohighlevel-agency-client-retention-strategies.jpg"

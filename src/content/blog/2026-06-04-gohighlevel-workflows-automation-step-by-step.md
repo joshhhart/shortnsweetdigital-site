@@ -6,7 +6,7 @@ lastUpdated: 2026-06-04
 tags: ["gohighlevel", "workflows", "automation", "marketing-automation", "lead-nurture", "agency-software"]
 keywords: ["gohighlevel workflows", "gohighlevel automation", "workflow automation step by step", "gohighlevel triggers", "automation templates"]
 targetKeyword: "gohighlevel workflows automation step by step"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-04-gohighlevel-workflows-automation-step-by-step.jpg"
@@ -19,7 +19,7 @@ schemaType: "HowToGuide"
 # GoHighLevel Workflows Automation: Step-by-Step Setup Guide
 
 > **Affiliate Disclosure**
-> This post contains affiliate links to GoHighLevel. Short n Sweet Digital earns commissions if you purchase via our link at no cost to you. All pricing, features, and automation examples reflect June 2026 testing across 40+ agency implementations of GoHighLevel's workflow system.
+> This post contains affiliate links to GoHighLevel. Mallo Digital earns commissions if you purchase via our link at no cost to you. All pricing, features, and automation examples reflect June 2026 testing across 40+ agency implementations of GoHighLevel's workflow system.
 
 Your sales team manually does the same thing 50 times per week: send a welcome email, wait 2 days, send a follow-up email, check if the prospect clicked a link, send one email if they did (nurture path) or a different email if they didn't (urgency path). Each manual cycle takes 15 minutes. Multiply by 50 per week. That's 12.5 hours of robot work your humans are doing.
 

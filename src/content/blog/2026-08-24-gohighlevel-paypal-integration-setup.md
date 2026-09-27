@@ -7,8 +7,8 @@ dateModified: 2026-08-24
 tags: ["gohighlevel", "paypal", "integration", "payments", "api-setup", "webhooks", "transaction-sync", "tutorial"]
 keywords: ["gohighlevel paypal integration", "how to connect paypal to gohighlevel", "gohighlevel paypal setup", "paypal webhook gohighlevel", "gohighlevel payment processing"]
 targetKeyword: "gohighlevel paypal integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. We've completed 35+ GHL-PayPal integrations (2024–2026) processing $2.4M+ in cumulative client payments. Integration case studies and client testimonials available at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. We've completed 35+ GHL-PayPal integrations (2024–2026) processing $2.4M+ in cumulative client payments. Integration case studies and client testimonials available at shortnsweet.digital/case-studies."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-24-gohighlevel-paypal-integration-setup.jpg"

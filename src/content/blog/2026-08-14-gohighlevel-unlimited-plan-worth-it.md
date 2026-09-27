@@ -7,8 +7,8 @@ dateModified: 2026-08-14
 tags: ["gohighlevel", "gohighlevel-pricing", "unlimited-plan", "crm-software", "agency-software", "pricing-comparison", "roi-analysis", "business-software"]
 keywords: ["gohighlevel unlimited plan", "gohighlevel unlimited worth it", "gohighlevel pricing", "gohighlevel unlimited vs pro", "best gohighlevel plan", "gohighlevel cost analysis"]
 targetKeyword: "gohighlevel unlimited plan worth it"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel implementation partner working with 50+ agencies (2024–2026). We've deployed GoHighLevel across all pricing tiers. This analysis is based on direct implementation experience, feature audits, and ROI modeling from partner agencies. Short n Sweet Digital earns referral commissions when readers sign up for GoHighLevel via the affiliate link in this post. See disclosure below."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel implementation partner working with 50+ agencies (2024–2026). We've deployed GoHighLevel across all pricing tiers. This analysis is based on direct implementation experience, feature audits, and ROI modeling from partner agencies. Mallo Digital earns referral commissions when readers sign up for GoHighLevel via the affiliate link in this post. See disclosure below."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-14-gohighlevel-unlimited-plan-worth-it.jpg"
@@ -22,7 +22,7 @@ audio: "/audio/2026-08-14-gohighlevel-unlimited-plan-worth-it.mp3"
 
 > **DISCLOSURE: Conflict of Interest & Affiliate Commission**
 >
-> Short n Sweet Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to recommend GoHighLevel and higher-tier plans. We disclose this upfront so you can evaluate the recommendation with full context.
+> Mallo Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to recommend GoHighLevel and higher-tier plans. We disclose this upfront so you can evaluate the recommendation with full context.
 >
 > The technical feature comparison and ROI modeling reflect hands-on experience with all GoHighLevel pricing tiers across 50+ agency deployments (2024–2026). The recommendation to upgrade or stay on a lower tier depends on your specific use case, not on our commission structure. **Evaluate the numbers for your business before deciding.**
 

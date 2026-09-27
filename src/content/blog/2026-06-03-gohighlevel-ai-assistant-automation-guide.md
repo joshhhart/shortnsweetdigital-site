@@ -6,7 +6,7 @@ lastUpdated: 2026-06-03
 tags: ["gohighlevel", "ai-assistant", "automation", "lead-qualification", "agency-software", "crm-automation"]
 keywords: ["gohighlevel ai assistant", "ai chatbot for agencies", "lead qualification automation", "gohighlevel automation guide", "client nurture workflows"]
 targetKeyword: "gohighlevel ai assistant automation guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-03-gohighlevel-ai-assistant-automation-guide.jpg"

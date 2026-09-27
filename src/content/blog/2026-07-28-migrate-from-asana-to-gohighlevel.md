@@ -7,8 +7,8 @@ dateModified: 2026-07-28
 tags: ["gohighlevel", "asana-migration", "project-management", "crm-migration", "workflow-automation", "agency-operations", "data-migration", "client-management"]
 keywords: ["migrate from asana to gohighlevel", "asana vs gohighlevel", "gohighlevel for agencies", "project management crm", "asana to gohighlevel migration guide"]
 targetKeyword: "migrate from asana to gohighlevel"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has led 23 agency migrations from Asana to GoHighLevel (2024–2026). Our documented case studies show average migration timelines of 2–3 weeks with zero data loss. Agencies report 35–50% reduction in manual task management (verified via pre- and post-migration timesheets collected from 18 partner agencies, available at shortnsweet.digital/case-studies/asana-migrations)."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has led 23 agency migrations from Asana to GoHighLevel (2024–2026). Our documented case studies show average migration timelines of 2–3 weeks with zero data loss. Agencies report 35–50% reduction in manual task management (verified via pre- and post-migration timesheets collected from 18 partner agencies, available at shortnsweet.digital/case-studies/asana-migrations)."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-28-migrate-from-asana-to-gohighlevel.jpg"
@@ -32,7 +32,7 @@ This guide walks you through a proven 2-3 week migration playbook used by 23 age
 > - **Migration scope matters**: Migrate active projects and client data; archive completed Asana work. Most agencies migrate 40–60% of historical Asana data to GoHighLevel and leave the rest archived (prevents clutter, keeps GoHighLevel performant).
 > - **Hybrid approach is faster**: Use Asana as read-only archive for 90 days after migration, while GoHighLevel becomes the active system. This gives teams time to adjust without rushing. Archive Asana after 90 days (shortnsweet.digital/case-studies/asana-migrations).
 > - **Data loss is preventable**: Export all Asana data (tasks, timelines, attachments) before touching GoHighLevel. Use CSV + API export (not just UI exports) to capture everything. Spot-check 50–100 contacts/tasks before deleting anything.
-> - **Automation replaces manual work**: Pre-built GoHighLevel workflows automate client onboarding, reporting, task creation from client requests, and project closeout. Document these before migration so teams understand the new system (documented in Short n Sweet Digital's agency playbook, 2026).
+> - **Automation replaces manual work**: Pre-built GoHighLevel workflows automate client onboarding, reporting, task creation from client requests, and project closeout. Document these before migration so teams understand the new system (documented in Mallo Digital's agency playbook, 2026).
 > - **Timeline for 15-person agency**: 2–3 weeks (1 week audit + setup, 1 week data migration + testing, 3–5 days team training + launch). Smaller agencies: 7–10 days. Larger agencies (50+ staff): 4–5 weeks.
 > - **Common migration failures**: (1) Not setting clear go-live date; teams keep using Asana. (2) Migrating all historical data; GoHighLevel becomes slow. (3) No automation setup; teams replicate Asana workflows manually, missing the efficiency gain. (4) No team training; adoption stalls. Avoid these by following the phased steps below.
 

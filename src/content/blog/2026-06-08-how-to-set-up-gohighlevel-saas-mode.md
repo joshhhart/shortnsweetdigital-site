@@ -6,7 +6,7 @@ lastUpdated: 2026-06-08
 tags: ["gohighlevel", "saas-mode", "white-label", "recurring-revenue", "platform-business", "agency-scaling"]
 keywords: ["gohighlevel saas mode", "how to set up saas mode", "gohighlevel white label saas", "saas mode vs white label", "gohighlevel recurring revenue"]
 targetKeyword: "how to set up gohighlevel saas mode"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-06-08-how-to-set-up-gohighlevel-saas-mode.jpg"

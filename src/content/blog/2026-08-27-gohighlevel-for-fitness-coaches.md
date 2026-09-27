@@ -7,8 +7,8 @@ dateModified: 2024-08-27
 tags: ["gohighlevel", "fitness-coaching", "crm", "scheduling", "client-management", "automation", "personal-training"]
 keywords: ["gohighlevel for fitness coaches", "fitness coach crm", "coaching business software", "fitness client management", "automated scheduling fitness", "fitness coach automation"]
 targetKeyword: "gohighlevel for fitness coaches"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. Since 2024, we've completed 40+ fitness and wellness coaching implementations, managing 15,000+ active client relationships across personal training, group fitness, and nutrition coaching verticals (2024–2026)."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. Since 2024, we've completed 40+ fitness and wellness coaching implementations, managing 15,000+ active client relationships across personal training, group fitness, and nutrition coaching verticals (2024–2026)."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-27-gohighlevel-for-fitness-coaches.jpg"

@@ -6,7 +6,7 @@ lastUpdated: 2026-05-28
 tags: ["gohighlevel", "pricing", "pro-plan", "unlimited-plan", "agency", "crm", "white-label", "comparison"]
 keywords: ["gohighlevel pro vs unlimited", "gohighlevel pricing", "gohighlevel pro plan", "gohighlevel unlimited plan", "which gohighlevel plan", "gohighlevel cost"]
 targetKeyword: "gohighlevel pro vs unlimited pricing"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-05-28-gohighlevel-pro-vs-unlimited-pricing.jpg"
@@ -17,7 +17,7 @@ audio: "/audio/2026-05-28-gohighlevel-pro-vs-unlimited-pricing.mp3"
 # GoHighLevel Pro vs Unlimited: Which Plan Is Right for Your Agency?
 
 > **Affiliate Disclosure**
-> This post contains affiliate links to GoHighLevel. Short n Sweet Digital earns a 30% recurring commission if you purchase via our link at no additional cost to you. All pricing and features reflect GoHighLevel's May 2026 pricing. This guide is based on direct testing across 100+ agency client implementations.
+> This post contains affiliate links to GoHighLevel. Mallo Digital earns a 30% recurring commission if you purchase via our link at no additional cost to you. All pricing and features reflect GoHighLevel's May 2026 pricing. This guide is based on direct testing across 100+ agency client implementations.
 
 You're ready to scale your agency. You've outgrown the Starter plan ($97/mo). Now comes the hard question: **Should you upgrade to Pro ($297/mo) or jump straight to Unlimited ($497/mo)?**
 

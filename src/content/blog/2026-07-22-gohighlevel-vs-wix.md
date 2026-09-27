@@ -7,8 +7,8 @@ dateModified: 2026-07-22
 tags: ["gohighlevel", "wix", "crm", "website-builder", "agency-tools", "automation", "pricing", "comparison"]
 keywords: ["gohighlevel vs wix", "gohighlevel vs wix comparison", "gohighlevel for agencies", "wix for business", "best crm for agencies 2026", "crm vs website builder"]
 targetKeyword: "gohighlevel vs wix"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital manages 50+ client implementations across both GoHighLevel and Wix (2023–2026). We've migrated 20+ agencies from Wix to GoHighLevel and built 100+ custom funnels in GoHighLevel. Verified via case studies at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital manages 50+ client implementations across both GoHighLevel and Wix (2023–2026). We've migrated 20+ agencies from Wix to GoHighLevel and built 100+ custom funnels in GoHighLevel. Verified via case studies at shortnsweet.digital/case-studies."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-22-gohighlevel-vs-wix.jpg"
@@ -561,7 +561,7 @@ Try both free trials. GoHighLevel's free 14-day trial includes all Professional 
   "description": "Detailed comparison of GoHighLevel vs Wix across CRM, email automation, funnels, pricing, and ease of use. Find which platform is right for your agency or service business.",
   "author": {
     "@type": "Organization",
-    "name": "Short n Sweet Digital"
+    "name": "Mallo Digital"
   },
   "datePublished": "2026-07-22",
   "dateModified": "2026-07-22"

@@ -5,7 +5,7 @@ pubDate: 2026-05-21
 lastUpdated: 2026-05-21
 tags: ["gohighlevel", "automation-workflows", "sales-automation", "lead-nurture", "crm-automation", "templates", "agency"]
 targetKeyword: "gohighlevel automation workflows complete guide"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-05-21-gohighlevel-automation-workflows-complete-guide.jpg"
@@ -23,7 +23,7 @@ GoHighLevel automates your entire sales funnel—from lead capture to customer o
 > **Key Takeaways**
 > - 12 production-ready automation templates reduce manual outreach by 70-80% and improve lead conversion by 40-60% ([GoHighLevel automation audit](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - Average setup time per automation: 5-15 minutes (no coding required; drag-and-drop workflow builder)
-> - Agencies using these workflows report 10-15 hour/week time savings and $5K-15K/month revenue increase from faster deal closure ([Short n Sweet Digital case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
+> - Agencies using these workflows report 10-15 hour/week time savings and $5K-15K/month revenue increase from faster deal closure ([Mallo Digital case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - GoHighLevel Starter ($97/mo) includes unlimited SMS, email, and automations—all 12 workflows fit within one tier (no add-on costs)
 > - Workflows integrate with Stripe, Zapier, webhooks, and custom integrations; no third-party automation tools needed (save $50-200/mo on Make, Zapier, or other tools)
 
@@ -717,7 +717,7 @@ GoHighLevel's automation builder makes these 12 workflows possible without codin
 
 ---
 
-**About Short n Sweet Digital**
+**About Mallo Digital**
 
 We're a GoHighLevel white-label agency helping small businesses and agencies scale without hiring. All workflows, templates, and strategies in this guide come from real client implementations.
 

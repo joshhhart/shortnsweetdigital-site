@@ -7,8 +7,8 @@ dateModified: 2026-07-24
 tags: ["gohighlevel", "white-label", "pricing-models", "agency-pricing", "subscription-pricing", "markup-pricing", "profit-margins", "agency-business"]
 keywords: ["gohighlevel white label pricing", "agency pricing models", "gohighlevel reseller pricing", "white label crm pricing", "agency margin calculator", "subscription vs markup pricing"]
 targetKeyword: "gohighlevel agency white label pricing models"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital manages 85+ partner agencies scaling white-label GoHighLevel services (2023–2026). Our partners average 62% profit margins and close 18% more high-ticket clients using data-driven pricing. Verified via case study audits at shortnsweet.digital/case-studies."
+author: "Mallo Digital"
+authorBio: "Mallo Digital manages 85+ partner agencies scaling white-label GoHighLevel services (2023–2026). Our partners average 62% profit margins and close 18% more high-ticket clients using data-driven pricing. Verified via case study audits at shortnsweet.digital/case-studies."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-24-gohighlevel-agency-white-label-pricing-models.jpg"
@@ -36,7 +36,7 @@ This guide compares all four models, shows you how to calculate profit per clien
 > **Key Takeaways**
 > - Markup model (add 50–100% to GoHighLevel cost) is simplest but leaves 30–40% margins. Best for agencies just starting white-label (Capterra, 2025).
 > - Subscription model (flat $199–$999/month regardless of GHL cost) locks in 55–75% margins and is easier to forecast. Best for agencies with 10+ clients (industry data, 2025).
-> - Hybrid model (GoHighLevel cost + service fee of $150–$500) balances transparency and margin. Earns 50–65% profit and scales with service scope (real partner data, Short n Sweet Digital, 2026).
+> - Hybrid model (GoHighLevel cost + service fee of $150–$500) balances transparency and margin. Earns 50–65% profit and scales with service scope (real partner data, Mallo Digital, 2026).
 > - Value-based model (charge based on client results, e.g., $50 per qualified lead generated) earns highest margins (58–75%) but requires proven implementation track record. Best for mature agencies with case studies (Capterra, 2025).
 > - Common mistake: Underpricing GoHighLevel to win clients, then losing profitability on small accounts. Better to use hybrid or value-based, charge more selectively, and filter for high-ticket clients that can absorb your pricing.
 

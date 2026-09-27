@@ -3,9 +3,9 @@
 // with the corresponding .astro pages when content changes.
 
 export const SITE_URL = 'https://shortnsweetdigital.com';
-export const SITE_NAME = 'Short n Sweet Digital';
+export const SITE_NAME = 'Mallo Digital';
 export const SITE_SUMMARY =
-  'Short n Sweet Digital is a white-label GoHighLevel partner that helps small businesses and agencies replace 8–12 marketing SaaS tools with one AI-powered all-in-one platform — CRM, email, SMS, web chat, scheduling, pipelines, reviews, and automation under a single login.';
+  'Mallo Digital is a white-label GoHighLevel partner that helps small businesses and agencies replace 8–12 marketing SaaS tools with one AI-powered all-in-one platform — CRM, email, SMS, web chat, scheduling, pipelines, reviews, and automation under a single login.';
 
 const AFFILIATE = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53';
 
@@ -13,10 +13,10 @@ export const staticPages = [
   {
     slug: 'index',
     path: '/',
-    title: 'Short n Sweet Digital — One AI-Powered Platform for Your Whole Business',
+    title: 'Mallo Digital — One AI-Powered Platform for Your Whole Business',
     description:
       'Replace 8–12 marketing tools with one AI-powered platform: CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.',
-    markdown: `# Short n Sweet Digital
+    markdown: `# Mallo Digital
 
 **One AI-powered platform for your whole business.**
 
@@ -41,7 +41,7 @@ All plans start with a **14-day free trial**. Month-to-month billing, no long-te
 
 ## Frequently asked questions
 
-**What does Short n Sweet Digital do?**
+**What does Mallo Digital do?**
 We replace the 8–12 marketing SaaS tools you are juggling with one AI-powered all-in-one platform — CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.
 
 **How much does it cost?**
@@ -60,14 +60,14 @@ No long-term contracts. Month-to-month billing, cancel anytime.
   {
     slug: 'about',
     path: '/about/',
-    title: 'About — Short n Sweet Digital',
+    title: 'About — Mallo Digital',
     description:
-      'Short n Sweet Digital helps small businesses replace 8–12 marketing tools with one AI-powered platform. Built by Josh Hart on GoHighLevel.',
-    markdown: `# About Short n Sweet Digital
+      'Mallo Digital helps small businesses replace 8–12 marketing tools with one AI-powered platform. Built by Josh Hart on GoHighLevel.',
+    markdown: `# About Mallo Digital
 
 **One platform. Done right. Built for small businesses.**
 
-Short n Sweet Digital is a white-label partner of GoHighLevel — the all-in-one CRM, marketing, and automation platform powering 100,000+ agencies worldwide. We package it for solo operators, contractors, and local service businesses who don't have time to glue together eight different SaaS tools. Founded by Josh Hart.
+Mallo Digital is a white-label partner of GoHighLevel — the all-in-one CRM, marketing, and automation platform powering 100,000+ agencies worldwide. We package it for solo operators, contractors, and local service businesses who don't have time to glue together eight different SaaS tools. Founded by Josh Hart.
 
 ## What you get
 
@@ -91,7 +91,7 @@ Home services, real estate, fitness, coaches, and local agencies. If you live an
   {
     slug: 'pricing',
     path: '/pricing/',
-    title: 'Pricing — Short n Sweet Digital',
+    title: 'Pricing — Mallo Digital',
     description:
       'Simple pricing: Starter $97/mo, Unlimited $297/mo, SaaS Pro $497/mo. Every plan starts with a 14-day free trial. No contracts.',
     markdown: `# Pricing
@@ -158,7 +158,7 @@ The full, always-current list of comparisons and guides lives in the blog index 
   {
     slug: 'book-a-call',
     path: '/book-a-call/',
-    title: 'Book a Free Strategy Call — Short n Sweet Digital',
+    title: 'Book a Free Strategy Call — Mallo Digital',
     description:
       'Book a free 30-minute strategy call. We map your current stack and show you exactly which tools we can replace with one platform.',
     markdown: `# Book a Free Strategy Call

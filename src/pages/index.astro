@@ -12,7 +12,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Short n Sweet Digital',
+  name: 'Mallo Digital',
   url: 'https://shortnsweetdigital.com/',
   logo: 'https://storage.googleapis.com/msgsndr/LHvDkOgXpZdUYdjFzBff/media/66d68a8784ef295b74e11ebf.png',
   description:
@@ -26,7 +26,7 @@ const websiteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   url: 'https://shortnsweetdigital.com/',
-  name: 'Short n Sweet Digital',
+  name: 'Mallo Digital',
   potentialAction: {
     '@type': 'SearchAction',
     target: 'https://shortnsweetdigital.com/?q={search_term_string}',
@@ -37,7 +37,7 @@ const websiteLd = {
 const aggregateLd = {
   '@context': 'https://schema.org',
   '@type': 'AggregateRating',
-  itemReviewed: { '@type': 'Organization', name: 'Short n Sweet Digital' },
+  itemReviewed: { '@type': 'Organization', name: 'Mallo Digital' },
   ratingValue: '4.9',
   reviewCount: '127',
 };
@@ -48,7 +48,7 @@ const faqLd = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What does Short n Sweet Digital do?',
+      name: 'What does Mallo Digital do?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'We replace the 8–12 marketing SaaS tools you are juggling with one AI-powered all-in-one platform — CRM, SMS, email, web chat, scheduling, pipelines, reviews, and automation under a single login.',
@@ -86,7 +86,7 @@ const services = [
 
 const testimonials = [
   { quote: 'Clients used to message me on several platforms and it wasn’t uncommon for me to go weeks before seeing their messages. Now I see them instantly, in the same message thread, so I’m able to serve my clients quicker, and better.', name: 'Julie Hice', role: 'Realtor' },
-  { quote: 'ShortNSweet helps me never miss chat conversations with potential leads. It used to be a hassle finding customer’s messages, now it’s easy and they’re all in one place.', name: 'Zach Stacey', role: 'Auto Detailer' },
+  { quote: 'Mallo helps me never miss chat conversations with potential leads. It used to be a hassle finding customer’s messages, now it’s easy and they’re all in one place.', name: 'Zach Stacey', role: 'Auto Detailer' },
 ];
 ---
 
@@ -226,7 +226,8 @@ const testimonials = [
   <!-- CONTROL — secondary stats -->
   <section class="control-section bleed" data-snd-reveal>
     <div class="container">
-      <h2 class="section-h">We Built <GradientText client:visible colors={brandColors} animationSpeed={7}>ShortNSweet</GradientText> To Put Your Business In Control.</h2>
+      <img class="mallo-mascot" src="/assets/mallo-mascot.svg" alt="Mallo, the marshmallow bot" width="140" height="154" loading="lazy" />
+      <h2 class="section-h">We Built <GradientText client:visible colors={brandColors} animationSpeed={7}>Mallo</GradientText> To Put Your Business In Control.</h2>
       <p class="section-lede">
         Replace the 8–12 marketing tools you’re juggling with one AI-powered platform — built for solo operators and small teams.
       </p>
@@ -564,7 +565,10 @@ const testimonials = [
       .services-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 3rem; }
     }
-  </style>
+    .mallo-mascot { display: block; margin: 0 auto 12px; width: 140px; height: auto; animation: mallo-bob 4s ease-in-out infinite; filter: drop-shadow(0 12px 28px rgba(59,155,255,.35)); }
+  @keyframes mallo-bob { 0%,100% { transform: translateY(0) scale(1,1); } 50% { transform: translateY(-8px) scale(1.02,.98); } }
+  @media (prefers-reduced-motion: reduce) { .mallo-mascot { animation: none; } }
+</style>
 
   <script is:inline>
     // Animated counters — count up on scroll

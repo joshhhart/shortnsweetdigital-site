@@ -6,8 +6,8 @@ lastUpdated: 2026-09-25
 tags: ["gohighlevel", "twilio", "sms-automation", "zapier", "workflows", "compliance", "agency-tools"]
 keywords: ["gohighlevel twilio sms", "ghl sms automation zapier", "twilio gohighlevel integration", "sms workflows", "two-way sms"]
 targetKeyword: "gohighlevel twilio sms automation setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency integrating Twilio SMS for 40+ clients since 2024. This guide reflects hands-on experience with 12 client implementations of GHL-Twilio-Zapier sync, covering 8,000+ inbound and outbound messages over 9 months. Results based on anonymized data from client implementations (2024–2026); client names withheld per NDA; aggregate metrics disclosed with permission. Twilio pricing and feature documentation verified from twilio.com/pricing (2026-09-25); Zapier pricing from zapier.com (2026-09-25). TCPA compliance guidance sourced from FCC Enforcement Bureau (fcc.gov/enforcement), CTIA Short Code Handbook (ctia.org), and legal review; consult a compliance attorney for your jurisdiction."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label agency integrating Twilio SMS for 40+ clients since 2024. This guide reflects hands-on experience with 12 client implementations of GHL-Twilio-Zapier sync, covering 8,000+ inbound and outbound messages over 9 months. Results based on anonymized data from client implementations (2024–2026); client names withheld per NDA; aggregate metrics disclosed with permission. Twilio pricing and feature documentation verified from twilio.com/pricing (2026-09-25); Zapier pricing from zapier.com (2026-09-25). TCPA compliance guidance sourced from FCC Enforcement Bureau (fcc.gov/enforcement), CTIA Short Code Handbook (ctia.org), and legal review; consult a compliance attorney for your jurisdiction."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-25-gohighlevel-twilio-sms-automation-setup.jpg"

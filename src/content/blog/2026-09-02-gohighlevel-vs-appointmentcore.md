@@ -7,8 +7,8 @@ dateModified: 2026-09-02
 tags: ["gohighlevel", "appointmentcore", "crm-comparison", "scheduling-software", "automation", "coaching-tools", "agency-software"]
 keywords: ["gohighlevel vs appointmentcore", "appointmentcore alternative", "gohighlevel appointmentcore comparison", "appointmentcore vs gohighlevel", "best crm for coaches"]
 targetKeyword: "gohighlevel vs appointmentcore"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. Since 2024, we've helped 150+ agencies and coaches evaluate and implement CRM and scheduling tools. This comparison reflects implementation experience and direct platform testing; we earn GoHighLevel affiliate commission on referral signups (disclosed below)."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label agency. Since 2024, we've helped 150+ agencies and coaches evaluate and implement CRM and scheduling tools. This comparison reflects implementation experience and direct platform testing; we earn GoHighLevel affiliate commission on referral signups (disclosed below)."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-02-gohighlevel-vs-appointmentcore.jpg"
@@ -43,7 +43,7 @@ This comparison covers pricing, core features, automation depth, integrations, c
 
 ## Affiliate Disclosure
 
-**Short n Sweet Digital earns a commission when you sign up for GoHighLevel through the affiliate link in this post.** You are not charged extra—the commission comes from GoHighLevel's partner budget. This disclosure is made in the interest of transparency; all comparisons and recommendations are based on platform testing and implementation experience, not commission incentives. If you prefer to sign up directly without the affiliate link, you can visit GoHighLevel.com and create an account—features and pricing are identical. AppointmentCore referral links do not exist, so no commission is earned on AppointmentCore signups.
+**Mallo Digital earns a commission when you sign up for GoHighLevel through the affiliate link in this post.** You are not charged extra—the commission comes from GoHighLevel's partner budget. This disclosure is made in the interest of transparency; all comparisons and recommendations are based on platform testing and implementation experience, not commission incentives. If you prefer to sign up directly without the affiliate link, you can visit GoHighLevel.com and create an account—features and pricing are identical. AppointmentCore referral links do not exist, so no commission is earned on AppointmentCore signups.
 
 ---
 

@@ -5,7 +5,7 @@ pubDate: 2026-05-20
 lastUpdated: 2026-05-20
 tags: ["gohighlevel", "infusionsoft-migration", "crm-migration", "data-import", "automation-setup", "email-marketing", "business-continuity"]
 targetKeyword: "migrate from infusionsoft to gohighlevel"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPasted: false
 draft: false
 heroImage: "/images/2026-05-20-migrate-from-infusionsoft-to-gohighlevel.jpg"
@@ -23,7 +23,7 @@ Migrating from Infusionsoft (now Keap) to GoHighLevel is entirely feasible and, 
 
 > **Key Takeaways**
 > - Keap (formerly Infusionsoft) costs $300-400+/mo for mid-tier plans; GoHighLevel Starter costs $97/mo with unlimited SMS, scheduling, and payment collection included ([GoHighLevel pricing](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
-> - A typical migration (10,000 contacts, 15-20 automations, 30-40 email templates) takes 6-8 weeks with 2-3 hours/week of work; the payoff is $200-300/mo savings and 40% fewer platform vendors ([Short n Sweet Digital case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
+> - A typical migration (10,000 contacts, 15-20 automations, 30-40 email templates) takes 6-8 weeks with 2-3 hours/week of work; the payoff is $200-300/mo savings and 40% fewer platform vendors ([Mallo Digital case studies](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - Parallel running both platforms for 2-3 weeks eliminates risk: new leads enter both systems simultaneously, giving you time to validate GoHighLevel before fully switching ([Migration best practices](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - Email deliverability stays the same if you migrate with proper SPF/DKIM authentication setup; zero emails are lost or bounced during the switch if done correctly ([Email authentication guide](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)
 > - Automations in GoHighLevel are 60% easier to build than Keap due to better UI/UX; most users rebuild their automation library 25% faster than expected ([GoHighLevel workflow builder](https://www.gohighlevel.com/?fp_ref=shortnsweet53), May 2026)

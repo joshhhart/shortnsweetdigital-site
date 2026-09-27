@@ -7,8 +7,8 @@ dateModified: 2026-07-06
 tags: ["gohighlevel", "white-label", "client-billing", "stripe-integration", "recurring-revenue", "reseller-setup", "tax-configuration", "dunning-rules"]
 keywords: ["gohighlevel white label client billing setup", "gohighlevel stripe integration", "gohighlevel white label billing", "gohighlevel reseller recurring revenue", "gohighlevel tax configuration", "gohighlevel dunning rules"]
 targetKeyword: "gohighlevel white label client billing setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has configured white-label billing for 50+ GoHighLevel resellers across HVAC, plumbing, solar, and pest control verticals (2023–2026). Specializes in recurring revenue architecture and churn reduction for SaaS resellers."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has configured white-label billing for 50+ GoHighLevel resellers across HVAC, plumbing, solar, and pest control verticals (2023–2026). Specializes in recurring revenue architecture and churn reduction for SaaS resellers."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-06-gohighlevel-white-label-client-billing-setup.jpg"

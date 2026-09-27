@@ -7,8 +7,8 @@ dateModified: 2026-07-07
 tags: ["gohighlevel", "constant-contact", "crm-comparison", "agency-software", "email-marketing", "sales-automation", "pricing-comparison", "crm-integration"]
 keywords: ["gohighlevel vs constant contact", "best crm for agencies", "gohighlevel pricing 2026", "constant contact vs gohighlevel", "agency crm comparison", "sales automation software", "email marketing platform"]
 targetKeyword: "gohighlevel vs constant contact"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has evaluated 200+ CRM platforms for agencies and resellers (2023–2026). Specializes in platform migration, feature parity analysis, and ROI benchmarking."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has evaluated 200+ CRM platforms for agencies and resellers (2023–2026). Specializes in platform migration, feature parity analysis, and ROI benchmarking."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-07-gohighlevel-vs-constant-contact.jpg"

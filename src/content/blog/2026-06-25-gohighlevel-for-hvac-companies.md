@@ -7,7 +7,7 @@ dateModified: 2026-06-25
 tags: ["gohighlevel", "hvac", "crm-software", "lead-management", "service-business", "automation"]
 keywords: ["gohighlevel for hvac", "hvac crm software", "hvac lead management", "gohighlevel contractors", "hvac scheduling software"]
 targetKeyword: "gohighlevel for hvac companies"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-25-gohighlevel-for-hvac-companies.jpg"

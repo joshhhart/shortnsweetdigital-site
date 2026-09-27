@@ -7,8 +7,8 @@ dateModified: 2026-09-07
 tags: ["gohighlevel", "sms-automation", "workflows", "tcpa-compliance", "marketing-automation", "text-message-marketing", "agency-guide"]
 keywords: ["gohighlevel sms automation workflows", "tcpa compliant sms", "gohighlevel text message automation", "sms workflow setup", "appointment reminder sms", "sms marketing compliance"]
 targetKeyword: "gohighlevel sms automation workflows guide"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel implementation partner. Since 2024, we've helped 50+ agencies deploy SMS automation workflows serving 200,000+ end-user contacts. This guide reflects 18 months of TCPA audit experience, compliance testing with Twilio (GHL's SMS provider for some regions), and SMS workflow deployments across fitness, healthcare, and service-based verticals. We are not attorneys; consult qualified legal counsel before SMS campaigns targeting your jurisdiction."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel implementation partner. Since 2024, we've helped 50+ agencies deploy SMS automation workflows serving 200,000+ end-user contacts. This guide reflects 18 months of TCPA audit experience, compliance testing with Twilio (GHL's SMS provider for some regions), and SMS workflow deployments across fitness, healthcare, and service-based verticals. We are not attorneys; consult qualified legal counsel before SMS campaigns targeting your jurisdiction."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-07-gohighlevel-sms-automation-workflows-guide.jpg"
@@ -52,13 +52,13 @@ SMS marketing is heavily regulated. The TCPA (and international equivalents like
 4. **Test with real contacts** — Do not assume GHL's SMS tools auto-enforce compliance; they do not
 5. **Disclose to your clients** — If you're an agency building SMS workflows for clients, your contract must clarify who owns compliance responsibility (you, the client, or both)
 
-**Short n Sweet Digital provides educational guidance only. We are not attorneys. We assume no liability for SMS campaigns using this guide without proper legal review. Use at your own risk.**
+**Mallo Digital provides educational guidance only. We are not attorneys. We assume no liability for SMS campaigns using this guide without proper legal review. Use at your own risk.**
 
 ---
 
 ## Affiliate Disclosure
 
-**Short n Sweet Digital earns a commission when you sign up for GoHighLevel through the link in this post.** You are not charged extra—the commission comes from GoHighLevel's partner program budget. This guide's compliance recommendations, technical setup, and cost analysis are based on independent TCPA research, GHL feature documentation, and SMS workflow deployments; commission incentives do not influence these recommendations. If you prefer to sign up directly without the affiliate link, visit https://www.gohighlevel.com/?fp_ref=shortnsweet53 and create an account—SMS features and pricing are identical.
+**Mallo Digital earns a commission when you sign up for GoHighLevel through the link in this post.** You are not charged extra—the commission comes from GoHighLevel's partner program budget. This guide's compliance recommendations, technical setup, and cost analysis are based on independent TCPA research, GHL feature documentation, and SMS workflow deployments; commission incentives do not influence these recommendations. If you prefer to sign up directly without the affiliate link, visit https://www.gohighlevel.com/?fp_ref=shortnsweet53 and create an account—SMS features and pricing are identical.
 
 ---
 

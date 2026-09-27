@@ -5,7 +5,7 @@ pubDate: 2026-05-18
 lastUpdated: 2026-05-18
 tags: ["gohighlevel", "personal-training", "fitness-business", "client-management", "appointment-scheduling", "crm", "automation"]
 targetKeyword: "gohighlevel for personal trainers"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-05-18-gohighlevel-for-personal-trainers.jpg"

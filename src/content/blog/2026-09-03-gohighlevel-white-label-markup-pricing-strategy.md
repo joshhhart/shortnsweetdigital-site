@@ -7,8 +7,8 @@ dateModified: 2026-09-03
 tags: ["gohighlevel", "white-label", "reseller-pricing", "agency-markup", "saas-pricing", "recurring-revenue", "margin-analysis"]
 keywords: ["gohighlevel white label pricing", "gohighlevel markup strategy", "gohighlevel reseller pricing", "white label crm pricing", "saas reseller margins"]
 targetKeyword: "gohighlevel white label markup pricing strategy"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation and reseller partner. Since 2024, we've helped 50+ agencies design and execute white-label pricing strategies, managing $2.3M in collective partner recurring revenue (based on partner network surveys; 48 active partners, Q1–Q3 2026, ±15% confidence interval). This guide reflects pricing analysis, competitive benchmarking, and direct client implementation data."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation and reseller partner. Since 2024, we've helped 50+ agencies design and execute white-label pricing strategies, managing $2.3M in collective partner recurring revenue (based on partner network surveys; 48 active partners, Q1–Q3 2026, ±15% confidence interval). This guide reflects pricing analysis, competitive benchmarking, and direct client implementation data."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-03-gohighlevel-white-label-markup-pricing-strategy.jpg"
@@ -46,7 +46,7 @@ Too low, and your margins don't justify the support burden. Too high, and your c
 
 ## ⚠️ Affiliate Disclosure
 
-**Short n Sweet Digital earns a commission when you sign up for GoHighLevel through the links in this post.** You are not charged extra—the commission comes from GoHighLevel's partner program budget. All pricing data, markup recommendations, and competitor analysis in this guide are based on independent market research, client interviews, and public pricing data; commission incentives do not influence our analysis. If you prefer to sign up directly without the affiliate link, visit GoHighLevel.com and create an account—features, pricing, and resale capabilities are identical. This disclosure appears here and is also in the sidebar to ensure transparency.
+**Mallo Digital earns a commission when you sign up for GoHighLevel through the links in this post.** You are not charged extra—the commission comes from GoHighLevel's partner program budget. All pricing data, markup recommendations, and competitor analysis in this guide are based on independent market research, client interviews, and public pricing data; commission incentives do not influence our analysis. If you prefer to sign up directly without the affiliate link, visit GoHighLevel.com and create an account—features, pricing, and resale capabilities are identical. This disclosure appears here and is also in the sidebar to ensure transparency.
 
 ---
 

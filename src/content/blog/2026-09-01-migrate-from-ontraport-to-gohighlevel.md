@@ -7,8 +7,8 @@ dateModified: 2026-09-01
 tags: ["gohighlevel", "ontraport", "migration", "crm-migration", "data-export", "automation-setup", "workflow-transfer"]
 keywords: ["migrate from ontraport to gohighlevel", "ontraport to gohighlevel migration", "ontraport gohighlevel switch", "ontraport data export gohighlevel", "move contacts ontraport to gohighlevel"]
 targetKeyword: "migrate from ontraport to gohighlevel"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. Since 2024, we've completed 40+ Ontraport-to-GHL migrations, moving 50,000+ total contacts and recreating 300+ complex automations. Clients include fitness studios, coaching practices, and SaaS founders. See client results below."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. Since 2024, we've completed 40+ Ontraport-to-GHL migrations, moving 50,000+ total contacts and recreating 300+ complex automations. Clients include fitness studios, coaching practices, and SaaS founders. See client results below."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-01-migrate-from-ontraport-to-gohighlevel.jpg"
@@ -25,7 +25,7 @@ You're running a coaching business or agency on Ontraport. Your automations work
 
 The question: **Is switching worth the migration effort?**
 
-The short answer: Yes, if you're paying >$250/month on Ontraport. Most teams recover the migration cost within 4–6 weeks through lower plan pricing (based on Short n Sweet Digital analysis of 40+ migrations, 2024–2026). But the migration itself requires careful planning—wrong steps lead to lost automations, broken forms, and duplicate contacts.
+The short answer: Yes, if you're paying >$250/month on Ontraport. Most teams recover the migration cost within 4–6 weeks through lower plan pricing (based on Mallo Digital analysis of 40+ migrations, 2024–2026). But the migration itself requires careful planning—wrong steps lead to lost automations, broken forms, and duplicate contacts.
 
 This guide walks you through every step: exporting contacts cleanly, mapping Ontraport fields to GHL equivalents, recreating your automations, testing without downtime, and executing a safe cutover. We include field-mapping tables, automation templates, rollback procedures, and real troubleshooting scenarios.
 
@@ -62,7 +62,7 @@ Ontraport is powerful for mid-market teams. But it has friction:
 | **Form builder** | Ontraport forms are functional but dated UI/UX | GHL forms are modern, mobile-first, with better conversion flows |
 | **SMS costs** | Ontraport SMS: $0.10–$0.15 per message (high volume discount available) | GHL SMS: $0.04 per message (standard across all plans) |
 
-### Measurable Outcomes (Client Results from Short n Sweet Digital)
+### Measurable Outcomes (Client Results from Mallo Digital)
 
 **Case 1: Fitness Studio** (moved 800 clients)
 - **Before**: Ontraport Standard ($297/month) + Zapier ($29/month) + extra SMS = ~$400/month
@@ -249,7 +249,7 @@ Before importing any data, configure GHL to receive contacts.
 
 ### Step 1: Create Your GHL Account & Choose Plan
 
-1. Go to **https://www.gohighlevel.com/?fp_ref=shortnsweet53** (affiliate link; Short n Sweet earns a small commission; you are not charged extra)
+1. Go to **https://www.gohighlevel.com/?fp_ref=shortnsweet53** (affiliate link; Mallo earns a small commission; you are not charged extra)
 2. Click **Start Free Trial** or **Get Started**
 3. Enter your email and create a password
 4. Choose your plan:

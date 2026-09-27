@@ -6,7 +6,7 @@ lastUpdated: 2026-06-02
 tags: ["gohighlevel", "convertkit", "email-migration", "automation", "crm-setup", "email-marketing"]
 keywords: ["migrate from convertkit to gohighlevel", "convertkit alternative", "gohighlevel email marketing", "convert kit to ghl migration"]
 targetKeyword: "migrate from convertkit to gohighlevel"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-06-02-migrate-from-convertkit-to-gohighlevel.jpg"
@@ -19,7 +19,7 @@ schemaType: "HowToGuide"
 # Migrate From ConvertKit to GoHighLevel: Step-by-Step Setup Guide
 
 > **Affiliate Disclosure**
-> This post contains affiliate links to GoHighLevel. Short n Sweet Digital earns commissions if you purchase via our link at no cost to you. All pricing, features, and migration steps reflect June 2026 testing across 35+ creator transitions from ConvertKit to GoHighLevel.
+> This post contains affiliate links to GoHighLevel. Mallo Digital earns commissions if you purchase via our link at no cost to you. All pricing, features, and migration steps reflect June 2026 testing across 35+ creator transitions from ConvertKit to GoHighLevel.
 
 You've outgrown ConvertKit. Your email list is growing. You need SMS marketing, landing pages, and appointment booking—features ConvertKit wasn't built for. But the thought of migrating feels overwhelming: Will you lose subscribers? Can you rebuild automations in a new platform? How long will it take?
 

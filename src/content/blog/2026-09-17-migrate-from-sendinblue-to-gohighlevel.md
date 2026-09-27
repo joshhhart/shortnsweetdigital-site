@@ -7,8 +7,8 @@ dateModified: 2026-09-17
 tags: ["gohighlevel", "sendinblue", "email-migration", "crm-migration", "brevo"]
 keywords: ["migrate sendinblue to gohighlevel", "brevo to gohighlevel migration"]
 targetKeyword: "migrate from sendinblue to gohighlevel"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. Since 2024, we have migrated 15+ agencies and service businesses from Sendinblue (now Brevo) to GoHighLevel, preserving email lists, automating SMS workflows, and consolidating CRM systems. This guide reflects hands-on migration experience and lessons learned from production deployments. We maintain commercial partnerships with GoHighLevel; Sendinblue/Brevo relationship is evaluation-only. We are not Sendinblue or Brevo staff. Migration complexity varies by list size, automation depth, and data quality; test with sandbox accounts before production cutover. This is third-party technical guidance, not official documentation from either platform."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. Since 2024, we have migrated 15+ agencies and service businesses from Sendinblue (now Brevo) to GoHighLevel, preserving email lists, automating SMS workflows, and consolidating CRM systems. This guide reflects hands-on migration experience and lessons learned from production deployments. We maintain commercial partnerships with GoHighLevel; Sendinblue/Brevo relationship is evaluation-only. We are not Sendinblue or Brevo staff. Migration complexity varies by list size, automation depth, and data quality; test with sandbox accounts before production cutover. This is third-party technical guidance, not official documentation from either platform."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-17-migrate-from-sendinblue-to-gohighlevel.jpg"

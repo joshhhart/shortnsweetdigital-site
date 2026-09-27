@@ -7,7 +7,7 @@ dateModified: 2026-06-12
 tags: ["gohighlevel", "real-estate", "crm", "lead-followup", "real-estate-agents", "automation"]
 keywords: ["gohighlevel real estate", "gohighlevel for agents", "real estate crm", "real estate lead follow-up", "gohighlevel pricing real estate"]
 targetKeyword: "gohighlevel for real estate agents"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: false
 draft: false
 heroImage: "/images/2026-06-12-gohighlevel-for-real-estate-agents.jpg"

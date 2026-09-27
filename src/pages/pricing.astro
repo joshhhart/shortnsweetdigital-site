@@ -62,7 +62,7 @@ const faqs = [
     a: 'Yes — every plan starts with a 14-day free trial. No credit card pressure, and we help you get set up before the trial ends.',
   },
   {
-    q: 'What does Short n Sweet Digital add on top of GoHighLevel?',
+    q: 'What does Mallo Digital add on top of GoHighLevel?',
     a: 'We do the build-out: sub-account setup, automations, pipelines, white-label DNS, and the integrations that actually drive revenue — so you launch in days, not months.',
   },
   {
@@ -78,10 +78,10 @@ const faqs = [
 const productLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: 'GoHighLevel via Short n Sweet Digital',
+  name: 'GoHighLevel via Mallo Digital',
   description:
-    'All-in-one CRM, marketing, and automation platform for small businesses and agencies, set up and supported by Short n Sweet Digital.',
-  brand: { '@type': 'Brand', name: 'Short n Sweet Digital' },
+    'All-in-one CRM, marketing, and automation platform for small businesses and agencies, set up and supported by Mallo Digital.',
+  brand: { '@type': 'Brand', name: 'Mallo Digital' },
   offers: tiers.map((t) => ({
     '@type': 'Offer',
     name: t.name,
@@ -104,8 +104,8 @@ const faqLd = {
 ---
 
 <BaseLayout
-  title="GoHighLevel Pricing — Plans from $97/mo | Short n Sweet Digital"
-  description="GoHighLevel pricing through Short n Sweet Digital: Starter $97/mo, Unlimited $297/mo with unlimited client sub-accounts, and SaaS Pro $497/mo white-label. 14-day free trial."
+  title="GoHighLevel Pricing — Plans from $97/mo | Mallo Digital"
+  description="GoHighLevel pricing through Mallo Digital: Starter $97/mo, Unlimited $297/mo with unlimited client sub-accounts, and SaaS Pro $497/mo white-label. 14-day free trial."
 >
   <script type="application/ld+json" set:html={JSON.stringify(productLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />

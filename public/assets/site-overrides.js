@@ -1,4 +1,4 @@
-// Short n Sweet Digital — runtime overrides + React Bits ports (vanilla JS)
+// Mallo Digital — runtime overrides + React Bits ports (vanilla JS)
 // Idempotent: tagged with data-snd-overrides so it can be detected later.
 (function () {
   if (window.__SND_OVERRIDES__) return;
@@ -24,7 +24,7 @@
     { label: 'LinkedIn',  href: 'https://www.linkedin.com/company/shortnsweet-marketing/' }
   ];
 
-  var BRAND_LOGO = 'https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/67188f8028f9aa4e4a87fa1e.webp';
+  var BRAND_LOGO = '/assets/brand-mark.svg';
 
   // ============================================================
   // GLOBAL CSS (animations, hover lock, BorderGlow, StaggeredMenu)
@@ -624,7 +624,7 @@
         var isLogo =
           (node.matches && node.matches('a.brand, .nav-menu-wrapper .branding a, .nav-menu-wrapper .branding img, .sm-logo, .sm-logo img, header img.logo, header .logo a, header [class*="logo"] a, header [class*="logo"] img')) ||
           (node.getAttribute && (
-            (node.getAttribute('aria-label') || '').toLowerCase().indexOf('short n sweet') !== -1 ||
+            (node.getAttribute('aria-label') || '').toLowerCase().indexOf('mallo') !== -1 ||
             (node.getAttribute('alt') || '').toLowerCase().indexOf('shortnsweet') !== -1
           ));
         if (isLogo) {
@@ -958,7 +958,7 @@
       <div style="max-width:1240px;margin:0 auto">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid rgba(24,139,246,0.15)">
           <div>
-            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/67188f8028f9aa4e4a87fa1e.webp" alt="ShortNSweet Digital" style="height:52px;width:auto;margin-bottom:18px">
+            <img src="/assets/brand-mark.svg" alt="Mallo Digital" style="height:52px;width:auto;margin-bottom:18px">
             <p style="margin:0 0 18px;color:#e2e8f0;font-size:0.98rem;line-height:1.6;max-width:320px">The all-in-one CRM, marketing, and AI automation platform built for small businesses that need to move fast.</p>
             <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.35);border-radius:999px;font-size:0.78rem;color:#86efac;font-weight:600">
               <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,0.6)"></span>
@@ -1035,7 +1035,7 @@
           <div style="display:inline-flex;align-items:center;gap:8px;color:#cbd5e1;font-size:0.85rem;font-weight:600"><span style="color:#facc15">★★★★★</span> 4.9/5 · 127 reviews</div>
         </div>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(24,139,246,0.15)">
-          <p style="margin:0;color:#64748b;font-size:0.86rem">© 2026 Short n Sweet Digital. All rights reserved. · Built with care in the USA.</p>
+          <p style="margin:0;color:#64748b;font-size:0.86rem">© 2026 Mallo Digital. All rights reserved. · Built with care in the USA.</p>
           <div style="display:inline-flex;align-items:center;gap:14px">
             <a href="https://www.facebook.com/shortnsweetmarketing" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(24,139,246,0.1);border:1px solid rgba(24,139,246,0.25);color:#cbd5e1;text-decoration:none">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>

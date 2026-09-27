@@ -7,7 +7,7 @@ dateModified: 2026-06-24
 tags: ["gohighlevel", "calendly", "integration", "appointment-scheduling", "automation", "zapier"]
 keywords: ["gohighlevel calendly integration", "sync calendly to gohighlevel", "appointment automation", "gohighlevel booking integration", "calendly setup"]
 targetKeyword: "gohighlevel calendly integration setup"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-24-gohighlevel-calendly-integration-setup.jpg"
@@ -615,7 +615,7 @@ Team gets real-time alert → faster response.
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All features, pricing, and integration details referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest updates.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All features, pricing, and integration details referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest updates.
 
 ---
 

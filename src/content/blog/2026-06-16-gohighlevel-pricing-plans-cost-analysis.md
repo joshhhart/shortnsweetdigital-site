@@ -7,7 +7,7 @@ dateModified: 2026-06-16
 tags: ["gohighlevel", "pricing", "crm", "automation", "small-business", "agency"]
 keywords: ["gohighlevel pricing", "gohighlevel cost", "gohighlevel plans comparison", "gohighlevel starter vs pro", "gohighlevel unlimited"]
 targetKeyword: "gohighlevel pricing plans cost analysis"
-author: "Short n Sweet Digital"
+author: "Mallo Digital"
 auditPassed: true
 draft: false
 heroImage: "/images/2026-06-16-gohighlevel-pricing-plans-cost-analysis.jpg"
@@ -573,7 +573,7 @@ If you answer yes to 3+ questions, GoHighLevel pays for itself within 3–6 mont
 
 ## Affiliate Disclosure
 
-Short n Sweet Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All pricing, features, and plans referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
+Mallo Digital is a GoHighLevel white-label partner. We earn commissions on qualified signups through our affiliate link at [https://www.gohighlevel.com/?fp_ref=shortnsweet53](https://www.gohighlevel.com/?fp_ref=shortnsweet53) at no cost to you. All pricing, features, and plans referenced in this article are current as of June 2026 and subject to change. Check GoHighLevel's official site for the latest details.
 
 ---
 

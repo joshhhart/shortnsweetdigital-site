@@ -7,8 +7,8 @@ dateModified: 2026-07-14
 tags: ["gohighlevel", "gohighlevel-unlimited", "pricing-analysis", "gohighlevel-pro-vs-unlimited", "agency-tools", "saas-pricing", "roi-calculator", "business-automation"]
 keywords: ["gohighlevel unlimited plan cost", "gohighlevel unlimited vs pro", "gohighlevel unlimited plan price", "gohighlevel unlimited features", "is gohighlevel unlimited worth it", "gohighlevel pricing 2026", "gohighlevel unlimited plan review", "gohighlevel cost for agencies"]
 targetKeyword: "gohighlevel unlimited plan cost analysis"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has implemented GoHighLevel for 120+ agencies and service businesses (2023–2026). We've analyzed 500+ cost-benefit scenarios across verticals (home services, fitness, coaching, B2B services, ecommerce). Typical Unlimited users see 35–50% additional revenue within 6 months compared to Pro plan users."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has implemented GoHighLevel for 120+ agencies and service businesses (2023–2026). We've analyzed 500+ cost-benefit scenarios across verticals (home services, fitness, coaching, B2B services, ecommerce). Typical Unlimited users see 35–50% additional revenue within 6 months compared to Pro plan users."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-07-14-gohighlevel-unlimited-plan-cost-analysis.jpg"

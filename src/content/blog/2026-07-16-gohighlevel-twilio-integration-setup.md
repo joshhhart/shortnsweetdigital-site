@@ -7,8 +7,8 @@ dateModified: 2026-07-16
 tags: ["gohighlevel", "twilio-integration", "sms-marketing", "crm-automation", "sms-setup", "10dlc-compliance", "api-integration", "multi-channel-marketing"]
 keywords: ["gohighlevel twilio integration", "twilio sms gohighlevel", "gohighlevel sms automation", "twilio setup gohighlevel", "sms integration crm"]
 targetKeyword: "gohighlevel twilio integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has deployed Twilio + GoHighLevel integrations for 45+ service agencies and small businesses (2023–2026). We've optimized SMS delivery across 500+ campaigns with 98%+ compliance rates and zero carrier blocks."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has deployed Twilio + GoHighLevel integrations for 45+ service agencies and small businesses (2023–2026). We've optimized SMS delivery across 500+ campaigns with 98%+ compliance rates and zero carrier blocks."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-07-16-gohighlevel-twilio-integration-setup.jpg"

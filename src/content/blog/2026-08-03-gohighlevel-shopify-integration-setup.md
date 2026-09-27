@@ -7,8 +7,8 @@ dateModified: 2026-08-03
 tags: ["gohighlevel", "shopify", "integration", "ecommerce-automation", "order-sync", "inventory-management", "crm-ecommerce", "agency-automation"]
 keywords: ["gohighlevel shopify integration", "how to connect gohighlevel to shopify", "gohighlevel shopify sync", "automated order processing", "inventory sync", "customer data sync", "shopify crm integration"]
 targetKeyword: "gohighlevel shopify integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital has configured 45+ GoHighLevel-Shopify integrations across 18 partner agencies (2024–2026). Research methodology: Pre- and post-integration time-tracking logs from 8 ecommerce agencies with 50–500 SKUs and 100–5,000 monthly orders. Field data shows 40–50% reduction in manual order entry time (from 2–4 hours/week to 1–2 hours/week for order verification and returns handling), 95%+ order-to-CRM accuracy post-integration (vs. 70–80% pre-integration due to manual entry errors), and zero inventory sync failures after setup completion. Setup complexity: 30–90 minutes depending on existing Shopify app ecosystem and custom field requirements. See 'Research Methodology' section below for audit scope and limitations."
+author: "Mallo Digital"
+authorBio: "Mallo Digital has configured 45+ GoHighLevel-Shopify integrations across 18 partner agencies (2024–2026). Research methodology: Pre- and post-integration time-tracking logs from 8 ecommerce agencies with 50–500 SKUs and 100–5,000 monthly orders. Field data shows 40–50% reduction in manual order entry time (from 2–4 hours/week to 1–2 hours/week for order verification and returns handling), 95%+ order-to-CRM accuracy post-integration (vs. 70–80% pre-integration due to manual entry errors), and zero inventory sync failures after setup completion. Setup complexity: 30–90 minutes depending on existing Shopify app ecosystem and custom field requirements. See 'Research Methodology' section below for audit scope and limitations."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-03-gohighlevel-shopify-integration-setup.jpg"
@@ -66,7 +66,7 @@ This guide walks you through connecting GoHighLevel to Shopify in 6 steps: enabl
 - Accuracy verified via pre- and post-integration order reconciliation reports (Shopify orders vs. GHL orders)
 - Inventory incidents tracked via Shopify audit logs (oversell events) and GHL activity logs
 
-For the full case study dataset, contact Short n Sweet Digital.
+For the full case study dataset, contact Mallo Digital.
 
 ---
 

@@ -7,8 +7,8 @@ dateModified: 2026-09-18
 tags: ["gohighlevel", "hubspot", "crm-integration", "workflow-automation", "agency-tools", "zapier", "make"]
 keywords: ["gohighlevel hubspot integration", "ghl hubspot sync", "connect gohighlevel hubspot", "hubspot ghl integration setup", "crm automation"]
 targetKeyword: "gohighlevel hubspot integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label implementation partner. Since 2024, we've configured 30+ GHL-HubSpot integrations for agencies and service businesses using Zapier and Make. This guide reflects hands-on setup experience, including common failure modes and cost-optimization strategies. We maintain partnerships with GoHighLevel; HubSpot relationship is integration-evaluation only. We are not GoHighLevel or HubSpot staff. Integration complexity varies by contact volume, workflow depth, and data schema alignment; test in sandbox accounts before production deployment. Sync latency, cost per operation, and bidirectional support depend on which middleware (Zapier vs. Make) you select."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label implementation partner. Since 2024, we've configured 30+ GHL-HubSpot integrations for agencies and service businesses using Zapier and Make. This guide reflects hands-on setup experience, including common failure modes and cost-optimization strategies. We maintain partnerships with GoHighLevel; HubSpot relationship is integration-evaluation only. We are not GoHighLevel or HubSpot staff. Integration complexity varies by contact volume, workflow depth, and data schema alignment; test in sandbox accounts before production deployment. Sync latency, cost per operation, and bidirectional support depend on which middleware (Zapier vs. Make) you select."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-18-gohighlevel-hubspot-integration-setup.jpg"

@@ -7,8 +7,8 @@ dateModified: 2026-08-17
 tags: ["gohighlevel", "twilio", "sms-integration", "sms-marketing", "automation", "tutorial", "agency-tools"]
 keywords: ["gohighlevel twilio integration", "gohighlevel sms setup", "twilio api key gohighlevel", "how to setup sms in gohighlevel", "gohighlevel sms twilio"]
 targetKeyword: "gohighlevel twilio sms integration setup"
-author: "Short n Sweet Digital"
-authorBio: "Short n Sweet Digital is a GoHighLevel white-label partner with 50+ completed SMS integrations (2024–2026). We've set up Twilio + GHL for agencies managing 1K–500K+ monthly SMS sends. This guide reflects real implementation experience, common setup errors, and compliance best practices from production deployments."
+author: "Mallo Digital"
+authorBio: "Mallo Digital is a GoHighLevel white-label partner with 50+ completed SMS integrations (2024–2026). We've set up Twilio + GHL for agencies managing 1K–500K+ monthly SMS sends. This guide reflects real implementation experience, common setup errors, and compliance best practices from production deployments."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-08-17-gohighlevel-twilio-sms-integration-setup.jpg"
@@ -22,7 +22,7 @@ audio: "/audio/2026-08-17-gohighlevel-twilio-sms-integration-setup.mp3"
 
 > **AFFILIATE DISCLOSURE**
 >
-> Short n Sweet Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to recommend GoHighLevel.
+> Mallo Digital is a GoHighLevel white-label implementation partner. We earn referral commissions when readers sign up for GoHighLevel via the affiliate link in this post (https://www.gohighlevel.com/?fp_ref=shortnsweet53). This creates a financial incentive to recommend GoHighLevel.
 >
 > We disclose this upfront so you can evaluate this guide with full transparency. The integration steps and technical details reflect hands-on setup experience across 50+ agency deployments; they are not influenced by our commission structure. **Verify all steps with GoHighLevel and Twilio's current documentation before deploying to production.**
 
@@ -529,7 +529,7 @@ Between 8 AM and 9 PM in the recipient's local time zone. Sending outside this w
 
 You have everything you need. Set up your Twilio integration today, send a test message to yourself, and start building SMS campaigns.
 
-Questions? Reach out to [INTERNAL-LINK: Short n Sweet Digital's SMS implementation team → support page or contact form] or contact GoHighLevel support.
+Questions? Reach out to [INTERNAL-LINK: Mallo Digital's SMS implementation team → support page or contact form] or contact GoHighLevel support.
 
 For white-label SMS setup (reselling SMS to your clients), see our [INTERNAL-LINK: GoHighLevel white-label guide → white-label setup content].
 
