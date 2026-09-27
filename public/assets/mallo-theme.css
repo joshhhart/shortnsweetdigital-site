@@ -164,17 +164,17 @@ body :is(.stat-card, .service-card, .post-grid li, .tier, .testimonial-card).mal
   background: linear-gradient(90deg, #ff5c99, #ffd23f, #5ef2c0, #3b9bff, #a67cff);
 }
 .mallo-peek {
-  position: fixed; left: 24px; bottom: -130px; z-index: 900; background: none; border: 0; padding: 0; cursor: pointer;
+  position: fixed; right: 24px; bottom: -130px; z-index: 900; background: none; border: 0; padding: 0; cursor: pointer;
   transition: bottom 0.5s cubic-bezier(.34, 1.56, .64, 1);
 }
 .mallo-peek img { display: block; width: 110px; height: auto; filter: drop-shadow(0 10px 24px rgba(255, 92, 153, 0.35)); }
 .mallo-peek-up { bottom: -18px; }
 .mallo-peek-hide { bottom: -160px !important; }
 .mallo-peek-bubble {
-  position: absolute; left: 88px; top: 4px; white-space: nowrap;
+  position: absolute; right: 88px; top: 4px; white-space: nowrap;
   background: #fff7fb; color: #2a1850; font-family: var(--display); font-weight: 700; font-size: 0.9rem;
-  padding: 6px 12px; border-radius: 16px 16px 16px 4px; border: 3px solid #2a1850;
-  opacity: 0; transform: scale(0.6); transform-origin: left bottom; transition: all 0.3s cubic-bezier(.34, 1.56, .64, 1) 0.3s;
+  padding: 6px 12px; border-radius: 16px 16px 4px 16px; border: 3px solid #2a1850;
+  opacity: 0; transform: scale(0.6); transform-origin: right bottom; transition: all 0.3s cubic-bezier(.34, 1.56, .64, 1) 0.3s;
 }
 .mallo-peek-up .mallo-peek-bubble { opacity: 1; transform: scale(1); }
 body h1 { text-wrap: balance; }
@@ -253,3 +253,22 @@ body a.btn-primary, body a.btn-secondary {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   padding: 0.8rem 1.4rem; text-decoration: none; line-height: 1.2;
 }
+
+/* Puff dressed over the GHL chat launcher (clicks pass through to it) */
+.mallo-chat-skin {
+  position: fixed; left: 6px; bottom: 8px; width: 84px; z-index: 2147483647; pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.mallo-chat-skin::before {
+  content: ""; position: absolute; left: 11px; bottom: 9px; width: 62px; height: 62px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3a2166, #2a1850); border: 3px solid #ff5c99;
+  box-shadow: 0 6px 0 #2a1850, 0 10px 24px rgba(255, 92, 153, 0.35);
+}
+.mallo-chat-skin img { position: relative; display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 18px rgba(255, 92, 153, 0.45)); }
+.mallo-chat-skin::after {
+  content: "chat"; position: absolute; left: 62px; top: 2px;
+  background: #ffd23f; color: #2a1850; border: 3px solid #2a1850; border-radius: 999px;
+  font: 700 0.75rem/1 var(--display); padding: 4px 8px; transform: rotate(-6deg);
+}
+.mallo-chat-skin.mallo-chat-open { opacity: 0; transform: scale(0.5); }
+@media (max-width: 720px) { .mallo-chat-skin { width: 72px; } .mallo-chat-skin::after { display: none; } }

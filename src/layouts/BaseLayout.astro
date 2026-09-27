@@ -68,6 +68,8 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
       })),
     }
   : null;
+// Changes every build so browsers pick up new theme/effects/override files right after a deploy.
+const assetVersion = Date.now().toString(36);
 ---
 
 <!doctype html>
@@ -96,9 +98,9 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
          Renders every [google-add-preferred-source-btn] element on the page. -->
     <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
     <!-- Site-wide overrides (BorderGlow + StaggeredMenu + GHL polish) -->
-    <script src="/assets/site-overrides.js" defer></script>
-    <link rel="stylesheet" href="/assets/mallo-theme.css" />
-    <script src="/assets/mallo-effects.js" defer></script>
+    <script src={`/assets/site-overrides.js?v=${assetVersion}`} defer></script>
+    <link rel="stylesheet" href={`/assets/mallo-theme.css?v=${assetVersion}`} />
+    <script src={`/assets/mallo-effects.js?v=${assetVersion}`} defer></script>
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG9EKTBZE0"></script>
     <script is:inline>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SG9EKTBZE0',{anonymize_ip:true});</script>

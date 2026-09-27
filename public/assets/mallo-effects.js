@@ -99,7 +99,34 @@
     }, { passive: true });
   }
 
-  function init() { setupPop(); setupTilt(); setupProgress(); setupPeek(); }
+  // Dress the GHL chat bubble up as Puff. The widget lives in a closed shadow
+  // root we can't restyle, so Puff sits on top of the launcher with
+  // pointer-events off: clicks still land on the real bubble underneath.
+  function setupChatMascot() {
+    var tries = 0;
+    var timer = setInterval(function () {
+      var widget = document.querySelector('chat-widget');
+      if (!widget && ++tries < 40) return;
+      clearInterval(timer);
+      if (!widget) return;
+      var mobile = window.matchMedia('(max-width: 768px)').matches;
+      var skin = document.createElement('div');
+      skin.className = 'mallo-chat-skin';
+      skin.setAttribute('aria-hidden', 'true');
+      skin.innerHTML = '<img src="/assets/mascots/puff' + (mobile || reduce ? '-still' : '') + '.webp" alt="" width="96">';
+      document.body.appendChild(skin);
+      // Composed clicks inside the widget retarget to the <chat-widget> host;
+      // hide Puff while the chat panel is open so its close button shows.
+      var open = false;
+      document.addEventListener('click', function (e) {
+        if (e.target !== widget) return;
+        open = !open;
+        skin.classList.toggle('mallo-chat-open', open);
+      });
+    }, 500);
+  }
+
+  function init() { setupPop(); setupTilt(); setupProgress(); setupPeek(); setupChatMascot(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
