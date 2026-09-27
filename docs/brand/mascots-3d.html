@@ -9,7 +9,7 @@ r.toneMapping=THREE.ACESFilmicToneMapping;r.outputColorSpace=THREE.SRGBColorSpac
 document.body.appendChild(r.domElement);
 const s=new THREE.Scene();s.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),0.04).texture;
 if(q.get('bg'))s.background=new THREE.Color(q.get('bg'));
-const cam=new THREE.PerspectiveCamera(28,1,0.1,100);cam.position.set(0,2.2,12);cam.lookAt(0,1.95,0);
+const cam=new THREE.PerspectiveCamera(28,1,0.1,100);cam.position.set(0,2.3,12.5);cam.lookAt(0,2.1,0);
 const gr=new THREE.Mesh(new THREE.PlaneGeometry(14,14),new THREE.ShadowMaterial({opacity:0.25}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;s.add(gr);
 const key=new THREE.DirectionalLight(0xffffff,2.1);key.position.set(3,6,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=10;s.add(key);
 const rim=new THREE.DirectionalLight(0x6fb4ff,2.6);rim.position.set(-4,3,-4);s.add(rim);
@@ -39,10 +39,13 @@ if(M==='toasty'){ // toasted marshmallow on a stick
  const bot=new THREE.Mesh(new THREE.SphereGeometry(1.05,64,32,0,Math.PI*2,Math.PI/2,Math.PI/2),mw);bot.scale.y=0.3;bot.position.y=-0.75;body.add(bot);
  const band=new THREE.Mesh(new THREE.CylinderGeometry(1.06,1.06,0.35,64,1,true),toast);band.position.y=0.62;body.add(band);
  const E=eyes(body,{x:0.38,y:0.05,z:0.98,size:0.26});smile(body,-0.3,1.04);blush(body,0.72,-0.25,0.76);
- const flame=new THREE.Group();flame.position.set(0.3,1.1,0);body.add(flame);
- const f1=sph(0.24,P({color:0xffb040,emissive:0xff6a00,emissiveIntensity:3,transparent:true,opacity:0.9}));f1.scale.set(1,1.8,1);flame.add(f1);
- const f2=sph(0.1,P({color:0xfff2a0,emissive:0xffd040,emissiveIntensity:2}));f2.scale.set(1,1.6,1);f2.position.y=-0.05;flame.add(f2);
- update=(t,T)=>{root.rotation.z=0.08*Math.sin(T);root.position.y=0.08*Math.sin(T*2);flame.scale.set(1+0.15*Math.sin(T*6),1+0.25*Math.sin(T*8+1),1);flame.rotation.z=0.15*Math.sin(T*5);E.forEach(e=>e.scale.y=blinkAt(t));root.rotation.y=0.15*Math.sin(T);};
+ const flame=new THREE.Group();flame.position.set(0,1.25,0);body.add(flame);
+ const outer=sph(0.42,B(0xff3d00,{toneMapped:false,transparent:true,opacity:0.95}));outer.scale.set(1,1.7,1);outer.position.y=0.35;flame.add(outer);
+ const tip=new THREE.Mesh(new THREE.ConeGeometry(0.33,0.75,32),B(0xff3d00,{toneMapped:false,transparent:true,opacity:0.95}));tip.position.y=0.92;flame.add(tip);
+ const mid=sph(0.3,B(0xff9500,{toneMapped:false}));mid.scale.set(1,1.6,1);mid.position.set(0,0.28,0.2);flame.add(mid);
+ const core=sph(0.17,B(0xffe14d,{toneMapped:false}));core.scale.set(1,1.5,1);core.position.set(0,0.2,0.36);flame.add(core);
+ const fl=new THREE.PointLight(0xff8a2a,6,5);fl.position.y=0.4;flame.add(fl);
+ update=(t,T)=>{root.rotation.z=0.08*Math.sin(T);root.position.y=0.08*Math.sin(T*2);flame.scale.set(1+0.12*Math.sin(T*6),1+0.2*Math.sin(T*8+1),1);flame.rotation.z=0.12*Math.sin(T*5);tip.rotation.z=0.25*Math.sin(T*7);fl.intensity=5+2*Math.sin(T*9);E.forEach(e=>e.scale.y=blinkAt(t));root.rotation.y=0.15*Math.sin(T);};
 }
 if(M==='jelli'){ // gummy jellyfish
  const jm=P({color:0xff8fb8,roughness:0.12,transmission:0.75,thickness:1.2,ior:1.35,clearcoat:1,attenuationColor:new THREE.Color(0xff4f8f),attenuationDistance:1.2});

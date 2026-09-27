@@ -13,17 +13,22 @@ Formerly Short n Sweet Digital. Short, soft, sweet.
 - Domains checked open on 2026-09-27: `mallodigital.com`, `mallo.digital` (not yet purchased)
 - Unchanged for now: `shortnsweetdigital.com` URLs, `app.shortnsweetdigital.com`, affiliate code `fp_ref=shortnsweet53`, social handles, legal pages
 
-## Colors
+## Theme: midnight candy shop
+Deep grape night background with floating sprinkles, candy accents, rounded type, sticker labels, chunky cards with colored offset shadows, and bouncy buttons. Lives in `public/assets/mallo-theme.css`.
+
 | Token | Hex | Use |
 |---|---|---|
-| Marshmallow | `#FDF6F0` | mascot body, light surfaces |
-| Night | `#0F172A` | backgrounds, visor |
-| Glow Blue | `#3B9BFF` | eyes, accents (matches existing `--accent` family) |
-| Deep Blue | `#188BF6` | buttons, links |
-| Blush | `#FFB3CF` | cheeks, antenna, small pops |
+| Grape Night | `#1A0F2E` | page background |
+| Card | `#2A1850` | cards, surfaces |
+| Candy Pink | `#FF5C99` | primary buttons, links, squiggles |
+| Lemon | `#FFD23F` | sticker labels, big numbers |
+| Mint | `#5EF2C0` | card shadows, accents |
+| Sky Blue | `#3B9BFF` | card shadows, accents |
+| Grape | `#A67CFF` | secondary accents |
+| Cream | `#FFF7FB` | text |
 
 ## Type
-Wordmark is lowercase `mallo` in a rounded heavy sans (Nunito 800), with `DIGITAL` tracked out underneath.
+Headings in **Fredoka** (rounded, bubbly), body in **Nunito**. The wordmark is lowercase `mallo` in a rounded heavy sans, with `DIGITAL` tracked out underneath.
 
 ## Assets
 - `public/assets/mascots/<name>.webp`: animated loop per character (transparent animated WebP, desktop)

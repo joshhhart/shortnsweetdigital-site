@@ -4,7 +4,7 @@ import GradientText from '../components/reactbits/GradientText.jsx';
 import Mascot from '../components/Mascot.astro';
 import { getCollection } from 'astro:content';
 
-const brandColors = ['#3b9bff', '#188bf6', '#5271FF', '#93c5fd', '#3b9bff'];
+const brandColors = ['#ff5c99', '#ffd23f', '#5ef2c0', '#3b9bff', '#ff5c99'];
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -100,9 +100,6 @@ const testimonials = [
   <script type="application/ld+json" set:html={JSON.stringify(aggregateLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
-  <!-- City background layer -->
-  <img class="city-bg" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/66ef6250acfd667f6577ccee.jpeg" alt="" aria-hidden="true" />
-  <div class="city-veil" aria-hidden="true"></div>
 
   <!-- HERO -->
   <section class="hero bleed">
@@ -356,7 +353,7 @@ const testimonials = [
     }
     .city-veil {
       position: fixed; inset: 0; z-index: -1;
-      background: linear-gradient(180deg, rgba(10,9,14,0.55) 0%, rgba(15,23,42,0.70) 60%, rgba(10,9,14,0.82) 100%);
+      background: linear-gradient(180deg, rgba(20,10,36,0.55) 0%, rgba(26,15,46,0.70) 60%, rgba(20,10,36,0.82) 100%);
       pointer-events: none;
     }
   </style>
@@ -366,9 +363,9 @@ const testimonials = [
     .aurora {
       position: fixed; inset: -10%; z-index: -1; pointer-events: none;
       background:
-        radial-gradient(60% 40% at 20% 15%, rgba(5,100,209,0.35), transparent 60%),
-        radial-gradient(50% 35% at 80% 25%, rgba(24,139,246,0.28), transparent 60%),
-        radial-gradient(70% 50% at 50% 90%, rgba(82,113,255,0.22), transparent 60%);
+        radial-gradient(60% 40% at 20% 15%, rgba(255,92,153,0.35), transparent 60%),
+        radial-gradient(50% 35% at 80% 25%, rgba(255,92,153,0.28), transparent 60%),
+        radial-gradient(70% 50% at 50% 90%, rgba(166,124,255,0.22), transparent 60%);
       filter: blur(40px);
       animation: aurora-drift 22s ease-in-out infinite alternate;
     }
@@ -385,7 +382,7 @@ const testimonials = [
        animated background-position, background-clip: text. Configurable via
        CSS custom properties so each instance can tweak colors / speed. */
     .gradient-text {
-      --grad-colors: #3b9bff, #188bf6, #5271FF, #93c5fd, #3b9bff;
+      --grad-colors: #3b9bff, #ff5c99, #a67cff, #ffb3d1, #3b9bff;
       --grad-speed: 8s;
       --grad-direction: to right;
       display: inline-block;
@@ -409,15 +406,15 @@ const testimonials = [
 
     .gradient-eyebrow {
       display: inline-block;
-      color: #93c5fd;
+      color: #ffb3d1;
       font-weight: 800;
       font-size: 0.78rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       padding: 0.4rem 0.85rem;
       border-radius: 999px;
-      background: linear-gradient(120deg, rgba(5,100,209,0.18), rgba(82,113,255,0.18));
-      border: 1px solid rgba(24,139,246,0.4);
+      background: linear-gradient(120deg, rgba(255,92,153,0.18), rgba(166,124,255,0.18));
+      border: 1px solid rgba(255,92,153,0.4);
       margin: 0 0 1rem;
     }
 
@@ -433,7 +430,7 @@ const testimonials = [
     }
     .hero-sub {
       font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      color: #cbd5e1;
+      color: #d9cdf2;
       max-width: 680px;
       margin: 0 0 1.75rem;
     }
@@ -441,7 +438,7 @@ const testimonials = [
     .hero-trust {
       list-style: none; padding: 0; margin: 1rem 0 0;
       display: flex; flex-wrap: wrap; gap: 1rem;
-      color: #94a3b8; font-size: 0.9rem;
+      color: #b7a6d9; font-size: 0.9rem;
     }
 
     /* Buttons — magnet/glow style */
@@ -456,18 +453,18 @@ const testimonials = [
       will-change: transform;
     }
     .btn-primary {
-      background: linear-gradient(120deg, #0564D1, #188bf6);
+      background: linear-gradient(120deg, #e8457f, #ff5c99);
       color: #fff;
-      box-shadow: 0 12px 32px rgba(5,100,209,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+      box-shadow: 0 12px 32px rgba(255,92,153,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(5,100,209,0.55); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(255,92,153,0.55); }
     .btn-secondary {
-      background: rgba(15,23,42,0.55);
-      color: #e2e8f0;
-      border: 1px solid rgba(24,139,246,0.45);
+      background: rgba(26,15,46,0.55);
+      color: #efe6ff;
+      border: 1px solid rgba(255,92,153,0.45);
       backdrop-filter: blur(8px);
     }
-    .btn-secondary:hover { transform: translateY(-2px); background: rgba(24,139,246,0.18); }
+    .btn-secondary:hover { transform: translateY(-2px); background: rgba(255,92,153,0.18); }
 
     /* Section headings */
     .section-h {
@@ -477,7 +474,7 @@ const testimonials = [
       letter-spacing: -0.01em;
       font-weight: 800;
     }
-    .section-lede { color: #cbd5e1; max-width: 720px; margin: 0 0 2rem; font-size: 1.05rem; }
+    .section-lede { color: #d9cdf2; max-width: 720px; margin: 0 0 2rem; font-size: 1.05rem; }
 
     /* STAT GRID */
     .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
@@ -486,7 +483,7 @@ const testimonials = [
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       font-weight: 800;
       display: inline-block;
-      background-image: linear-gradient(to right, #3b9bff, #188bf6, #5271FF, #93c5fd, #3b9bff);
+      background-image: linear-gradient(to right, #3b9bff, #ff5c99, #a67cff, #ffb3d1, #3b9bff);
       background-size: 300% 100%;
       background-clip: text;
       -webkit-background-clip: text;
@@ -496,7 +493,7 @@ const testimonials = [
       line-height: 1;
     }
     .stat-card h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
-    .stat-card p { margin: 0; color: #cbd5e1; font-size: 0.95rem; }
+    .stat-card p { margin: 0; color: #d9cdf2; font-size: 0.95rem; }
 
     /* SERVICES GRID */
     .services-grid {
@@ -507,7 +504,7 @@ const testimonials = [
     .service-card { padding: 1.5rem; border-radius: 16px; text-align: center; }
     .service-icon { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 0.75rem; display: block; }
     .service-card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
-    .service-card p { margin: 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
+    .service-card p { margin: 0; color: #d9cdf2; font-size: 0.92rem; line-height: 1.5; }
 
     /* ROI CALC */
     .roi-card { padding: 2rem; border-radius: 20px; }
@@ -515,30 +512,30 @@ const testimonials = [
     .roi-inputs { display: flex; flex-direction: column; gap: 1.1rem; }
     .roi-inputs label { display: flex; flex-direction: column; gap: 0.4rem; }
     .roi-inputs label > span:first-child { display: flex; justify-content: space-between; font-weight: 600; }
-    .num-out { color: #188bf6; }
-    .roi-inputs input[type="range"] { width: 100%; accent-color: #188bf6; }
-    .roi-note { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.85rem; line-height: 1.5; }
+    .num-out { color: #ff5c99; }
+    .roi-inputs input[type="range"] { width: 100%; accent-color: #ff5c99; }
+    .roi-note { margin: 0.25rem 0 0; color: #b7a6d9; font-size: 0.85rem; line-height: 1.5; }
     .roi-results { display: flex; flex-direction: column; justify-content: center; gap: 0.8rem; }
-    .result-card { padding: 1rem 1.25rem; border-radius: 14px; background: rgba(5,100,209,0.12); border: 1px solid rgba(5,100,209,0.35); }
-    .result-card.highlight { background: linear-gradient(135deg, rgba(5,100,209,0.25), rgba(82,113,255,0.18)); border-color: rgba(24,139,246,0.55); }
+    .result-card { padding: 1rem 1.25rem; border-radius: 14px; background: rgba(255,92,153,0.12); border: 1px solid rgba(255,92,153,0.35); }
+    .result-card.highlight { background: linear-gradient(135deg, rgba(255,92,153,0.25), rgba(166,124,255,0.18)); border-color: rgba(255,92,153,0.55); }
     .result-card.win { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.4); }
-    .result-label { margin: 0 0 0.25rem; color: #cbd5e1; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
-    .highlight-label { color: #93c5fd; }
+    .result-label { margin: 0 0 0.25rem; color: #d9cdf2; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .highlight-label { color: #ffb3d1; }
     .win-label { color: #86efac; }
     .result-value { margin: 0; font-size: 1.7rem; font-weight: 800; color: #fff; }
-    .result-value span { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }
+    .result-value span { font-size: 0.9rem; color: #b7a6d9; font-weight: 600; }
 
     /* FEATURE / WHY TEXT WINS */
     .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
-    .feature-list { padding-left: 1rem; color: #cbd5e1; font-size: 1rem; line-height: 1.6; }
+    .feature-list { padding-left: 1rem; color: #d9cdf2; font-size: 1rem; line-height: 1.6; }
     .feature-list li { margin-bottom: 0.6rem; }
     .feature-visual { padding: 1.5rem; border-radius: 22px; }
     .phone-mockup { display: flex; flex-direction: column; gap: 0.6rem; }
     .msg { padding: 0.7rem 1rem; border-radius: 14px; max-width: 80%; font-size: 0.95rem; line-height: 1.4; }
-    .msg-them { align-self: flex-start; background: rgba(255,255,255,0.08); color: #e2e8f0; border-bottom-left-radius: 4px; }
-    .msg-us { align-self: flex-end; background: linear-gradient(120deg, #0564D1, #188bf6); color: #fff; border-bottom-right-radius: 4px; }
+    .msg-them { align-self: flex-start; background: rgba(255,255,255,0.08); color: #efe6ff; border-bottom-left-radius: 4px; }
+    .msg-us { align-self: flex-end; background: linear-gradient(120deg, #e8457f, #ff5c99); color: #fff; border-bottom-right-radius: 4px; }
     .msg-typing { align-self: flex-start; background: rgba(255,255,255,0.08); border-radius: 14px; padding: 0.65rem 0.9rem; display: inline-flex; gap: 4px; }
-    .msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; animation: typing-bounce 1.2s infinite ease-in-out; }
+    .msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #b7a6d9; animation: typing-bounce 1.2s infinite ease-in-out; }
     .msg-typing span:nth-child(2) { animation-delay: 0.15s; }
     .msg-typing span:nth-child(3) { animation-delay: 0.3s; }
     @keyframes typing-bounce { 0%,80%,100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-4px); opacity: 1; } }
@@ -546,9 +543,9 @@ const testimonials = [
     /* TESTIMONIALS */
     .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
     .testimonial-card { padding: 1.75rem; border-radius: 18px; }
-    .testimonial-card blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.6; color: #e2e8f0; font-style: italic; }
+    .testimonial-card blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.6; color: #efe6ff; font-style: italic; }
     .testimonial-card figcaption strong { display: block; color: #fff; }
-    .testimonial-card figcaption span { color: #94a3b8; font-size: 0.9rem; }
+    .testimonial-card figcaption span { color: #b7a6d9; font-size: 0.9rem; }
 
     /* BLOG GRID */
     .blog-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
@@ -556,15 +553,15 @@ const testimonials = [
     .blog-card { display: block; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; }
     .blog-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
     .blog-card-body { padding: 1.25rem; }
-    .blog-date { color: #94a3b8; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.5rem; font-weight: 700; }
+    .blog-date { color: #b7a6d9; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.5rem; font-weight: 700; }
     .blog-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; line-height: 1.3; color: #fff; }
-    .blog-card p { margin: 0 0 0.75rem; color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
-    .blog-cta { color: #188bf6; font-weight: 700; font-size: 0.9rem; }
+    .blog-card p { margin: 0 0 0.75rem; color: #d9cdf2; font-size: 0.92rem; line-height: 1.5; }
+    .blog-cta { color: #ff5c99; font-weight: 700; font-size: 0.9rem; }
 
     /* FINAL CTA */
     .final-card { text-align: center; padding: 3rem 1.5rem; border-radius: 24px; }
     .final-card h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin: 0 0 0.75rem; }
-    .final-card p { color: #cbd5e1; margin: 0 0 1.5rem; }
+    .final-card p { color: #d9cdf2; margin: 0 0 1.5rem; }
     .final-card .hero-ctas { justify-content: center; }
 
     /* Mobile breakpoints */

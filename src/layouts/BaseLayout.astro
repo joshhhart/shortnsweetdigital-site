@@ -75,7 +75,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0564D1" />
+    <meta name="theme-color" content="#1a0f2e" />
     <meta name="application-name" content="Mallo Digital" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="alternate" type="application/rss+xml" title="Mallo Digital — Blog" href="/rss.xml" />
@@ -87,9 +87,9 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <link rel="preconnect" href="https://storage.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://images.leadconnectorhq.com" crossorigin />
     <link rel="dns-prefetch" href="https://services.leadconnectorhq.com" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" /></noscript>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <!-- Google Preferred Sources button library
          (https://developers.google.com/search/docs/appearance/preferred-sources).
@@ -97,6 +97,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
     <!-- Site-wide overrides (BorderGlow + StaggeredMenu + GHL polish) -->
     <script src="/assets/site-overrides.js" defer></script>
+    <link rel="stylesheet" href="/assets/mallo-theme.css" />
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG9EKTBZE0"></script>
     <script is:inline>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SG9EKTBZE0',{anonymize_ip:true});</script>
@@ -187,6 +188,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
     })} />
   </head>
   <body>
+    <div class="mallo-sprinkles" aria-hidden="true"><i style="--x:43%;--y:21%;--c:#ff5c99;--r:101deg;--d:9.9s;--dl:-0.7s"></i><i style="--x:70%;--y:14%;--c:#ffd23f;--r:93deg;--d:9.5s;--dl:-9.1s"></i><i style="--x:29%;--y:6%;--c:#5ef2c0;--r:22deg;--d:8.6s;--dl:-0.7s"></i><i style="--x:13%;--y:72%;--c:#3b9bff;--r:108deg;--d:6.4s;--dl:-5.7s"></i><i style="--x:30%;--y:82%;--c:#a67cff;--r:160deg;--d:9.5s;--dl:-0.6s"></i><i style="--x:76%;--y:52%;--c:#ff5c99;--r:12deg;--d:11.9s;--dl:-0.5s"></i><i style="--x:19%;--y:39%;--c:#ffd23f;--r:107deg;--d:6.9s;--dl:-1.2s"></i><i style="--x:41%;--y:73%;--c:#5ef2c0;--r:174deg;--d:7.1s;--dl:-5.8s"></i><i style="--x:83%;--y:26%;--c:#3b9bff;--r:95deg;--d:6.6s;--dl:-7.1s"></i><i style="--x:74%;--y:9%;--c:#a67cff;--r:158deg;--d:7.2s;--dl:-6.8s"></i><i style="--x:56%;--y:42%;--c:#ff5c99;--r:119deg;--d:9.5s;--dl:-4.5s"></i><i style="--x:40%;--y:33%;--c:#ffd23f;--r:46deg;--d:10.2s;--dl:-2.4s"></i><i style="--x:75%;--y:40%;--c:#5ef2c0;--r:134deg;--d:9.0s;--dl:-3.4s"></i><i style="--x:59%;--y:38%;--c:#3b9bff;--r:155deg;--d:11.9s;--dl:-1.2s"></i><i style="--x:55%;--y:23%;--c:#a67cff;--r:87deg;--d:6.9s;--dl:-4.9s"></i><i style="--x:7%;--y:87%;--c:#ff5c99;--r:19deg;--d:10.6s;--dl:-5.7s"></i><i style="--x:42%;--y:45%;--c:#ffd23f;--r:177deg;--d:8.1s;--dl:-5.0s"></i><i style="--x:60%;--y:10%;--c:#5ef2c0;--r:23deg;--d:11.7s;--dl:-4.7s"></i><i style="--x:87%;--y:10%;--c:#3b9bff;--r:15deg;--d:10.4s;--dl:-3.1s"></i><i style="--x:75%;--y:89%;--c:#a67cff;--r:114deg;--d:7.7s;--dl:-3.9s"></i><i style="--x:87%;--y:46%;--c:#ff5c99;--r:5deg;--d:11.6s;--dl:-3.6s"></i><i style="--x:80%;--y:16%;--c:#ffd23f;--r:126deg;--d:6.4s;--dl:-7.7s"></i></div>
     <a class="snd-skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Mallo Digital — home">
@@ -227,18 +229,18 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
 
     <style is:global>
       :root {
-        --fg: #f8fafc;
-        --bg: #0a090e;
-        --muted: #cbd5e1;
-        --accent: #188bf6;
-        --accent-2: #0564D1;
-        --border: #1f2937;
+        --fg: #fff7fb;
+        --bg: #140a24;
+        --muted: #d9cdf2;
+        --accent: #ff5c99;
+        --accent-2: #e8457f;
+        --border: #3d2a66;
         --max-width: 72ch;
       }
       * { box-sizing: border-box; }
       .snd-skip-link {
         position: absolute; left: -9999px; top: 0;
-        background: #0564D1; color: #fff; padding: 8px 14px;
+        background: #e8457f; color: #fff; padding: 8px 14px;
         border-radius: 0 0 8px 0; z-index: 10000;
         text-decoration: none; font-weight: 700;
       }
@@ -246,7 +248,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
       html, body {
         margin: 0;
         padding: 0;
-        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI',
           Roboto, 'Helvetica Neue', Arial, sans-serif;
         color: var(--fg);
         background: var(--bg);
@@ -259,9 +261,10 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         inset: 0;
         z-index: -1;
         background:
-          linear-gradient(180deg, rgba(10,9,14,0.88) 0%, rgba(15,23,42,0.92) 100%),
-          url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/LHvDkOgXpZdUYdjFzBff/media/66ef6250acfd667f6577ccee.jpeg') center/cover no-repeat;
-        background-attachment: fixed, fixed;
+          radial-gradient(900px 600px at 10% -10%, rgba(255,92,153,0.28), transparent 60%),
+          radial-gradient(800px 600px at 110% 20%, rgba(59,155,255,0.22), transparent 60%),
+          radial-gradient(700px 500px at 50% 120%, rgba(94,242,192,0.16), transparent 60%),
+          linear-gradient(180deg, #1a0f2e 0%, #221340 100%);
       }
       main { position: relative; z-index: 1; }
       main {
@@ -303,7 +306,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         padding: 0.4rem 0.75rem;
         color: var(--fg);
         text-decoration: none;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 0.95rem;
         border-radius: 6px;
@@ -323,14 +326,14 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         bottom: 12px;
         z-index: 999;
         text-align: center;
-        background: linear-gradient(120deg, #0564D1, #5271FF);
+        background: linear-gradient(120deg, #e8457f, #a67cff);
         color: #fff;
         font-weight: 700;
         padding: 14px 18px;
         border-radius: 999px;
         text-decoration: none;
-        box-shadow: 0 12px 32px rgba(5, 100, 209, 0.4);
-        font-family: 'Open Sans', sans-serif;
+        box-shadow: 0 12px 32px rgba(255,92,153, 0.4);
+        font-family: 'Nunito', sans-serif;
       }
       @media (max-width: 720px) {
         .snd-mobile-cta { display: block; }
@@ -341,7 +344,7 @@ const breadcrumbLd = autoCrumbs && autoCrumbs.length > 1
         margin-bottom: 1.25rem;
       }
       .preferred-source p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-      .preferred-source a { color: #93c5fd; }
+      .preferred-source a { color: #ffb3d1; }
       .site-footer {
         border-top: 1px solid var(--border);
         padding: 1.5rem;
