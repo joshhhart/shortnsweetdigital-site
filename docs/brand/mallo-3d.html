@@ -1,64 +1,70 @@
 <html><body style="margin:0;background:transparent"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 <script type="module">
+// Mallo: squishy alien mochi marshmallow. window.renderAt(t) renders one frame, t in [0,1) loops.
 import * as THREE from 'three';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-const W=900,H=900;
-const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(W,H);r.setPixelRatio(1);
+const q=new URLSearchParams(location.search);const W=+(q.get('size')||600);
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(W,W);r.setPixelRatio(1);
 r.toneMapping=THREE.ACESFilmicToneMapping;r.outputColorSpace=THREE.SRGBColorSpace;r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
 document.body.appendChild(r.domElement);
-const s=new THREE.Scene();const pm=new THREE.PMREMGenerator(r);s.environment=pm.fromScene(new RoomEnvironment(),0.04).texture;
-const bg=new URLSearchParams(location.search).get('bg');if(bg)s.background=new THREE.Color(bg);
-const cam=new THREE.PerspectiveCamera(30,1,0.1,100);cam.position.set(0,1.7,9.2);cam.lookAt(0,1.35,0);
-// marshmallow body: lathe profile, soft rounded cylinder
-const pts=[];const R=1.2,h=2.05,rr=0.5;
-pts.push(new THREE.Vector2(0,-h/2));
-for(let i=0;i<=16;i++){const a=-Math.PI/2+i/16*Math.PI/2;pts.push(new THREE.Vector2(R-rr+Math.cos(a)*rr,-h/2+rr+Math.sin(a)*rr));}
-for(let i=0;i<=16;i++){const a=i/16*Math.PI/2;pts.push(new THREE.Vector2(R-rr+Math.cos(a)*rr,h/2-rr+Math.sin(a)*rr));}
-pts.push(new THREE.Vector2(0,h/2+0.02));
-const bodyG=new THREE.LatheGeometry(pts,96);
-// subtle squish bulge
-const p=bodyG.attributes.position;for(let i=0;i<p.count;i++){const y=p.getY(i);const k=1+0.06*Math.cos(y*1.8);p.setX(i,p.getX(i)*k);p.setZ(i,p.getZ(i)*k);}bodyG.computeVertexNormals();
-const mallowM=new THREE.MeshPhysicalMaterial({color:0xfff7f4,roughness:0.62,sheen:1,sheenColor:new THREE.Color(0xffe3ee),sheenRoughness:0.5,clearcoat:0.05,transmission:0.0,thickness:1});
-const g=new THREE.Group();s.add(g);
-const body=new THREE.Mesh(bodyG,mallowM);body.position.y=1.03;body.castShadow=true;g.add(body);
-// eyes: big glossy alien eyes
-const eyeM=new THREE.MeshPhysicalMaterial({color:0x121426,roughness:0.08,clearcoat:1,clearcoatRoughness:0.03});
-const glowM=new THREE.MeshBasicMaterial({color:0x5fb2ff});
-const whiteM=new THREE.MeshBasicMaterial({color:0xffffff});
+const s=new THREE.Scene();s.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),0.04).texture;
+if(q.get('bg'))s.background=new THREE.Color(q.get('bg'));
+const cam=new THREE.PerspectiveCamera(28,1,0.1,100);cam.position.set(0,1.9,9.5);cam.lookAt(0,1.45,0);
+const mallow=new THREE.MeshPhysicalMaterial({color:0xfff8f5,roughness:0.55,sheen:1,sheenColor:new THREE.Color(0xffdce9),sheenRoughness:0.45,clearcoat:0.15,clearcoatRoughness:0.6});
+const ink=new THREE.MeshPhysicalMaterial({color:0x14142a,roughness:0.05,clearcoat:1,clearcoatRoughness:0.02});
+const white=new THREE.MeshBasicMaterial({color:0xffffff});
+const glow=new THREE.MeshPhysicalMaterial({color:0x5fb2ff,emissive:0x3b9bff,emissiveIntensity:1.6,roughness:0.15,clearcoat:1});
+const blushM=new THREE.MeshBasicMaterial({color:0xff9fc0,transparent:true,opacity:0.5});
+// mochi body profile: flat-ish bottom, puffy dome top
+const pts=[];const R=1.45,H=2.3;
+for(let i=0;i<=48;i++){const t=i/48*Math.PI;const y=H*(1-Math.cos(t))/2;const k=Math.pow(Math.sin(t),0.62)*(1+0.1*Math.pow(1-y/H,2));pts.push(new THREE.Vector2(Math.max(k*R,0.0001),y));}
+const rAt=y=>{for(let i=1;i<pts.length;i++)if(pts[i].y>=y){const a=pts[i-1],b=pts[i];return a.x+(b.x-a.x)*(y-a.y)/(b.y-a.y);}return 0;};
+const zAt=(x,y,o=0)=>Math.sqrt(Math.max(rAt(y)**2-x*x,0))+o;
+const root=new THREE.Group();s.add(root);
+const squish=new THREE.Group();root.add(squish);
+const body=new THREE.Mesh(new THREE.LatheGeometry(pts,96),mallow);body.castShadow=true;squish.add(body);
+// sugar dust sparkle highlight
+const face=new THREE.Group();squish.add(face);
+const eyes=[];
 for(const sx of [-1,1]){
- const e=new THREE.Mesh(new THREE.SphereGeometry(0.27,48,48),eyeM);e.scale.set(0.9,1.15,0.45);e.position.set(sx*0.43,1.22,1.22);e.rotation.y=sx*0.3;e.rotation.z=-sx*0.25;g.add(e);
- const iris=new THREE.Mesh(new THREE.SphereGeometry(0.12,32,32),glowM);iris.scale.set(1,0.8,0.3);iris.position.set(sx*0.44,1.12,1.32);g.add(iris);
- const hl=new THREE.Mesh(new THREE.SphereGeometry(0.075,24,24),whiteM);hl.position.set(sx*0.43+0.07,1.35,1.33);g.add(hl);
- const hl2=new THREE.Mesh(new THREE.SphereGeometry(0.035,16,16),whiteM);hl2.position.set(sx*0.43-0.07,1.1,1.35);g.add(hl2);
- const bl=new THREE.Mesh(new THREE.SphereGeometry(0.17,32,32),new THREE.MeshBasicMaterial({color:0xffa9c6,transparent:true,opacity:0.55}));bl.scale.set(1.2,0.6,0.2);bl.position.set(sx*0.8,0.9,1.12);bl.rotation.y=sx*0.55;g.add(bl);
- // antenna
- const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(sx*0.3,2.0,0),new THREE.Vector3(sx*0.42,2.45,0.05),new THREE.Vector3(sx*0.75,2.75,0.1)]);
- const st=new THREE.Mesh(new THREE.TubeGeometry(curve,24,0.055,12),mallowM);st.castShadow=true;g.add(st);
- const bulb=new THREE.Mesh(new THREE.SphereGeometry(0.17,32,32),new THREE.MeshPhysicalMaterial({color:0x3b9bff,emissive:0x2a7fff,emissiveIntensity:1.4,roughness:0.2,clearcoat:1}));bulb.position.set(sx*0.78,2.8,0.1);g.add(bulb);
- // arms: right waves, left holds phone
- if(sx>0){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(0.2,0.45,12,24),mallowM);arm.position.set(1.45,1.95,0.2);arm.rotation.z=-0.45;arm.castShadow=true;g.add(arm);
-  const hand=new THREE.Mesh(new THREE.SphereGeometry(0.26,32,32),mallowM);hand.position.set(1.62,2.3,0.22);g.add(hand);
-  for(const [a,rad] of [[0.2,0.62],[0.55,0.72]]){const arc=new THREE.Mesh(new THREE.TorusGeometry(rad,0.025,8,32,0.9),new THREE.MeshBasicMaterial({color:0x7cc4ff}));arc.position.set(1.62,2.3,0.22);arc.rotation.z=a-0.2;g.add(arc);}
- }else{
-  const arm=new THREE.Mesh(new THREE.CapsuleGeometry(0.2,0.35,12,24),mallowM);arm.position.set(-1.2,0.75,0.75);arm.rotation.z=1.1;arm.rotation.y=0.6;arm.castShadow=true;g.add(arm);
-  const ph=new THREE.Group();ph.position.set(-1.05,1.05,1.25);ph.rotation.set(-0.1,0.45,0.12);g.add(ph);
-  const bodyP=new THREE.Mesh(new RoundedBoxGeometry(0.62,1.1,0.08,6,0.08),new THREE.MeshPhysicalMaterial({color:0x1e293b,roughness:0.3,clearcoat:1}));bodyP.castShadow=true;ph.add(bodyP);
-  const scr=new THREE.Mesh(new THREE.PlaneGeometry(0.52,0.98),new THREE.MeshBasicMaterial({color:0x0b2a55}));scr.position.z=0.042;ph.add(scr);
-  const b1=new THREE.Mesh(new RoundedBoxGeometry(0.34,0.16,0.01,4,0.06),new THREE.MeshBasicMaterial({color:0x3b9bff}));b1.position.set(-0.06,0.25,0.05);ph.add(b1);
-  const b2=new THREE.Mesh(new RoundedBoxGeometry(0.3,0.16,0.01,4,0.06),new THREE.MeshBasicMaterial({color:0xffb3cf}));b2.position.set(0.08,0.02,0.05);ph.add(b2);
-  const b3=new THREE.Mesh(new RoundedBoxGeometry(0.24,0.16,0.01,4,0.06),new THREE.MeshBasicMaterial({color:0x3b9bff}));b3.position.set(-0.1,-0.21,0.05);ph.add(b3);
-  const hand=new THREE.Mesh(new THREE.SphereGeometry(0.24,32,32),mallowM);hand.scale.set(1,0.8,0.8);hand.position.set(-0.78,0.62,1.35);g.add(hand);
- }
+ const eg=new THREE.Group();eg.position.set(sx*0.5,1.2,zAt(0.5,1.2,-0.02));eg.rotation.y=sx*0.36;face.add(eg);
+ const e=new THREE.Mesh(new THREE.SphereGeometry(0.3,48,48),ink);e.scale.set(0.85,1.1,0.35);eg.add(e);
+ const iris=new THREE.Mesh(new THREE.SphereGeometry(0.13,32,32),new THREE.MeshBasicMaterial({color:0x4aa8ff}));iris.scale.set(1,0.75,0.3);iris.position.set(0,-0.12,0.08);eg.add(iris);
+ const h1=new THREE.Mesh(new THREE.SphereGeometry(0.07,24,24),white);h1.position.set(0.08,0.12,0.1);eg.add(h1);
+ const h2=new THREE.Mesh(new THREE.SphereGeometry(0.03,16,16),white);h2.position.set(-0.08,-0.1,0.1);eg.add(h2);
+ eyes.push(eg);
+ const b=new THREE.Mesh(new THREE.SphereGeometry(0.2,32,32),blushM);b.scale.set(1.1,0.55,0.2);b.position.set(sx*0.92,0.88,zAt(0.92,0.88,-0.01));b.rotation.y=sx*0.62;face.add(b);
+ // feet
+ const f=new THREE.Mesh(new THREE.SphereGeometry(0.3,32,32),mallow);f.scale.set(1.1,0.55,1.3);f.position.set(sx*0.62,0.08,0.55);f.castShadow=true;root.add(f);
 }
-// smile
-const sm=new THREE.Mesh(new THREE.TorusGeometry(0.11,0.025,12,32,Math.PI),eyeM);sm.rotation.z=Math.PI;sm.position.set(0,0.92,1.36);g.add(sm);
-g.rotation.y=-0.1;
-// ground shadow
-const gr=new THREE.Mesh(new THREE.PlaneGeometry(12,12),new THREE.ShadowMaterial({opacity:0.28}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;s.add(gr);
-const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(3,6,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=8;s.add(key);
-const rim=new THREE.DirectionalLight(0x6fb4ff,3);rim.position.set(-4,3,-4);s.add(rim);
-const rim2=new THREE.DirectionalLight(0xffb3cf,1.2);rim2.position.set(4,2,-3);s.add(rim2);
-s.add(new THREE.HemisphereLight(0xffffff,0x9fb8ff,0.5));
-r.render(s,cam);window.done=true;
+const smile=new THREE.Mesh(new THREE.TorusGeometry(0.12,0.03,12,32,Math.PI),ink);smile.rotation.z=Math.PI;smile.position.set(0,0.88,zAt(0,0.88,0.0));face.add(smile);
+const tongue=new THREE.Mesh(new THREE.SphereGeometry(0.06,16,16),new THREE.MeshBasicMaterial({color:0xff7fa8}));tongue.scale.set(1,0.6,0.4);tongue.position.set(0,0.8,zAt(0,0.8,-0.01));face.add(tongue);
+// curly antenna
+const ant=new THREE.Group();ant.position.set(0.1,H-0.05,0);squish.add(ant);
+const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(0,0,0),new THREE.Vector3(0.05,0.35,0),new THREE.Vector3(0.3,0.65,0.05),new THREE.Vector3(0.55,0.6,0.1),new THREE.Vector3(0.5,0.4,0.1)]);
+ant.add(new THREE.Mesh(new THREE.TubeGeometry(curve,40,0.06,12),mallow));
+const orb=new THREE.Mesh(new THREE.SphereGeometry(0.16,32,32),glow);orb.position.set(0.5,0.34,0.1);ant.add(orb);
+const orbLight=new THREE.PointLight(0x3b9bff,3,3);orb.add(orbLight);
+// arms
+const mkArm=()=>{const g=new THREE.Group();const a=new THREE.Mesh(new THREE.CapsuleGeometry(0.19,0.42,12,24),mallow);a.position.y=0.36;a.castShadow=true;g.add(a);return g;};
+const armL=mkArm();armL.position.set(-1.3,0.75,0.3);armL.rotation.z=2.5;squish.add(armL);
+const armR=mkArm();armR.position.set(1.3,1.15,0.3);squish.add(armR);
+// shadow + lights
+const gr=new THREE.Mesh(new THREE.PlaneGeometry(12,12),new THREE.ShadowMaterial({opacity:0.25}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;s.add(gr);
+const key=new THREE.DirectionalLight(0xffffff,2.1);key.position.set(3,6,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=10;s.add(key);
+const rim=new THREE.DirectionalLight(0x6fb4ff,3.2);rim.position.set(-4,3,-4);s.add(rim);
+const rim2=new THREE.DirectionalLight(0xffb3cf,1.4);rim2.position.set(4,2,-3);s.add(rim2);
+s.add(new THREE.HemisphereLight(0xffffff,0xa9c0ff,0.5));
+window.renderAt=(t)=>{const T=t*Math.PI*2;
+ const hop=Math.max(0,Math.sin(T*2));root.position.y=hop*0.22;
+ const sq=Math.cos(T*2)*0.05;squish.scale.set(1+sq,1-sq,1+sq);
+ armR.rotation.z=-0.5-0.55*(0.5+0.5*Math.sin(T*3));
+ armL.rotation.z=2.75+0.08*Math.sin(T*2);
+ ant.rotation.z=0.15*Math.sin(T*2+1);ant.rotation.x=0.08*Math.sin(T*4);
+ const blink=(t>0.72&&t<0.78)?0.12:1;eyes.forEach(e=>e.scale.y=blink);
+ root.rotation.y=-0.12+0.08*Math.sin(T);
+ glow.emissiveIntensity=1.3+0.6*Math.sin(T*4);
+ r.render(s,cam);};
+window.renderAt(0.1);window.done=true;
+if(q.get('play')){const st=performance.now();(function loop(){window.renderAt(((performance.now()-st)/2400)%1);requestAnimationFrame(loop);})();}
 </script></body></html>
