@@ -247,3 +247,9 @@ body .tag {
 @media (prefers-reduced-motion: reduce) {
   .mallo-pop { opacity: 1; transform: none; }
 }
+
+/* buttons keep their shape on every page */
+body a.btn-primary, body a.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 0.8rem 1.4rem; text-decoration: none; line-height: 1.2;
+}

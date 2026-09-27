@@ -9,10 +9,12 @@
   // ============================================================
   var NAV_ITEMS = [
     { label: 'Home',         href: 'https://shortnsweetdigital.com/',                              external: false },
-    { label: 'Services',     href: 'https://shortnsweetdigital.com/#section-ZTF8dMXlhU',           external: false },
+    { label: 'Services',     href: 'https://shortnsweetdigital.com/services/',                     external: false },
     { label: 'Blog',         href: 'https://shortnsweetdigital.com/blog/',                         external: false },
     { label: 'Book a Call',  href: 'https://shortnsweetdigital.com/book-a-call/',                  external: false },
     { label: 'About',        href: 'https://shortnsweetdigital.com/about/',                        external: false },
+    { label: 'Get Started',  href: 'https://shortnsweetdigital.com/get-started/',                  external: false },
+    { label: 'Contact',      href: 'https://shortnsweetdigital.com/contact/',                      external: false },
     { label: 'Login',        href: 'https://app.shortnsweetdigital.com',                           external: true  },
     { label: 'LEARN',        href: 'https://www.skool.com/llmacademy/about?ref=7ec545cf11f44d1e9ebe40b09419916e', external: true  },
     { label: 'Start free trial', href: 'https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site_nav&utm_medium=organic&utm_campaign=global_nav', external: true, cta: true }
@@ -50,7 +52,7 @@
       .snd-darkened:hover p,.snd-darkened:hover span,.snd-darkened:hover li,.snd-darkened:hover td,.snd-darkened:hover strong,.snd-darkened:hover em,.snd-darkened:hover div,.snd-darkened:hover label{color:#efe6ff!important}
       .snd-darkened:hover h1,.snd-darkened:hover h2,.snd-darkened:hover h3,.snd-darkened:hover h4,.snd-darkened:hover h5,.snd-darkened:hover h6{color:#ffffff!important}
       .snd-darkened a,.snd-darkened a:hover,.snd-darkened a:visited{color:#3b9bff!important}
-      .snd-darkened svg,.snd-darkened svg *,.snd-darkened i,.snd-darkened [class*="icon"]{color:#3b9bff!important;fill:#3b9bff!important;stroke:#3b9bff!important}
+      .snd-darkened svg:not(.svc-icon svg),.snd-darkened svg:not(.svc-icon svg) *,.snd-darkened i,.snd-darkened [class*="icon"]:not(.svc-icon){color:#3b9bff!important;fill:#3b9bff!important;stroke:#3b9bff!important}
 
       /* ---- Image fade-in ---- */
       img[loading="lazy"]{opacity:0;transition:opacity .5s ease}
@@ -980,11 +982,11 @@
           <div>
             <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Product</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
-              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">CRM &amp; Pipelines</a></li>
-              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Email &amp; SMS</a></li>
-              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Web Chat &amp; AI</a></li>
-              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Reputation</a></li>
-              <li><a href="https://shortnsweetdigital.com/#section-ZTF8dMXlhU" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Funnels &amp; Sites</a></li>
+              <li><a href="https://shortnsweetdigital.com/services/#crm" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">CRM &amp; Pipelines</a></li>
+              <li><a href="https://shortnsweetdigital.com/services/#messaging" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Email &amp; SMS</a></li>
+              <li><a href="https://shortnsweetdigital.com/services/#ai-assistant" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Web Chat &amp; AI</a></li>
+              <li><a href="https://shortnsweetdigital.com/services/#reviews" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Reputation</a></li>
+              <li><a href="https://shortnsweetdigital.com/services/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Funnels &amp; Sites</a></li>
             </ul>
           </div>
           <div>
@@ -994,7 +996,7 @@
               <li><a href="/blog/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Real Estate</a></li>
               <li><a href="/blog/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Fitness &amp; Coaching</a></li>
               <li><a href="/blog/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Local Agencies</a></li>
-              <li><a href="/book-a-call/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Talk to sales</a></li>
+              <li><a href="/contact/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Talk to sales</a></li>
             </ul>
           </div>
           <div>
@@ -1010,6 +1012,8 @@
             <h4 style="margin:0 0 16px;font-size:0.78rem;color:#3b9bff;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Company</h4>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
               <li><a href="/about/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">About</a></li>
+              <li><a href="/get-started/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Get started</a></li>
+              <li><a href="/contact/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Contact</a></li>
               <li><a href="/book-a-call/" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Book a call</a></li>
               <li><a href="https://app.shortnsweetdigital.com" rel="noopener" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Login</a></li>
               <li><a href="https://www.gohighlevel.com/?fp_ref=shortnsweet53&utm_source=site&utm_medium=organic&utm_campaign=footer" rel="noopener" target="_blank" style="color:#d9cdf2;text-decoration:none;font-size:0.94rem">Start free trial ↗</a></li>

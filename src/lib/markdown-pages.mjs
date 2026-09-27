@@ -7,6 +7,8 @@ export const SITE_NAME = 'Mallo Digital';
 export const SITE_SUMMARY =
   'Mallo Digital is a white-label GoHighLevel partner that helps small businesses and agencies replace 8–12 marketing SaaS tools with one AI-powered all-in-one platform — CRM, email, SMS, web chat, scheduling, pipelines, reviews, and automation under a single login.';
 
+import { services } from './services.mjs';
+
 const AFFILIATE = 'https://www.gohighlevel.com/?fp_ref=shortnsweet53';
 
 export const staticPages = [
@@ -170,6 +172,79 @@ Book a **free 30-minute strategy call** to scope your CRM, automation, and AI se
 **Who it's for:** Small businesses, local service companies, and agencies that run on inbound leads and follow-up.
 
 [Book your call](${SITE_URL}/book-a-call/)
+`,
+  },
+  {
+    slug: 'services',
+    path: '/services/',
+    title: 'Services — Mallo Digital',
+    description:
+      'Reviews, messaging, web chat, CRM, payments, missed call text back, an AI assistant and a mobile app in one platform, set up for you by Mallo Digital.',
+    markdown: `# Services
+
+Mallo Digital replaces the 8–12 marketing tools most small businesses juggle with one AI-powered platform built on GoHighLevel. Every plan includes all of the services below.
+
+${services.map((s) => `## ${s.title}\n\n${s.body}\n\n${s.detail}\n\nLink: ${SITE_URL}/services/#${s.slug}`).join('\n\n')}
+
+## How it works: done-for-you setup
+
+1. **Start your trial.** Pick a plan and start the 14-day free trial. No long-term contract.
+2. **Strategy call.** We map the tools you use today and decide what moves over first.
+3. **We build it.** We connect your phone number, calendar, website and social accounts, import your contacts and set up your first automations.
+4. **You run your business.** Leads get answered, followed up and booked from one login, on desktop or the mobile app.
+
+## Frequently asked questions
+
+**What services does Mallo Digital offer?**
+One platform covering online reviews, a unified messaging inbox, website chat, CRM, payments, missed call text back, an AI assistant and a mobile app. It runs on GoHighLevel and replaces the 8 to 12 separate tools most small businesses pay for.
+
+**Do I have to set it all up myself?**
+No. We do a done-for-you setup: we connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations with you.
+
+**Can I use only some of the services?**
+Yes. Every plan includes all of the tools, so you can switch on what you need now and add the rest later without paying for another app.
+
+**How much does it cost?**
+Plans are Starter $97/mo, Unlimited $297/mo and SaaS Pro $497/mo. Every plan starts with a 14-day free trial and bills month to month.
+
+- [Start a free trial](${AFFILIATE})
+- [Book a call](${SITE_URL}/book-a-call/)
+`,
+  },
+  {
+    slug: 'contact',
+    path: '/contact/',
+    title: 'Contact — Mallo Digital',
+    description:
+      'Contact Mallo Digital. Send us a message, book a free strategy call, or reach us on Facebook, Instagram or LinkedIn.',
+    markdown: `# Contact Mallo Digital
+
+Questions about the platform, pricing or moving your tools over? Send a message through the contact form at ${SITE_URL}/contact/ and we will get back to you.
+
+## Other ways to reach us
+
+- **Book a call:** a free 30-minute strategy call — ${SITE_URL}/book-a-call/
+- **Facebook:** https://www.facebook.com/shortnsweetmarketing
+- **Instagram:** https://www.instagram.com/shortnsweetdigital
+- **LinkedIn:** https://www.linkedin.com/company/shortnsweet-marketing/
+`,
+  },
+  {
+    slug: 'get-started',
+    path: '/get-started/',
+    title: 'Get Started — Mallo Digital',
+    description:
+      'Get started with Mallo Digital in four steps: pick a plan, start a 14-day free trial, book an onboarding call, and we set it up with you.',
+    markdown: `# Get Started with Mallo Digital
+
+Four steps from deciding to try Mallo Digital to a fully set up platform. No contract.
+
+1. **Pick a plan.** Starter is $97/mo for one business, Unlimited is $297/mo for agencies with unlimited client sub-accounts, and SaaS Pro is $497/mo for white-label reselling. All plans are month to month. [Compare plans](${SITE_URL}/pricing/)
+2. **Start your 14-day free trial.** Create your account and try every tool for 14 days before your first bill. [Start free trial](${AFFILIATE})
+3. **Book your onboarding call.** A free strategy call where we look at the tools you use today and plan what moves over first. [Book a call](${SITE_URL}/book-a-call/)
+4. **We set it up with you.** We connect your phone number, calendar, website and social accounts, import your contacts and build your first follow-up automations, then show you how to run it.
+
+See [what's included](${SITE_URL}/services/) or [contact us](${SITE_URL}/contact/).
 `,
   },
 ];
