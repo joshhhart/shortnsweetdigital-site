@@ -28,8 +28,8 @@ export const services = [
   {
     slug: 'funnels',
     title: 'Funnels & Websites',
-    body: 'Launch fast, mobile-friendly websites and sales funnels that turn visitors into booked leads.',
-    detail: 'Drag-and-drop websites, landing pages and multi-step funnels with built-in forms, calendars, order forms and A/B testing, all connected to your CRM so every signup triggers your follow-up automatically.',
+    body: 'Launch fast, mobile-friendly websites and sales funnels on your own domain, with hosting included.',
+    detail: 'Drag-and-drop websites, landing pages and multi-step funnels with built-in forms, calendars, order forms and A/B testing, all connected to your CRM so every signup triggers your follow-up automatically. Hosting is included with free SSL, and you can connect your own custom domain so everything lives on your brand.',
   },
   {
     slug: 'payments',
