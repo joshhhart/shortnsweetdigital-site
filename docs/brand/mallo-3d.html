@@ -1,0 +1,51 @@
+<html><body style="margin:0;background:transparent"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+const W=900,H=900;
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(W,H);r.setPixelRatio(1);
+r.toneMapping=THREE.ACESFilmicToneMapping;r.outputColorSpace=THREE.SRGBColorSpace;r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
+document.body.appendChild(r.domElement);
+const s=new THREE.Scene();const pm=new THREE.PMREMGenerator(r);s.environment=pm.fromScene(new RoomEnvironment(),0.04).texture;
+const bg=new URLSearchParams(location.search).get('bg');if(bg)s.background=new THREE.Color(bg);
+const cam=new THREE.PerspectiveCamera(30,1,0.1,100);cam.position.set(0,1.6,8.4);cam.lookAt(0,1.25,0);
+// marshmallow body: lathe profile, soft rounded cylinder
+const pts=[];const R=1.2,h=2.05,rr=0.5;
+pts.push(new THREE.Vector2(0,-h/2));
+for(let i=0;i<=16;i++){const a=-Math.PI/2+i/16*Math.PI/2;pts.push(new THREE.Vector2(R-rr+Math.cos(a)*rr,-h/2+rr+Math.sin(a)*rr));}
+for(let i=0;i<=16;i++){const a=i/16*Math.PI/2;pts.push(new THREE.Vector2(R-rr+Math.cos(a)*rr,h/2-rr+Math.sin(a)*rr));}
+pts.push(new THREE.Vector2(0,h/2+0.02));
+const bodyG=new THREE.LatheGeometry(pts,96);
+// subtle squish bulge
+const p=bodyG.attributes.position;for(let i=0;i<p.count;i++){const y=p.getY(i);const k=1+0.06*Math.cos(y*1.8);p.setX(i,p.getX(i)*k);p.setZ(i,p.getZ(i)*k);}bodyG.computeVertexNormals();
+const mallowM=new THREE.MeshPhysicalMaterial({color:0xfff7f4,roughness:0.62,sheen:1,sheenColor:new THREE.Color(0xffe3ee),sheenRoughness:0.5,clearcoat:0.05,transmission:0.0,thickness:1});
+const g=new THREE.Group();s.add(g);
+const body=new THREE.Mesh(bodyG,mallowM);body.position.y=1.03;body.castShadow=true;g.add(body);
+// eyes: big glossy alien eyes
+const eyeM=new THREE.MeshPhysicalMaterial({color:0x121426,roughness:0.08,clearcoat:1,clearcoatRoughness:0.03});
+const glowM=new THREE.MeshBasicMaterial({color:0x5fb2ff});
+const whiteM=new THREE.MeshBasicMaterial({color:0xffffff});
+for(const sx of [-1,1]){
+ const e=new THREE.Mesh(new THREE.SphereGeometry(0.27,48,48),eyeM);e.scale.set(0.9,1.15,0.45);e.position.set(sx*0.43,1.22,1.22);e.rotation.y=sx*0.3;e.rotation.z=-sx*0.25;g.add(e);
+ const iris=new THREE.Mesh(new THREE.SphereGeometry(0.12,32,32),glowM);iris.scale.set(1,0.8,0.3);iris.position.set(sx*0.44,1.12,1.32);g.add(iris);
+ const hl=new THREE.Mesh(new THREE.SphereGeometry(0.075,24,24),whiteM);hl.position.set(sx*0.43+0.07,1.35,1.33);g.add(hl);
+ const hl2=new THREE.Mesh(new THREE.SphereGeometry(0.035,16,16),whiteM);hl2.position.set(sx*0.43-0.07,1.1,1.35);g.add(hl2);
+ const bl=new THREE.Mesh(new THREE.SphereGeometry(0.17,32,32),new THREE.MeshBasicMaterial({color:0xffa9c6,transparent:true,opacity:0.55}));bl.scale.set(1.2,0.6,0.2);bl.position.set(sx*0.8,0.9,1.12);bl.rotation.y=sx*0.55;g.add(bl);
+ // antenna
+ const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(sx*0.3,2.0,0),new THREE.Vector3(sx*0.42,2.45,0.05),new THREE.Vector3(sx*0.75,2.75,0.1)]);
+ const st=new THREE.Mesh(new THREE.TubeGeometry(curve,24,0.055,12),mallowM);st.castShadow=true;g.add(st);
+ const bulb=new THREE.Mesh(new THREE.SphereGeometry(0.17,32,32),new THREE.MeshPhysicalMaterial({color:0x3b9bff,emissive:0x2a7fff,emissiveIntensity:1.4,roughness:0.2,clearcoat:1}));bulb.position.set(sx*0.78,2.8,0.1);g.add(bulb);
+ // stubby arms
+ const arm=new THREE.Mesh(new THREE.SphereGeometry(0.28,32,32),mallowM);arm.scale.set(0.8,1.1,0.8);arm.position.set(sx*1.36,sx>0?1.35:0.8,0.25);arm.rotation.z=sx>0?-0.9:0.5;arm.castShadow=true;g.add(arm);
+}
+// smile
+const sm=new THREE.Mesh(new THREE.TorusGeometry(0.11,0.025,12,32,Math.PI),eyeM);sm.rotation.z=Math.PI;sm.position.set(0,0.92,1.36);g.add(sm);
+g.rotation.y=-0.18;
+// ground shadow
+const gr=new THREE.Mesh(new THREE.PlaneGeometry(12,12),new THREE.ShadowMaterial({opacity:0.28}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;s.add(gr);
+const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(3,6,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.radius=8;s.add(key);
+const rim=new THREE.DirectionalLight(0x6fb4ff,3);rim.position.set(-4,3,-4);s.add(rim);
+const rim2=new THREE.DirectionalLight(0xffb3cf,1.2);rim2.position.set(4,2,-3);s.add(rim2);
+s.add(new THREE.HemisphereLight(0xffffff,0x9fb8ff,0.5));
+r.render(s,cam);window.done=true;
+</script></body></html>
