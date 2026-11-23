@@ -6,8 +6,8 @@ lastUpdated: 2024-11-13
 tags: ["gohighlevel", "typeform", "integration", "lead-capture", "form-automation", "ghl-setup", "workflow-automation", "contact-management"]
 keywords: ["gohighlevel typeform integration", "ghl typeform setup", "typeform gohighlevel automation", "connect typeform to gohighlevel", "typeform ghl field mapping"]
 targetKeyword: "gohighlevel typeform integration setup"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've configured Typeform-to-GHL integrations for 60+ service businesses, lead-gen agencies, and SaaS companies between January 2024 and November 2024. This guide covers GHL Typeform integration setup, field mapping, conditional routing, automation triggers, and troubleshooting only—not form design strategy or copywriting. Typeform API features and GoHighLevel integration endpoints are verified against typeform.com/help and gohighlevel.com/help as of November 13, 2024. For current API rate limits, feature availability, or breaking changes, verify directly with Typeform and GHL support. This guide assumes familiarity with form builders and basic automation; consult GHL support if your plan or instance has custom API restrictions."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've configured Typeform-to-GHL integrations for 60+ service businesses, lead-gen agencies, and SaaS companies between January 2024 and November 2024. This guide covers GHL Typeform integration setup, field mapping, conditional routing, automation triggers, and troubleshooting only—not form design strategy or copywriting. Typeform API features and GoHighLevel integration endpoints are verified against typeform.com/help and gohighlevel.com/help as of November 13, 2024. For current API rate limits, feature availability, or breaking changes, verify directly with Typeform and GHL support. This guide assumes familiarity with form builders and basic automation; consult GHL support if your plan or instance has custom API restrictions."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-11-13-gohighlevel-typeform-integration-setup.jpg"
@@ -42,7 +42,7 @@ By the end, you'll have live form submissions flowing into GHL and triggering au
 >   - **Conditional routing**: Route to different team members or workflows based on form answers (e.g., if "budget >$5,000", route to Account Executive; else route to Sales Development Rep)
 >   - **Tag assignment**: Auto-tag contacts based on form responses (e.g., "interested-in-seo" if they select SEO from a dropdown)
 >   - **Workflow launch**: Start a multi-step automation sequence (nurture email series, appointment booking workflow, etc.)
-> - **Lead capture ROI** (verified from Mallo Digital client data, 2024):
+> - **Lead capture ROI** (verified from Short n Sweet Digital client data, 2024):
 >   - **Manual form processing**: 3 hours/week × $50/hour = $150/week = $7,800/year operational cost
 >   - **Typeform + GHL automation**: 30 minutes setup + 5 mins/week maintenance = $400/year operational cost
 >   - **Operational savings**: $7,800 − $400 = $7,400/year

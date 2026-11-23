@@ -6,8 +6,8 @@ lastUpdated: 2026-10-15
 tags: ["gohighlevel", "white-label", "agency-pricing", "markup-strategy", "reseller-pricing", "profit-margins", "competitor-benchmarks", "pricing-psychology"]
 keywords: ["gohighlevel white-label pricing", "ghl reseller markup", "agency markup strategy", "white-label crm pricing", "reseller profit margins"]
 targetKeyword: "gohighlevel white-label agency markup pricing strategy"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency since 2023. We've priced and resold GHL to 120+ partner agencies, tracking actual markup rates, customer acquisition costs, and retention metrics across small, mid, and enterprise tiers. This guide covers cost modeling and pricing strategy only—not performance guarantees or revenue outcomes. Pricing verified against gohighlevel.com/pricing (retrieved 2026-10-15). For current GHL partner program terms, verify at gohighlevel.com/partners; partner commissions and white-label rates subject to change. All competitor pricing current as of October 2026; verify directly with vendors before republishing."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency since 2023. We've priced and resold GHL to 120+ partner agencies, tracking actual markup rates, customer acquisition costs, and retention metrics across small, mid, and enterprise tiers. This guide covers cost modeling and pricing strategy only—not performance guarantees or revenue outcomes. Pricing verified against gohighlevel.com/pricing (retrieved 2026-10-15). For current GHL partner program terms, verify at gohighlevel.com/partners; partner commissions and white-label rates subject to change. All competitor pricing current as of October 2026; verify directly with vendors before republishing."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-15-gohighlevel-white-label-agency-markup-pricing-strategy.jpg"

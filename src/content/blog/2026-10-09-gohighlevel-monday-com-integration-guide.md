@@ -6,8 +6,8 @@ lastUpdated: 2026-10-09
 tags: ["gohighlevel", "monday-com", "crm-integration", "workflow-automation", "task-management", "sms-automation", "zapier-setup"]
 keywords: ["gohighlevel monday.com integration", "monday.com ghl setup", "zapier gohighlevel monday", "crm task automation", "deadline sms alerts"]
 targetKeyword: "gohighlevel monday.com integration guide"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've deployed GHL + Monday.com integrations for 30+ agencies since 2023. This guide covers technical setup only—not project outcomes or client results. All tool references (GoHighLevel, Monday.com, Zapier) verified against current documentation from gohighlevel.com/developers, monday.com/developers/v2, and zapier.com/apps (retrieved October 2026). For security and compliance questions, consult your platform administrators; for SMS compliance (TCPA), consult legal counsel."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've deployed GHL + Monday.com integrations for 30+ agencies since 2023. This guide covers technical setup only—not project outcomes or client results. All tool references (GoHighLevel, Monday.com, Zapier) verified against current documentation from gohighlevel.com/developers, monday.com/developers/v2, and zapier.com/apps (retrieved October 2026). For security and compliance questions, consult your platform administrators; for SMS compliance (TCPA), consult legal counsel."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-09-gohighlevel-monday-com-integration-guide.jpg"

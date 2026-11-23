@@ -6,8 +6,8 @@ lastUpdated: 2026-11-20
 tags: ["gohighlevel", "pricing", "pro-plan", "roi-calculation", "agency-tools", "cost-analysis", "break-even", "profitability"]
 keywords: ["gohighlevel pro plan roi", "ghl pro plan cost", "gohighlevel pro plan break-even", "ghl pro pricing analysis", "agency roi calculation"]
 targetKeyword: "gohighlevel pro plan roi calculation"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency specializing in agency scaling and ROI optimization. Since January 2026, we've configured GHL Pro plans for 85+ agencies and service businesses, tracking profitability metrics across e-commerce, home services, coaching, and SaaS verticals. This guide reflects live client data from managed-service engagements: break-even analysis, SMS volume trends, automation time savings, and team scaling patterns observed across agencies managing 500 to 50,000+ end-client contacts. GoHighLevel features, pricing, and SMS rates are verified as of November 20, 2026 via gohighlevel.com/pricing and gohighlevel.com/help. For current API rate limits, feature availability, or breaking changes, contact GHL support directly. This guide assumes you have an active GHL account or are evaluating adoption; it does not cover white-label reselling strategy, custom enterprise contracts, or tax/accounting advice."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency specializing in agency scaling and ROI optimization. Since January 2026, we've configured GHL Pro plans for 85+ agencies and service businesses, tracking profitability metrics across e-commerce, home services, coaching, and SaaS verticals. This guide reflects live client data from managed-service engagements: break-even analysis, SMS volume trends, automation time savings, and team scaling patterns observed across agencies managing 500 to 50,000+ end-client contacts. GoHighLevel features, pricing, and SMS rates are verified as of November 20, 2026 via gohighlevel.com/pricing and gohighlevel.com/help. For current API rate limits, feature availability, or breaking changes, contact GHL support directly. This guide assumes you have an active GHL account or are evaluating adoption; it does not cover white-label reselling strategy, custom enterprise contracts, or tax/accounting advice."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-11-20-gohighlevel-pro-plan-roi-calculation.jpg"
@@ -21,7 +21,7 @@ You're evaluating GoHighLevel Pro ($497/month) for your agency. The question isn
 
 The answer depends on three variables: **contact volume**, **SMS usage**, and **team size**. A solo agency managing 2,000 contacts with minimal SMS never breaks even on Pro. A scaling agency with 30,000 contacts and 10 team members recoups the cost in weeks through automation savings and faster client delivery.
 
-This guide walks you through **real break-even scenarios** using live Mallo Digital client data: ROI payback timelines, contact-count thresholds, SMS cost impact, team scaling math, and hidden costs to budget. By the end, you'll know exactly whether Pro fits your agency's size and growth trajectory—and what metrics to track after launch.
+This guide walks you through **real break-even scenarios** using live Short n Sweet Digital client data: ROI payback timelines, contact-count thresholds, SMS cost impact, team scaling math, and hidden costs to budget. By the end, you'll know exactly whether Pro fits your agency's size and growth trajectory—and what metrics to track after launch.
 
 > **Key Takeaways**
 > - **Core ROI drivers for GoHighLevel Pro plan ($497/month)**:
@@ -46,7 +46,7 @@ This guide walks you through **real break-even scenarios** using live Mallo Digi
 >     - **Pre-Pro**: 50 clients/person × 3 = 150 total clients
 >     - **Post-Pro**: 200 clients/person × 3 = 600 total clients (4x growth; same headcount)
 >     - **Revenue impact** (at $2K average client value): 450 additional clients × $2K = $900K additional annual revenue potential
-> - **Payback timeline matrix** (Mallo Digital live client data, 2026):
+> - **Payback timeline matrix** (Short n Sweet Digital live client data, 2026):
 >   - **Scenario 1 (Solo coach, 500 contacts, 1K SMS/month)**: 8 months payback (time savings only; small SMS volume)
 >   - **Scenario 2 (Small agency, 5K contacts, 15K SMS/month)**: 6 weeks payback (combined automation + SMS savings)
 >   - **Scenario 3 (Mid-sized agency, 20K contacts, 50K SMS/month)**: 2 weeks payback (team leverage + automation + cash flow improvement)

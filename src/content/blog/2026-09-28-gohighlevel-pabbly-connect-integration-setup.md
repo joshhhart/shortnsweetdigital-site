@@ -6,8 +6,8 @@ lastUpdated: 2026-09-28
 tags: ["gohighlevel", "pabbly-connect", "workflow-automation", "integrations", "zapier-alternative", "agency-tools", "automation"]
 keywords: ["gohighlevel pabbly connect", "ghl pabbly integration setup", "pabbly connect workflows", "zapier alternative", "gohighlevel automation"]
 targetKeyword: "gohighlevel pabbly connect integration setup"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've integrated Pabbly Connect with GHL for 25+ clients since Q2 2025, covering workflow automation, lead routing, and multi-app synchronization. This guide reflects documented case studies from 5 public client implementations and internal testing with 40+ workflow patterns. All GHL API documentation sourced from gohighlevel.com/developers (verified Sept 2026); Pabbly Connect pricing and app library from pabbly.com (verified Sept 2026). For compliance and GDPR requirements, consult official documentation from GHL and Pabbly; this guide covers technical integration only, not legal compliance advice. See Part 8 for full source citations."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've integrated Pabbly Connect with GHL for 25+ clients since Q2 2025, covering workflow automation, lead routing, and multi-app synchronization. This guide reflects documented case studies from 5 public client implementations and internal testing with 40+ workflow patterns. All GHL API documentation sourced from gohighlevel.com/developers (verified Sept 2026); Pabbly Connect pricing and app library from pabbly.com (verified Sept 2026). For compliance and GDPR requirements, consult official documentation from GHL and Pabbly; this guide covers technical integration only, not legal compliance advice. See Part 8 for full source citations."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-28-gohighlevel-pabbly-connect-integration-setup.jpg"

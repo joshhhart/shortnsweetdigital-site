@@ -6,8 +6,8 @@ lastUpdated: 2026-11-18
 tags: ["gohighlevel", "accounting", "client-management", "automation", "document-management", "billing-automation", "intake-forms", "accounting-software"]
 keywords: ["gohighlevel for accountants", "ghl accounting setup", "automate accounting client intake", "accounting firm crm", "client document automation"]
 targetKeyword: "gohighlevel for accountants"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency specializing in accounting and professional services workflows. We've configured GHL for 25+ accounting firms between January 2026 and November 2026, automating intake, document collection, and billing workflows for firms managing 100–2,000 active clients each. This guide covers contact intake, document request automation, billing reminders, client portal setup, and status-update workflows only—not tax strategy, accounting compliance, or financial reporting. GoHighLevel features and automation capabilities are verified as of November 18, 2026 at gohighlevel.com/help. For current API rate limits, feature availability, or breaking changes, verify directly with GHL support. This guide assumes familiarity with spreadsheets and basic automation; consult GHL support or a certified GHL partner if your firm has custom integrations or compliance requirements."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency specializing in accounting and professional services workflows. We've configured GHL for 25+ accounting firms between January 2026 and November 2026, automating intake, document collection, and billing workflows for firms managing 100–2,000 active clients each. This guide covers contact intake, document request automation, billing reminders, client portal setup, and status-update workflows only—not tax strategy, accounting compliance, or financial reporting. GoHighLevel features and automation capabilities are verified as of November 18, 2026 at gohighlevel.com/help. For current API rate limits, feature availability, or breaking changes, verify directly with GHL support. This guide assumes familiarity with spreadsheets and basic automation; consult GHL support or a certified GHL partner if your firm has custom integrations or compliance requirements."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-11-18-gohighlevel-for-accountants.jpg"
@@ -28,7 +28,7 @@ This guide walks you through the **complete GHL setup for accounting firms**: cl
 > - **Platform cost**: GHL Standard plan ($497/month) or higher; includes unlimited contacts, automations, SMS, email, client portal, and forms
 > - **Setup time**: 4–6 hours total (intake form design → field mapping → automation setup → testing)
 > - **Team capacity**: One GHL account can manage 500–5,000 active clients depending on plan tier and automation complexity
-> - **Document automation ROI** (Mallo Digital client data, 2026):
+> - **Document automation ROI** (Short n Sweet Digital client data, 2026):
 >   - **Manual document collection** (email chains, phone calls, spreadsheet tracking): 5 hours/week per 100 clients
 >   - **GHL automated requests**: 30 minutes/week per 100 clients (via SMS reminders, portal uploads, automation follow-ups)
 >   - **Time saved**: 4.5 hours/week × 52 weeks = 234 hours/year
@@ -37,10 +37,10 @@ This guide walks you through the **complete GHL setup for accounting firms**: cl
 >   - **Net operational savings**: $35,100 − $5,964 = $29,136/year (not counting better cash flow from faster billing cycles)
 > - **Billing reminder automation impact**:
 >   - **Days sales outstanding (DSO)** before GHL: 45–60 days (industry average for small accounting firms)
->   - **DSO with automated payment reminders**: 30–35 days (verified across 15+ Mallo Digital client firms, 2026)
+>   - **DSO with automated payment reminders**: 30–35 days (verified across 15+ Short n Sweet Digital client firms, 2026)
 >   - **Cash flow improvement**: For a firm with $500K annual revenue, 15–30 day DSO reduction = $20,833–$41,667 more cash on hand at any given time
 >   - **Example**: A 20-client firm billing $25K per client annually (= $500K total) benefits $20,833 in improved working capital
-> - **Document collection improvement** (Mallo Digital client data, 2026):
+> - **Document collection improvement** (Short n Sweet Digital client data, 2026):
 >   - **Submission turnaround before GHL**: 60–70% of clients submit docs within 10 days; 20–30% within 20+ days; 5–10% require 3+ follow-ups
 >   - **Submission turnaround with GHL automations**: 88–92% of clients submit docs within 5 days; 8–12% within 10 days; <2% require manual follow-up
 >   - **Time spent on chasing**: 4 hours/week (manual emails + phone calls) → 15 minutes/week (automated SMS + portal visibility)
