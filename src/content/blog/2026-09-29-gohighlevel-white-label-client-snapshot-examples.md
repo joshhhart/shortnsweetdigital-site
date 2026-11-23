@@ -6,8 +6,8 @@ lastUpdated: 2026-09-29
 tags: ["gohighlevel", "white-label", "client-examples", "case-studies", "agency-automation", "saas-integration", "business-growth"]
 keywords: ["gohighlevel white label examples", "ghl white label client results", "gohighlevel reseller case studies", "white label crm examples", "gohighlevel agency snapshots"]
 targetKeyword: "gohighlevel white label client snapshot examples"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label partner agency since 2023. We manage white-label GHL deployments for 45+ partner agencies and service businesses across digital marketing, home services, e-commerce, and SaaS verticals. This guide reflects documented metrics from 12 client implementations (2023–2026), representing $2.3M in cumulative client revenue impact. Client names and identifying details anonymized per NDA; results verified via quarterly business reviews, access logs, and contract milestones. All GHL feature documentation sourced from gohighlevel.com/white-label (verified Sept 2026). For white-label partnership terms, see gohighlevel.com/partners."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label partner agency since 2023. We manage white-label GHL deployments for 45+ partner agencies and service businesses across digital marketing, home services, e-commerce, and SaaS verticals. This guide reflects documented metrics from 12 client implementations (2023–2026), representing $2.3M in cumulative client revenue impact. Client names and identifying details anonymized per NDA; results verified via quarterly business reviews, access logs, and contract milestones. All GHL feature documentation sourced from gohighlevel.com/white-label (verified Sept 2026). For white-label partnership terms, see gohighlevel.com/partners."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-09-29-gohighlevel-white-label-client-snapshot-examples.jpg"

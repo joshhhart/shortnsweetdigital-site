@@ -6,8 +6,8 @@ lastUpdated: 2026-10-02
 tags: ["gohighlevel", "pabbly-connect", "bigcommerce-integration", "sms-automation", "abandoned-cart-recovery", "ecommerce-crm", "workflow-setup"]
 keywords: ["gohighlevel pabbly connect", "bigcommerce ghl integration", "pabbly connect setup", "abandoned cart sms", "ecommerce automation"]
 targetKeyword: "gohighlevel pabbly connect integration setup"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've deployed GHL + Pabbly integrations for BigCommerce clients since 2023. This guide covers technical setup only—not financial projections or client results. All tool references (Pabbly Connect, GoHighLevel, BigCommerce APIs) verified against current documentation from pabbly.com, gohighlevel.com, and developer.bigcommerce.com (retrieved Sept 2026). For SMS compliance (TCPA, state rules), consult legal counsel; for e-commerce platform compliance (PCI-DSS), consult your payment processor. See 'Compliance Checklist' section for reference links."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've deployed GHL + Pabbly integrations for BigCommerce clients since 2023. This guide covers technical setup only—not financial projections or client results. All tool references (Pabbly Connect, GoHighLevel, BigCommerce APIs) verified against current documentation from pabbly.com, gohighlevel.com, and developer.bigcommerce.com (retrieved Sept 2026). For SMS compliance (TCPA, state rules), consult legal counsel; for e-commerce platform compliance (PCI-DSS), consult your payment processor. See 'Compliance Checklist' section for reference links."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-02-gohighlevel-pabbly-connect-integration-setup.jpg"

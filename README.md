@@ -1,4 +1,4 @@
-# Mallo Digital — site
+# Short n Sweet Digital — site
 
 Astro static site, deployed to GitHub Pages. New blog post every weekday,
 published automatically by a LaunchAgent on Josh's Mac that runs
@@ -27,7 +27,7 @@ site/
 ├── public/
 │   ├── images/                  hero images (Nano Banana output)
 │   ├── audio/                   ElevenLabs MP3s
-│   └── favicon.png
+│   └── favicon.svg
 └── .github/workflows/deploy.yml GitHub Pages deploy on push to main
 ```
 

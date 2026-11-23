@@ -6,8 +6,8 @@ lastUpdated: 2026-10-19
 tags: ["gohighlevel", "white-label", "client-reporting", "performance-dashboards", "agency-automation", "client-retention", "custom-dashboards", "crm-reporting"]
 keywords: ["gohighlevel white-label reporting", "ghl client performance dashboard", "automated client reports gohighlevel", "white-label dashboards crm", "agency performance reporting"]
 targetKeyword: "gohighlevel white label client performance reporting"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency since 2023. We've configured performance dashboards and reporting automations for 120+ client accounts across 15 industries. This guide covers dashboard setup, report automation, and best practices only—not performance guarantees or client outcome predictions. All GHL features verified against gohighlevel.com/features (current as of October 2026; feature availability varies by plan tier). For the latest GHL reporting capabilities, verify directly in your account's Automations and Dashboard settings; feature sets subject to change. Recommendations based on real deployments; results vary by client use case and data quality."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency since 2023. We've configured performance dashboards and reporting automations for 120+ client accounts across 15 industries. This guide covers dashboard setup, report automation, and best practices only—not performance guarantees or client outcome predictions. All GHL features verified against gohighlevel.com/features (current as of October 2026; feature availability varies by plan tier). For the latest GHL reporting capabilities, verify directly in your account's Automations and Dashboard settings; feature sets subject to change. Recommendations based on real deployments; results vary by client use case and data quality."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-19-gohighlevel-white-label-client-performance-reporting.jpg"
@@ -173,7 +173,7 @@ Next Steps: Log in to view detailed breakdowns by campaign and traffic source.
 
 Questions? Reply to this email.
 
-— Mallo Digital Team
+— Short n Sweet Digital Team
 ```
 
 #### 2.2 Third-Party Scheduling via Make (Zapier Alternative)
@@ -544,7 +544,7 @@ Next Steps: Log in to view daily breakdown and see which neighborhoods are drivi
 
 Questions? Reply to this email.
 
-— Mallo Digital
+— Short n Sweet Digital
 ```
 
 ---

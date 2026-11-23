@@ -6,8 +6,8 @@ lastUpdated: 2026-11-16
 tags: ["gohighlevel", "drip", "migration", "contact-management", "email-automation", "workflow-migration", "crm-migration", "data-import"]
 keywords: ["migrate drip to gohighlevel", "drip to ghl migration", "drip import gohighlevel", "move contacts drip gohighlevel", "drip gohighlevel data migration"]
 targetKeyword: "migrate from drip to gohighlevel"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency specializing in platform migrations. We've migrated 15+ agencies and service businesses from Drip to GoHighLevel since January 2026, moving 150K+ combined contacts and 2,000+ email workflows. This guide covers contact export, field mapping, automation rebuild, compliance audits, and troubleshooting only—not email strategy or list segmentation. Drip export formats and GoHighLevel import endpoints are verified as of November 16, 2026 at getdrip.com/help and gohighlevel.com/help. For current API rate limits, breaking changes, or feature parity, verify directly with Drip and GHL support. This guide assumes familiarity with both platforms and basic data hygiene; consult a data compliance specialist if handling GDPR/CCPA regulated data."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency specializing in platform migrations. We've migrated 15+ agencies and service businesses from Drip to GoHighLevel since January 2026, moving 150K+ combined contacts and 2,000+ email workflows. This guide covers contact export, field mapping, automation rebuild, compliance audits, and troubleshooting only—not email strategy or list segmentation. Drip export formats and GoHighLevel import endpoints are verified as of November 16, 2026 at getdrip.com/help and gohighlevel.com/help. For current API rate limits, breaking changes, or feature parity, verify directly with Drip and GHL support. This guide assumes familiarity with both platforms and basic data hygiene; consult a data compliance specialist if handling GDPR/CCPA regulated data."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-11-16-migrate-from-drip-to-gohighlevel.jpg"

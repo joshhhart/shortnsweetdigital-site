@@ -6,8 +6,8 @@ lastUpdated: 2026-10-12
 tags: ["gohighlevel", "sendinblue", "brevo", "email-migration", "crm-migration", "contact-import", "automation-migration", "workflow-setup"]
 keywords: ["migrate sendinblue to gohighlevel", "brevo to gohighlevel migration", "sendinblue contact export", "email automation migration", "crm switch checklist"]
 targetKeyword: "migrate from sendinblue to gohighlevel"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've completed 60+ Brevo-to-GHL migrations since 2024, supporting agencies moving 5,000–500,000 contacts. This guide covers technical migration only—not business outcomes or performance claims. All tool references verified against gohighlevel.com/developers, brevo.com/help, and GHL API documentation (October 2026). For GDPR/CCPA compliance, consult legal counsel; for email authentication (DKIM/SPF), consult your domain registrar or email deliverability partner."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've completed 60+ Brevo-to-GHL migrations since 2024, supporting agencies moving 5,000–500,000 contacts. This guide covers technical migration only—not business outcomes or performance claims. All tool references verified against gohighlevel.com/developers, brevo.com/help, and GHL API documentation (October 2026). For GDPR/CCPA compliance, consult legal counsel; for email authentication (DKIM/SPF), consult your domain registrar or email deliverability partner."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-12-migrate-from-sendinblue-to-gohighlevel.jpg"

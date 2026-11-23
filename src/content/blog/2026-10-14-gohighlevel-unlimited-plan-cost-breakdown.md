@@ -6,8 +6,8 @@ lastUpdated: 2026-10-14
 tags: ["gohighlevel", "unlimited-plan", "pricing", "cost-breakdown", "payment-processing", "sms-costs", "agency-pricing", "roi-calculator"]
 keywords: ["gohighlevel unlimited plan cost", "ghl unlimited pricing 2026", "hidden fees gohighlevel", "gohighlevel payment processing fees", "ghl sms cost calculator"]
 targetKeyword: "gohighlevel unlimited plan cost breakdown"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've configured Unlimited accounts for 120+ agencies and tracked actual spend patterns across 50,000–5,000,000 annual leads since 2024. This guide covers pricing structure and cost modeling only—not revenue outcomes or performance claims. All pricing verified against gohighlevel.com/pricing (retrieved 2026-10-14). For current rates on SMS, payment processing, and phone add-ons, verify directly with GHL support; pricing subject to change. Estimates based on October 2026 rate card."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've configured Unlimited accounts for 120+ agencies and tracked actual spend patterns across 50,000–5,000,000 annual leads since 2024. This guide covers pricing structure and cost modeling only—not revenue outcomes or performance claims. All pricing verified against gohighlevel.com/pricing (retrieved 2026-10-14). For current rates on SMS, payment processing, and phone add-ons, verify directly with GHL support; pricing subject to change. Estimates based on October 2026 rate card."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-14-gohighlevel-unlimited-plan-cost-breakdown.jpg"

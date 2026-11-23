@@ -6,8 +6,8 @@ lastUpdated: 2026-10-01
 tags: ["gohighlevel", "beauty-salons", "appointment-automation", "sms-marketing", "salon-management", "client-retention", "no-show-reduction"]
 keywords: ["gohighlevel for salons", "ghl salon software", "salon sms automation", "appointment reminders", "beauty salon crm", "salon client retention", "booking automation"]
 targetKeyword: "gohighlevel for beauty salons"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency specializing in service-based automation since 2023. We've deployed GHL for 12 live salon clients across hair, nail, and spa verticals (hair salons: 3 clients; nail salons: 5 clients; day spas: 4 clients). This guide reflects documented metrics from deployments tracking 2023–2026: 28% average no-show reduction, $4K–$18K incremental annual revenue per salon, 45–65% SMS open rates on appointment reminders. All GHL feature documentation sourced from gohighlevel.com/crm and gohighlevel.com/sms (verified Sept 2026). For SMS compliance (TCPA, state-specific rules), consult with your legal counsel; this guide covers technical setup, not compliance advice. Salon client names and identifying details anonymized per NDA."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency specializing in service-based automation since 2023. We've deployed GHL for 12 live salon clients across hair, nail, and spa verticals (hair salons: 3 clients; nail salons: 5 clients; day spas: 4 clients). This guide reflects documented metrics from deployments tracking 2023–2026: 28% average no-show reduction, $4K–$18K incremental annual revenue per salon, 45–65% SMS open rates on appointment reminders. All GHL feature documentation sourced from gohighlevel.com/crm and gohighlevel.com/sms (verified Sept 2026). For SMS compliance (TCPA, state-specific rules), consult with your legal counsel; this guide covers technical setup, not compliance advice. Salon client names and identifying details anonymized per NDA."
 auditPassed: true
 draft: false
 heroImage: "/images/2026-10-01-gohighlevel-for-beauty-salons.jpg"
@@ -90,7 +90,7 @@ Most salons rely on clients remembering to book ("I'll call you when I need a re
 **Automated repeat-booking SMS (4–6 weeks after last appointment)** changes this:
 - 30 monthly appointments baseline
 - 40% of clients repeat within 8 weeks naturally
-- With SMS reminder at week 5: repeat rate increases to 65–75% (measured by Mallo Digital across 12 salon deployments, 2023–2026)
+- With SMS reminder at week 5: repeat rate increases to 65–75% (measured by Short n Sweet Digital across 12 salon deployments, 2023–2026)
 - **Incremental repeat bookings: 30 × 35% uplift = 10.5 extra appointments/month × $75 = $787.50/month = $9,450/year**
 
 Combined with no-show reduction, a typical 20-appointment salon gains **$23,850/year in preserved + new revenue** from GHL automation alone.
@@ -149,7 +149,7 @@ At $1,500–$2,000/year total GHL cost, payback is 3–4 weeks.
 
 ### Step 1: Create Your GHL Account
 
-1. Go to **gohighlevel.com** (or through a white-label reseller partner like Mallo Digital)
+1. Go to **gohighlevel.com** (or through a white-label reseller partner like Short n Sweet Digital)
 2. Click **Get Started** (or **Sign Up**)
 3. Enter email, create password
 4. Select **Professional** plan

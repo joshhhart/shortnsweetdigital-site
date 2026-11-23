@@ -6,8 +6,8 @@ lastUpdated: 2026-10-13
 tags: ["gohighlevel", "forms-builder", "lead-capture", "conditional-logic", "payment-forms", "form-automation", "crm-integration", "conversion-optimization"]
 keywords: ["gohighlevel forms builder advanced features", "ghl conditional logic forms", "multi-step forms gohighlevel", "crm prefill gohighlevel", "payment collection gohighlevel forms"]
 targetKeyword: "gohighlevel forms builder advanced features guide"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've built 200+ custom forms for agencies and local businesses since 2023, ranging from simple lead-capture to multi-step workflows handling 50,000–500,000 annual leads. This guide covers technical setup and configuration only—not conversion outcomes or performance claims. All tool references (GoHighLevel, Stripe, PayPal, Twilio) verified against gohighlevel.com/developers, stripe.com/docs, paypal.com/docs, and twilio.com/docs (retrieved October 2026). For PCI compliance, consult your payment processor; for GDPR (EU 2016/679), CCPA (Cal. Civ. Code § 1798.100 et seq.), CAN-SPAM (15 U.S.C. § 7701 et seq.), and SMS compliance (TCPA 47 U.S.C. § 227), consult legal counsel."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've built 200+ custom forms for agencies and local businesses since 2023, ranging from simple lead-capture to multi-step workflows handling 50,000–500,000 annual leads. This guide covers technical setup and configuration only—not conversion outcomes or performance claims. All tool references (GoHighLevel, Stripe, PayPal, Twilio) verified against gohighlevel.com/developers, stripe.com/docs, paypal.com/docs, and twilio.com/docs (retrieved October 2026). For PCI compliance, consult your payment processor; for GDPR (EU 2016/679), CCPA (Cal. Civ. Code § 1798.100 et seq.), CAN-SPAM (15 U.S.C. § 7701 et seq.), and SMS compliance (TCPA 47 U.S.C. § 227), consult legal counsel."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-10-13-gohighlevel-forms-builder-advanced-features-guide.jpg"

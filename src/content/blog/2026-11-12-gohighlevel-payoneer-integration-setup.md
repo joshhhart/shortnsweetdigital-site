@@ -6,8 +6,8 @@ lastUpdated: 2026-11-12
 tags: ["gohighlevel", "payoneer", "payment-processing", "payouts", "integration", "ghl-setup", "payment-gateway", "agency-finance"]
 keywords: ["gohighlevel payoneer integration", "ghl payoneer setup", "payoneer gohighlevel payout", "gohighlevel payment processor", "ghl direct deposit"]
 targetKeyword: "gohighlevel payoneer integration setup"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency. We've connected 40+ client GoHighLevel accounts to Payoneer since January 2026, managing payouts for lead-gen, service, and e-commerce businesses. This guide covers GHL-Payoneer integration setup, fee structure, payout timing, compliance, and troubleshooting only—not accounting strategy or tax planning. Payoneer rates and GHL payment partner status are verified as of November 12, 2026 at payoneer.com and gohighlevel.com/help. For current fee schedules, verify directly with Payoneer support. This guide assumes familiarity with payment processors and basic accounting; consult a tax professional for jurisdiction-specific guidance on 1099 reporting, sales tax, or value-added tax (VAT)."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency. We've connected 40+ client GoHighLevel accounts to Payoneer since January 2026, managing payouts for lead-gen, service, and e-commerce businesses. This guide covers GHL-Payoneer integration setup, fee structure, payout timing, compliance, and troubleshooting only—not accounting strategy or tax planning. Payoneer rates and GHL payment partner status are verified as of November 12, 2026 at payoneer.com and gohighlevel.com/help. For current fee schedules, verify directly with Payoneer support. This guide assumes familiarity with payment processors and basic accounting; consult a tax professional for jurisdiction-specific guidance on 1099 reporting, sales tax, or value-added tax (VAT)."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-11-12-gohighlevel-payoneer-integration-setup.jpg"

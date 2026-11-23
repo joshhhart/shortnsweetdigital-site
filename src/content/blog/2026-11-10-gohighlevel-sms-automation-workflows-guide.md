@@ -6,8 +6,8 @@ lastUpdated: 2026-11-10
 tags: ["gohighlevel", "sms-automation", "workflows", "lead-nurturing", "customer-engagement", "ghl-setup", "marketing-automation"]
 keywords: ["gohighlevel sms automation", "ghl sms workflows", "gohighlevel sms setup", "sms automation guide", "gohighlevel sms campaigns"]
 targetKeyword: "gohighlevel sms automation workflows guide"
-author: "Mallo Digital"
-authorBio: "Mallo Digital is a GoHighLevel white-label agency specializing in SMS automation, lead nurturing, and customer engagement workflows. We've built 200+ SMS automation workflows for e-commerce, service businesses, and lead-generation agencies between 2024 and November 2026. This guide covers GHL SMS automation setup, workflow logic, compliance rules (TCPA, GDPR, CAN-SPAM), and real agency benchmarks only—not SMS strategy or copywriting. GHL SMS features, API endpoints, and automation builder are verified against gohighlevel.com/help (current as of November 10, 2026); GHL Pro plan ($99/month) or higher is assumed. For the latest GHL SMS updates or feature changes, verify directly with GHL support or the official documentation. This guide assumes basic familiarity with automation platforms; consult a compliance attorney for TCPA or GDPR interpretation specific to your jurisdiction. No uptime guarantees or performance SLAs are implied; test workflows in a staging environment before production rollout."
+author: "Short n Sweet Digital"
+authorBio: "Short n Sweet Digital is a GoHighLevel white-label agency specializing in SMS automation, lead nurturing, and customer engagement workflows. We've built 200+ SMS automation workflows for e-commerce, service businesses, and lead-generation agencies between 2024 and November 2026. This guide covers GHL SMS automation setup, workflow logic, compliance rules (TCPA, GDPR, CAN-SPAM), and real agency benchmarks only—not SMS strategy or copywriting. GHL SMS features, API endpoints, and automation builder are verified against gohighlevel.com/help (current as of November 10, 2026); GHL Pro plan ($99/month) or higher is assumed. For the latest GHL SMS updates or feature changes, verify directly with GHL support or the official documentation. This guide assumes basic familiarity with automation platforms; consult a compliance attorney for TCPA or GDPR interpretation specific to your jurisdiction. No uptime guarantees or performance SLAs are implied; test workflows in a staging environment before production rollout."
 auditPassed: false
 draft: false
 heroImage: "/images/2026-11-10-gohighlevel-sms-automation-workflows-guide.jpg"
@@ -37,7 +37,7 @@ By the end, you'll have a live workflow nurturing leads via SMS—24/7, without 
 >   - **Cart abandonment** (SMS 1h after abandonment, then email 24h later)
 >   - **Win-back campaigns** (SMS to inactive contacts after 30 days)
 >   - **SMS broadcasts** (one-time bulk SMS to a list or tag)
-> - **Engagement benchmarks** (verified from Mallo Digital client data, October–November 2026):
+> - **Engagement benchmarks** (verified from Short n Sweet Digital client data, October–November 2026):
 >   - Initial outreach SMS: 5–15% reply rate
 >   - Appointment reminder SMS: 60–75% confirmation rate (reduces no-shows by 40%)
 >   - Abandoned cart SMS: 8–12% conversion rate (typically within 2 hours of send)
@@ -89,7 +89,7 @@ By the end, you'll have a live workflow nurturing leads via SMS—24/7, without 
 
 ### GHL SMS Capability Overview
 
-GoHighLevel's SMS module is built on Twilio's infrastructure (Mallo Digital verified against gohighlevel.com/help, November 2026). Here's what you get:
+GoHighLevel's SMS module is built on Twilio's infrastructure (Short n Sweet Digital verified against gohighlevel.com/help, November 2026). Here's what you get:
 
 | Feature | Available | Details |
 |---------|-----------|---------|
@@ -347,7 +347,7 @@ To handle replies intelligently:
 
 **Expected result**: Any scheduled appointment in GHL automatically triggers a 24-hour SMS, then a 2-hour SMS. Contacts can confirm or cancel via reply.
 
-**Engagement impact** (verified from Mallo Digital client data):
+**Engagement impact** (verified from Short n Sweet Digital client data):
 - 24-hour reminder SMS: 60–75% open rate, 30–40% confirmation rate
 - 2-hour reminder SMS: 50–65% open rate, 15–20% re-confirmation rate
 - Overall no-show reduction: 35–50% (industry benchmark: 20–30% no-show rate without reminders; with SMS reminders, 10–15%)
@@ -435,7 +435,7 @@ To handle replies intelligently:
 
 1. Click **Publish**
 
-**Expected ROI** (verified from Mallo Digital client data, October–November 2026):
+**Expected ROI** (verified from Short n Sweet Digital client data, October–November 2026):
 - SMS 1h reminder: 8–12% cart recovery rate (immediate conversions)
 - Email 24h followup: 2–4% additional recovery (captures "I'll think about it" segment)
 - Combined recovery: 10–16% of abandoned carts (vs. 0–2% with no follow-up)
@@ -615,7 +615,7 @@ Have questions? Reply here.
 ```
 Hi {{firstName}}, your appointment is tomorrow at 2pm. 
 Reply CONFIRM or CANCEL. 
-Reply STOP to unsubscribe. — Mallo Digital
+Reply STOP to unsubscribe. — Short n Sweet Digital
 ```
 
 (160 characters; meets TCPA requirements)
